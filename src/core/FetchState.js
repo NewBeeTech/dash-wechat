@@ -1,6 +1,5 @@
 /**
  * Happy Hacking
- * Created by leiyouwho on 3/5/2016.
  */
 
 export const SUCCESS = (actionName: string) => {

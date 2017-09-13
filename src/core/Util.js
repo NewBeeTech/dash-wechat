@@ -1,6 +1,5 @@
 /**
  * Happy Hacking
- * Created by leiyouwho on 19/5/2016.
  */
 
 export function random_string(len) {

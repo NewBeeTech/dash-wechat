@@ -1,6 +1,5 @@
 /**
  * Happy Hacking
- * Created by leiyouwho on 3/5/2016.
  */
 
 import * as FetchState from './FetchState';

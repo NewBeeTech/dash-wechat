@@ -30,4 +30,3 @@ export const validparams = (params: string) => {
   const re = /^[^\s]*＄/;
   return re.test(params);
 };
-
