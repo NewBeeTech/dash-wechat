@@ -9,24 +9,15 @@ import { syncHistoryWithStore, routerMiddleware } from 'react-router-redux';
 import { browserHistory, Router, hashHistory } from 'react-router';
 import { getOpenId, setOpenId } from './actions/WechatAuthAction';
 import { QueryString } from './core/Util';
-// import * as checkDevice from './common/checkDevice';
 import userInfoStorage from './core/UserInfoStorage';
-// import { setGrowiongIO } from './GrowingIO';
 
 import amumu from 'amumu';
 import 'react-infinite-calendar/styles.css';
 require('./assets/stylesheets/antd-mobile.css');
-// production GrowingIO
-// require('./GrowingIO');
-// import { asyncGrowingConfig } from './GrowingIO';
-// asyncGrowingConfig();
 
 const rootElement = document.getElementById('app');
 
-// Sync dispatched route actions to the history
-// const reduxRouterMiddleware = syncHistory(browserHistory);
 const createStoreWithMiddleware = applyMiddleware(
-  // reduxRouterMiddleware,
   process.env.NODE_ENV === 'development' ? routerMiddleware(hashHistory)
     : routerMiddleware(browserHistory),
   thunkMiddleware
@@ -40,10 +31,6 @@ const store = createStore(reducers, /* preloadedState, */ composeEnhancers(
     thunkMiddleware
   )
 ));
-// const store = createStoreWithMiddleware(
-//   reducers,
-//   window.devToolsExtension ? window.devToolsExtension() : undefined
-// );
 
 export const dispatch = store.dispatch;
 

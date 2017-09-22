@@ -9,12 +9,19 @@ import * as RoutingURL from './core/RoutingURL/RoutingURL';
 
 const DashList = (location, callback) => {
   require.ensure([], require => {
-    callback(null, require('./components/DashList').default);
+    callback(null, require('./container/DashList').default);
   }, 'DashList');
+};
+
+const ListContainer = (location, callback) => {
+  require.ensure([], require => {
+    callback(null, require('./container/ListContainer').default);
+  }, 'ListContainer');
 };
 
 const routes = (
   <Route path="/" component={RootContainer} >
+    {/*<Route path={RoutingURL.DashList()} getComponent={DashList} />*/}
     <Route path={RoutingURL.DashList()} getComponent={DashList} />
   </Route>
 );
