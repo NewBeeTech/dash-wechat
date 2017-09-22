@@ -4,3 +4,10 @@ export const ActivityDetails = (): string => '/activity-details';
 //
 // export const BLPrefix = (prefixs: string): string =>
 // `/blood-lipids-management/${prefixs}`;
+/**
+ * Created by wl on 16/7/11.
+ * @flow
+ */
+
+// DashList
+export const DashList = ():string => '/dashList';

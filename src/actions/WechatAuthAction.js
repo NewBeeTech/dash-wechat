@@ -6,7 +6,6 @@ import { GET } from '../core/WS/WSHandler';
 import AsyncFetchHandler from '../core/AsyncFetchHandler';
 import * as URL from '../core/WS/URL';
 import type, { ThunkAction, Dispatch } from './types';
-// production GrowingIO
 import userInfoStorage from '../core/UserInfoStorage';
 /**
  * 获取openid

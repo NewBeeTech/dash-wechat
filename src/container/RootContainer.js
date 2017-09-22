@@ -10,10 +10,7 @@ const propTypes = {
   openid: PropTypes.string,
 };
 
-class RootContainer extends React.Component {
-  shouldComponentUpdate(nextProps, nextState) {
-    return shallowCompare(this, nextProps, nextState);
-  }
+class RootContainer extends React.PureComponent {
   render() {
     return (
       <div style={{ overflow: 'hidden', width: '100vw', height: '100vh' }}>

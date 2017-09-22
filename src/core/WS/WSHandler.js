@@ -9,7 +9,6 @@ require('babel-polyfill');
 import * as URL from './URL';
 import { random_string } from '../Util';
 import { Toast } from 'antd-mobile';
-
 /**
  * 将Object转为url params string
  * @param params

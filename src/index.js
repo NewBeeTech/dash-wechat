@@ -11,7 +11,6 @@ import { QueryString } from './core/Util';
 import userInfoStorage from './core/UserInfoStorage';
 
 import amumu from 'amumu';
-
 const rootElement = document.getElementById('app');
 
 const createStoreWithMiddleware = applyMiddleware(
