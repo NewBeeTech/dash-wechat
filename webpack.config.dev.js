@@ -13,7 +13,7 @@ const isomorphicPath = path.resolve(__dirname, 'src/common/isomorphic.js');
 
 const svgDirs = [
   require.resolve('antd-mobile').replace(/warn\.js$/, ''),  // 1. 属于 antd-mobile 内置 svg 文件
-  path.resolve(__dirname, 'src/assets/images/'),  // 2. 自己私人的 svg 存放目录
+  // path.resolve(__dirname, 'src/assets/images/'),  // 2. 自己私人的 svg 存放目录
 ];
 
 const config = {
@@ -54,14 +54,15 @@ const config = {
         test: /\.(png|jpg)$/,
         loader: 'url-loader?limit=100000000',
       },
-      // {
-      //   test: /\.svg$/,
-      //   loader: 'babel!react-svg'
-      // },
       {
         test: /\.(svg)$/i,
         loader: 'svg-sprite',
         include: svgDirs,  // 把 svgDirs 路径下的所有 svg 文件交给 svg-sprite-loader 插件处理
+      },
+      {
+        test: /\.svg$/,
+        loader: 'babel!react-svg',
+        include: path.resolve(__dirname, 'src/assets/images/'),
       },
     ],
   },
