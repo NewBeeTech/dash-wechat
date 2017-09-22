@@ -11,6 +11,7 @@ const ActivityDetails = (location, callback) => {
   require.ensure([], require => {
     callback(null, require('./container/ActivityContainer').default);
   }, 'activityDetails');
+}
 const DashList = (location, callback) => {
   require.ensure([], require => {
     callback(null, require('./container/DashList').default);
