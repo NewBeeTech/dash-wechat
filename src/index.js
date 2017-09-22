@@ -4,7 +4,6 @@ import thunkMiddleware from 'redux-thunk';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import reducers from './reducers/reducers';
-// import { syncHistory } from 'react-router-redux';
 import { syncHistoryWithStore, routerMiddleware } from 'react-router-redux';
 import { browserHistory, Router, hashHistory } from 'react-router';
 import { getOpenId, setOpenId } from './actions/WechatAuthAction';
@@ -12,9 +11,6 @@ import { QueryString } from './core/Util';
 import userInfoStorage from './core/UserInfoStorage';
 
 import amumu from 'amumu';
-import 'react-infinite-calendar/styles.css';
-require('./assets/stylesheets/antd-mobile.css');
-
 const rootElement = document.getElementById('app');
 
 const createStoreWithMiddleware = applyMiddleware(
@@ -34,7 +30,6 @@ const store = createStore(reducers, /* preloadedState, */ composeEnhancers(
 
 export const dispatch = store.dispatch;
 
-
 if (process.env.NODE_ENV !== 'development') {
   if (userInfoStorage.getItem('openId') &&
   new Date().getTime() - userInfoStorage.getItem('curTime') < 7200000) {
@@ -49,19 +44,11 @@ if (process.env.NODE_ENV !== 'development') {
       doctorStudioId: userInfoStorage.getItem('doctorStudioId'),
       serviceId: userInfoStorage.getItem('serviceId'),
     };
-    if (process.env.NODE_ENV === 'production') {
-      setGrowiongIO(cs);
-    } else if (process.env.NODE_ENV === 'test') {
-      setGrowiongIO(cs);
-    }
   } else {
     if (checkDevice.isWeChat()) {
       if (QueryString().code) { // url 中有 code 参数，直接请求 openId
         store.dispatch(getOpenId({ code: QueryString().code }));
       } else { // 微信中打开且不带code， 跳转到授权路径
-        if (location.pathname === '/activityInfo') {
-          location.href = `${process.env.ACTIVITY_INFO_URL}`;
-        }
         if (location.pathname === '/payment') {
           location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${process.env.APPID}&redirect_uri=${encodeURIComponent(location.href)}&response_type=code&scope=snsapi_base&connect_redirect=1#wechat_redirect`;
         }
