@@ -19,10 +19,17 @@ const ListContainer = (location, callback) => {
   }, 'ListContainer');
 };
 
+const PayPage = (location, callback) => {
+  require.ensure([], require => {
+    callback(null, require('./container/PayPage').default);
+  }, 'PayPage');
+};
+
 const routes = (
   <Route path="/" component={RootContainer} >
     {/*<Route path={RoutingURL.DashList()} getComponent={DashList} />*/}
     <Route path={RoutingURL.DashList()} getComponent={DashList} />
+    <Route path={RoutingURL.PayPage()} getComponent={PayPage} />
   </Route>
 );
 

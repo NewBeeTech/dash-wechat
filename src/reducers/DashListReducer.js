@@ -11,6 +11,7 @@ type stateType = Immutable.Map< 'isFetching' | 'errMsg' | any, any>;
 const defaultState: stateType = Immutable.Map({
   isFetching: false,
   errMsg: '',
+  index: 0,
   dashData: Immutable.Map({
     dashList: Immutable.List([
        Immutable.Map({
