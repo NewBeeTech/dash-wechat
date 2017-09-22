@@ -1,0 +1,85 @@
+.payTitle {
+  height: 3.5rem;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.dashNum {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.1rem;
+  color: #838383;
+  font-size: 0.27rem;
+  background-color: #EEEEEE;
+}
+
+.dashBoy {
+  margin-right: 0.6rem;
+}
+
+.payText {
+  font-size: 0.28rem;
+  color: #575757;
+  margin-top: 0.6rem;
+  margin-bottom: 0.3rem;
+}
+
+.payNum {
+  color: #4FC0A9;
+}
+
+.payNum > span {
+  font-size: 0.5rem;
+}
+
+.payContent {
+  background-color: #fff;
+  margin-top: 0.2rem;
+  padding: 0.25rem;
+}
+
+.dashHeader {
+   display: flex;
+   flex-direction: row;
+   justify-content: flex-start;
+   align-items: center;
+}
+
+.payImg {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 0.1rem;
+  margin-right: 0.3rem;
+}
+
+.money {
+  color: #FF4C4D;
+  margin-bottom: 0.25rem;
+}
+
+.dashTitle {
+  color: #575757;
+  font-size: 0.3rem;
+}
+
+.selectType {
+  margin-top: 0.02rem;
+}
+
+.payButton {
+  height: 0.8rem;
+  width: 60vw;
+  text-align: center;
+  line-height: 0.8rem;
+  margin-left: 20vw;
+  margin-top: 0.8rem;
+  font-size: 0.26rem;
+  border-radius: 0.1rem;
+  background-color: #FFC236;
+}
