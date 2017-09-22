@@ -1,4 +1,4 @@
-// export const BPMt = (): string => '/blood-pressure-management';
+export const ActivityDetails = (): string => '/activity-details';
 //
 // export const BPPrefix = (prefixs: string): string => `/blood-pressure-management/${prefixs}`;
 //

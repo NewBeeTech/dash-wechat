@@ -1,0 +1,65 @@
+.bashBanner {
+  position: relative;
+  width: 100vw;
+  height: 53vw;
+  margin: 0 auto;
+}
+
+.leftTopText {
+  width: 90vw;
+  margin: 0 auto;
+  color: #fff;
+  font-size: 3.5vw;
+}
+
+.rightBottom {
+  position: absolute;
+  right: 5vw;
+  bottom: 3vw;
+  width: 10vw;
+  text-align: center;
+  font-size: 4vw;
+  cursor: pointer;
+}
+
+.timeContainer {
+  width: 100vw;
+  background-color: #fff;
+  padding-top: 2vw;
+  padding-bottom: 2vw;
+}
+
+.timeDiv {
+  width: 90vw;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.address {
+  width: 12vw;
+  height:12vw;
+  color: #fff;
+  display: flex;
+  font-size: 0.3rem;
+  align-items: center;
+  justify-content: center;
+  background: #75cdbb;
+  border-radius: 50%;
+}
+
+.time {
+  width: 75vw;
+}
+
+.deadline {
+  color: #444;
+  font-size: 4.3vw;
+}
+
+.activityTime {
+  color: #999;
+  font-size: 3.3vw;
+  margin-top: 1.5vw;
+}
