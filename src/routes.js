@@ -9,21 +9,25 @@ const ActivityDetails = (location, callback) => {
   require.ensure([], require => {
     callback(null, require('./container/ActivityContainer').default);
   }, 'activityDetails');
-  
+}
+
 const DashList = (location, callback) => {
   require.ensure([], require => {
     callback(null, require('./container/DashList').default);
   }, 'DashList');
+}
 
 const ListContainer = (location, callback) => {
   require.ensure([], require => {
     callback(null, require('./container/ListContainer').default);
   }, 'ListContainer');
+}
 
 const PayPage = (location, callback) => {
   require.ensure([], require => {
     callback(null, require('./container/PayPage').default);
   }, 'PayPage');
+}
 
 const routes = (
   <Route path="/" component={RootContainer} >
