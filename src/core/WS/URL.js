@@ -18,3 +18,8 @@ export const getDashListPath: string = '';
  * @type {string}
  */
 export const getCarouselImgsPath: string = '';
+/**
+ * 获取用户信息
+ * @type {string}
+ */
+export const getUserInfoPath: string = '/user/info';

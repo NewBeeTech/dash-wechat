@@ -5,3 +5,5 @@ export const DashList = ():string => '/dash-list';
 export const DashDetails = ():string => '/dash-details';
 // payPage
 export const PayPage = ():string => '/pay-page'
+// mine
+export const Mine = (): string => '/mine';

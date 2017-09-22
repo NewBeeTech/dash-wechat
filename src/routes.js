@@ -29,11 +29,18 @@ const PayPage = (location, callback) => {
   }, 'PayPage');
 }
 
+const Mine = (location, callback) => {
+  require.ensure([], require => {
+    callback(null, require('./container/MineContainer').default);
+  }, 'mine');
+}
+
 const routes = (
   <Route path="/" component={RootContainer} >
     <Route path={RoutingURL.ActivityDetails()} getComponent={ActivityDetails} />
     <Route path={RoutingURL.DashList()} getComponent={DashList} />
     <Route path={RoutingURL.PayPage()} getComponent={PayPage} />
+    <Route path={RoutingURL.Mine()} getComponent={Mine} />
   </Route>
 );
 
