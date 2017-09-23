@@ -1,5 +1,7 @@
+@import './_palette.css';
+
 .bg {
-  background: #f0f0f0;
+  background: var(--bgColor);
   height: 100vh;
   width: 100vw;
   overflow: scroll;
@@ -11,6 +13,73 @@
   right: 5vw;
   font-size: 3.5vw;
 }
+
 :global(.am-list-body) {
   margin-top: 0 !important;
+}
+
+.modulesTitle {
+  width: 90vw;
+  margin: 0 auto;
+  color: #666;
+  font-size: 3.8vw;
+}
+
+.tagsBg {
+  width: 100vw;
+  background-color: #ffffff;
+}
+
+.tags {
+  width: 94vw;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tag {
+  color: #000;
+  background-color: var(--primaryColor);
+  font-size: 3.7vw;
+  padding: 1.2vw 4vw;
+  border-radius: 0.25rem;
+  margin: 2vw 3vw;
+}
+
+.editBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: var(--primaryColor);
+  width: 100vw;
+  display: flex;
+  border-top: 1px solid #ddd;
+}
+
+.returnArrow {
+  width: 26vw;
+  height: 14vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+}
+
+.triangle {
+  width: 4vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 14vw solid #fff;
+  border-right: 3vw solid transparent;
+}
+
+.buttonDiv {
+  width: 75vw;
+  height: 14vw;
+  color: #000;
+  background-color: var(--primaryColor);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

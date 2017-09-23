@@ -30,14 +30,14 @@ const defaultState: stateType = Immutable.Map({
       mark: 2, // mark值
       nickName: '小可爱',
       openId: '',
-      phone: '',
-      photos: 'https://img.shaka.hsohealth.com/insurance/diet_banner_4_20170206.png,https://img.shaka.hsohealth.com/activity/lipid_lowering/banner@3x.png', //用户上传的图片 多个用逗号隔开
+      phone: '18617621252',
+      photos: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmTZ26a1g35R615Q8thAK968JNBrm1XgaU_Cek9hywcWg7Pk0l,https://img.shaka.hsohealth.com/activity/lipid_lowering/banner@3x.png', //用户上传的图片 多个用逗号隔开
       portrait: 'a.jpg', // 头像
       profession: '天皇巨星',
       province: '山西', // 省
       sex: 0, // 0未知 1男 2女
       status: 1, //用户状态 0冻结 1正常
-      tags: '完美,专一',
+      tags: '完美,专一,爱做家务,爱烧菜,拒绝黄赌毒',
       type: 2, // 用户类型 1普通用户 2vip
       updateTime: '',
       userName: '', // 用户名
@@ -48,13 +48,13 @@ const defaultState: stateType = Immutable.Map({
     activityInfo: Immutable.Map({
       todoDash: Immutable.List([
         Immutable.Map({
-          img: 'https://img.shaka.hsohealth.com/activity/lipid_lowering/banner@3x.png',
+          img: 'http://img02.tooopen.com/images/20160509/tooopen_sy_161967094653.jpg',
           title: '此处是活动标题！',
           time: '2017.10.12 19:23:34',
           status: 1, // 0取消 1正常
         }),
         Immutable.Map({
-          img: 'https://img.shaka.hsohealth.com/activity/lipid_lowering/banner@3x.png',
+          img: 'http://www.nanrenwo.net/uploads/allimg/150909/8420-150Z9113413.jpg',
           title: '此处是活动标题！',
           time: '2017.10.12 19:23:34',
           status: 1, // 0取消 1正常

@@ -58,17 +58,17 @@ class UserActivityList extends React.Component {
   render() {
     return (
       <Accordion defaultActiveKey="0" className="my-accordion">
-        <Accordion.Panel header="我的活动">
+        <Accordion.Panel header="计划中的联谊">
           <List className="my-list">
             {this.renderCard(this.props.todoDash)}
           </List>
         </Accordion.Panel>
-        <Accordion.Panel header="想去的活动" className="pad">
+        <Accordion.Panel header="想去的联谊" className="pad">
           <List className="my-list">
             {this.renderCard(this.props.wantToDash)}
           </List>
         </Accordion.Panel>
-        <Accordion.Panel header="历史活动" className="pad">
+        <Accordion.Panel header="联过的谊" className="pad">
           <List className="my-list">
             {this.renderCard(this.props.historyDash)}
           </List>

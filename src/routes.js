@@ -34,6 +34,11 @@ const Mine = (location, callback) => {
     callback(null, require('./container/MineContainer').default);
   }, 'mine');
 }
+const UserInfo = (location, callback) => {
+  require.ensure([], require => {
+    callback(null, require('./container/UserInfoContainer').default);
+  }, 'userInfo');
+}
 
 const routes = (
   <Route path="/" component={RootContainer} >
@@ -41,6 +46,7 @@ const routes = (
     <Route path={RoutingURL.DashList()} getComponent={DashList} />
     <Route path={RoutingURL.PayPage()} getComponent={PayPage} />
     <Route path={RoutingURL.Mine()} getComponent={Mine} />
+    <Route path={RoutingURL.UserInfo('(/:edit)')} getComponent={UserInfo} />
   </Route>
 );
 

@@ -7,3 +7,6 @@ export const DashDetails = ():string => '/dash-details';
 export const PayPage = ():string => '/pay-page'
 // mine
 export const Mine = (): string => '/mine';
+// 个人资料
+// export const BLPrefix = (prefixs: string): string =>`/blood-lipids-management/${prefixs}`;
+export const UserInfo = (edit): string => `/user-info${edit}`;
