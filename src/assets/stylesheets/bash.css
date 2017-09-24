@@ -74,6 +74,7 @@
   text-align: center;
   margin-bottom: 5vh;
   color: #5e636d;
+  font-size: 4vw;
 }
 
 .qrcodeImg {
@@ -88,15 +89,15 @@
 .contentOneTitle1 {
   text-align: center;
   font-size: 5vw;
-  color: #5e636d;
+  color:  #838383;
   padding: 0 0 2vh;
   border-bottom: 2px solid #ccc;
 }
 
 .contentOneTitle2 {
   font-size: 3.5vw;
-  color: #5e636d;
-  padding: 4vh 4vw;
+  color:  #838383;
+  padding: 4vh 4vw 0;
 }
 
 .contentThree {
@@ -150,15 +151,52 @@
 
 .messageList {
   display: flex;
+  margin: 2vh 0;
 }
 
 .messageLeftDiv {
   width: 4.5vw;
   border-left: 4px solid var(--primaryColor);
   margin-left: 2vw;
-  margin-bottom: 2vw;
 }
 
 .messageRightDiv {
   margin-bottom: 1vh;
+  width: 80vw;
+}
+
+{/* 报名按钮样式 */}
+.SignUpButton {
+  height: 8vh;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+}
+
+.buttonText {
+  margin-top: 2.5vh;
+  font-size: 4vw;
+}
+
+.buttonIsOk {
+  width:70vw;
+  height:0px;
+  border-left:4vh solid transparent;  /* left arrow slant */
+  border-right:0vh solid transparent; /* right arrow slant */
+  border-bottom:8vh solid var(--primaryColor); /* bottom, add background color here */
+  text-align: center;
+}
+
+.buttonIsNo {
+  width:70vw;
+  height:0px;
+  border-left:4vh solid transparent;  /* left arrow slant */
+  border-right:0vh solid transparent; /* right arrow slant */
+  border-bottom:8vh solid #ddd; /* bottom, add background color here */
+  text-align: center;
+}
+
+.returnButton {
+  width: 30vw;
+  margin: 0 auto;
 }

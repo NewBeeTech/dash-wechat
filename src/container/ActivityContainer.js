@@ -2,13 +2,15 @@
 
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import shallowCompare from 'react-addons-shallow-compare';
+import * as RoutingURL from '../core/RoutingURL/RoutingURL';
+import { push } from 'react-router-redux';
 import Banner from '../components/Banner';
 import ActivityTime from '../components/ActivityTime';
 import SignUpInfo from '../components/SignUpInfo';
 import WechatImgList from '../components/WechatImgList';
 import ActivityContent from '../components/ActivityContent';
 import QrCode from '../components/QrCode';
+import SignUpButton from '../components/SignUpButton';
 
 const propTypes = {
   children: PropTypes.node,
@@ -19,19 +21,18 @@ const propTypes = {
 class ActivityContainer extends React.PureComponent {
   render() {
     return (
-      <div style={{ backgroundColor: '#EEEEEE', height: '100vh', overflow: 'scroll'}}>
+      <div style={{ backgroundColor: '#EEEEEE', height: '93vh', overflow: 'scroll'}}>
         <Banner
-          leftTopText="" // 活动类型 暂时隐藏
+          leftTopText="活动类型" // 活动类型 暂时隐藏
           imgUrl=""
           handlerWantAction={() => {console.log(1)}}
           isWant={false}
         />
-        <div style={{ backgroundColor: '#fff'}}>
+        <div style={{ backgroundColor: '#fff', padding: '3vw'}}>
           <ActivityTime
-            // leftTopText="" // 活动类型 暂时隐藏
             address="望京"
             deadline="4h"
-            time="9月20日 16:00-19:00"
+            time="9/20 (六) 18:00-21:00"
           />
           <SignUpInfo 
              signUpInfo={this.props.dashInfo.get('signUpInfo')}
@@ -42,11 +43,23 @@ class ActivityContainer extends React.PureComponent {
           />
         </div>
         <ActivityContent />
-        <WechatImgList
-           wechatImgList={this.props.dashInfo.get('baomingrenshu')}
-           type={'想去'}
-        />
+        <div style={{ backgroundColor: '#fff', padding: '1.5vh 0 2vh'}}>
+          <WechatImgList
+             wechatImgList={this.props.dashInfo.get('baomingrenshu')}
+             type={'想去'}
+          />
+        </div>
         <QrCode />
+        <SignUpButton
+           buttonText={'报名活动'} // 按钮名称
+           status={true} // 是否点击
+           returnAction = {
+             () => { this.props.dispatch(push(RoutingURL.DashList()))}
+           }
+           paymentAction = {() => {
+             this.props.dispatch(push(RoutingURL.PayPage()))
+           }}
+        />
       </div>
     );
   }

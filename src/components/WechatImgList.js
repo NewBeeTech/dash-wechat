@@ -14,25 +14,12 @@ class WechatImgList extends React.PureComponent {
   componentWillMount() {
   }
   render() {
-    const showImgList = (wechatImgList) => {
-      const views = [];
-      if(wechatImgList) {
-         let content = '';
-         if(this.props.type == '报名') {
-           content = '这些人已经抢先报名了';
-         } else if(this.props.type == '想去') {
-           content = '这些人也想去这次活动';
-         }
-         views.push(
-           <div>
-              <p className={styles.wechatImgText}>{content}</p>
-              <div className={styles.wechatImgList}>{showList(wechatImgList)}</div>
-            </div>
-         )
-      }
-      return views;
+    let content = '';
+    if(this.props.type == '报名') {
+      content = '你将会遇见';
+    } else if(this.props.type == '想去') {
+      content = '他们也想去';
     }
-    
     const showList = (imgList) => {
       const views = [];
       if(imgList) {
@@ -50,8 +37,11 @@ class WechatImgList extends React.PureComponent {
       return views;
     }
     return (
-      <div style={{ backgroundColor: '#fff', padding: '1vh 0 3vh' }}>
-          {showImgList(this.props.wechatImgList)}
+      <div>
+          <div className={styles.wechatImgText}>
+          {content}
+          </div>
+          <div className={styles.wechatImgList}>{showList(this.props.wechatImgList)}</div>
       </div>
     );
   }

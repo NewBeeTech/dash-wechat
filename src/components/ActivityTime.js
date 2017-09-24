@@ -5,24 +5,23 @@ import React, { PropTypes } from 'react';
 import * as Immutable from 'immutable';
 import type { Dispatch } from '../../actions/types';
 import { WhiteSpace } from 'antd-mobile';
-import * as styles from './../assets/stylesheets/bash.css'
+import * as styles from './../assets/stylesheets/dashList.css'
 
 class ActivityTime extends React.PureComponent {
-  componentWillMount() {
-  }
+  static propTypes = {
+    address: PropTypes.string.isRequired,
+    deadline: PropTypes.string.isRequired,
+    time: PropTypes.string.isRequired,
+  };
   render() {
     return (
-      <div className={styles.timeContainer}>
-        <div className={styles.timeDiv}>
-          <div
-            className={styles.address}
-            style={{ fontSize: `calc(12vw / (${this.props.address.length + 1}))`}}
-          >{this.props.address}</div>
-          <div className={styles.time}>
-            <div className={styles.deadline}>距离活动截止报名还有{this.props.deadline}！</div>
-            <div className={styles.activityTime}>{this.props.time}</div>
+      <div className={styles.dashHeader}>
+          <div className={styles.dashAddress} style={{ fontSize: `calc(12vw / (${this.props.address.length + 1}))`}}>
+          {this.props.address}</div>
+          <div>
+              <div className={styles.dashTimeOne}>距离报名截止还有{this.props.deadline}！</div>
+              <div className={styles.dashTimeTwo}>{this.props.time}</div>
           </div>
-        </div>
       </div>
     );
   }

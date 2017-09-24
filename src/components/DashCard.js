@@ -2,10 +2,13 @@
 import React, { PropTypes } from 'react';
 import * as Immutable from 'immutable';
 import * as styles from '../assets/stylesheets/dashList.css';
+import { push } from 'react-router-redux';
+import * as RoutingURL from '../core/RoutingURL/RoutingURL';
 
 class DashCard extends React.PureComponent {
   static propTypes = {
     dashItem: PropTypes.instanceOf(Immutable.Map).isRequired,
+    dispatch: PropTypes.func,
   };
   render() {
     const address = this.props.dashItem.get('address');
@@ -30,7 +33,11 @@ class DashCard extends React.PureComponent {
       return views;
     }
     return (
-      <div className={styles.dashCard}>
+      <div className={styles.dashCard} onClick={() => {
+         this.props.dispatch(push(RoutingURL.ActivityDetails(this.props.dashItem.get('id'))));
+      }}
+        key={this.props.dashItem.get('id')}
+      >
          {/* 活动表头 */}
          <div className={styles.dashHeader}>
              <div className={styles.dashAddress} style={{ fontSize: `calc(12vw / (${address.length + 1}))`}}>

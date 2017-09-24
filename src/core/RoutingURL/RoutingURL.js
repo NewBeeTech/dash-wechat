@@ -1,4 +1,4 @@
-export const ActivityDetails = (): string => '/activity-details';
+export const ActivityDetails = (activityId): string => `/activity-details/${activityId}`;
 // DashList
 export const DashList = ():string => '/dash-list';
 // DashDetails

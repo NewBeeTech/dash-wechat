@@ -33,7 +33,7 @@ class Banner extends React.Component {
           style={{ color: this.props.isWant ? '#75cdbb' : 'white' }}
           onClick={() => this.props.handlerWantAction()}
         >
-          <Icon type="check" color={this.props.isWant ? '#75cdbb' : 'white'} /><br />
+          <img src={this.props.isWant ? '../assets/images/want_checked.png' : '../assets/images/want.png'} /><br />
           想去
         </div>
       </div>

@@ -23,6 +23,16 @@ class ActivityContent extends React.PureComponent {
       }
       return views;
     }
+    
+    const showTipsMessage = () => {
+      return (
+        <div>
+          <div className={styles.messageRightDiv} style={{ lineHeight: '40px' }}>{'1.费用支付完成即报名成功。如有特殊原因，也可取消报名。关于主动取消报名：如果活动开始两天前取消，则全额退款；如果活动开始前一天取消，则退一半费用；如果活动开始当天取消活动，不支持退费。'}</div>
+          <div className={styles.messageRightDiv} style={{ lineHeight: '40px' }}>{'2.活动人数满员即停止报名，如果活动当天00:00满足条件男女性别差<2，刚到时间就履行线下活动。否则，为保证活动的质量，运营人员被迫取消本次活动，并全额退款。'}</div>
+          <div className={styles.messageRightDiv} style={{ lineHeight: '40px' }}>{'3.活动的具体地点会在活动开始前以短信通知到参与人。'}</div>
+        </div>
+      )
+    }
     return (
       <div>
           <div className={styles.contentOne}>
@@ -32,7 +42,7 @@ class ActivityContent extends React.PureComponent {
           <div className={styles.contentTwo}>
             <div className={styles.contentThreeTitle}>
               <div className={styles.contentTwoImg}><img src={"../../assets/images/message.png"} width="100%" /></div>
-              <div>活动信息</div>
+              <div>联谊要素</div>
             </div>
             <div className={styles.contentTwoInfo}>
                 <div className={styles.contentTwoTitle}>
@@ -53,28 +63,21 @@ class ActivityContent extends React.PureComponent {
                 </div>
                 <div className={styles.contentTwoTitle}>
                   <div className={styles.contentTwoImg1}><img src={"../../assets/images/progress.png"} width="100%" /></div>
-                  <div>活动流程</div>
+                  <div>流程</div>
                 </div>
                 <div className={styles.messageList}>
                   <div className={styles.messageLeftDiv} />
-                  <div >{showMessage()}</div>
+                  <div>{showMessage()}</div>
                 </div>
                 <div className={styles.contentTwoTitle}>
                   <div className={styles.contentTwoImg1}><img src={"../../assets/images/note.png"} width="100%" /></div>
-                  <div>友情提示</div>
+                  <div>Tips</div>
+                </div>
+                <div className={styles.messageList}>
+                  <div className={styles.messageLeftDiv} />
+                  {showTipsMessage()}
                 </div>
             </div>
-          </div>
-          <div className={styles.contentThree}>
-               <div className={styles.contentThreeTitle}>
-                 <div className={styles.contentThreeImg}><img src={"../../assets/images/rule.png"} width="100%" /></div>
-                 <div>报名活动规则</div>
-               </div>
-               <div className={styles.contentThreeInfo}>
-                  <div>{'1.费用支付完成即报名成功。如有特殊原因，也可取消报名。关于主动取消报名：如果活动开始两天前取消，则全额退款；如果活动开始前一天取消，则退一半费用；如果活动开始当天取消活动，不支持退费。'}</div>
-                  <div>{'2.活动人数满员即停止报名，如果活动当天00:00满足条件男女性别差<2，刚到时间就履行线下活动。否则，为保证活动的质量，运营人员被迫取消本次活动，并全额退款。'}</div>
-                  <div>{'3.活动的具体地点会在活动开始前以短信通知到参与人。'}</div>
-               </div>
           </div>
       </div>
     );

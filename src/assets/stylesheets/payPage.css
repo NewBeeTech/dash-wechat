@@ -31,7 +31,7 @@
 }
 
 .payNum {
-  color: #4FC0A9;
+  color: #FF4C4D;
 }
 
 .payNum > span {
@@ -69,7 +69,13 @@
 }
 
 .selectType {
+  height: 9vh;
+  background-color: #fff;
   margin-top: 0.02rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 4vw 0 5vw;
 }
 
 .payButton {
@@ -82,4 +88,27 @@
   font-size: 0.26rem;
   border-radius: 0.1rem;
   background-color: #FFC236;
+}
+.wechatPay {
+  display: flex;
+  align-items: center;
+  font-size: 4vw;
+  color: #838383;
+}
+
+.wechatPayImg {
+  width: 6.5vw;
+  margin-right: 2vw;
+}
+
+.noPayButton {
+  height: 0.8rem;
+  width: 60vw;
+  text-align: center;
+  line-height: 0.8rem;
+  margin-left: 20vw;
+  margin-top: 0.8rem;
+  font-size: 0.26rem;
+  border-radius: 0.1rem;
+  background-color: #ddd;
 }

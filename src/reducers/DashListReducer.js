@@ -15,6 +15,7 @@ const defaultState: stateType = Immutable.Map({
   dashData: Immutable.Map({
     dashList: Immutable.List([
        Immutable.Map({
+           id: 1,
            address: '望京南',
            title: '大标题',
            smallTitle: '小标题',
@@ -27,6 +28,7 @@ const defaultState: stateType = Immutable.Map({
            originatorImg: 'https://img.shaka.hsohealth.com/insurance/diet_banner_4_20170206.png',
        }),
        Immutable.Map({
+           id: 2,
            address: '望京',
            title: '大标题',
            smallTitle: '小标题',

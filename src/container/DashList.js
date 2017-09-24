@@ -23,7 +23,7 @@ class DashList extends React.Component {
       const view = [];
       if(dashList) {
         dashList.map((item, key) => {
-           view.push(<DashCard key={key} dashItem={item} />);
+           view.push(<DashCard key={key} dashItem={item} dispatch={this.props.dispatch} />);
         });
       }
       return view;

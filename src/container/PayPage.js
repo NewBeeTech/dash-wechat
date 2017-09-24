@@ -4,11 +4,8 @@ import { connect } from 'react-redux';
 import * as Immutable from 'immutable';
 import * as styles from '../assets/stylesheets/dashList.css';
 import * as payStyle from '../assets/stylesheets/payPage.css';
-import Boy from '../assets/images/boy.svg';
-import Girl from '../assets/images/girl.svg';
-import { List, Radio, Flex, WhiteSpace } from 'antd-mobile';
-
-const RadioItem = Radio.RadioItem;
+import { push } from 'react-router-redux';
+import * as RoutingURL from '../core/RoutingURL/RoutingURL';
 
 class PayPage extends React.PureComponent {
   static propTypes = {
@@ -18,14 +15,29 @@ class PayPage extends React.PureComponent {
     super(props);
     this.state = {
       checked: true,
+      residueTime: 30,
     };
+  }
+  componentWillMount() {
+    this.setResidueTime();
+  }
+  setResidueTime() {
+    const that = this;
+    var interval = setInterval(function(){
+      let time = that.state.residueTime;
+      if(time <= 0) {
+        clearInterval(interval);
+        that.props.dispatch(push(RoutingURL.ActivityDetails(1)));
+      }
+      that.setState({ residueTime: --time });
+    },1000)
   }
   render() {
     const showNum = (num) => {
       if(num > 0) {
-        return `余${num}位`;
+        return `仅余${num}席`;
       }
-      return '报名已满'
+      return '满员'
     }
     const dashItem = JSON.parse(JSON.stringify(this.props.dashData.get('dashList')))[this.props.index];
     return (
@@ -33,13 +45,13 @@ class PayPage extends React.PureComponent {
           {/*pay title*/}
          <div className={payStyle.payTitle}>
                <div className={payStyle.dashNum}>
-                  <Boy className={styles.dashImg}/>
+                  <img src={'../assets/images/mars.png'} className={styles.mars}/>
                   <div className={payStyle.dashBoy}>男士：{showNum(dashItem.boyNum)}</div>
-                  <Girl className={styles.dashImg}/>
+                  <img src={'../assets/images/venus.png'} className={styles.mars} />
                   <div>女士：{showNum(dashItem.girlNum)}</div>
                </div>
                <div className={payStyle.payText}>支付剩余时间</div>
-               <div className={payStyle.payNum}><span>30</span>S</div>
+               <div className={payStyle.payNum}><span>{this.state.residueTime}</span>S</div>
          </div>
          {/*pay content*/}
          <div className={payStyle.payContent}>
@@ -52,16 +64,25 @@ class PayPage extends React.PureComponent {
            </div>
          </div>
          {/*pay type*/}
-         <div className={payStyle.selectType}>
-           <RadioItem checked={this.state.checked} onChange={() => {
-               const checked = this.state.checked;
-               this.setState({ checked: !checked });
-           }}>
-             微信支付
-           </RadioItem>
+         <div 
+           className={payStyle.selectType}
+           onClick={() => {
+             const checked = this.state.checked;
+             this.setState({ checked: !checked });
+           }}
+         >
+            <div className={payStyle.wechatPay}><img src={'../assets/images/wechat_pay.png'} className={payStyle.wechatPayImg}/>微信支付</div>
+            <div><img src={this.state.checked ? '../assets/images/支付选中.png' : '../assets/images/支付未选.png'} /></div>
          </div>
          {/*pay button*/}
-         <div className={payStyle.payButton}>
+         <div 
+           className={this.state.checked ? payStyle.payButton : payStyle.noPayButton}
+           onClick={() => {
+             if(this.state.checked) {
+               console.log('pay ok!');
+             }
+           }}
+         >
               确认支付  ￥100
          </div>
       </div>
