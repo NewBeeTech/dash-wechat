@@ -11,25 +11,13 @@ import * as RoutingURL from './../core/RoutingURL/RoutingURL';
 import { dispatch } from './../index';
 
 type Props = {
-  tags: string,
+  text: string,
 };
 
 class EditBar extends React.Component {
   componentWillMount() {
   }
   props: Props;
-  renderTags(tags) {
-    const list = tags.split(',');
-    const view = [];
-    list.map((item, index) => {
-      view.push(
-        <span key={index} className={styles.tag}>
-          {item}
-        </span>
-      );
-    });
-    return view;
-  }
   render() {
     return (
       <div className={styles.editBar}>
@@ -44,7 +32,7 @@ class EditBar extends React.Component {
           className={styles.buttonDiv}
           onClick={() => dispatch(push(RoutingURL.UserInfo('/edit')))}
         >
-          编辑
+          {this.props.text}
         </div>
       </div>
     );
