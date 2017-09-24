@@ -12,7 +12,7 @@ export const commonURL: string = `https://${host}/`;
  * 获取活动列表接口
  * @type {string}
  */
-export const getDashListPath: string = '';
+export const getDashListPath: string = '/activity/list';
 /**
  * 获取轮播图列表接口
  * @type {string}
@@ -23,3 +23,5 @@ export const getCarouselImgsPath: string = '';
  * @type {string}
  */
 export const getUserInfoPath: string = '/user/info';
+
+export const getDashInfoPath: string = '/activity/getById';

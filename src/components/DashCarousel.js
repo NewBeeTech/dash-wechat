@@ -31,8 +31,8 @@ class DashCarousel extends React.Component {
     return (
       <div className={styles.carousel}>
         <Carousel
-            // className="my-carousel"
-            // autoplay
+            className="my-carousel"
+            autoplay
             infinite
             selectedIndex={this.state.selectedIndex}
             swipeSpeed={35}

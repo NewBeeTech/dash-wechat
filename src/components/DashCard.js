@@ -2,8 +2,6 @@
 import React, { PropTypes } from 'react';
 import * as Immutable from 'immutable';
 import * as styles from '../assets/stylesheets/dashList.css';
-import Boy from '../assets/images/boy.svg';
-import Girl from '../assets/images/girl.svg';
 
 class DashCard extends React.PureComponent {
   static propTypes = {
@@ -13,9 +11,9 @@ class DashCard extends React.PureComponent {
     const address = this.props.dashItem.get('address');
     const showNum = (num) => {
       if(num > 0) {
-        return `余${num}位`;
+        return `仅余${num}席`;
       }
-      return '报名已满'
+      return '满员'
     }
     
     const isShowOriginator = (name, img) => {
@@ -23,7 +21,7 @@ class DashCard extends React.PureComponent {
       if(name) {
         views.push(
           <div className={styles.dashOriginator}>
-             发起人：
+             干事：
              <img src={img} className={styles.dashOriginatorImg}/>
              {name}
           </div>
@@ -38,7 +36,7 @@ class DashCard extends React.PureComponent {
              <div className={styles.dashAddress} style={{ fontSize: `calc(12vw / (${address.length + 1}))`}}>
              {address}</div>
              <div>
-                 <div className={styles.dashTimeOne}>距离活动截止报名还有{this.props.dashItem.get('time')}！</div>
+                 <div className={styles.dashTimeOne}>距离报名截止还有{this.props.dashItem.get('time')}！</div>
                  <div className={styles.dashTimeTwo}>{this.props.dashItem.get('activityTime')}</div>
              </div>
          </div>
@@ -48,15 +46,14 @@ class DashCard extends React.PureComponent {
                 <img src={this.props.dashItem.get('backgroundImg')} width="100%" height="100%" />
             </div>
              <div className={styles.dashBannerText}>
-                <span className={styles.dashTextOne}>{this.props.dashItem.get('title')}</span><br/>
-                <span>{this.props.dashItem.get('smallTitle')}</span>
+                <span>{this.props.dashItem.get('title')}{this.props.dashItem.get('smallTitle')}</span>
              </div>
          </div>
          {/* 活动人数 */}
          <div className={styles.dashNum}>
-            <Boy className={styles.dashImg}/>
+            <img src={'../assets/images/mars.png'} className={styles.mars}/>
             <div className={styles.dashBoy}>男士：{showNum(this.props.dashItem.get('boyNum'))}</div>
-            <Girl className={styles.dashImg}/>
+            <img src={'../assets/images/venus.png'} className={styles.mars} />
             <div>女士：{showNum(this.props.dashItem.get('girlNum'))}</div>
          </div>
          {/* 活动发起人 */}

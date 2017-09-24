@@ -1,0 +1,81 @@
+@import './_palette.css';
+
+.originatorContent {
+  background-color: #fff;
+  padding: 0 0.25rem;
+}
+
+.dashNum {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0.1rem 0;
+  color: #838383;
+  font-size: 0.3rem;
+}
+
+.originatorInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 0.1rem 0;
+  border-radius: 0.2rem;
+  background-color: #EFEFEF;
+  font-size: 0.25rem;
+  color: #808080;
+  padding: 0.3rem;
+}
+
+.originator ul{
+  padding: 0;
+  margin: 0;
+} 
+
+.originator ul li{
+  list-style-type:none;
+  margin: 0.1rem 0;
+}  
+
+.originatorName {
+  font-size: 0.35rem;
+  color: #000;
+  margin-bottom: 0.2rem;
+}
+
+.originatorImg {
+  width: 1.3rem;
+  height: 1.3rem;
+  border-radius: 1.3rem;
+}
+
+
+{/* 报名人数样式 */}
+
+.wechatImgText {
+  text-align: center;
+  font-size: 4vw;
+  color: var(--E7Color);
+}
+
+.wechatImgList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wechatImg {
+  width: 11vw;
+  height: 15vw;
+  margin: 0 2vw;
+}
+
+.wechatImgItem {
+  width: 11vw;
+  height: 11vw;
+  border-radius: 11vw;
+}
+
+.wechatImgName {
+  font-size: 3.5vw;
+}

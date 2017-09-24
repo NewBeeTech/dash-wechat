@@ -1,3 +1,5 @@
+@import './_palette.css';
+
 .bashBanner {
   position: relative;
   width: 100vw;
@@ -40,12 +42,11 @@
 .address {
   width: 12vw;
   height:12vw;
-  color: #fff;
   display: flex;
   font-size: 0.3rem;
   align-items: center;
   justify-content: center;
-  background: #75cdbb;
+  background: #FFC236;
   border-radius: 50%;
 }
 
@@ -62,4 +63,102 @@
   color: #999;
   font-size: 3.3vw;
   margin-top: 1.5vw;
+}
+
+{/* 二维码样式 */}
+.qrcodeContent {
+  padding: 6vh 0;
+}
+
+.qrcodeText {
+  text-align: center;
+  margin-bottom: 5vh;
+  color: #5e636d;
+}
+
+.qrcodeImg {
+  width: 35vw;
+  margin: 0 auto;
+}
+
+.contentOne {
+  padding: 12vw;
+}
+
+.contentOneTitle1 {
+  text-align: center;
+  font-size: 5vw;
+  color: #5e636d;
+  padding: 0 0 2vh;
+  border-bottom: 2px solid #ccc;
+}
+
+.contentOneTitle2 {
+  font-size: 3.5vw;
+  color: #5e636d;
+  padding: 4vh 4vw;
+}
+
+.contentThree {
+  background-color: #2B2B2B;
+  color: #fff;
+  padding: 4vh 5vw;
+  font-size: 3.5vw;
+  margin-top: -1vh;
+}
+
+.contentThreeTitle {
+  display: flex;
+  justify-content: center;
+  font-size: 4.5vw;
+  margin-bottom: 2vh;
+  color: var(--primaryColor);
+}
+
+.contentThreeImg {
+  width: 4.3vw;
+  margin-right: 1vw;
+}
+
+.contentThreeInfo {
+  line-height: 4vh;
+}
+
+.contentTwo {
+  background-color: #373737;
+  color: #fff;
+  padding: 4vh 6vw;
+  font-size: 3.5vw;
+}
+
+.contentTwoImg {
+  width: 4.7vw;
+  margin-right: 1vw;
+}
+
+.contentTwoImg1 {
+  width: 4.5vw;
+  margin-right: 2vw;
+}
+
+.contentTwoTitle {
+  display: flex;
+  align-items: center;
+  font-size: 3.5vw;
+  margin-bottom: 1vh;
+}
+
+.messageList {
+  display: flex;
+}
+
+.messageLeftDiv {
+  width: 4.5vw;
+  border-left: 4px solid var(--primaryColor);
+  margin-left: 2vw;
+  margin-bottom: 2vw;
+}
+
+.messageRightDiv {
+  margin-bottom: 1vh;
 }

@@ -6,16 +6,10 @@ import * as Immutable from 'immutable';
 import type { Dispatch } from '../../actions/types';
 import { WhiteSpace } from 'antd-mobile';
 import * as styles from './../assets/stylesheets/bash.css'
-type Props = {
-  imgUrl: string,
-  handlerWantAction: func,
-  isWant: bool,
-};
 
-class ActivityTime extends React.Component {
+class ActivityTime extends React.PureComponent {
   componentWillMount() {
   }
-  props: Props;
   render() {
     return (
       <div className={styles.timeContainer}>

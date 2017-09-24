@@ -5,6 +5,7 @@ import { combineReducers } from 'redux';
 import UserReducer from './UserReducer';
 import DashListReducer from './DashListReducer';
 import MineReducer from './MineReducer';
+import ActivityReducer from './ActivityReducer';
 
 
 // 状态入口
@@ -13,6 +14,7 @@ const appReducers = combineReducers({
   UserReducer,
   DashListReducer,
   MineReducer,
+  ActivityReducer,
 });
 
 export default appReducers;
