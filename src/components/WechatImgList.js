@@ -10,9 +10,8 @@ class WechatImgList extends React.PureComponent {
   static propTypes = {
     wechatImgList: PropTypes.instanceOf(Immutable.List).isRequired,
     type: PropTypes.string.isRequired,
+    isShow: PropTypes.bool.isRequired,
   };
-  componentWillMount() {
-  }
   render() {
     let content = '';
     if(this.props.type == '报名') {
@@ -27,7 +26,7 @@ class WechatImgList extends React.PureComponent {
           views.push(
             <div key={key} className={styles.wechatImg}>
                 <div>
-                    <img src={item.get('touxiang')} className={styles.wechatImgItem} />
+                    <img src={item.get('touxiang')} className={this.props.isShow ? styles.wechatImgItemShow : styles.wechatImgItem } />
                 </div>
                 <div className={styles.wechatImgName}>{item.get('name')}</div>
             </div>

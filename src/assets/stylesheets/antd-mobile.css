@@ -1,7 +1,0 @@
-:global(.am-carousel-wrap-dot am-carousel-wrap-dot-active > span) {
-  background-color: #FFC736;
-}
-
-:global(.am-carousel-wrap-dot > span) {
-  background-color: #fff;
-}

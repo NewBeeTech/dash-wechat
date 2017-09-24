@@ -76,6 +76,13 @@
   width: 10vw;
   height: 10vw;
   border-radius: 10vw;
+  filter: blur(3px);    
+}
+
+.wechatImgItemShow {
+  width: 10vw;
+  height: 10vw;
+  border-radius: 10vw;
 }
 
 .wechatImgName {

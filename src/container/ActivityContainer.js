@@ -26,7 +26,7 @@ class ActivityContainer extends React.PureComponent {
           leftTopText="活动类型" // 活动类型 暂时隐藏
           imgUrl=""
           handlerWantAction={() => {console.log(1)}}
-          isWant={false}
+          isWant={true}
         />
         <div style={{ backgroundColor: '#fff', padding: '3vw'}}>
           <ActivityTime
@@ -40,6 +40,7 @@ class ActivityContainer extends React.PureComponent {
           <WechatImgList
              wechatImgList={this.props.dashInfo.get('baomingrenshu')}
              type={'报名'}
+             isShow={false}
           />
         </div>
         <ActivityContent />
@@ -47,6 +48,7 @@ class ActivityContainer extends React.PureComponent {
           <WechatImgList
              wechatImgList={this.props.dashInfo.get('baomingrenshu')}
              type={'想去'}
+             isShow={true}
           />
         </div>
         <QrCode />

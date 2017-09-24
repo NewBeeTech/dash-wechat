@@ -30,7 +30,7 @@ class Banner extends React.Component {
         <div className={styles.leftTopText}>{this.props.leftTopText}</div>
         <div
           className={styles.rightBottom}
-          style={{ color: this.props.isWant ? '#75cdbb' : 'white' }}
+          style={{ color: this.props.isWant ? '#ffce3d' : 'white' }}
           onClick={() => this.props.handlerWantAction()}
         >
           <img src={this.props.isWant ? '../assets/images/want_checked.png' : '../assets/images/want.png'} /><br />
