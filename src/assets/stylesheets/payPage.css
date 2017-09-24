@@ -1,5 +1,7 @@
+@import './_palette.css';
+
 .payTitle {
-  height: 3.5rem;
+  height: 27vh;
   background-color: #fff;
   display: flex;
   flex-direction: column;
@@ -12,22 +14,22 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  padding: 0.2rem 0.5rem;
+  padding: 1.5vh 5vw;
   border-radius: 0.1rem;
   color: #838383;
-  font-size: 0.27rem;
+  font-size: 3.5vw;
   background-color: #EEEEEE;
 }
 
 .dashBoy {
-  margin-right: 0.6rem;
+  margin-right: 10vw;
 }
 
 .payText {
-  font-size: 0.28rem;
+  font-size: 4vw;
   color: #575757;
-  margin-top: 0.6rem;
-  margin-bottom: 0.3rem;
+  margin-top: 5vh;
+  margin-bottom: 2vh;
 }
 
 .payNum {
@@ -35,13 +37,13 @@
 }
 
 .payNum > span {
-  font-size: 0.5rem;
+  font-size: 6vw;
 }
 
 .payContent {
   background-color: #fff;
-  margin-top: 0.2rem;
-  padding: 0.25rem;
+  margin-top: 2vh;
+  padding: 2vh;
 }
 
 .dashHeader {
@@ -52,26 +54,26 @@
 }
 
 .payImg {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 17vw;
+  height: 17vw;
   border-radius: 0.1rem;
-  margin-right: 0.3rem;
+  margin-right: 3vw;
 }
 
 .money {
   color: #FF4C4D;
-  margin-bottom: 0.25rem;
+  margin-bottom: 1vh;
 }
 
 .dashTitle {
   color: #575757;
-  font-size: 0.3rem;
+  font-size: 4vw;
 }
 
 .selectType {
   height: 9vh;
   background-color: #fff;
-  margin-top: 0.02rem;
+  margin-top: 2px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -79,15 +81,20 @@
 }
 
 .payButton {
-  height: 0.8rem;
+  height: 6vh;
   width: 60vw;
   text-align: center;
-  line-height: 0.8rem;
+  line-height: 6vh;
   margin-left: 20vw;
-  margin-top: 0.8rem;
-  font-size: 0.26rem;
+  margin-top: 4vh;
+  font-size: 4vw;
   border-radius: 0.1rem;
-  background-color: #FFC236;
+  background-color: var(--primaryColor);
+}
+
+.payButton:active
+{ 
+   background-color: #ffda68;
 }
 .wechatPay {
   display: flex;
@@ -102,13 +109,13 @@
 }
 
 .noPayButton {
-  height: 0.8rem;
+  height: 6vh;
   width: 60vw;
   text-align: center;
-  line-height: 0.8rem;
+  line-height: 6vh;
   margin-left: 20vw;
-  margin-top: 0.8rem;
-  font-size: 0.26rem;
+  margin-top: 4vh;
+  font-size: 4vw;
   border-radius: 0.1rem;
   background-color: #ddd;
 }

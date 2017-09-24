@@ -21,16 +21,20 @@ class PayPage extends React.PureComponent {
   componentWillMount() {
     this.setResidueTime();
   }
-  setResidueTime() {
+  setResidueTime(type) {
     const that = this;
     var interval = setInterval(function(){
       let time = that.state.residueTime;
+      if(type == 'stop') {
+        clearInterval(interval);
+        return;
+      }
       if(time <= 0) {
         clearInterval(interval);
         that.props.dispatch(push(RoutingURL.ActivityDetails(1)));
       }
       that.setState({ residueTime: --time });
-    },1000)
+    },1000);
   }
   render() {
     const showNum = (num) => {
@@ -80,6 +84,7 @@ class PayPage extends React.PureComponent {
            onClick={() => {
              if(this.state.checked) {
                console.log('pay ok!');
+               this.setResidueTime('stop');
              }
            }}
          >
