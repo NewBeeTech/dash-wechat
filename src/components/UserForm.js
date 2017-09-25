@@ -28,10 +28,10 @@ const minDate = moment('2015-08-06 +0800', 'YYYY-MM-DD Z').utcOffset(8);
 
 class UserForm extends React.Component {
   state = {
-    phone: null,
+    phone: '',
     sex: [],
-    birth: null,
-    height: null,
+    birth: '',
+    height: '',
   }
   componentWillMount() {
   }
@@ -83,6 +83,7 @@ class UserForm extends React.Component {
             <span className={styles.itemBorder} />
             <span className={styles.itemForm}>
               <DatePicker
+                format={val => val.format('YYYY.MM.DD')}
                 mode="date"
                 extra="请选择"
                 minDate={minDate}
@@ -93,7 +94,9 @@ class UserForm extends React.Component {
                 <List.Item
                   arrow="horizontal"
                   style={{ background: 'none' }}
-                >&nbsp;</List.Item>
+                >
+                  &nbsp;
+                </List.Item>
               </DatePicker>
             </span>
           </div>

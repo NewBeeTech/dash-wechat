@@ -24,28 +24,34 @@ class UserInfoContainer extends React.Component {
     console.log(this.props.params.tab);
     const avator = this.props.userInfo.get('photos').split(',')[0];
     return (
-      <div className={styles.bg} style={{ backgroundColor: '#fff' }}>
-        {this.props.params.tab === 'edit' ?
-          <UploadPic /> :
-          <UserInfoTitle
-            wxName={this.props.userInfo.get('wxName')}
-            sex={this.props.userInfo.get('sex')}
-            age={this.props.userInfo.get('age')}
-            phone={this.props.userInfo.get('phone')}
-            wxPortrait={this.props.userInfo.get('wxPortrait')}
-            avator={avator}
+      <div>
+        <div className={styles.bg} style={{ backgroundColor: '#fff' }}>
+          {this.props.params.tab === 'edit' ?
+            <UploadPic /> :
+            <UserInfoTitle
+              wxName={this.props.userInfo.get('wxName')}
+              sex={this.props.userInfo.get('sex')}
+              age={this.props.userInfo.get('age')}
+              phone={this.props.userInfo.get('phone')}
+              wxPortrait={this.props.userInfo.get('wxPortrait')}
+              avator={avator}
+            />
+          }
+          {this.props.params.tab === 'edit' ? '':
+          <div style={{ width: '100vw', height: '2vw', backgroundColor: '#f0f0f0' }} />}
+          {this.props.params.tab === 'edit' ?
+          <UserForm
+            tags={this.props.userInfo.get('tags')}
+          /> : ''}
+          <UserTags
+            tags={this.props.userInfo.get('tags').split(',')}
+            tab={this.props.params.tab}
           />
-        }
-        {this.props.params.tab === 'edit' ? '':
-        <div style={{ width: '100vw', height: '2vw', backgroundColor: '#f0f0f0' }} />}
-        <UserForm
-          tags={this.props.userInfo.get('tags')}
-        />
-        <UserTags
-          tags={this.props.userInfo.get('tags').split(',')}
+        </div>
+        <EditBar
+          text={this.props.params.tab === 'edit' ? '完成了' : '编辑'}
           tab={this.props.params.tab}
         />
-        <EditBar text={this.props.params.tab === 'edit' ? '完成了' : '编辑'}/>
       </div>
     );
   }

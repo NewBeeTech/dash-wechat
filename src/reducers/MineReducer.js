@@ -46,7 +46,7 @@ const defaultState: stateType = Immutable.Map({
       wxPortrait: '', // 微信头像
     }),
     activityInfo: Immutable.Map({
-      todoDash: Immutable.List([
+      myDash: Immutable.List([
         Immutable.Map({
           img: 'http://img02.tooopen.com/images/20160509/tooopen_sy_161967094653.jpg',
           title: '此处是活动标题！',
@@ -68,14 +68,14 @@ const defaultState: stateType = Immutable.Map({
           status: null, // 0取消 1正常
         }),
       ]),
-      historyDash:Immutable.List([
-        Immutable.Map({
-          img: 'https://img.shaka.hsohealth.com/activity/lipid_lowering/banner@3x.png',
-          title: '此处是活动标题！',
-          time: '2017.10.12 19:23:34',
-          status: 0, // 0取消 1正常
-        }),
-      ]),
+      // historyDash:Immutable.List([
+      //   Immutable.Map({
+      //     img: 'https://img.shaka.hsohealth.com/activity/lipid_lowering/banner@3x.png',
+      //     title: '此处是活动标题！',
+      //     time: '2017.10.12 19:23:34',
+      //     status: 0, // 0取消 1正常
+      //   }),
+      // ]),
     }),
   }),
 });
@@ -90,7 +90,13 @@ new ActionHandler.handleAction(MineAction.GET_USER_INFO)
   const getUserActivityInfoHandler =
   new ActionHandler.handleAction(MineAction.GET_USER_ACTIVITY_DATA)
     .success((state: stateType, action: Action) => {
-      return state.setIn(['userData', 'activityInfo'], Immutable.fromJS(action.data))
+      return state.setIn(['userData', 'activityInfo', 'myDash'], Immutable.fromJS(action.data))
+                  .set('isFetching', false);
+    });
+  const getLikeActivityInfoHandler =
+  new ActionHandler.handleAction(MineAction.GET_LIKE_ACTIVITY_DATA)
+    .success((state: stateType, action: Action) => {
+      return state.setIn(['userData', 'activityInfo', 'wantToDash'], Immutable.fromJS(action.data))
                   .set('isFetching', false);
     });
 
@@ -99,6 +105,7 @@ export default ActionHandler.handleActions(
   [
     getUserInfoHandler,
     getUserActivityInfoHandler,
+    getLikeActivityInfoHandler,
   ],
   defaultState,
   /^DashListReducer\//

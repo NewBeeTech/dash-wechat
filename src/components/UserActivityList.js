@@ -8,9 +8,8 @@ import { List, Accordion } from 'antd-mobile';
 import * as styles from './../assets/stylesheets/mine.css'
 
 type Props = {
-  todoDash: immutable.list<any>,
+  UserActivityList: immutable.list<any>,
   wantToDash: immutable.list<any>,
-  historyDash: immutable.list<any>,
   routeToActivity: func,
 };
 
@@ -40,14 +39,17 @@ class UserActivityList extends React.Component {
       view.push(
         <List.Item
           key={index}
-          style={{ height: '30vw', position: 'relative' }}
+          style={{ height: '34vw', position: 'relative' }}
           thumb={this.renderImg(item.get('img'))}
           multipleLine
           onClick={() => {this.props.routeToActivity()}}
         >
           <span style={{ fontSize: '4vw' }}>{item.get('title')}</span>
-        <List.Item.Brief style={{ fontSize: '3.5vw', color: '#999' }}>
+          <List.Item.Brief style={{ fontSize: '3.5vw', color: '#999' }}>
             活动时间：{item.get('time').slice(0, 10)}
+          </List.Item.Brief>
+          <List.Item.Brief style={{ fontSize: '3.5vw', color: '#999' }}>
+            活动地点：{item.get('address')}
           </List.Item.Brief>
           <div className={styles.status} style={{ color: statusColor }}>{statusText}</div>
         </List.Item>
@@ -56,11 +58,12 @@ class UserActivityList extends React.Component {
     return view;
   }
   render() {
+    // const historyDash = this.props.myDash.filter(item => return item.get())
     return (
       <Accordion defaultActiveKey="0" className="my-accordion">
         <Accordion.Panel header="计划中的联谊">
           <List className="my-list">
-            {this.renderCard(this.props.todoDash)}
+            {this.renderCard(this.props.myDash)}
           </List>
         </Accordion.Panel>
         <Accordion.Panel header="想去的联谊" className="pad">
@@ -70,7 +73,7 @@ class UserActivityList extends React.Component {
         </Accordion.Panel>
         <Accordion.Panel header="联过的谊" className="pad">
           <List className="my-list">
-            {this.renderCard(this.props.historyDash)}
+            {this.renderCard(this.props.myDash)}
           </List>
         </Accordion.Panel>
       </Accordion>
