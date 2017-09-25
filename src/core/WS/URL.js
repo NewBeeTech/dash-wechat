@@ -34,3 +34,8 @@ export const getUserActivityDataPath: string = `${host}/activity/my/list`;
  * @type {string}
  */
 export const getLikeActivityDataPath: string = `${host}activity/my/collect`;
+/**
+ * 换一批标签
+ * @type {string}
+ */
+export const getMoreTagsPath: string = ``;

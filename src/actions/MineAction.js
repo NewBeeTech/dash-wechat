@@ -50,3 +50,18 @@ export const getLikeActivityData: Dispatch =
     dispatch
   );
 };
+
+/**
+ * 换一批标签
+ * @type {String}
+ */
+export const GET_MORE_TAGS: string = 'GET_MORE_TAGS';
+export const getMoreTags: Dispatch =
+(params: {openid: ?string}): ThunkAction =>
+(dispatch: Dispatch): void => {
+  AsyncFetchHandler(
+    GET_MORE_TAGS,
+    GET(URL.getMoreTagsPath: string, params: Object),
+    dispatch
+  );
+};

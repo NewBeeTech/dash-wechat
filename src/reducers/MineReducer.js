@@ -12,6 +12,7 @@ const defaultState: stateType = Immutable.Map({
   isFetching: false,
   errMsg: '',
   index: 0,
+  tags: '高大,多斤,温柔,善良,爱狗人士,花心,大萝卜,体贴,暖男',
   userData: Immutable.Map({
     userInfo:Immutable.Map({
       id: 1,
@@ -48,36 +49,73 @@ const defaultState: stateType = Immutable.Map({
     activityInfo: Immutable.Map({
       myDash: Immutable.List([
         Immutable.Map({
-          img: 'http://img02.tooopen.com/images/20160509/tooopen_sy_161967094653.jpg',
-          title: '此处是活动标题！',
-          time: '2017.02.12 19:23:34',
+          activityId: 1,
+          activityName: '此处是活动标题！',
+          photos: 'http://img02.tooopen.com/images/20160509/tooopen_sy_161967094653.jpg',
+          address: '望京',
+          startTime: '2017.04.12 19:23:34',
+          endTime: '2017.04.12 21:23:34',
           status: 1, // 0取消 1正常
+          userId: 1002,
+          member: Immutable.List([
+            Immutable.Map({
+              userId: 1001,
+              wxName: '小可爱',
+              wxPortrait: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmTZ26a1g35R615Q8thAK968JNBrm1XgaU_Cek9hywcWg7Pk0l',
+            }),
+            Immutable.Map({
+              userId: 1002,
+              wxName: '小霸道小霸道小霸道',
+              wxPortrait: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmTZ26a1g35R615Q8thAK968JNBrm1XgaU_Cek9hywcWg7Pk0l',
+            }),
+            Immutable.Map({
+              userId: 1003,
+              wxName: '小清新',
+              wxPortrait: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmTZ26a1g35R615Q8thAK968JNBrm1XgaU_Cek9hywcWg7Pk0l',
+            }),
+          ])
         }),
         Immutable.Map({
-          img: 'http://img02.tooopen.com/images/20160509/tooopen_sy_161967094653.jpg',
-          title: '此处是活动标题！',
-          time: '2017.04.12 19:23:34',
+          activityId: 2,
+          activityName: '此处是活动标题！',
+          photos: 'http://img02.tooopen.com/images/20160509/tooopen_sy_161967094653.jpg',
+          address: '望京',
+          startTime: '2017.10.12 19:23:34',
+          endTime: '2017.10.12 21:23:34',
           status: 0, // 0取消 1正常
+          userId: 1002,
         }),
         Immutable.Map({
-          img: 'http://www.nanrenwo.net/uploads/allimg/150909/8420-150Z9113413.jpg',
-          title: '此处是活动标题！',
-          time: '2017.10.12 19:23:34',
+          activityId: 3,
+          activityName: '此处是活动标题！',
+          photos: 'http://img02.tooopen.com/images/20160509/tooopen_sy_161967094653.jpg',
+          address: '望京',
+          startTime: '2017.10.12 19:23:34',
+          endTime: '2017.10.12 21:23:34',
           status: 1, // 0取消 1正常
+          userId: 1002,
         }),
         Immutable.Map({
-          img: 'http://www.nanrenwo.net/uploads/allimg/150909/8420-150Z9113413.jpg',
-          title: '此处是活动标题！',
-          time: '2017.02.12 19:23:34',
+          activityId: 4,
+          activityName: '此处是活动标题！',
+          photos: 'http://img02.tooopen.com/images/20160509/tooopen_sy_161967094653.jpg',
+          address: '望京',
+          startTime: '2017.02.12 19:23:34',
+          endTime: '2017.02.12 21:23:34',
           status: 0, // 0取消 1正常
+          userId: 1002,
         }),
       ]),
       wantToDash: Immutable.List([
         Immutable.Map({
-          img: 'https://img.shaka.hsohealth.com/activity/lipid_lowering/banner@3x.png',
-          title: '此处是活动标题！',
-          time: '2017.10.12 19:23:34',
+          activityId: 1,
+          activityName: '此处是活动标题！',
+          photos: 'http://img02.tooopen.com/images/20160509/tooopen_sy_161967094653.jpg',
+          address: '望京',
+          startTime: '2017.02.12 19:23:34',
+          endTime: '2017.02.12 21:23:34',
           status: null, // 0取消 1正常
+          user_id: 1002,
         }),
       ]),
     }),
@@ -103,6 +141,12 @@ new ActionHandler.handleAction(MineAction.GET_USER_INFO)
       return state.setIn(['userData', 'activityInfo', 'wantToDash'], Immutable.fromJS(action.data))
                   .set('isFetching', false);
     });
+  const getMoreTagsHandler =
+  new ActionHandler.handleAction(MineAction.GET_MORE_TAGS)
+    .success((state: stateType, action: Action) => {
+      return state.setIn(['tags'], Immutable.fromJS(action.data))
+                  .set('isFetching', false);
+    });
 
 
 export default ActionHandler.handleActions(
@@ -110,6 +154,7 @@ export default ActionHandler.handleActions(
     getUserInfoHandler,
     getUserActivityInfoHandler,
     getLikeActivityInfoHandler,
+    getMoreTagsHandler,
   ],
   defaultState,
   /^DashListReducer\//

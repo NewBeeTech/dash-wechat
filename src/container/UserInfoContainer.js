@@ -44,6 +44,7 @@ class UserInfoContainer extends React.Component {
             tags={this.props.userInfo.get('tags')}
           /> : ''}
           <UserTags
+            moreTags={this.props.moreTags.split(',')}
             tags={this.props.userInfo.get('tags').split(',')}
             tab={this.props.params.tab}
           />
@@ -64,6 +65,7 @@ const mapStateToProps = (state) => {
     dispatch: state.dispatch,
     openid: state.UserReducer.get('openid'),
     userInfo: state.MineReducer.get('userData').get('userInfo'),
+    moreTags: state.MineReducer.get('tags'),
     activityInfo: state.MineReducer.get('userData').get('activityInfo'),
   };
 };
