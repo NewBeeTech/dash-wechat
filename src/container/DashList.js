@@ -23,9 +23,9 @@ class DashList extends React.Component {
   componentWillMount() {
     // 获取轮播图片
     console.log('start');
-    this.props.dispatch(DashListAction.getCarouselImgsData({ type: 1 }));
+    // this.props.dispatch(DashListAction.getCarouselImgsData({ type: 1 }));
     // 获取活动列表
-    this.props.dispatch(DashListAction.getDashListData());
+    // this.props.dispatch(DashListAction.getDashListData());
   }
   render() {
     return (
@@ -46,7 +46,7 @@ class DashList extends React.Component {
              />
            </div>
         </div>
-        <DashTabbar/>
+        <DashTabbar selected={1} />
       </div>
     );
   }

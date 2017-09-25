@@ -50,14 +50,26 @@ const defaultState: stateType = Immutable.Map({
         Immutable.Map({
           img: 'http://img02.tooopen.com/images/20160509/tooopen_sy_161967094653.jpg',
           title: '此处是活动标题！',
-          time: '2017.10.12 19:23:34',
+          time: '2017.02.12 19:23:34',
           status: 1, // 0取消 1正常
+        }),
+        Immutable.Map({
+          img: 'http://img02.tooopen.com/images/20160509/tooopen_sy_161967094653.jpg',
+          title: '此处是活动标题！',
+          time: '2017.04.12 19:23:34',
+          status: 0, // 0取消 1正常
         }),
         Immutable.Map({
           img: 'http://www.nanrenwo.net/uploads/allimg/150909/8420-150Z9113413.jpg',
           title: '此处是活动标题！',
           time: '2017.10.12 19:23:34',
           status: 1, // 0取消 1正常
+        }),
+        Immutable.Map({
+          img: 'http://www.nanrenwo.net/uploads/allimg/150909/8420-150Z9113413.jpg',
+          title: '此处是活动标题！',
+          time: '2017.02.12 19:23:34',
+          status: 0, // 0取消 1正常
         }),
       ]),
       wantToDash: Immutable.List([
@@ -68,14 +80,6 @@ const defaultState: stateType = Immutable.Map({
           status: null, // 0取消 1正常
         }),
       ]),
-      // historyDash:Immutable.List([
-      //   Immutable.Map({
-      //     img: 'https://img.shaka.hsohealth.com/activity/lipid_lowering/banner@3x.png',
-      //     title: '此处是活动标题！',
-      //     time: '2017.10.12 19:23:34',
-      //     status: 0, // 0取消 1正常
-      //   }),
-      // ]),
     }),
   }),
 });
