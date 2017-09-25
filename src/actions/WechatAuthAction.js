@@ -40,8 +40,8 @@ export const getOpenId =
 };
 
 export const GET_USERINFO = 'GET_USERINFO';
-export const getUserInfo = (params:Object):ThunkAction => (dispatch:Dispatch):void => {
-  const result:Promise<> = GET(URL.getUserInfoPath, params);
+export const getUserInfo2 = (params:Object):ThunkAction => (dispatch:Dispatch):void => {
+  const result:Promise<> = GET(URL.getUserInfoPath2, params);
   AsyncFetchHandler(GET_USERINFO, result, dispatch);
 };
 

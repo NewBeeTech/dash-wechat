@@ -3,9 +3,14 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import shallowCompare from 'react-addons-shallow-compare';
-import UserPro from './../components/UserPro'
+import * as MineAction from './../actions/MineAction';
+import UserPro from './../components/UserPro';
 import UserActivityList from './../components/UserActivityList'
+import DashTabbar from './../components/DashTabbar'
 import * as styles from './../assets/stylesheets/mine.css';
+import { push } from 'react-router-redux';
+import * as RoutingURL from './../core/RoutingURL/RoutingURL';
+import { dispatch } from './../index';
 
 const propTypes = {
   children: PropTypes.node,
@@ -14,28 +19,34 @@ const propTypes = {
 };
 
 class MineContainer extends React.Component {
+  componentWillMount() {
+    // dispatch(MineAction.getUserInfo());
+  }
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);
   }
   render() {
     const avator = this.props.userInfo.get('photos').split(',')[0];
     return (
-      <div className={styles.bg}>
-        <UserPro
-          wxName={this.props.userInfo.get('wxName')}
-          avator={avator}
-          wxPortrait={this.props.userInfo.get('wxPortrait')}
-          likeCount={this.props.userInfo.get('likeCount')}
-          onclikHandler={() => console.log('跳转到用户详情/编辑')}
-        />
-        <div style={{ marginTop: '2vw' }}>
-          <UserActivityList
-            todoDash={this.props.activityInfo.get('todoDash')}
-            wantToDash={this.props.activityInfo.get('wantToDash')}
-            historyDash={this.props.activityInfo.get('historyDash')}
-            routeToActivity={() => console.log('活动详情')}
+      <div>
+        <div className={styles.bg}>
+          <UserPro
+            wxName={this.props.userInfo.get('wxName')}
+            avator={avator}
+            wxPortrait={this.props.userInfo.get('wxPortrait')}
+            likeCount={this.props.userInfo.get('likeCount')}
+            onclikHandler={() => dispatch(push(RoutingURL.UserInfo('')))}
           />
+          <div style={{ marginTop: '2vw' }}>
+            <UserActivityList
+              myDash={this.props.activityInfo.get('myDash')}
+              wantToDash={this.props.activityInfo.get('wantToDash')}
+              routeToActivity={() => console.log('活动详情')}
+            />
+          </div>
         </div>
+        <DashTabbar
+        />
       </div>
     );
   }

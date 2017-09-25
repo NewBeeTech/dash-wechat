@@ -6,36 +6,24 @@ import * as Immutable from 'immutable';
 import type { Dispatch } from '../../actions/types';
 import { List, Icon } from 'antd-mobile';
 import * as styles from './../assets/stylesheets/mine.css'
-import { push, goBack } from 'react-router-redux';
+import { push } from 'react-router-redux';
 import * as RoutingURL from './../core/RoutingURL/RoutingURL';
 import { dispatch } from './../index';
 
 type Props = {
-  tags: string,
+  text: string,
 };
 
 class EditBar extends React.Component {
   componentWillMount() {
   }
   props: Props;
-  renderTags(tags) {
-    const list = tags.split(',');
-    const view = [];
-    list.map((item, index) => {
-      view.push(
-        <span key={index} className={styles.tag}>
-          {item}
-        </span>
-      );
-    });
-    return view;
-  }
   render() {
     return (
       <div className={styles.editBar}>
         <div
           className={styles.returnArrow}
-          onClick={() => dispatch(goBack())}
+          onClick={() => this.props.tab === 'edit' ? dispatch(push(RoutingURL.UserInfo(''))) : dispatch(push(RoutingURL.Mine()))}
         >
           <Icon size="lg" type="left" color="#ffce3d" />
         </div>
@@ -44,7 +32,7 @@ class EditBar extends React.Component {
           className={styles.buttonDiv}
           onClick={() => dispatch(push(RoutingURL.UserInfo('/edit')))}
         >
-          编辑
+          {this.props.text}
         </div>
       </div>
     );

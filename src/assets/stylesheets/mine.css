@@ -2,7 +2,7 @@
 
 .bg {
   background: var(--bgColor);
-  height: 100vh;
+  height: calc(100vh - 14vw);
   width: 100vw;
   overflow: scroll;
 }
@@ -28,6 +28,7 @@
 .tagsBg {
   width: 100vw;
   background-color: #ffffff;
+  padding-bottm: 10vw;
 }
 
 .tags {
@@ -44,6 +45,28 @@
   padding: 1.2vw 4vw;
   border-radius: 0.25rem;
   margin: 2vw 3vw;
+  display: flex;
+  align-items: center;
+}
+
+.addTags {
+  width: 90vw;
+  background-color: #f3f3f3;
+  margin: 0 auto;
+  border-radius: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 5vw;
+}
+
+.changeTags {
+  font-size: 3.7vw;
+  width: 94vw;
+  padding-right: 4vw;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .editBar {
@@ -82,4 +105,74 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.inputDiv {
+  width: 80vw;
+  margin: 0 auto;
+  height: 10vw;
+  background-color: #F3F3F3;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 3.5vw;
+}
+
+.item {
+  width: 23vw;
+  text-align: center;
+  color: #c7c7c7;
+  font-size: 3.8vw;
+}
+
+.itemBorder {
+  border: 1px solid #c7c7c7;
+  height: 4.5vw;
+}
+
+.itemForm {
+  width: 55vw;
+}
+
+input {
+  background-color: #F3F3F3;
+  border: 1px solid #F3F3F3;
+  width: 50vw;
+  padding-right: 10px;
+  text-align: right;
+  color: #888;
+}
+
+/*:global(.am-list-extra) {
+  width: 30vw!important;
+}*/
+
+.uploadPic {
+  width: 90vw;
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+
+.dashTabbar {
+  height: 14vw;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+}
+
+.tab {
+  width: calc(50vw - 1px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 14vw;
+  color: #c5c5c5;
+}
+
+.tabBarBorder {
+  width: 1px;
+  height: 4vw;
+  border: 1px solid #c5c5c5;
 }

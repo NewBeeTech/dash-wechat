@@ -35,3 +35,18 @@ export const getUserActivityData: Dispatch =
     dispatch
   );
 };
+
+/**
+ * 获取用户想去的联谊
+ * @type {String}
+ */
+export const GET_LIKE_ACTIVITY_DATA: string = 'GET_LIKE_ACTIVITY_DATA';
+export const getLikeActivityData: Dispatch =
+(params: {openid: ?string}): ThunkAction =>
+(dispatch: Dispatch): void => {
+  AsyncFetchHandler(
+    GET_LIKE_ACTIVITY_DATA,
+    GET(URL.getLikeActivityDataPath: string, params: Object),
+    dispatch
+  );
+};
