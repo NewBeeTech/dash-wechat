@@ -10,18 +10,18 @@ if (process.env.NODE_ENV === 'test') {
  * 获取活动列表接口
  * @type {string}
  */
-export const getDashListPath: string = `${host}/activity/list`;
+export const getDashListPath: string = `${host}activity/list`;
 /**
  * 获取轮播图列表接口
  * @type {string}
  */
-export const getCarouselImgsPath: string = `${host}/banner/list`;
+export const getCarouselImgsPath: string = `${host}banner/list`;
 /**
  * 获取用户信息
  * @type {string}
  */
 
-export const getDashInfoPath: string = `${host}/activity/getById`;
+export const getDashInfoPath: string = `${host}activity/getById`;
 
 export const getUserInfoPath: string = `${host}/user/info`;
 /**
