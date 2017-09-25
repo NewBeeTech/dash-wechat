@@ -8,6 +8,7 @@ import DashCard from '../components/DashCard';
 import type { Dispatch } from '../../actions/types';
 import { redux, decorators } from 'amumu';
 import * as styles from '../assets/stylesheets/dashList.css';
+import ListComponents from '../components/ListComponents';
 
 @redux.ConnectStore
 @decorators.Loading(process.env.DEVICE)
@@ -18,23 +19,29 @@ class DashList extends React.Component {
     dashData: PropTypes.instanceOf(Immutable.Map).isRequired,
     isFetching: PropTypes.bool,
   };
+  componentWillMount() {
+    // 获取轮播图片
+    console.log('start');
+    this.props.dispatch(DashListAction.getCarouselImgsData({ type: 1 }));
+    // 获取活动列表
+    this.props.dispatch(DashListAction.getDashListData());
+  }
   render() {
-    const showDashList = (dashList) => {
-      const view = [];
-      if(dashList) {
-        dashList.map((item, key) => {
-           view.push(<DashCard key={key} dashItem={item} dispatch={this.props.dispatch} />);
-        });
-      }
-      return view;
-    }
     return (
       <div style={{ backgroundColor: '#F0F0F0', height: '93vh', overflow: 'scroll', paddingBottom: '5rem'}} >
         <div className={styles.carousel}>
            <DashCarousel carousel={this.props.dashData.get('carouselImgs')}/>
         </div>
         <div>
-          {showDashList(this.props.dashData.get('dashList'))}
+           <ListComponents
+               dispatch={this.props.dispatch}
+               dataSource={this.props.dashData.get('dashList')}
+               compontent={[DashCard]}
+               loadAction={() => {
+                 console.log('加载更多');
+               }}
+               hasMore={false}
+           />
         </div>
       </div>
     );

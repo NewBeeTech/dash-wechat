@@ -19,6 +19,60 @@ const propTypes = {
 };
 
 class ActivityContainer extends React.PureComponent {
+  componentWillMount() {
+    this._getWeConfig(
+      ['onMenuShareTimeline', 'onMenuShareAppMessage'],
+      location.href.split('#')[0],
+    );
+    const weConfig = this.props.weConfig;
+    this.state.weConfig = weConfig;
+    this.setState({
+      ...this.state,
+    });
+    this._weChatShare();
+  }
+  componentWillReceiveProps(nextProps: Object) {
+    if (this.props.openid !== nextProps.openid && nextProps.openid !== '') {
+      this._getIsSignUp(nextProps.openid);
+    }
+    if (!this.props.weConfig && nextProps.weConfig) {
+      const weConfig = nextProps.weConfig;
+      this.state.weConfig = weConfig;
+      this.setState({
+        ...this.state,
+      });
+      this._weChatShare();
+    }
+  }
+  _getWeConfig(jsApiList, currentURL) {
+  this.props.dispatch(
+    ActivityInfoAction.getWeConfigDate({ api: jsApiList, url: currentURL })
+  );
+}
+_weChatShare() {
+    if (this.state.weConfig) {
+      this.state.weConfig.debug = false;
+      window.wx.config(this.state.weConfig);
+      window.wx.ready(() => {
+        window.wx.onMenuShareTimeline({
+          title: '',
+          link: `${process.env.ACTIVITY_INFO_URL}`,
+          imgUrl: imgURL.WeChatShareImgURL2,
+        });
+        window.wx.onMenuShareAppMessage({
+          title: '',
+          desc: '',
+          link: `${process.env.ACTIVITY_INFO_URL}`,
+          imgUrl: imgURL.WeChatShareImgURL2,
+          type: 'link',
+          dataUrl: '',
+        });
+        window.wx.error((res) => {
+          console.log('wx.error: ', JSON.stringify(res));
+        });
+      });
+    }
+  }
   render() {
     return (
       <div style={{ backgroundColor: '#EEEEEE', height: '93vh', overflow: 'scroll'}}>

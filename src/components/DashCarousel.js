@@ -20,8 +20,10 @@ class DashCarousel extends React.Component {
       if(data) {
         this.props.carousel.map((v, k) => (
           views.push(
-            <div className={styles.CarouselImg} key={k}>
-              <img src={v} width="100%" height="100%" />
+            <div className={styles.CarouselImg} key={k}
+               onClick={() => Window.open(v.get('url'))}
+            >
+              <img src={v.get('img')} width="100%" height="100%" />
             </div>
           )
         ))

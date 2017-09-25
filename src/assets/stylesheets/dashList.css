@@ -106,10 +106,22 @@
 
 {/*轮播图*/}
 .carousel {
-  height: 30vh;
+  height: 25vh;
 }
 
 .CarouselImg {
-  height: 30vh;
+  height: 25vh;
   width: 100%;
+}
+
+:global(.am-carousel-wrap-dot > span) {
+  background: #fff !important;
+}
+
+:global(.am-carousel-wrap-dot-active > span) {
+    background: #ffce3d !important;
+}
+
+:global(.am-list-body) {
+  background-color: #F0F0F0 !important;
 }

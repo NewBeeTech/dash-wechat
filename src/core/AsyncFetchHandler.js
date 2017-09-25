@@ -15,7 +15,7 @@ const AsyncFetchHandler = (
   });
   fetchResultPromise
     .then(data => {
-      if (data.code === 0 || data.code === undefined) {
+      if (data.code === '001' || data.code === undefined) {
         dispatch({
           type: FetchState.SUCCESS(actionName),
           data: data.data ? data.data : data,

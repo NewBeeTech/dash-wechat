@@ -17,12 +17,6 @@ const DashList = (location, callback) => {
   }, 'DashList');
 }
 
-const ListContainer = (location, callback) => {
-  require.ensure([], require => {
-    callback(null, require('./container/ListContainer').default);
-  }, 'ListContainer');
-}
-
 const PayPage = (location, callback) => {
   require.ensure([], require => {
     callback(null, require('./container/PayPage').default);
