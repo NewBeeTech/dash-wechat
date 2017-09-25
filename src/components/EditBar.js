@@ -6,7 +6,7 @@ import * as Immutable from 'immutable';
 import type { Dispatch } from '../../actions/types';
 import { List, Icon } from 'antd-mobile';
 import * as styles from './../assets/stylesheets/mine.css'
-import { push, goBack } from 'react-router-redux';
+import { push } from 'react-router-redux';
 import * as RoutingURL from './../core/RoutingURL/RoutingURL';
 import { dispatch } from './../index';
 
@@ -23,7 +23,7 @@ class EditBar extends React.Component {
       <div className={styles.editBar}>
         <div
           className={styles.returnArrow}
-          onClick={() => dispatch(goBack())}
+          onClick={() => this.props.tab === 'edit' ? dispatch(push(RoutingURL.UserInfo(''))) : dispatch(push(RoutingURL.Mine()))}
         >
           <Icon size="lg" type="left" color="#ffce3d" />
         </div>

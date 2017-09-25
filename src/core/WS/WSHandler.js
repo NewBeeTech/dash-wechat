@@ -26,7 +26,7 @@ export const GET = async (path: string, params = {}) => {
     {},
     params,
   );
-  const RequestURL = `${URL.rootURL}${path}?${_param(paramsWithToken)}`;
+  const RequestURL = `${path}?${_param(paramsWithToken)}`;
   try {
     const response = await fetch(RequestURL, {
       method: 'GET',
@@ -84,7 +84,7 @@ export const GETURL = (path: string, params : Object = {}) => {
     params,
     // { apiToken: userInfoStorage.getItem('apiToken') }
   );
-  const RequestURL = `${URL.rootURL}${path}?${_param(paramsWithToken)}`;
+  const RequestURL = `${path}?${_param(paramsWithToken)}`;
   return RequestURL;
 };
 
