@@ -5,6 +5,7 @@ import * as Immutable from 'immutable';
 import * as DashListAction from '../actions/DashListAction';
 import DashCarousel from '../components/DashCarousel';
 import DashCard from '../components/DashCard';
+import DashTabbar from '../components/DashTabbar';
 import type { Dispatch } from '../../actions/types';
 import { redux, decorators } from 'amumu';
 import * as styles from '../assets/stylesheets/dashList.css';
@@ -28,21 +29,24 @@ class DashList extends React.Component {
   }
   render() {
     return (
-      <div style={{ backgroundColor: '#F0F0F0', height: '93vh', overflow: 'scroll', paddingBottom: '5rem'}} >
-        <div className={styles.carousel}>
-           <DashCarousel carousel={this.props.dashData.get('carouselImgs')}/>
+      <div>
+        <div style={{ backgroundColor: '#F0F0F0', height: 'calc(100vh - 14vw)', overflow: 'scroll'}} >
+          <div className={styles.carousel}>
+             <DashCarousel carousel={this.props.dashData.get('carouselImgs')}/>
+          </div>
+          <div>
+             <ListComponents
+                 dispatch={this.props.dispatch}
+                 dataSource={this.props.dashData.get('dashList')}
+                 compontent={[DashCard]}
+                 loadAction={() => {
+                   console.log('加载更多');
+                 }}
+                 hasMore={false}
+             />
+           </div>
         </div>
-        <div>
-           <ListComponents
-               dispatch={this.props.dispatch}
-               dataSource={this.props.dashData.get('dashList')}
-               compontent={[DashCard]}
-               loadAction={() => {
-                 console.log('加载更多');
-               }}
-               hasMore={false}
-           />
-        </div>
+        <DashTabbar/>
       </div>
     );
   }
