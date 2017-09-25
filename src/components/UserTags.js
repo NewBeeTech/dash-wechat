@@ -32,7 +32,7 @@ class UserTags extends React.Component {
         <span
           key={index}
           className={styles.tag}
-          style={this.props.tab === 'edit' ? { paddingRight: '1vw' } : '' }
+          style={this.props.tab === 'edit' ? { paddingRight: '1vw' } : {} }
         >
           {item}
           {
@@ -75,16 +75,15 @@ class UserTags extends React.Component {
           {this.renderTags(this.state.tags)}
         </div>
         <WhiteSpace size="lg" />
-        <div className={styles.addTags}>
-          <WhiteSpace size="lg" />
-          <div className={styles.changeTags} onClick={() => console.log('换一批')}>
-            换一批&nbsp;<img src="./../assets/images/reload.png" style={{ width: '3vw' }} />
-          </div>
-          <WhiteSpace size="md" />
-          <WhiteSpace size="md" />
-          {this.renderAddTags(this.state.tags)}
-          <WhiteSpace />
-        </div>
+        {this.props.tab === 'edit' ?
+          <div className={styles.addTags}>
+            <WhiteSpace size="lg" />
+            <div className={styles.changeTags} onClick={() => console.log('换一批')}>
+              换一批&nbsp;<img src="./../assets/images/reload.png" style={{ width: '3vw' }} />
+            </div>
+            <WhiteSpace size="md" />
+            {this.renderAddTags(this.state.tags)}
+          </div> : ''}
       </div>
     );
   }

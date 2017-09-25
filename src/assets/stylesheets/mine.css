@@ -2,7 +2,7 @@
 
 .bg {
   background: var(--bgColor);
-  height: 100vh;
+  height: calc(100vh - 14vw);
   width: 100vw;
   overflow: scroll;
 }
@@ -28,6 +28,7 @@
 .tagsBg {
   width: 100vw;
   background-color: #ffffff;
+  padding-bottm: 10vw;
 }
 
 .tags {
@@ -55,6 +56,7 @@
   border-radius: 12px;
   display: flex;
   flex-wrap: wrap;
+  padding-bottom: 5vw;
 }
 
 .changeTags {
@@ -142,11 +144,35 @@ input {
   color: #888;
 }
 
-:global(.am-list-extra) {
+/*:global(.am-list-extra) {
   width: 30vw!important;
-}
+}*/
 
 .uploadPic {
   width: 90vw;
   margin: 0 auto;
+  overflow-x: hidden;
+}
+
+.dashTabbar {
+  height: 14vw;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+}
+
+.tab {
+  width: calc(50vw - 1px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 14vw;
+  color: #c5c5c5;
+}
+
+.tabBarBorder {
+  width: 1px;
+  height: 4vw;
+  border: 1px solid #c5c5c5;
 }

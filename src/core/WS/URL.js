@@ -1,7 +1,7 @@
 /* @flow */
 let host = window.location.host;
 if (process.env.NODE_ENV === 'development') {
-  host = 'dev.shaco.hsohealth.com/shacoapi';
+  host = 'http://120.27.12.128:80/';
 }
 if (process.env.NODE_ENV === 'test') {
   host = 'dev.shaco.hsohealth.com/shacoapi';
@@ -22,6 +22,17 @@ export const getCarouselImgsPath: string = '';
  * 获取用户信息
  * @type {string}
  */
-export const getUserInfoPath: string = '/user/info';
 
 export const getDashInfoPath: string = '/activity/getById';
+
+export const getUserInfoPath: string = `${host}/user/info`;
+/**
+ * 用户报名的
+ * @type {string}
+ */
+export const getUserActivityDataPath: string = `${host}/activity/my/list`;
+/**
+ * 用户想去的联谊
+ * @type {string}
+ */
+export const getLikeActivityDataPath: string = `${host}activity/my/collect`;
