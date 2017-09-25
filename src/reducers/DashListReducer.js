@@ -2,6 +2,7 @@
 import * as Immutable from 'immutable';
 import * as DashListAction from '../actions/DashListAction';
 import type { Action } from '../actions/types';
+import { getActivityTime } from '../core/CommonFun/moment';
 import { redux } from 'amumu';
 const ActionHandler = redux.ActionHandler;
 
