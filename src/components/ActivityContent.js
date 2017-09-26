@@ -26,10 +26,10 @@ class ActivityContent extends React.PureComponent {
     
     const showTipsMessage = () => {
       return (
-        <div>
-          <div className={styles.messageRightDiv} style={{ lineHeight: '40px' }}>{'1.费用支付完成即报名成功。如有特殊原因，也可取消报名。关于主动取消报名：如果活动开始两天前取消，则全额退款；如果活动开始前一天取消，则退一半费用；如果活动开始当天取消活动，不支持退费。'}</div>
-          <div className={styles.messageRightDiv} style={{ lineHeight: '40px' }}>{'2.活动人数满员即停止报名，如果活动当天00:00满足条件男女性别差<2，刚到时间就履行线下活动。否则，为保证活动的质量，运营人员被迫取消本次活动，并全额退款。'}</div>
-          <div className={styles.messageRightDiv} style={{ lineHeight: '40px' }}>{'3.活动的具体地点会在活动开始前以短信通知到参与人。'}</div>
+        <div style={{ height: '46vh', lineHeight: '4vh'}}>
+          <div className={styles.messageRightDiv}>{'1.费用支付完成即报名成功。如有特殊原因，也可取消报名。关于主动取消报名：如果活动开始两天前取消，则全额退款；如果活动开始前一天取消，则退一半费用；如果活动开始当天取消活动，不支持退费。'}</div>
+          <div className={styles.messageRightDiv}>{'2.活动人数满员即停止报名，如果活动当天00:00满足条件男女性别差<2，刚到时间就履行线下活动。否则，为保证活动的质量，运营人员被迫取消本次活动，并全额退款。'}</div>
+          <div className={styles.messageRightDiv}>{'3.活动的具体地点会在活动开始前以短信通知到参与人。'}</div>
         </div>
       )
     }

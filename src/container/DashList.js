@@ -22,7 +22,6 @@ class DashList extends React.Component {
   };
   componentWillMount() {
     // 获取轮播图片
-    console.log('start');
     this.props.dispatch(DashListAction.getCarouselImgsData({ type: 1 }));
     // 获取活动列表
     this.props.dispatch(DashListAction.getDashListData());
@@ -30,7 +29,7 @@ class DashList extends React.Component {
   render() {
     return (
       <div>
-        <div style={{ backgroundColor: '#F0F0F0', height: 'calc(100vh - 14vw)', overflow: 'scroll'}} >
+        <div style={{ backgroundColor: '#F0F0F0', height: 'calc(100vh - 14vw)', overflow: 'hidden' }} >
           <div className={styles.carousel}>
              <DashCarousel carousel={this.props.dashData.get('carouselImgs')}/>
           </div>

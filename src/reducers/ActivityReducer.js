@@ -1,6 +1,6 @@
 /* @flow */
 import * as Immutable from 'immutable';
-import * as ActivityAction from '../actions/ActivityActive';
+import * as ActivityAction from '../actions/ActivityAction';
 import type { Action } from '../actions/types';
 import { redux } from 'amumu';
 const ActionHandler = redux.ActionHandler;
@@ -12,6 +12,7 @@ const defaultState: stateType = Immutable.Map({
   isFetching: false,
   errMsg: '',
   index: 0,
+  isWant: false,
   dashInfo: Immutable.Map({
     address: '望京',
     title: '大标题',
@@ -55,9 +56,16 @@ new ActionHandler.handleAction(ActivityAction.GET_DASHINFO)
     return state.setIn('dashInfo', Immutable.fromJS(action.data))
                 .set('isFetching', false);
   });
+  
+const getIsWantHandler =
+new ActionHandler.handleAction(ActivityAction.GET_DASHINFO)
+    .success((state: stateType, action: Action) => {
+      return state.setIn('dashInfo', Immutable.fromJS(action.data))
+                  .set('isFetching', false);
+    });
 
 export default ActionHandler.handleActions(
-  [ getActivityHandler ],
+  [ getActivityHandler, getIsWantHandler ],
   defaultState,
   /^ActivityReducer\//
 );

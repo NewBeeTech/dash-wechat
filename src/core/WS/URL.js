@@ -17,11 +17,19 @@ export const getDashListPath: string = `${host}activity/list`;
  */
 export const getCarouselImgsPath: string = `${host}banner/list`;
 /**
+ * 获取活动详情接口
+ * @type {string}
+ */
+export const getDashInfoPath: string = `${host}activity/getById`;
+/**
+ * 活动收藏
+ * @type {string}
+ */
+export const chargeIsWantPath: string = `${host}/activity/collect`;
+/**
  * 获取用户信息
  * @type {string}
  */
-
-export const getDashInfoPath: string = `${host}activity/getById`;
 
 export const getUserInfoPath: string = `${host}/user/info`;
 /**
@@ -29,8 +37,17 @@ export const getUserInfoPath: string = `${host}/user/info`;
  * @type {string}
  */
 export const getUserActivityDataPath: string = `${host}/activity/my/list`;
+
 /**
  * 用户想去的联谊
  * @type {string}
  */
 export const getLikeActivityDataPath: string = `${host}activity/my/collect`;
+/**
+ * 支付获取charge接口
+ * @type {string}
+ */
+export const getChargePath: string = `${host}`;
+
+// 支付接口
+export const payPath: string = '';

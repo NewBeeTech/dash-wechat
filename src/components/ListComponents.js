@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as Immutable from 'immutable';
 import { ListView } from 'antd-mobile';
+import * as styles from '../assets/stylesheets/dashList.css';
 
 class ListComponents extends React.Component {
   static propTypes = {
@@ -37,12 +38,11 @@ class ListComponents extends React.Component {
     this.setState({isLoading: true });
     this.props.loadAction();
   }
-
   render() {
     const row = (dataRow) => {
       const ComponentsCurrent = this.props.compontent[0];
       return (
-        <div key={dataRow.id} className="row">
+        <div key={dataRow.id}>
             <ComponentsCurrent key={dataRow.id} dashItem={Immutable.Map(dataRow)} dispatch={this.props.dispatch} />
         </div>
       )
@@ -57,8 +57,9 @@ class ListComponents extends React.Component {
         </div>)}
         renderRow={row}
         style={{
-          height: document.documentElement.clientHeight - 30,
+          height: '66vh',
           overflow: 'auto',
+          marginBottom: '20vh',
         }}
         pageSize={4}
         scrollRenderAheadDistance={500}
