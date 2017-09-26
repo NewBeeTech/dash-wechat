@@ -18,7 +18,7 @@ class DashTabbar extends React.Component {
   constructor(props: Object) {
     super(props);
     this.state = {
-      selected: 1,
+      selected: this.props.selected,
     };
   }
   state: {
@@ -26,6 +26,7 @@ class DashTabbar extends React.Component {
   };
 
   componentWillMount() {
+    this.setState({selected: this.props.selected});
   }
   props: Props;
   render() {

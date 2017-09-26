@@ -45,7 +45,7 @@ class MineContainer extends React.Component {
             />
           </div>
         </div>
-        <DashTabbar/>
+        <DashTabbar selected={2} />
       </div>
     );
   }

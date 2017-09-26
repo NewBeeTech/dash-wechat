@@ -176,3 +176,47 @@ input {
   height: 4vw;
   border: 1px solid #c5c5c5;
 }
+
+.vote {
+  width: 12vw;
+  display: inline-block;
+  height: 5vw;
+  border-radius: 8px;
+  border: 1px solid #ffce3d;
+  color: #ffce3d;
+  text-align: center;
+  cursor: pointer;
+}
+
+.members {
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 2vw;
+  display: flex;
+  justify-content: space-around;
+}
+
+.member {
+  width: 30%;
+  border: 1px solid #ffce3d;
+  border-radius: 8px;
+  position: relative;
+}
+
+.wxPortrait {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 5%;
+  border-radius: 8px;
+}
+
+.like {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+.wxName {
+  font-size: 3.5vw;
+  color: #000;
+}

@@ -51,3 +51,8 @@ export const getChargePath: string = `${host}`;
 
 // 支付接口
 export const payPath: string = '';
+/**
+ * 换一批标签
+ * @type {string}
+ */
+export const getMoreTagsPath: string = ``;
