@@ -2,7 +2,7 @@
  * @flow
  */
 
-import { GET } from '../core/WS/WSHandler';
+import { GET, POSTJSON } from '../core/WS/WSHandler';
 import AsyncFetchHandler from '../core/AsyncFetchHandler';
 import * as URL from '../core/WS/URL';
 import type { ThunkAction, Dispatch } from './types';
@@ -61,7 +61,36 @@ export const getMoreTags: Dispatch =
 (dispatch: Dispatch): void => {
   AsyncFetchHandler(
     GET_MORE_TAGS,
-    GET(URL.getMoreTagsPath: string, params: Object),
+    POSTJSON(URL.getMoreTagsPath: string, params: Object),
+    dispatch
+  );
+};
+
+/**
+ * 生成短信验证码
+ * @type {String}
+ */
+export const GET_MB_CODE: string = 'GET_MB_CODE';
+export const getMbCode: Dispatch =
+(params: {openid: ?string}): ThunkAction =>
+(dispatch: Dispatch): void => {
+  AsyncFetchHandler(
+    GET_MB_CODE,
+    POSTJSON(URL.getMbCodePath: string, params: Object),
+    dispatch
+  );
+};
+/**
+ * 验证短信验证码
+ * @type {String}
+ */
+export const CHECK_MB_CODE: string = 'CHECK_MB_CODE';
+export const checkMbCode: Dispatch =
+(params: {openid: ?string}): ThunkAction =>
+(dispatch: Dispatch): void => {
+  AsyncFetchHandler(
+    CHECK_MB_CODE,
+    POSTJSON(URL.checkMbCodePath: string, params: Object),
     dispatch
   );
 };

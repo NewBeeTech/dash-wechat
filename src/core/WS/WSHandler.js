@@ -49,7 +49,7 @@ export const GET = async (path: string, params = {}) => {
 };
 
 export const POSTJSON = async (path: string, json = {}) => {
-  const RequestURL = URL.rootURL + path;
+  const RequestURL = path;
   // console.error('POSTJSON RequestURL', RequestURL);
   // const apiToken = userInfoStorage.getItem('apiToken') ? userInfoStorage.getItem('apiToken') : '';
   const paramsWithToken = Object.assign({}, json);

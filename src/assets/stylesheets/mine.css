@@ -67,6 +67,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  margin-bottom: 2vw;
 }
 
 .editBar {
@@ -77,6 +78,7 @@
   width: 100vw;
   display: flex;
   border-top: 1px solid #ddd;
+  font-size: 4.5vw;
 }
 
 .returnArrow {
@@ -120,9 +122,9 @@
 }
 
 .item {
-  width: 23vw;
+  width: 30vw;
   text-align: center;
-  color: #c7c7c7;
+  color: #888;
   font-size: 3.8vw;
 }
 
@@ -135,7 +137,23 @@
   width: 55vw;
 }
 
-input {
+.code {
+  width: 28vw;
+}
+
+.sendCode {
+  width: 22vw;
+  height: 6vw;
+  background: #ffce3d;
+  text-align: center;
+  color: #000;
+  border-radius: 8px;
+  font-size: 3.5vw;
+  line-height: 6vw;
+  margin-right: 5vw;
+}
+
+.itemForm input {
   background-color: #F3F3F3;
   border: 1px solid #F3F3F3;
   width: 50vw;
@@ -144,6 +162,14 @@ input {
   color: #888;
 }
 
+.code input {
+  background-color: #F3F3F3;
+  border: 1px solid #F3F3F3;
+  width: 25vw;
+  padding-left: 10px;
+  text-align: left;
+  color: #888;
+}
 /*:global(.am-list-extra) {
   width: 30vw!important;
 }*/
@@ -172,7 +198,6 @@ input {
 }
 
 .tabBarBorder {
-  width: 1px;
   height: 4vw;
   border: 1px solid #c5c5c5;
 }
@@ -219,4 +244,8 @@ input {
 .wxName {
   font-size: 3.5vw;
   color: #000;
+}
+
+:global(.am-list-item .am-list-line .am-list-extra) {
+  flex-basis: auto!important;
 }

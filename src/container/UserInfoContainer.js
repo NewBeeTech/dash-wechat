@@ -21,7 +21,6 @@ class UserInfoContainer extends React.Component {
     return shallowCompare(this, nextProps, nextState);
   }
   render() {
-    console.log(this.props.params.tab);
     const avator = this.props.userInfo.get('photos').split(',')[0];
     return (
       <div>
@@ -44,7 +43,7 @@ class UserInfoContainer extends React.Component {
             tags={this.props.userInfo.get('tags')}
           /> : ''}
           <UserTags
-            moreTags={this.props.moreTags.split(',')}
+            moreTags={this.props.moreTags}
             tags={this.props.userInfo.get('tags').split(',')}
             tab={this.props.params.tab}
           />

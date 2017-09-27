@@ -23,12 +23,12 @@ export const getCarouselImgsPath: string = `${host}banner/list`;
 
 export const getDashInfoPath: string = `${host}activity/getById`;
 
-export const getUserInfoPath: string = `${host}/user/info`;
+export const getUserInfoPath: string = `${host}user/info`;
 /**
  * 用户报名的
  * @type {string}
  */
-export const getUserActivityDataPath: string = `${host}/activity/my/list`;
+export const getUserActivityDataPath: string = `${host}activity/my/list`;
 /**
  * 用户想去的联谊
  * @type {string}
@@ -38,4 +38,14 @@ export const getLikeActivityDataPath: string = `${host}activity/my/collect`;
  * 换一批标签
  * @type {string}
  */
-export const getMoreTagsPath: string = ``;
+export const getMoreTagsPath: string = `${host}user/tags`;
+/**
+ * 生成短信验证码
+ * @type {string}
+ */
+export const getMbCodePath: string = `${host}user/getMbCode`;
+/**
+ * 验证短信验证码
+ * @type {string}
+ */
+export const checkMbCodePath: string = `${host}user/checkMbCode`;
