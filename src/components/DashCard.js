@@ -24,7 +24,7 @@ class DashCard extends React.PureComponent {
       if(name) {
         views.push(
           <div className={styles.dashOriginator}>
-             干事：
+             干事:&nbsp;&nbsp;
              <img src={img} className={styles.dashOriginatorImg}/>
              {name}
           </div>
@@ -59,15 +59,15 @@ class DashCard extends React.PureComponent {
          {/* 活动人数 */}
          <div className={styles.dashNum}>
             <img src={'../assets/images/mars.png'} className={styles.mars}/>
-            <div className={styles.dashBoy}>男士：{showNum(this.props.dashItem.get('boyNum'))}</div>
+            <div className={styles.dashBoy}>男士: {showNum(this.props.dashItem.get('boyNum'))}</div>
             <img src={'../assets/images/venus.png'} className={styles.mars} />
-            <div>女士：{showNum(this.props.dashItem.get('girlNum'))}</div>
+            <div>女士: {showNum(this.props.dashItem.get('girlNum'))}</div>
          </div>
          {/* 活动发起人 */}
          {isShowOriginator(this.props.dashItem.get('originatorName'), this.props.dashItem.get('originatorImg'))}
            {/* 活动提示 */}
          <div className={styles.dashFooter}>
-             <span>提示：如遇报名人数已满，可随时关注活动报名情况，尤其在活动开始前的两天时间里或有人退出，届时可伺机抢座！</span>
+             <span>提示: 如遇报名人数已满, 可随时关注活动报名情况, 尤其在活动开始前的两天时间里或有人退出, 届时可伺机抢座!</span>
          </div>
       </div>
     );

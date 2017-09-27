@@ -6,6 +6,8 @@ import * as styles from '../assets/stylesheets/dashList.css';
 import * as payStyle from '../assets/stylesheets/payPage.css';
 import { push } from 'react-router-redux';
 import * as RoutingURL from '../core/RoutingURL/RoutingURL';
+import * as PayPageAction from '../actions/PayPageAction';
+import DashTabbar from '../components/DashTabbar';
 
 class PayPage extends React.PureComponent {
   static propTypes = {
@@ -19,7 +21,7 @@ class PayPage extends React.PureComponent {
     };
   }
   componentWillMount() {
-    this.setResidueTime();
+    // this.setResidueTime();
   }
   setResidueTime(type) {
     const that = this;
@@ -36,6 +38,14 @@ class PayPage extends React.PureComponent {
       that.setState({ residueTime: --time });
     },1000);
   }
+  _submitApplicationAction() {
+  const submitParams = {
+  };
+  this.props.dispatch(
+    PayPageAction.getChargeData(submitParams)
+  );
+  return false;
+}
   render() {
     const showNum = (num) => {
       if(num > 0) {
@@ -45,14 +55,15 @@ class PayPage extends React.PureComponent {
     }
     const dashItem = JSON.parse(JSON.stringify(this.props.dashData.get('dashList')))[this.props.index];
     return (
-      <div style={{ backgroundColor: '#EEEEEE', height: '93vh'}} >
+      <div>
+      <div style={{ backgroundColor: '#EEEEEE', height: 'calc(100vh - 14vw)'}} >
           {/*pay title*/}
          <div className={payStyle.payTitle}>
                <div className={payStyle.dashNum}>
                   <img src={'../assets/images/mars.png'} className={styles.mars}/>
-                  <div className={payStyle.dashBoy}>男士：{showNum(dashItem.boyNum)}</div>
+                  <div className={payStyle.dashBoy}>男士: {showNum(dashItem.boyNum)}</div>
                   <img src={'../assets/images/venus.png'} className={styles.mars} />
-                  <div>女士：{showNum(dashItem.girlNum)}</div>
+                  <div>女士: {showNum(dashItem.girlNum)}</div>
                </div>
                <div className={payStyle.payText}>支付剩余时间</div>
                <div className={payStyle.payNum}><span>{this.state.residueTime}</span>S</div>
@@ -64,6 +75,7 @@ class PayPage extends React.PureComponent {
                <div>
                    <div className={payStyle.money}>￥100</div>
                    <div className={payStyle.dashTitle}>活动标题！</div>
+                   <div className={payStyle.dashTitle}>活动时间 活动地点</div>
                </div>
            </div>
          </div>
@@ -76,21 +88,23 @@ class PayPage extends React.PureComponent {
            }}
          >
             <div className={payStyle.wechatPay}><img src={'../assets/images/wechat_pay.png'} className={payStyle.wechatPayImg}/>微信支付</div>
-            <div><img src={this.state.checked ? '../assets/images/支付选中.png' : '../assets/images/支付未选.png'} /></div>
+            <div><img src={this.state.checked ? '../assets/images/支付选中.png' : '../assets/images/支付未选.png'} style={{ width: '3vh' }}/></div>
          </div>
          {/*pay button*/}
          <div 
            className={this.state.checked ? payStyle.payButton : payStyle.noPayButton}
            onClick={() => {
              if(this.state.checked) {
-               console.log('pay ok!');
-               this.setResidueTime('stop');
+              //  this._submitApplicationAction();
              }
            }}
          >
               确认支付  ￥100
          </div>
       </div>
+      <DashTabbar/>
+      </div>
+      
     );
   }
 }

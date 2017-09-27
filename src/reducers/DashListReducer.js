@@ -22,7 +22,7 @@ const defaultState: stateType = Immutable.Map({
            address: '望京南',
            title: '大标题',
            smallTitle: '小标题',
-           backgroundImg: 'https://img.shaka.hsohealth.com/insurance/diet_banner_4_20170206.png',
+           backgroundImg: '../assets/images/default-banner.jpg',
            activityTime: '9/20 (周六) 16：00-19：00',
            time: '5h',
            boyNum: '2',
@@ -35,26 +35,26 @@ const defaultState: stateType = Immutable.Map({
            address: '望京',
            title: '大标题',
            smallTitle: '小标题',
-           backgroundImg: 'https://img.shaka.hsohealth.com/insurance/diet_banner_4_20170206.png',
+           backgroundImg: '../assets/images/default-banner.jpg',
            activityTime: '9月20日 16：00-19：00',
            time: '1h',
            boyNum: '2',
            girlNum: '0',
            originatorName: '',
-           originatorImg: 'https://img.shaka.hsohealth.com/activity/lipid_lowering/banner@3x.png',
+           originatorImg: '../assets/images/default-banner.jpg',
        }),
     ]),
     carouselImgs: Immutable.List([
       Immutable.Map({
-        img: 'https://img.shaka.hsohealth.com/insurance/diet_banner_4_20170206.png',
+        img: '../assets/images/default-banner.jpg',
         url: 'www.baodu.com',
       }),
       Immutable.Map({
-        img: 'https://img.shaka.hsohealth.com/insurance/diet_banner_4_20170206.png',
+        img: '../assets/images/default-banner.jpg',
         url: 'www.baodu.com',
       }),
       Immutable.Map({
-        img: 'https://img.shaka.hsohealth.com/insurance/diet_banner_4_20170206.png',
+        img: '../assets/images/default-banner.jpg',
         url: 'www.baodu.com',
       })
     ]),
@@ -64,7 +64,20 @@ const defaultState: stateType = Immutable.Map({
 const getDashListHandler =
 new ActionHandler.handleAction(DashListAction.GET_DASHLIST)
   .success((state: stateType, action: Action) => {
-    return state.setIn(['dashData', 'dashList'], Immutable.fromJS(action.data))
+    // 拼接数据
+    let dashList = [];
+    if(action.data.length) {
+      action.data.map((item) => {
+        dashList.push({
+          id: item.id,
+          address: item.address,
+          activityTime: getActivityTime(item.signupStartTime, item.signupEndTime),
+          
+        });
+      })
+    }
+    
+    return state.setIn(['dashData', 'dashList'], Immutable.fromJS(dashList))
                 .set('isFetching', false);
   });
   

@@ -36,7 +36,7 @@ class WechatImgList extends React.PureComponent {
       return views;
     }
     return (
-      <div>
+      <div className={styles.wechatImgContent}>
           <div className={styles.wechatImgText}>
           {content}
           </div>

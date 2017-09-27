@@ -21,13 +21,13 @@ class SignUpInfo extends React.PureComponent {
       <div className={infoStyles.originatorContent}>
          <div className={infoStyles.dashNum}>
            <img src={'../assets/images/mars.png'} className={styles.mars}/>
-           <div className={styles.dashBoy}>男士：{showNum(this.props.signUpInfo.get('boyNum'))}</div>
+           <div className={styles.dashBoy}>男士: {showNum(this.props.signUpInfo.get('boyNum'))}</div>
            <img src={'../assets/images/venus.png'} className={styles.mars} />
-           <div>女士：{showNum(this.props.signUpInfo.get('girlNum'))}</div>
+           <div>女士: {showNum(this.props.signUpInfo.get('girlNum'))}</div>
          </div>
          <div className={infoStyles.originatorInfo}>
              <div className={infoStyles.originator}>
-                 <div className={infoStyles.originatorName}>干事： 王晓丹</div>
+                 <div className={infoStyles.originatorName}>干事: 王晓丹</div>
                  <ul>
                    <li>职业： 演员</li>
                    <li>生日： 1997年8月3号</li>

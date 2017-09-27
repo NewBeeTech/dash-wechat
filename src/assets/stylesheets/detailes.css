@@ -49,13 +49,15 @@
 
 
 {/* 报名人数样式 */}
-
+.wechatImgContent {
+  padding: 1vh 0 2vh;
+}
 .wechatImgText {
   width: 20vw;
   text-align: center;
   margin: 2vh auto;
   background-color: var(--primaryColor);
-  font-size: 3.2vw;
+  font-size: 3.5vw;
   border-radius: 10px;
   padding: 1vh;
 }

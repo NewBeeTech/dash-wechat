@@ -63,6 +63,7 @@
 .money {
   color: #FF4C4D;
   margin-bottom: 1vh;
+  font-size: 5vw;
 }
 
 .dashTitle {
@@ -81,14 +82,14 @@
 }
 
 .payButton {
-  height: 6vh;
   width: 60vw;
   text-align: center;
   line-height: 6vh;
   margin-left: 20vw;
-  margin-top: 4vh;
-  font-size: 4vw;
+  margin-top: 5vh;
+  font-size: 4.5vw;
   border-radius: 0.1rem;
+  padding: 1vh 0;
   background-color: var(--primaryColor);
 }
 
@@ -109,13 +110,13 @@
 }
 
 .noPayButton {
-  height: 6vh;
   width: 60vw;
   text-align: center;
   line-height: 6vh;
   margin-left: 20vw;
-  margin-top: 4vh;
-  font-size: 4vw;
+  margin-top: 5vh;
+  font-size: 4.5vw;
   border-radius: 0.1rem;
+  padding: 1vh 0;
   background-color: #ddd;
 }
