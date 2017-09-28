@@ -12,6 +12,7 @@ class DashCard extends React.PureComponent {
   };
   render() {
     const address = this.props.dashItem.get('address');
+    const time = this.props.dashItem.get('time');
     const showNum = (num) => {
       if(num > 0) {
         return `仅余${num}席`;
@@ -34,7 +35,7 @@ class DashCard extends React.PureComponent {
     }
     return (
       <div className={styles.dashCard} onClick={() => {
-         this.props.dispatch(push(RoutingURL.ActivityDetails(this.props.dashItem.get('id'))));
+         this.props.dispatch(push(RoutingURL.ActivityDetails(this.props.dashItem.get('id'), 'info')));
       }}
         key={this.props.dashItem.get('id')}
       >
@@ -43,7 +44,9 @@ class DashCard extends React.PureComponent {
              <div className={styles.dashAddress} style={{ fontSize: `calc(12vw / (${address.length + 1}))`}}>
              {address}</div>
              <div>
-                 <div className={styles.dashTimeOne}>距离报名截止还有{this.props.dashItem.get('time')}！</div>
+                 <div className={styles.dashTimeOne}>
+                     {time === 0 ? '' : (time > 0 ? `距离报名截止还有${time}h！` : `距离报名截止不足1h！`)}
+                 </div>
                  <div className={styles.dashTimeTwo}>{this.props.dashItem.get('activityTime')}</div>
              </div>
          </div>

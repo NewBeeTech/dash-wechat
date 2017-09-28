@@ -39,7 +39,12 @@ class DashList extends React.Component {
                  dataSource={this.props.dashData.get('dashList')}
                  compontent={[DashCard]}
                  loadAction={() => {
-                   console.log('加载更多');
+                   let pageNo = this.props.dashData.get('pageNo');
+                   const pageSize = this.props.dashData.get('pageSize');
+                   // 获取活动列表
+                  //  this.props.dispatch(DashListAction.getDashListData(
+                  //    {pageNo: ++pageNo, pageSize }
+                  //  ));
                  }}
                  hasMore={false}
              />

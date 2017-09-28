@@ -87,8 +87,8 @@ class ActivityContainer extends React.PureComponent {
       <div>
         <div style={{ backgroundColor: '#EEEEEE', height: 'calc(100vh - 14vw)', overflow: 'scroll'}}>
           <Banner
-            leftTopText="活动类型" // 活动类型 暂时隐藏
-            imgUrl=""
+            leftTopText={this.props.dashInfo.get('type')} // 活动类型 暂时隐藏
+            imgUrl={this.props.dashInfo.get('backgroundImg')}
             handlerWantAction={() => {
               const isWant = this.props.isWant;
               // this.props.dispatch(ActivityAction.chargeIsWant({
@@ -102,23 +102,25 @@ class ActivityContainer extends React.PureComponent {
           />
           <div style={{ backgroundColor: '#fff', padding: '3vw'}}>
             <ActivityTime
-              address="望京"
-              deadline="4h"
-              time="9/20 (六) 18:00-21:00"
+              address={this.props.dashInfo.get('address')}
+              deadline={this.props.dashInfo.get('time')}
+              time={this.props.dashInfo.get('activityTime')}
             />
-            <SignUpInfo 
-               signUpInfo={this.props.dashInfo.get('signUpInfo')}
+            <SignUpInfo
+               originatorInfo={this.props.dashInfo.get('originatorInfo')}
+               boyNum={this.props.dashInfo.get('boyNum')}
+               girlNum={this.props.dashInfo.get('girlNum')}
             />
             <WechatImgList
-               wechatImgList={this.props.dashInfo.get('baomingrenshu')}
+               wechatImgList={this.props.dashInfo.get('signupPeople')}
                type={'报名'}
-               isShow={false}
+               isShow={this.props.isSignUp}
             />
           </div>
           <ActivityContent />
           <div style={{ backgroundColor: '#fff', padding: '1.5vh 0 2vh'}}>
             <WechatImgList
-               wechatImgList={this.props.dashInfo.get('baomingrenshu')}
+               wechatImgList={this.props.dashInfo.get('wantToPeople')}
                type={'想去'}
                isShow={true}
             />
@@ -150,6 +152,7 @@ const mapStateToProps = (state) => {
     openid: state.UserReducer.get('openid'),
     isWant: state.ActivityReducer.get('isWant'),
     dashInfo: state.ActivityReducer.get('dashInfo'),
+    isSignUp: state.ActivityReducer.get('isSignUp'),
   };
 };
 
