@@ -30,8 +30,14 @@ export const chargeIsWantPath: string = `${host}/activity/collect`;
  * 获取用户信息
  * @type {string}
  */
-
 export const getUserInfoPath: string = `${host}user/info`;
+
+/**
+ * 新增或更新用户信息
+ * @type {string}
+ */
+export const updateUserInfoPath: string = `${host}user/addOrUpdate`;
+
 /**
  * 用户报名的
  * @type {string}

@@ -3,6 +3,7 @@
  */
 import React, { PropTypes } from 'react';
 import * as Immutable from 'immutable';
+import * as MineAction from './../actions/MineAction';
 import type { Dispatch } from '../../actions/types';
 import { List, Icon } from 'antd-mobile';
 import * as styles from './../assets/stylesheets/mine.css'
@@ -30,7 +31,11 @@ class EditBar extends React.Component {
         <div className={styles.triangle} onClick={() => dispatch(goBack())} />
         <div
           className={styles.buttonDiv}
-          onClick={() => dispatch(push(RoutingURL.UserInfo('/edit')))}
+          onClick={() => {
+            this.props.tab === 'edit' ?
+            dispatch(push(RoutingURL.UserInfo(''))) :
+            dispatch(push(RoutingURL.UserInfo('/edit')));
+          }}
         >
           {this.props.text}
         </div>

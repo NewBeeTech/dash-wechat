@@ -26,7 +26,9 @@ class UserInfoContainer extends React.Component {
       <div>
         <div className={styles.bg} style={{ backgroundColor: '#fff' }}>
           {this.props.params.tab === 'edit' ?
-            <UploadPic /> :
+            <UploadPic
+              photos={this.props.userInfo.get('photos').split(',')}
+            /> :
             <UserInfoTitle
               wxName={this.props.userInfo.get('wxName')}
               sex={this.props.userInfo.get('sex')}

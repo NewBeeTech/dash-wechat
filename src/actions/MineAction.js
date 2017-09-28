@@ -22,6 +22,20 @@ export const getUserInfo: Dispatch =
   );
 };
 /**
+ * 更新用户信息
+ * @type {String}
+ */
+export const UPDATE_USER_INFO: string = 'UPDATE_USER_INFO';
+export const updateUserInfo: Dispatch =
+(params: {openid: ?string}): ThunkAction =>
+(dispatch: Dispatch): void => {
+  AsyncFetchHandler(
+    UPDATE_USER_INFO,
+    GET(URL.updateUserInfoPath: string, params: Object),
+    dispatch
+  );
+};
+/**
  * 获取我的活动信息
  * @type {String}
  */

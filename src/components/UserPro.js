@@ -24,7 +24,7 @@ class UserPro extends React.Component {
   props: Props;
   renderAvator(avator) {
     return(
-      <img src={avator} style={{ width: '20vw', height: '20vw', borderRadius: '50%' }} />
+      <div className={styles.avator} style={{ background: `url(${avator})`, backgroundSize: 'cover'}} />
     )
   }
   render() {

@@ -59,8 +59,8 @@ class UserActivityList extends React.Component {
             {item.get('status') === 1 && new Date(item.get('endTime')).getTime() < new Date().getTime() ?
             <span
               className={styles.vote}
-              onClick={() => {
-                console.log(item.get('member'));
+              onClick={(e) => {
+                e.stopPropagation();
                 this.setState({ visible: true, memberList: item.get('member') });
               }}
             >去投票</span>

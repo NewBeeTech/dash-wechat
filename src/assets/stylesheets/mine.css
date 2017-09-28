@@ -28,7 +28,7 @@
 .tagsBg {
   width: 100vw;
   background-color: #ffffff;
-  padding-bottm: 10vw;
+  padding-bottom: 10vw;
 }
 
 .tags {
@@ -175,9 +175,28 @@
 }*/
 
 .uploadPic {
-  width: 90vw;
+  width: 100vw;
   margin: 0 auto;
-  overflow-x: hidden;
+  display: flex;
+}
+.uploadButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 67vw;
+  height: 67vw;
+  background: #f3f3f3;
+  overflow: hidden;
+}
+
+.uploadButton2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 33vw;
+  height: 33vw;
+  background: #f3f3f3;
+  overflow: hidden;
 }
 
 .dashTabbar {
@@ -186,6 +205,8 @@
   display: flex;
   align-items: center;
   background-color: #ffffff;
+  border-top: 1px solid #c5c5c5;
+  font-size: 4vw;
 }
 
 .tab {
@@ -195,6 +216,10 @@
   justify-content: center;
   height: 14vw;
   color: #c5c5c5;
+}
+
+.tab img {
+  width: 4vw;
 }
 
 .tabBarBorder {
@@ -248,4 +273,18 @@
 
 :global(.am-list-item .am-list-line .am-list-extra) {
   flex-basis: auto!important;
+}
+:global(.am-accordion .am-accordion-item .am-accordion-header) {
+  height: 12vw!important;
+  line-height: 12vw!important;
+  font-size: 3.7vw!important;
+}
+:global(.am-accordion .am-accordion-item .am-accordion-header i) {
+  top: 4.5vw!important;
+}
+
+.avator {
+  width: 20vw;
+  height: 20vw;
+  border-radius: 50%;
 }
