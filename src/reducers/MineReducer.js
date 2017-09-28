@@ -12,7 +12,10 @@ const defaultState: stateType = Immutable.Map({
   isFetching: false,
   errMsg: '',
   index: 0,
-  tags: '高大,多斤,温柔,善良,爱狗人士,花心,大萝卜,体贴,暖男',
+  checkCode: '',
+  tags: Immutable.List([
+    '高大', '多斤', '温柔', '善良', '爱狗人士爱狗人士爱狗人士爱狗人士爱狗人士哟', '体贴', '暖男',
+  ]),
   userData: Immutable.Map({
     userInfo:Immutable.Map({
       id: 1,
@@ -32,7 +35,7 @@ const defaultState: stateType = Immutable.Map({
       nickName: '小可爱',
       openId: '',
       phone: '18617621252',
-      photos: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmTZ26a1g35R615Q8thAK968JNBrm1XgaU_Cek9hywcWg7Pk0l,https://img.shaka.hsohealth.com/activity/lipid_lowering/banner@3x.png', //用户上传的图片 多个用逗号隔开
+      photos: 'https://zos.alipayobjects.com/rmsportal/PZUUCKTRIHWiZSY.jpeg,https://img.shaka.hsohealth.com/activity/lipid_lowering/banner@3x.png', //用户上传的图片 多个用逗号隔开
       portrait: 'a.jpg', // 头像
       profession: '天皇巨星',
       province: '山西', // 省
@@ -128,6 +131,11 @@ new ActionHandler.handleAction(MineAction.GET_USER_INFO)
     return state.setIn(['userData', 'userInfo'], Immutable.fromJS(action.data))
                 .set('isFetching', false);
   });
+const updateUserInfoHandler =
+new ActionHandler.handleAction(MineAction.UPDATE_USER_INFO)
+  .success((state: stateType, action: Action) => {
+    return state.set('isFetching', false);
+  });
 
   const getUserActivityInfoHandler =
   new ActionHandler.handleAction(MineAction.GET_USER_ACTIVITY_DATA)
@@ -147,14 +155,28 @@ new ActionHandler.handleAction(MineAction.GET_USER_INFO)
       return state.setIn(['tags'], Immutable.fromJS(action.data))
                   .set('isFetching', false);
     });
+  const getMBCodeHandler =
+  new ActionHandler.handleAction(MineAction.GET_MB_CODE)
+    .success((state: stateType, action: Action) => {
+      return state.set('isFetching', false);
+    });
+  const checkMBCodeHandler =
+  new ActionHandler.handleAction(MineAction.GET_MB_CODE)
+    .success((state: stateType, action: Action) => {
+      return state.setIn(['checkCode'], Immutable.fromJS(action.data))
+                  .set('isFetching', false);
+    });
 
 
 export default ActionHandler.handleActions(
   [
     getUserInfoHandler,
+    updateUserInfoHandler,
     getUserActivityInfoHandler,
     getLikeActivityInfoHandler,
     getMoreTagsHandler,
+    getMBCodeHandler,
+    checkMBCodeHandler,
   ],
   defaultState,
   /^DashListReducer\//

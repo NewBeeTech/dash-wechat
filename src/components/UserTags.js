@@ -6,10 +6,12 @@ import * as Immutable from 'immutable';
 import type { Dispatch } from '../../actions/types';
 import { List, WhiteSpace, Icon } from 'antd-mobile';
 import * as styles from './../assets/stylesheets/mine.css'
+import * as MineAction from './../actions/MineAction';
+import { dispatch } from './../index';
 
 type Props = {
   tags: string,
-  moreTags: string,
+  moreTags: Immutable.List<>,
   tab: string,
 };
 
@@ -21,40 +23,32 @@ class UserTags extends React.Component {
     }
   }
   componentWillReceiveProps(nextProps) {
-    console.log(this.props, nextProps);
-    if(!this.props.tag.equale(nextProps)) {
+    if(this.props.tab!== nextProps.tab) {
       this.setState({
-        tags: this.props.tags,
-        moreTags: this.props.moreTags,
+        tags: nextProps.tags,
+        moreTags: nextProps.moreTags,
       });
     }
   }
-  // componentWillUnmount() {
-  //   this.setState({
-  //     tags: this.props.tags,
-  //     moreTags: this.props.moreTags,
-  //   });
-  // }
   props: Props;
   // 删除属性、添加属性
   deleteTag(index, item) {
     const tags = this.state.tags;
     const moreTags = this.state.moreTags;
-    moreTags.push(item);
+    const newMoreTags = moreTags.push(item);
     tags.splice(index, 1);
-    this.setState({ tags, moreTags });
+    this.setState({ tags, moreTags: newMoreTags });
   }
   addTag(index, item) {
     const tags = this.state.tags;
     const moreTags = this.state.moreTags;
     tags.push(item);
-    moreTags.splice(index, 1);
-    this.setState({ tags, moreTags });
+    const newMoreTags = moreTags.splice(index, 1);
+    this.setState({ tags, moreTags: newMoreTags });
   }
   renderTags(tags) {
-    const list = tags;
     const view = [];
-    list.map((item, index) => {
+    tags.map((item, index) => {
       view.push(
         <span
           key={index}
@@ -108,7 +102,10 @@ class UserTags extends React.Component {
         {this.props.tab === 'edit' ?
           <div className={styles.addTags}>
             <WhiteSpace size="lg" />
-            <div className={styles.changeTags} onClick={() => console.log('换一批')}>
+            <div
+              className={styles.changeTags}
+              onClick={() => dispatch(MineAction.getMoreTags())}
+            >
               换一批&nbsp;<img src="./../assets/images/reload.png" style={{ width: '3vw' }} />
             </div>
             <WhiteSpace size="md" />
