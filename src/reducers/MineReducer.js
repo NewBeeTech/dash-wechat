@@ -13,9 +13,7 @@ const defaultState: stateType = Immutable.Map({
   errMsg: '',
   index: 0,
   checkCode: '',
-  tags: Immutable.List([
-    '高大', '多斤', '温柔', '善良', '爱狗人士爱狗人士爱狗人士爱狗人士爱狗人士哟', '体贴', '暖男',
-  ]),
+  tags: Immutable.List([]),
   userData: Immutable.Map({
     userInfo:Immutable.Map({
       id: 1,
@@ -58,34 +56,22 @@ const defaultState: stateType = Immutable.Map({
           address: '望京',
           startTime: '2017.04.12 19:23:34',
           endTime: '2017.04.12 21:23:34',
-          status: 1, // 0取消 1正常
-          userId: 1002,
-          member: Immutable.List([
-            Immutable.Map({
-              userId: 1001,
-              wxName: '小可爱',
-              wxPortrait: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmTZ26a1g35R615Q8thAK968JNBrm1XgaU_Cek9hywcWg7Pk0l',
-            }),
-            Immutable.Map({
-              userId: 1002,
-              wxName: '小霸道小霸道小霸道',
-              wxPortrait: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmTZ26a1g35R615Q8thAK968JNBrm1XgaU_Cek9hywcWg7Pk0l',
-            }),
-            Immutable.Map({
-              userId: 1003,
-              wxName: '小清新',
-              wxPortrait: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmTZ26a1g35R615Q8thAK968JNBrm1XgaU_Cek9hywcWg7Pk0l',
-            }),
+          status: 1, // -1报名失败 0未付款 1报名成功 2运营拒绝
+          id: 1002,
+          otherUserList: Immutable.fromJS([
+            [1, "哈哈", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmTZ26a1g35R615Q8thAK968JNBrm1XgaU_Cek9hywcWg7Pk0l"],
+            [2, "哈哈", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmTZ26a1g35R615Q8thAK968JNBrm1XgaU_Cek9hywcWg7Pk0l"],
+            [3, "哈哈", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmTZ26a1g35R615Q8thAK968JNBrm1XgaU_Cek9hywcWg7Pk0l"],
           ])
         }),
         Immutable.Map({
           activityId: 2,
           activityName: '此处是活动标题！',
           photos: 'http://img02.tooopen.com/images/20160509/tooopen_sy_161967094653.jpg',
-          address: '望京',
-          startTime: '2017.10.12 19:23:34',
-          endTime: '2017.10.12 21:23:34',
-          status: 0, // 0取消 1正常
+          address: '东直门',
+          startTime: '2017.10.19 18:00:00',
+          endTime: '2017.10.19 21:00:00',
+          status: 1, // 0取消 1正常
           userId: 1002,
         }),
         Immutable.Map({

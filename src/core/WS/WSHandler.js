@@ -5,6 +5,7 @@
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
 require('babel-polyfill');
+var querystring = require('querystring');
 // import 'whatwg-fetch';
 import * as URL from './URL';
 import { random_string } from '../Util';
@@ -32,16 +33,15 @@ export const GET = async (path: string, params = {}) => {
       method: 'GET',
       headers: {
       },
-      mode: 'cors',
+      mode: 'no-cors',
     });
     if (response.status >= 500 && response.status < 600) {
       Toast.info('我们正在修复中!', 1);
     }
     const result = await response.json();
-    // console.log('get webservice result: ', result);
     return result;
   } catch (err) {
-    console.warn(`WSHandler -> GET -> err: ${err}`);
+    // console.warn(`WSHandler -> GET -> err: ${err}`);
     return {
       errMsg: err,
     };
@@ -53,13 +53,13 @@ export const POSTJSON = async (path: string, json = {}) => {
   // console.error('POSTJSON RequestURL', RequestURL);
   // const apiToken = userInfoStorage.getItem('apiToken') ? userInfoStorage.getItem('apiToken') : '';
   const paramsWithToken = Object.assign({}, json);
-  const body = JSON.stringify(paramsWithToken);
+  const body = querystring.stringify(paramsWithToken);
   try {
     const response = await fetch(RequestURL, {
       method: 'POST',
       headers: {
         Accept: '*/*',
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
       },
       body,
     });
@@ -67,6 +67,7 @@ export const POSTJSON = async (path: string, json = {}) => {
       Toast.info('我们正在修复中!', 1);
     }
     const result = await response.json();
+    console.log(response, result);
     // console.log('postjson webservice result: ', result);
     return result;
   } catch (err) {
@@ -134,30 +135,28 @@ export const Upload = (baseURL, params, filename, file) => new Promise((resolve,
 
 
 export const UploadFileToOSS = async (params = {}) => {
-  console.log(params);
-  const signature = await GET(URL.GetOSSSignature, params);
-  const localName = `/${random_string(6)}-${params.filename}`;
-  // localName = encodeURIComponent(localName);
+  console.log('params', params);
+  const sign = await GET(URL.GetOSSSignature, params);
+  const localName = `${random_string(6)}-${params.name}`;
+  const signature = sign.data;
   let fileURL = `${signature.host}/${signature.dir}${localName}`;
   fileURL = encodeURI(fileURL);
-
   const uploadParams = {
-    name: params.filename,
+    name: params.name,
     key: `${signature.dir}${localName}`,
     policy: signature.policy,
     OSSAccessKeyId: signature.accessid,
     success_action_status: '200',
-    callback: signature.callback,
+    // callback: signature.callback,
     signature: signature.signature,
   };
-  const uploadResult = await Upload(signature.host, uploadParams, localName, params.file);
-  if (!uploadResult) {
-    fileURL = '';
-  }
+  const uploadResult = await Upload(signature.host, uploadParams, localName, params);
+  // if (!uploadResult) {
+  //   fileURL = '';
+  // }
   const result = {
-    filename: params.filename,
+    filename: params.name,
     fileURL,
-    fileOriginUrl: fileURL,
   };
   return result;
 };

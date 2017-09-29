@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import reducers from './reducers/reducers';
 import { syncHistoryWithStore, routerMiddleware } from 'react-router-redux';
 import { browserHistory, Router, hashHistory } from 'react-router';
-import { getOpenId, setOpenId } from './actions/WechatAuthAction';
+import { getWxAuth2 } from './actions/WechatAuthAction';
 import { QueryString } from './core/Util';
 import userInfoStorage from './core/UserInfoStorage';
 
@@ -31,38 +31,13 @@ const store = createStore(reducers, /* preloadedState, */ composeEnhancers(
 export const dispatch = store.dispatch;
 
 if (process.env.NODE_ENV !== 'development') {
-  if (userInfoStorage.getItem('openId') &&
-  new Date().getTime() - userInfoStorage.getItem('curTime') < 7200000) {
-    store.dispatch(setOpenId(userInfoStorage.getItem('openId')));
-    const cs = {
-      userId: userInfoStorage.getItem('userId'),
-      isEMRFiled: userInfoStorage.getItem('isEMRFiled'),
-      medicalInsuranceType: userInfoStorage.getItem('medicalInsuranceType'),
-      gender: userInfoStorage.getItem('gender'),
-      hospitalId: userInfoStorage.getItem('hospitalId'),
-      maId: userInfoStorage.getItem('maId'),
-      doctorStudioId: userInfoStorage.getItem('doctorStudioId'),
-      serviceId: userInfoStorage.getItem('serviceId'),
-    };
-  } else {
-    if (checkDevice.isWeChat()) {
-      if (QueryString().code) { // url 中有 code 参数，直接请求 openId
-        store.dispatch(getOpenId({ code: QueryString().code }));
-      } else { // 微信中打开且不带code， 跳转到授权路径
-        if (location.pathname === '/payment') {
-          location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${process.env.APPID}&redirect_uri=${encodeURIComponent(location.href)}&response_type=code&scope=snsapi_base&connect_redirect=1#wechat_redirect`;
-        }
-       // TODO:  wrong path
-      }
-    } else { // 不在微信中打开
-      if (location.pathname !== '/activityInfo' && location.pathname !== '/payment' && location.pathname !== '/payment-success' && !QueryString().code) { // 如果不是活动页面要跳转到微信扫码授权页面
-       // location.href = `https://open.weixin.qq.com/connect/qrconnect?appid=${process.env.WEBAPPID}&redirect_uri=${encodeURIComponent(location.href)}&response_type=code&scope=snsapi_login#wechat_redirect`;
-        location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${process.env.APPID}&redirect_uri=${encodeURIComponent(location.href)}&response_type=code&scope=snsapi_base&connect_redirect=1#wechat_redirect`;
-      } else if (location.pathname !== '/activityInfo') {
-       // FIX: 换 openId 请求接口
-        store.dispatch(getOpenId({ code: QueryString().code }));
-      }
-    }
+  if (QueryString().code) { // url 中有 code 参数，将用户信息存取session
+    store.dispatch(getWxAuth2({ code: QueryString().code }));
+  } else { // 微信中打开且不带code， 跳转到授权路径
+    // if (location.pathname === '/payment') {
+    //   location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${process.env.APPID}&redirect_uri=${encodeURIComponent(location.href)}&response_type=code&scope=snsapi_base&connect_redirect=1#wechat_redirect`;
+    // }
+   // TODO:  wrong path
   }
 }
 

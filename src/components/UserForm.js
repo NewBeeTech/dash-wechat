@@ -25,8 +25,8 @@ const data = [{
   id: '2122',
 }];
 
-const maxDate = moment('2016-12-03 +0800', 'YYYY-MM-DD Z').utcOffset(8);
-const minDate = moment('2015-08-06 +0800', 'YYYY-MM-DD Z').utcOffset(8);
+const maxDate = moment('2001-01-01 +0800', 'YYYY-MM-DD Z').utcOffset(8);
+const minDate = moment('1970-01-01 +0800', 'YYYY-MM-DD Z').utcOffset(8);
 
 class UserForm extends React.Component {
   state = {

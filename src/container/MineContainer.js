@@ -41,7 +41,7 @@ class MineContainer extends React.Component {
             <UserActivityList
               myDash={this.props.activityInfo.get('myDash')}
               wantToDash={this.props.activityInfo.get('wantToDash')}
-              routeToActivity={() => console.log('活动详情')}
+              routeToActivity={(id, info) => dispatch(push(RoutingURL.ActivityDetails(id, info)))}
             />
           </div>
         </div>

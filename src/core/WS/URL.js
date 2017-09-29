@@ -71,3 +71,18 @@ export const getMbCodePath: string = `${host}user/getMbCode`;
  * @type {string}
  */
 export const checkMbCodePath: string = `${host}user/checkMbCode`;
+/**
+ * OSS直传
+ * @type {string}
+ */
+export const GetOSSSignature: string = `${host}oss/sign`;
+/**
+ * 微信用户信息授权
+ * @type {string}
+ */
+export const getWxAuth2Path: string = `${host}wx/outh2`;
+/**
+ * 投票给异性
+ * @type {string}
+ */
+export const likeUPath: string = `${host}`;
