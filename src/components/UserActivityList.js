@@ -40,16 +40,16 @@ class UserActivityList extends React.Component {
     const statusColor = { '-1': '#999', '0': '#999', '1': '#ffce3d', '2': '#999' };
     let info = '';
     list.map((item, index) => {
-      if(item.get('status') === 1 ) info === 'done';
-      if(item.get('status') === -1 || item.get('status') === 2 ) info === 'primary';
-      if(item.get('status') === 0 ) info === 'cancel';
+      if(item.get('status') === 1 ) info = 'done';
+      if(item.get('status') === -1 || item.get('status') === 2 ) info = 'primary';
+      if(item.get('status') === 0 ) info = 'cancel';
       view.push(
         <List.Item
           key={index}
           style={{ height: '34vw', position: 'relative' }}
           thumb={this.renderImg(item.get('photos'))}
           multipleLine
-          onClick={() => {this.props.routeToActivity(item.get('activityId', info))}}
+          onClick={() => {this.props.routeToActivity(item.get('activityId'), info)}}
         >
           <span style={{ fontSize: '4vw' }}>{item.get('activityName')}</span>
           <List.Item.Brief style={{ fontSize: '3.5vw', color: '#999' }}>
