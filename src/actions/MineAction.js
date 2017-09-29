@@ -71,7 +71,7 @@ export const getLikeActivityData: Dispatch =
  */
 export const GET_MORE_TAGS: string = 'GET_MORE_TAGS';
 export const getMoreTags: Dispatch =
-(params: {openid: ?string}): ThunkAction =>
+(params: {count: ?number}): ThunkAction =>
 (dispatch: Dispatch): void => {
   AsyncFetchHandler(
     GET_MORE_TAGS,
@@ -105,6 +105,20 @@ export const checkMbCode: Dispatch =
   AsyncFetchHandler(
     CHECK_MB_CODE,
     POSTJSON(URL.checkMbCodePath: string, params: Object),
+    dispatch
+  );
+};
+/**
+ * 投票给喜欢的异性
+ * @type {String}
+ */
+export const LIKE_U: string = 'LIKE_U';
+export const likeU: Dispatch =
+(params: {openid: ?string}): ThunkAction =>
+(dispatch: Dispatch): void => {
+  AsyncFetchHandler(
+    LIKE_U,
+    POSTJSON(URL.likeUPath: string, params: Object),
     dispatch
   );
 };

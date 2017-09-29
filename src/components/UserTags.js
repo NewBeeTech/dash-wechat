@@ -20,14 +20,17 @@ class UserTags extends React.Component {
     this.state = {
       tags: this.props.tags,
       moreTags: this.props.moreTags,
-    }
+    };
   }
   componentWillReceiveProps(nextProps) {
-    if(this.props.tab!== nextProps.tab) {
+    if(this.props.tab!== nextProps.tab || !this.props.moreTags.equals(nextProps.moreTags)) {
       this.setState({
         tags: nextProps.tags,
         moreTags: nextProps.moreTags,
       });
+    }
+    if(this.props.tab === undefined &&  nextProps.tab === 'edit') {
+      dispatch(MineAction.getMoreTags({ count: 7 }));
     }
   }
   props: Props;
@@ -86,9 +89,6 @@ class UserTags extends React.Component {
     });
     return view;
   }
-  getMoreTags(moreTags) {
-
-  }
   render() {
     return (
       <div className={styles.tagsBg}>
@@ -104,7 +104,7 @@ class UserTags extends React.Component {
             <WhiteSpace size="lg" />
             <div
               className={styles.changeTags}
-              onClick={() => dispatch(MineAction.getMoreTags())}
+              onClick={() => dispatch(MineAction.getMoreTags({ count: 7 }))}
             >
               换一批&nbsp;<img src="./../assets/images/reload.png" style={{ width: '3vw' }} />
             </div>

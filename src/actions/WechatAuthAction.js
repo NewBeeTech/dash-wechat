@@ -11,43 +11,24 @@ import userInfoStorage from '../core/UserInfoStorage';
  * 获取openid
  * @type {String}
  */
-export const GET_OPENID = 'GET_OPENID';
-type
-getOpenIdParamsType = {
+export const GET_WX_AUTH2 = 'GET_WX_AUTH2';
+type params = {
   code: string,
 };
-// 获取openId
-export const getOpenId =
-(params: getOpenIdParamsType): ThunkAction =>
+// 微信用户信息授权
+export const getWxAuth2 =
+(params: params): ThunkAction =>
 (dispatch: Dispatch): void => {
-  const result: Promise<> = GET(URL.getOpenIdPath(params.code));
-  // production GrowiongIO
+  const result: Promise<> = GET(URL.getWxAuth2Path: string, params);
   result.then(data => {
-    if (data && data.openid) {
-      userInfoStorage.setItem('openId', data.openid);
-      userInfoStorage.setItem('curTime', new Date().getTime());
-      const result: Promise<> = GET(URL.csPath, { openId: data.openid });
-      result.then(csdata => {
-        userInfoStorage.setItem('userId', csdata.data.userId);
-      });
+    console.log(data);
+    if (data.code === '009' || data.code === '001' ) {
+      console.log(111);
     }
   });
-  AsyncFetchHandler(
-    GET_OPENID,
-    result,
-    dispatch
-  );
+  // AsyncFetchHandler(
+  //   GET_WX_AUTH2,
+  //   result,
+  //   dispatch
+  // );
 };
-
-export const GET_USERINFO = 'GET_USERINFO';
-export const getUserInfo2 = (params:Object):ThunkAction => (dispatch:Dispatch):void => {
-  const result:Promise<> = GET(URL.getUserInfoPath2, params);
-  AsyncFetchHandler(GET_USERINFO, result, dispatch);
-};
-
-// 将localstorage中的openid设置给reducer中的openid
-export const SET_OPENID = 'SET_OPENID';
-export const setOpenId = (openid: string) => ({
-  type: SET_OPENID,
-  openid,
-});
