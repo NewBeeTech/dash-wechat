@@ -4,7 +4,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as ActivityAction from '../actions/ActivityAction';
 import * as RoutingURL from '../core/RoutingURL/RoutingURL';
-import { push } from 'react-router-redux';
+import { push, goBack } from 'react-router-redux';
 import Banner from '../components/Banner';
 import ActivityTime from '../components/ActivityTime';
 import SignUpInfo from '../components/SignUpInfo';
@@ -27,9 +27,13 @@ class ActivityContainer extends React.PureComponent {
     super(props);
     this.state = {
       weConfig: '',
+      buttonText: '',
+      status: true,
     };
   }
   componentWillMount() {
+    // 设置Button按钮
+    this.setButton(this.props.params.type);
     // 获取活动详情
     // this.props.dispatch(ActivityAction.getDashInfoData({id: this.props.params.activityId}));
     // this._getWeConfig(
@@ -82,6 +86,15 @@ class ActivityContainer extends React.PureComponent {
       });
     }
   }
+  setButton(type) {
+    let buttonText = '报名';
+    let status = true;
+    if(type === 'done') {
+      buttonText = '已报名';
+      status = false;
+    }
+    this.setState({ buttonText, status });
+  }
   render() {
     return (
       <div>
@@ -127,10 +140,10 @@ class ActivityContainer extends React.PureComponent {
           </div>
           <QrCode />
           <SignUpButton
-             buttonText={'报名活动'} // 按钮名称
-             status={true} // 是否点击
+             buttonText={this.state.buttonText} // 按钮名称
+             status={this.state.status} // 是否点击
              returnAction = {
-               () => { this.props.dispatch(push(RoutingURL.DashList()))}
+               () => { this.props.dispatch(goBack()) }
              }
              paymentAction = {() => {
                this.props.dispatch(push(RoutingURL.PayPage()))
