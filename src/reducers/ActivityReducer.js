@@ -24,6 +24,7 @@ const defaultState: stateType = Immutable.Map({
     smallTitle: '小标题',
     backgroundImg: '../assets/images/default-banner.jpg',
     activityTime: '9月20日 16：00-19：00',
+    endTime: '2017-10-01 00:00:00',
     girlNum: '0',
     type: '联谊', // 活动类型
     status: 1, // 类型 0取消  1正常
@@ -81,6 +82,7 @@ new ActionHandler.handleAction(ActivityAction.GET_DASHINFO)
         address: data.address,
         backgroundImg: data.photos,
         activityTime: getActivityTime(data.startTime, data.endTime),
+        endTime: data.endTime,
         time: getHaveTime(data.signupStartTime, data.signupEndTime),
         originatorName: data.originatorName,
         originatorImg: data.originUserPortrait,

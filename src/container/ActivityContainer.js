@@ -29,6 +29,7 @@ class ActivityContainer extends React.PureComponent {
       weConfig: '',
       buttonText: '',
       status: true,
+      isShowButton: true,
     };
   }
   componentWillMount() {
@@ -90,8 +91,9 @@ class ActivityContainer extends React.PureComponent {
     let buttonText = '报名';
     let status = true;
     if(type === 'done') {
-      buttonText = '已报名';
-      status = false;
+      buttonText = '取消报名';
+    }else if(type === 'cancel') {
+      buttonText = '已取消报名';
     }
     this.setState({ buttonText, status });
   }
@@ -139,7 +141,7 @@ class ActivityContainer extends React.PureComponent {
             />
           </div>
           <QrCode />
-          <SignUpButton
+          {this.state.isShowButton ? <SignUpButton
              buttonText={this.state.buttonText} // 按钮名称
              status={this.state.status} // 是否点击
              returnAction = {
@@ -148,7 +150,7 @@ class ActivityContainer extends React.PureComponent {
              paymentAction = {() => {
                this.props.dispatch(push(RoutingURL.PayPage()))
              }}
-          />
+          /> : <div />}
         </div>
         <DashTabbar/>
       </div>
