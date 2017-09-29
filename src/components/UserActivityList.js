@@ -16,7 +16,6 @@ type Props = {
   routeToActivity: func,
 };
 
-
 class UserActivityList extends React.Component {
   constructor(props){
     super(props);
@@ -36,13 +35,13 @@ class UserActivityList extends React.Component {
   }
   renderCard(list) {
     const view = [];
-    const statusText = { '-1': '报名失败', '0': '已取消报名', '1': '报名成功', '2': '运营拒绝' };
-    const statusColor = { '-1': '#999', '0': '#999', '1': '#ffce3d', '2': '#999' };
+    const statusText = { '-1': '报名失败', '0': '未支付', '1': '报名成功', '2': '运营拒绝', '3': '已取消报名'};
+    const statusColor = { '-1': '#999', '0': '#999', '1': '#ffce3d', '2': '#f40',  '3': '#999' };
     let info = '';
     list.map((item, index) => {
       if(item.get('status') === 1 ) info = 'done';
-      if(item.get('status') === -1 || item.get('status') === 2 ) info = 'primary';
-      if(item.get('status') === 0 ) info = 'cancel';
+      if(item.get('status') === -1 || item.get('status') === 0 || item.get('status') === 2 ) info = 'primary';
+      if(item.get('status') === 3 ) info = 'cancel';
       view.push(
         <List.Item
           key={index}

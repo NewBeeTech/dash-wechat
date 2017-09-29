@@ -30,7 +30,7 @@ const store = createStore(reducers, /* preloadedState, */ composeEnhancers(
 
 export const dispatch = store.dispatch;
 
-if (process.env.NODE_ENV !== 'development') {
+if (process.env.NODE_ENV === 'development') {
   if (QueryString().code) { // url 中有 code 参数，将用户信息存取session
     store.dispatch(getWxAuth2({ code: QueryString().code }));
   } else { // 微信中打开且不带code， 跳转到授权路径

@@ -33,7 +33,8 @@ export const GET = async (path: string, params = {}) => {
       method: 'GET',
       headers: {
       },
-      mode: 'no-cors',
+      mode: 'cors',
+      credentials: 'include',
     });
     if (response.status >= 500 && response.status < 600) {
       Toast.info('我们正在修复中!', 1);
@@ -61,6 +62,7 @@ export const POSTJSON = async (path: string, json = {}) => {
         Accept: '*/*',
         'Content-Type': 'application/x-www-form-urlencoded',
       },
+      credentials: 'include',
       body,
     });
     if (response.status >= 500 && response.status < 600) {
@@ -135,7 +137,6 @@ export const Upload = (baseURL, params, filename, file) => new Promise((resolve,
 
 
 export const UploadFileToOSS = async (params = {}) => {
-  console.log('params', params);
   const sign = await GET(URL.GetOSSSignature, params);
   const localName = `${random_string(6)}-${params.name}`;
   const signature = sign.data;

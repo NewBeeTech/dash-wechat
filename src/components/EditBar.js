@@ -13,6 +13,7 @@ import { dispatch } from './../index';
 
 type Props = {
   text: string,
+  submitHandler: Function,
 };
 
 class EditBar extends React.Component {
@@ -33,7 +34,7 @@ class EditBar extends React.Component {
           className={styles.buttonDiv}
           onClick={() => {
             this.props.tab === 'edit' ?
-            dispatch(push(RoutingURL.UserInfo(''))) :
+            this.props.submitHandler() :
             dispatch(push(RoutingURL.UserInfo('/edit')));
           }}
         >
