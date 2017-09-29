@@ -14,6 +14,10 @@ import QrCode from '../components/QrCode';
 import SignUpButton from '../components/SignUpButton';
 import DashTabbar from '../components/DashTabbar';
 import { redux } from 'amumu';
+import moment from 'moment';
+import { Modal } from 'antd-mobile';
+
+const alert = Modal.alert; 
 
 const propTypes = {
   children: PropTypes.node,
@@ -88,14 +92,23 @@ class ActivityContainer extends React.PureComponent {
     }
   }
   setButton(type) {
+    const isShow = moment().isBefore(this.props.dashInfo.get('endTime'));
     let buttonText = '报名';
     let status = true;
     if(type === 'done') {
       buttonText = '取消报名';
     }else if(type === 'cancel') {
       buttonText = '已取消报名';
+      status = false;
     }
-    this.setState({ buttonText, status });
+    this.setState({ buttonText, status, isShowButton: isShow });
+  }
+  cancelAction() {
+    // 取消报名
+    alert('取消报名', '确定取消报名么???', [
+      { text: '取消', onPress: () => console.log('cancel') },
+      { text: '确定', onPress: () => console.log('ok') },
+    ])
   }
   render() {
     return (
@@ -106,11 +119,11 @@ class ActivityContainer extends React.PureComponent {
             imgUrl={this.props.dashInfo.get('backgroundImg')}
             handlerWantAction={() => {
               const isWant = this.props.isWant;
-              // this.props.dispatch(ActivityAction.chargeIsWant({
-              //    activityId: this.props.params.activityId,
-              //    type: Number(!isWant),
-              // }));
-              // 
+              this.props.dispatch(ActivityAction.chargeIsWant({
+                 activityId: this.props.params.activityId,
+                 type: Number(!isWant),
+              }));
+              
               this.props.changeAction('ActivityReducer/isWant', !isWant);
             }}
             isWant={this.props.isWant}
@@ -148,7 +161,12 @@ class ActivityContainer extends React.PureComponent {
                () => { this.props.dispatch(goBack()) }
              }
              paymentAction = {() => {
-               this.props.dispatch(push(RoutingURL.PayPage()))
+               const type = this.props.params.type;
+               if(type == 'done') {
+                 this.cancelAction();
+               }else {
+                 this.props.dispatch(push(RoutingURL.PayPage()))
+               }
              }}
           /> : <div />}
         </div>
