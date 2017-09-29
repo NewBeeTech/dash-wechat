@@ -1,5 +1,5 @@
 const port = 8080;
-const host = '172.16.10.190';
+const host = 'localhost';
 
 module.exports = {
   port,

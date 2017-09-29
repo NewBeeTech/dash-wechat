@@ -18,7 +18,9 @@ import { Toast } from 'antd-mobile';
  */
 const _param = (params: {}): string => {
   return Object.keys(params).map((key) => {
-    return `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`;
+    if(key) {
+      return `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`;
+    }
   }).join('&');
 };
 
@@ -33,7 +35,7 @@ export const GET = async (path: string, params = {}) => {
       method: 'GET',
       headers: {
       },
-      mode: 'no-cors',
+      mode: 'cors',
     });
     if (response.status >= 500 && response.status < 600) {
       Toast.info('我们正在修复中!', 1);
@@ -41,7 +43,6 @@ export const GET = async (path: string, params = {}) => {
     const result = await response.json();
     return result;
   } catch (err) {
-    // console.warn(`WSHandler -> GET -> err: ${err}`);
     return {
       errMsg: err,
     };

@@ -97,7 +97,7 @@ new ActionHandler.handleAction(DashListAction.GET_DASHLIST)
   new ActionHandler.handleAction(DashListAction.GET_CAROUSELIMGS)
     .success((state: stateType, action: Action) => {
       // 拼接数据
-      let carouselImgs = JSON.parse(defaultState.get('dashData').get('carouselImgs'));
+      let carouselImgs = [];
       if(action.data.length) {
         action.data.map((item) => {
           carouselImgs.push({
