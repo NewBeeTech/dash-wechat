@@ -4,7 +4,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as ActivityAction from '../actions/ActivityAction';
 import * as RoutingURL from '../core/RoutingURL/RoutingURL';
-import { push } from 'react-router-redux';
+import { push, goBack } from 'react-router-redux';
 import Banner from '../components/Banner';
 import ActivityTime from '../components/ActivityTime';
 import SignUpInfo from '../components/SignUpInfo';
@@ -27,9 +27,13 @@ class ActivityContainer extends React.PureComponent {
     super(props);
     this.state = {
       weConfig: '',
+      buttonText: '',
+      status: true,
     };
   }
   componentWillMount() {
+    // 设置Button按钮
+    this.setButton(this.props.params.type);
     // 获取活动详情
     // this.props.dispatch(ActivityAction.getDashInfoData({id: this.props.params.activityId}));
     // this._getWeConfig(
@@ -82,13 +86,22 @@ class ActivityContainer extends React.PureComponent {
       });
     }
   }
+  setButton(type) {
+    let buttonText = '报名';
+    let status = true;
+    if(type === 'done') {
+      buttonText = '已报名';
+      status = false;
+    }
+    this.setState({ buttonText, status });
+  }
   render() {
     return (
       <div>
         <div style={{ backgroundColor: '#EEEEEE', height: 'calc(100vh - 14vw)', overflow: 'scroll'}}>
           <Banner
-            leftTopText="活动类型" // 活动类型 暂时隐藏
-            imgUrl=""
+            leftTopText={this.props.dashInfo.get('type')} // 活动类型 暂时隐藏
+            imgUrl={this.props.dashInfo.get('backgroundImg')}
             handlerWantAction={() => {
               const isWant = this.props.isWant;
               // this.props.dispatch(ActivityAction.chargeIsWant({
@@ -102,33 +115,35 @@ class ActivityContainer extends React.PureComponent {
           />
           <div style={{ backgroundColor: '#fff', padding: '3vw'}}>
             <ActivityTime
-              address="望京"
-              deadline="4h"
-              time="9/20 (六) 18:00-21:00"
+              address={this.props.dashInfo.get('address')}
+              deadline={this.props.dashInfo.get('time')}
+              time={this.props.dashInfo.get('activityTime')}
             />
-            <SignUpInfo 
-               signUpInfo={this.props.dashInfo.get('signUpInfo')}
+            <SignUpInfo
+               originatorInfo={this.props.dashInfo.get('originatorInfo')}
+               boyNum={this.props.dashInfo.get('boyNum')}
+               girlNum={this.props.dashInfo.get('girlNum')}
             />
             <WechatImgList
-               wechatImgList={this.props.dashInfo.get('baomingrenshu')}
+               wechatImgList={this.props.dashInfo.get('signupPeople')}
                type={'报名'}
-               isShow={false}
+               isShow={this.props.isSignUp}
             />
           </div>
           <ActivityContent />
           <div style={{ backgroundColor: '#fff', padding: '1.5vh 0 2vh'}}>
             <WechatImgList
-               wechatImgList={this.props.dashInfo.get('baomingrenshu')}
+               wechatImgList={this.props.dashInfo.get('wantToPeople')}
                type={'想去'}
                isShow={true}
             />
           </div>
           <QrCode />
           <SignUpButton
-             buttonText={'报名活动'} // 按钮名称
-             status={true} // 是否点击
+             buttonText={this.state.buttonText} // 按钮名称
+             status={this.state.status} // 是否点击
              returnAction = {
-               () => { this.props.dispatch(push(RoutingURL.DashList()))}
+               () => { this.props.dispatch(goBack()) }
              }
              paymentAction = {() => {
                this.props.dispatch(push(RoutingURL.PayPage()))
@@ -150,6 +165,7 @@ const mapStateToProps = (state) => {
     openid: state.UserReducer.get('openid'),
     isWant: state.ActivityReducer.get('isWant'),
     dashInfo: state.ActivityReducer.get('dashInfo'),
+    isSignUp: state.ActivityReducer.get('isSignUp'),
   };
 };
 

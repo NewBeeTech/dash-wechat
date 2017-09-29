@@ -10,3 +10,20 @@ export const getActivityTime = (startTime, endTime) => {
     return `${date} (${weeks[week]}) ${start}-${end}`;
   }
 }
+
+export const getHaveTime = (startTime, endTime) => {
+    let time = 0;
+    if(startTime && endTime) {
+      const data = moment().isBefore(startTime);
+      if(!data) {
+        var duration = moment.duration(moment(endTime).diff(moment()));
+        var hours = Math.floor(duration.asHours());
+        if(hours <= 7 && hours >=1) {
+           time = hours;
+        } else if(hours < 1 && hours > 0) {
+           time = -1;
+        }
+      }
+    }
+    return time;
+}

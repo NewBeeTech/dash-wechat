@@ -8,7 +8,9 @@ import Girl from '../assets/images/girl.svg';
 
 class SignUpInfo extends React.PureComponent {
   static propTypes = {
-    signUpInfo: PropTypes.instanceOf(Immutable.Map).isRequired,
+    originatorInfo: PropTypes.instanceOf(Immutable.Map).isRequired,
+    boyNum: PropTypes.number.isRequired,
+    girlNum: PropTypes.number.isRequired,
   };
   render() {
     const showNum = (num) => {
@@ -21,21 +23,16 @@ class SignUpInfo extends React.PureComponent {
       <div className={infoStyles.originatorContent}>
          <div className={infoStyles.dashNum}>
            <img src={'../assets/images/mars.png'} className={styles.mars}/>
-           <div className={styles.dashBoy}>男士: {showNum(this.props.signUpInfo.get('boyNum'))}</div>
+           <div className={styles.dashBoy}>男士: {showNum(this.props.boyNum)}</div>
            <img src={'../assets/images/venus.png'} className={styles.mars} />
-           <div>女士: {showNum(this.props.signUpInfo.get('girlNum'))}</div>
+           <div>女士: {showNum(this.props.girlNum)}</div>
          </div>
          <div className={infoStyles.originatorInfo}>
              <div className={infoStyles.originator}>
-                 <div className={infoStyles.originatorName}>干事: 王晓丹</div>
-                 <ul>
-                   <li>职业： 演员</li>
-                   <li>生日： 1997年8月3号</li>
-                   <li>个人信息： 179cm/57kg</li>
-                   <li>.......</li>
-                 </ul>
+                 <div className={infoStyles.originatorName}>干事: {this.props.originatorInfo.get('originatorName')}</div>
+                 <div className={infoStyles.originatorDesc}>{this.props.originatorInfo.get('originUserDesc')}</div>
              </div>
-             <img src={this.props.signUpInfo.get('originatorImg')} className={infoStyles.originatorImg}/>
+             <img src={this.props.originatorInfo.get('originatorImg')} className={infoStyles.originatorImg}/>
          </div>
       </div>
     );
