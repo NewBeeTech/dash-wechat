@@ -28,7 +28,7 @@ export const getDashListData: Dispatch =
  */
  export const GET_CAROUSELIMGS: string = 'GET_CAROUSELIMGS';
  export const getCarouselImgsData: Dispatch =
- (params: {openid: ?string}): ThunkAction =>
+ (params): ThunkAction =>
  (dispatch: Dispatch): void => {
    AsyncFetchHandler(
      GET_CAROUSELIMGS,

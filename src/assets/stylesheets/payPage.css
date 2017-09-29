@@ -54,8 +54,8 @@
 }
 
 .payImg {
-  width: 17vw;
-  height: 17vw;
+  width: 20vw;
+  height: 20vw;
   border-radius: 0.1rem;
   margin-right: 3vw;
 }
@@ -69,6 +69,12 @@
 .dashTitle {
   color: #575757;
   font-size: 4vw;
+}
+
+.smallDashTitle {
+  color: #ccc;
+  margin-top: 1vh;
+  font-size: 3.5vw;
 }
 
 .selectType {

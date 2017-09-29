@@ -56,6 +56,9 @@ export const getChargePath: string = `${host}`;
 
 // 支付接口
 export const payPath: string = '';
+
+// 支付回调接口
+export const paymentFeedbackPath: string = '';
 /**
  * 换一批标签
  * @type {string}
@@ -86,3 +89,8 @@ export const getWxAuth2Path: string = `${host}wx/outh2`;
  * @type {string}
  */
 export const likeUPath: string = `${host}`;
+
+export const getUserForDashDataPath: string = `${host}`;
+
+// 取消报名
+export const cancelSignUpPath: string = `${host}`;

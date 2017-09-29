@@ -18,7 +18,9 @@ import { Toast } from 'antd-mobile';
  */
 const _param = (params: {}): string => {
   return Object.keys(params).map((key) => {
-    return `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`;
+    if(key) {
+      return `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`;
+    }
   }).join('&');
 };
 
@@ -42,7 +44,6 @@ export const GET = async (path: string, params = {}) => {
     const result = await response.json();
     return result;
   } catch (err) {
-    // console.warn(`WSHandler -> GET -> err: ${err}`);
     return {
       errMsg: err,
     };

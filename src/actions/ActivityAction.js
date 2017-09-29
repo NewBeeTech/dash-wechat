@@ -33,3 +33,31 @@ export const getDashInfoData: Dispatch = (params): ThunkAction =>
      dispatch
    );
  };
+ 
+ /**
+  * 获取用户在该活动的信息
+  * @type {String}
+  */
+  export const GET_USER_DASH_INFO: string = 'GET_USER_DASH_INFO';
+  export const getUserForDashData: Dispatch = (params): ThunkAction =>
+  (dispatch: Dispatch): void => {
+    AsyncFetchHandler(
+      GET_USER_DASH_INFO,
+      GET(URL.getUserForDashDataPath: string, params: Object),
+      dispatch
+    );
+  };
+  
+  /**
+   * 取消报名
+   * @type {String}
+   */
+   export const CANCEL_SGINUP: string = 'CANCEL_SGINUP';
+   export const cancelSginUp: Dispatch = (params): ThunkAction =>
+   (dispatch: Dispatch): void => {
+     AsyncFetchHandler(
+       CANCEL_SGINUP,
+       GET(URL.cancelSginUpPath: string, params: Object),
+       dispatch
+     );
+   };

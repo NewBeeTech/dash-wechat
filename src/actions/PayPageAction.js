@@ -23,7 +23,8 @@ export const pay = (params: paymentParms): ThunkAction =>
       pingpp.createPayment(data.data.charge, (result, err) => {
         if (result === 'success') {
           // 支付成功
-          dispatch(push(RoutingURL.PaymentSuccess()));
+          Toast('支付成功');
+          // dispatch(push(RoutingURL.DashInfo('info')));
           dispatch({ type: 'PAY_SUCCESS' });
         } else if (result === 'fail') {
           // 支付失败

@@ -21,7 +21,7 @@ class PayPage extends React.PureComponent {
     };
   }
   componentWillMount() {
-    // this.setResidueTime();
+    this.setResidueTime();
   }
   setResidueTime(type) {
     const that = this;
@@ -39,13 +39,13 @@ class PayPage extends React.PureComponent {
     },1000);
   }
   _submitApplicationAction() {
-  const submitParams = {
-  };
-  this.props.dispatch(
-    PayPageAction.getChargeData(submitParams)
-  );
-  return false;
-}
+    const submitParams = {
+    };
+    this.props.dispatch(
+      PayPageAction.getChargeData(submitParams)
+    );
+    return false;
+  }
   render() {
     const showNum = (num) => {
       if(num > 0) {
@@ -53,7 +53,7 @@ class PayPage extends React.PureComponent {
       }
       return '满员'
     }
-    const dashItem = JSON.parse(JSON.stringify(this.props.dashData.get('dashList')))[this.props.index];
+    const dashItem = JSON.parse(JSON.stringify(this.props.dashInfo));
     return (
       <div>
       <div style={{ backgroundColor: '#EEEEEE', height: 'calc(100vh - 14vw)'}} >
@@ -73,9 +73,9 @@ class PayPage extends React.PureComponent {
            <div className={payStyle.dashHeader}>
               <img src={'https://img.shaka.hsohealth.com/insurance/diet_banner_4_20170206.png'} className={payStyle.payImg} />
                <div>
-                   <div className={payStyle.money}>￥100</div>
-                   <div className={payStyle.dashTitle}>活动标题！</div>
-                   <div className={payStyle.dashTitle}>活动时间 活动地点</div>
+                   <div className={payStyle.money}>￥{dashItem.cost}</div>
+                   <div className={payStyle.dashTitle}>{dashItem.title}</div>
+                   <div className={payStyle.smallDashTitle}>{dashItem.address}({dashItem.activityTime})</div>
                </div>
            </div>
          </div>
@@ -95,11 +95,11 @@ class PayPage extends React.PureComponent {
            className={this.state.checked ? payStyle.payButton : payStyle.noPayButton}
            onClick={() => {
              if(this.state.checked) {
-              //  this._submitApplicationAction();
+               this._submitApplicationAction();
              }
            }}
          >
-              确认支付  ￥100
+              确认支付  ￥{dashItem.cost}
          </div>
       </div>
       <DashTabbar/>
@@ -113,8 +113,7 @@ const mapStateToProps = (state) => {
   return {
     dispatch: state.dispatch,
     openid: state.UserReducer.get('openid'),
-    dashData: state.DashListReducer.get('dashData'),
-    index: state.DashListReducer.get('index'),
+    dashInfo: state.ActivityReducer.get('dashInfo'),
   };
 };
 

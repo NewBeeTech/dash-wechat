@@ -16,12 +16,18 @@ class SignUpButton extends React.PureComponent {
     return (
       <div className={styles.SignUpButton}>
           <div className={styles.returnButton}
-             onClick={() => this.props.returnAction()}
+             onClick={() => {
+               this.props.returnAction();
+             }}
           >
               <img src={'../assets/images/return.png'} style={{ marginLeft: '15vw' }}/>
           </div>
           <div className={this.props.status ? styles.buttonIsOk : styles.buttonIsNo}
-              onClick={() => this.props.paymentAction()}
+              onClick={() => {
+                if(this.props.status) {
+                  this.props.paymentAction();
+                }
+              }}
           >
              <div className={styles.buttonText}>{this.props.buttonText}</div>
           </div>

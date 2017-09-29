@@ -14,6 +14,10 @@ import QrCode from '../components/QrCode';
 import SignUpButton from '../components/SignUpButton';
 import DashTabbar from '../components/DashTabbar';
 import { redux } from 'amumu';
+import moment from 'moment';
+import { Modal } from 'antd-mobile';
+
+const alert = Modal.alert; 
 
 const propTypes = {
   children: PropTypes.node,
@@ -37,65 +41,28 @@ class ActivityContainer extends React.PureComponent {
     this.setButton(this.props.params.type);
     // 获取活动详情
     // this.props.dispatch(ActivityAction.getDashInfoData({id: this.props.params.activityId}));
-    // this._getWeConfig(
-    //   ['onMenuShareTimeline', 'onMenuShareAppMessage'],
-    //   location.href.split('#')[0],
-    // );
-    // const weConfig = this.props.weConfig;
-    // this.state.weConfig = weConfig;
-    // this.setState({
-    //   ...this.state,
-    // });
-    // this._weChatShare();
+    // 获取患者在该活动的状态
+    // this.props.dispatch(ActivityAction.getUserForDashData({id: this.props.params.activityId}));
   }
-  componentWillReceiveProps(nextProps: Object) {
-    // if (!this.props.weConfig && nextProps.weConfig) {
-    //   const weConfig = nextProps.weConfig;
-    //   this.state.weConfig = weConfig;
-    //   this.setState({
-    //     ...this.state,
-    //   });
-    //   this._weChatShare();
-    // }
-  }
-  _getWeConfig(jsApiList, currentURL) {
-    // this.props.dispatch(
-    //   ActivityInfoAction.getWeConfigDate({ api: jsApiList, url: currentURL })
-    // );
-  }
-  _weChatShare() {
-    if (this.state.weConfig) {
-      this.state.weConfig.debug = false;
-      window.wx.config(this.state.weConfig);
-      window.wx.ready(() => {
-        window.wx.onMenuShareTimeline({
-          title: '活动标题',
-          link: '',
-          imgUrl: '',
-        });
-        window.wx.onMenuShareAppMessage({
-          title: '活动标题',
-          desc: '活动时间+活动地点',
-          link: '',
-          imgUrl: '',
-          type: 'link',
-          dataUrl: '',
-        });
-        window.wx.error((res) => {
-          console.log('wx.error: ', JSON.stringify(res));
-        });
-      });
-    }
-  }
+
   setButton(type) {
+    const isShow = moment().isBefore(this.props.dashInfo.get('endTime'));
     let buttonText = '报名';
     let status = true;
     if(type === 'done') {
       buttonText = '取消报名';
     }else if(type === 'cancel') {
       buttonText = '已取消报名';
+      status = false;
     }
-    this.setState({ buttonText, status });
+    this.setState({ buttonText, status, isShowButton: isShow });
+  }
+  cancelAction() {
+    // 取消报名
+    alert('取消报名', '确定取消报名么???', [
+      { text: '取消', onPress: () => console.log('cancel') },
+      { text: '确定', onPress: () => { this.props.dispatch(ActivityAction.cancelSginUp({ id: this.props.params.activityId })) } },
+    ])
   }
   render() {
     return (
@@ -106,11 +73,11 @@ class ActivityContainer extends React.PureComponent {
             imgUrl={this.props.dashInfo.get('backgroundImg')}
             handlerWantAction={() => {
               const isWant = this.props.isWant;
-              // this.props.dispatch(ActivityAction.chargeIsWant({
-              //    activityId: this.props.params.activityId,
-              //    type: Number(!isWant),
-              // }));
-              // 
+              this.props.dispatch(ActivityAction.chargeIsWant({
+                 activityId: this.props.params.activityId,
+                 type: Number(!isWant),
+              }));
+              
               this.props.changeAction('ActivityReducer/isWant', !isWant);
             }}
             isWant={this.props.isWant}
@@ -148,7 +115,12 @@ class ActivityContainer extends React.PureComponent {
                () => { this.props.dispatch(goBack()) }
              }
              paymentAction = {() => {
-               this.props.dispatch(push(RoutingURL.PayPage()))
+               const type = this.props.params.type;
+               if(type == 'done') {
+                 this.cancelAction();
+               }else {
+                 this.props.dispatch(push(RoutingURL.PayPage()))
+               }
              }}
           /> : <div />}
         </div>

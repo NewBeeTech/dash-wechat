@@ -16,8 +16,8 @@ const defaultState: stateType = Immutable.Map({
   isFetching: false,
   errMsg: '',
   index: 0,
-  isWant: false,
-  isSignUp: true,
+  isWant: false, // 是否关注
+  isSignUp: true, // 报名状态
   dashInfo: Immutable.Map({
     address: '望京',
     title: '大标题',
@@ -28,7 +28,8 @@ const defaultState: stateType = Immutable.Map({
     girlNum: '0',
     type: '联谊', // 活动类型
     status: 1, // 类型 0取消  1正常
-    cost: 100, // 花费 ?
+    cost: 200, // 花费 
+    girlCost: 100,
     time: 5,
     boyNum: 2,
     originatorInfo: Immutable.Map({
@@ -89,15 +90,20 @@ new ActionHandler.handleAction(ActivityAction.GET_DASHINFO)
         boyNum: getPeopleNum(data.sexRate.split(':')[0], item.mCount),
         girlNum: getPeopleNum(data.sexRate.split(':')[1], item.wCount),
         title: data.name,
+        smallTitle: data.var3,
         type: data.type === 1 ? '联谊' : '',
         status: data.status,
         cost: data.cost,
+        girlCost: data.var4,
         signUpInfo: {
           originatorName: data.originUserName,
           originatorImg: data.originUserPortrait,
           originUserDesc: data.originUserDesc,
           originUserUd: data.originUserUd,
         },
+        introduce: data.desc,
+        tips: data.var2, // 友情提示
+        acvitivityFlow: data.var1, // 活动流程
       });
     }
     return state.setIn('dashInfo', Immutable.fromJS(action.data))
@@ -110,9 +116,25 @@ new ActionHandler.handleAction(ActivityAction.CHARGE_WANT)
       return state.set('isWant', Immutable.fromJS(action.data))
                   .set('isFetching', false);
     });
+    
+const getUserForDashDataHandler =
+    new ActionHandler.handleAction(ActivityAction.GET_USER_DASH_INFO)
+        .success((state: stateType, action: Action) => {
+          return state.set('isWant', action.data.isWant)
+                      .set('isSignUp', action.data.isSignUp)
+                      .set('isFetching', false);
+        });
+        
+// 取消报名
+const cancelSignUpHandler =
+    new ActionHandler.handleAction(ActivityAction.CANCEL_SIGNUP)
+        .success((state: stateType, action: Action) => {
+          return state.set('isSignUp', action.data.isSignUp)
+                      .set('isFetching', false);
+        });
 
 export default ActionHandler.handleActions(
-  [ getActivityHandler, getIsWantHandler ],
+  [ getActivityHandler, getIsWantHandler, getUserForDashDataHandler ],
   defaultState,
   /^ActivityReducer\//
 );
