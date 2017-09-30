@@ -90,7 +90,7 @@ export const getWxAuth2Path: string = `${host}wx/outh2`;
  */
 export const likeUPath: string = `${host}user/like`;
 
-export const getUserForDashDataPath: string = `${host}`;
+export const getUserForDashDataPath: string = `${host}user/activityStatus`;
 
 // 取消报名
 export const cancelSignUpPath: string = `${host}`;
