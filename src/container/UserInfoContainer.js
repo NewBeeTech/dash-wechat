@@ -2,6 +2,7 @@
 
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { Toast } from 'antd-mobile';
 import shallowCompare from 'react-addons-shallow-compare';
 import UserInfoTitle from './../components/UserInfoTitle'
 import UserTags from './../components/UserTags'
@@ -9,16 +10,88 @@ import UploadPic from './../components/UploadPic'
 import EditBar from './../components/EditBar'
 import UserForm from './../components/UserForm'
 import * as styles from './../assets/stylesheets/mine.css';
+import * as MineAction from './../actions/MineAction';
+import { dispatch } from './../index';
 
 const propTypes = {
   children: PropTypes.node,
   dispatch: PropTypes.func,
-  openid: PropTypes.string,
+  userId: PropTypes.string,
 };
-
+type state = {
+  photos: Array,
+  phone: string,
+  sex: Array,
+  birth: string,
+  height: string,
+  position: string,
+  profession: string,
+  income: Array,
+  hometown: string,
+  var4: string,
+  code: string,
+};
 class UserInfoContainer extends React.Component {
-  shouldComponentUpdate(nextProps, nextState) {
-    return shallowCompare(this, nextProps, nextState);
+  componentWillMount() {
+    this.setState({
+      photos: this.props.userInfo.get('photos').split(','),
+      phone: this.props.userInfo.get('phone'),
+      sex: [this.props.userInfo.get('sex')],
+      birth: this.props.userInfo.get('birth'),
+      height: this.props.userInfo.get('var2'),
+      position: this.props.userInfo.get('position'),
+      profession: this.props.userInfo.get('profession'),
+      hometown: this.props.userInfo.get('var3'),
+      income: [this.props.userInfo.get('income')],
+      var4: this.props.userInfo.get('var4'),
+      code: '',
+    });
+  }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   return shallowCompare(this, nextProps, nextState);
+  // }
+  changeCell(value, title){
+    const item = this.state[title];
+    this.state[title] = value;
+    this.setState({
+      ...this.state,
+    });
+  }
+  submitHandler() {
+    const params = {
+      photos: this.state.photos.join(','),
+      phone: this.state.phone,
+      sex: this.state.sex.length ? this.state.sex[0] : '',
+      birth: this.state.birth,
+      photos: this.state.photos,
+      var2: this.state.height,
+      position: this.state.position,
+      profession: this.state.profession,
+      var3: this.state.hometown,
+      income: this.state.income.length ? this.state.income[0] : '',
+      var4: this.state.var4,
+      code: this.state.code,
+      userId: this.props.userId,
+    };
+    if(!params.photos) return Toast.info('请上传个人照片!', 1);
+    if(!params.phone) {
+      return Toast.info('请填写手机号码!', 1);
+    } else {
+      if(!params.code) {
+        return Toast.info('请填写验证码!', 1);
+      }
+    }
+    if(params.sex === '') return Toast.info('请选择性别!', 1);
+    if(params.sex === 1) {
+      if(!params.var2) return Toast.info('请填写身高!', 1);
+      if(!params.position) return Toast.info('请填写职位!', 1);
+      if(!params.profession) return Toast.info('请填写行业!', 1);
+      if(!params.var3) return Toast.info('请填写家乡!', 1);
+      if(params.income === '') return Toast.info('请选择收入!', 1);
+    }
+    dispatch(MineAction.checkMbCode({ mbCode: params.code }));return;
+    console.log(params);
+    dispatch(MineAction.updateUserInfo(params));
   }
   render() {
     const avator = this.props.userInfo.get('photos').split(',')[0];
@@ -27,7 +100,10 @@ class UserInfoContainer extends React.Component {
         <div className={styles.bg} style={{ backgroundColor: '#fff' }}>
           {this.props.params.tab === 'edit' ?
             <UploadPic
-              photos={this.props.userInfo.get('photos').split(',')}
+              photos={this.state.photos}
+              setStatePhotos={(photos) => {
+                this.setState({ photos });
+              }}
             /> :
             <UserInfoTitle
               wxName={this.props.userInfo.get('wxName')}
@@ -43,6 +119,17 @@ class UserInfoContainer extends React.Component {
           {this.props.params.tab === 'edit' ?
           <UserForm
             tags={this.props.userInfo.get('tags')}
+            phone={this.state.phone}
+            sex={this.state.sex}
+            birth={this.state.birth}
+            height={this.state.height}
+            position={this.state.position}
+            profession={this.state.profession}
+            hometown={this.state.hometown}
+            income={this.state.income}
+            var4={this.state.var4}
+            code={this.state.code}
+            changeCell={(value, title) => this.changeCell(value, title)}
           /> : ''}
           <UserTags
             moreTags={this.props.moreTags}
@@ -53,6 +140,7 @@ class UserInfoContainer extends React.Component {
         <EditBar
           text={this.props.params.tab === 'edit' ? '完成了' : '编辑'}
           tab={this.props.params.tab}
+          submitHandler={() => this.submitHandler()}
         />
       </div>
     );
@@ -64,7 +152,7 @@ UserInfoContainer.propTypes = propTypes;
 const mapStateToProps = (state) => {
   return {
     dispatch: state.dispatch,
-    openid: state.UserReducer.get('openid'),
+    userId: state.MineReducer.get('userData').get('id'),
     userInfo: state.MineReducer.get('userData').get('userInfo'),
     moreTags: state.MineReducer.get('tags'),
     activityInfo: state.MineReducer.get('userData').get('activityInfo'),

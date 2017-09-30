@@ -11,33 +11,20 @@ import { UploadFileToOSS } from './../core/WS/WSHandler';
 
 type Props = {
   photos: Array,
-};
-type state = {
-  photos: Array,
+  setStatePhotos: Function,
 };
 class UploadPic extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  componentWillMount() {
-    this.setState({
-      photos: this.props.photos,
-    });
-  }
   props: Props;
   beforeUpload(file, index) {
-    console.log('beforeUpload', file, index);
+    // console.log('beforeUpload', file, index);
     const result = UploadFileToOSS(file);
     result.then(fileInfo => {
-      console.log(fileInfo);
+      // console.log(fileInfo);
       if (fileInfo.fileURL) {
-        const photos = this.state.photos;
+        const photos = this.props.photos;
         photos[index] = fileInfo.fileURL;
         // 上传成功的图片显示
-        this.setState({
-          photos,
-        });
-        console.log(this.state.photos);
+        this.props.setStatePhotos(photos);
       } else {
         // 上传失败的图片显示
         Toast.info('上传失败，请稍后再试');
@@ -50,26 +37,26 @@ class UploadPic extends React.Component {
         <Upload beforeUpload={(file) => this.beforeUpload(file, 0)} ref="inner">
           <div
             className={styles.uploadButton}
-            style={this.state.photos[0] ? {background: `url(${this.state.photos[0]})`, backgroundSize: 'cover'} : {}}
+            style={this.props.photos[0] ? {background: `url(${this.props.photos[0]})`, backgroundSize: 'cover'} : {}}
           >
-            {this.state.photos[0] ? '' : <img width="20%" src="./../assets/images/add_pic.png"/>}
+            {this.props.photos[0] ? '' : <img width="20%" src="./../assets/images/add_pic.png"/>}
           </div>
         </Upload>
         <div>
           <Upload beforeUpload={(file) => this.beforeUpload(file, 1)} ref="inner">
             <div
               className={styles.uploadButton2}
-              style={this.state.photos[1] ? {background: `url(${this.state.photos[1]})`, backgroundSize: 'cover'} : {}}
+              style={this.props.photos[1] ? {background: `url(${this.props.photos[1]})`, backgroundSize: 'cover'} : {}}
             >
-              {this.state.photos[1] ? '' : <img width="20%" src="./../assets/images/add_pic.png"/>}
+              {this.props.photos[1] ? '' : <img width="20%" src="./../assets/images/add_pic.png"/>}
             </div>
           </Upload>
           <Upload beforeUpload={(file) => this.beforeUpload(file, 2)} ref="inner">
             <div
               className={styles.uploadButton2}
-              style={this.state.photos[2] ? {background: `url(${this.state.photos[2]})`, backgroundSize: 'cover', marginTop: '1vw'} : {marginTop: '1vw'}}
+              style={this.props.photos[2] ? {background: `url(${this.props.photos[2]})`, backgroundSize: 'cover', marginTop: '1vw'} : {marginTop: '1vw'}}
             >
-              {this.state.photos[2] ? '' : <img width="20%" src="./../assets/images/add_pic.png"/>}
+              {this.props.photos[2] ? '' : <img width="20%" src="./../assets/images/add_pic.png"/>}
             </div>
           </Upload>
         </div>

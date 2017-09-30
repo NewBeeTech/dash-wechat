@@ -11,11 +11,17 @@ import * as MineAction from './../actions/MineAction';
 import { dispatch } from './../index';
 
 type Props = {
-  avator: string,
-  wxPortrait: string,
-  wxName: string,
-  likeCount: number,
-  onclikHandler: func,
+  phone: string,
+  sex: Array,
+  birth: string,
+  height: string,
+  position: string,
+  hometown: string,
+  profession: string,
+  income: Array,
+  hometown: string,
+  var4: string,
+  code: string,
 };
 const data = [{
   url: 'https://zos.alipayobjects.com/rmsportal/PZUUCKTRIHWiZSY.jpeg',
@@ -30,11 +36,6 @@ const minDate = moment('1970-01-01 +0800', 'YYYY-MM-DD Z').utcOffset(8);
 
 class UserForm extends React.Component {
   state = {
-    phone: '',
-    sex: [],
-    birth: '',
-    height: '',
-    position: '',
     wait: 60,
     send: true,
   }
@@ -67,12 +68,7 @@ class UserForm extends React.Component {
       }.bind(this), 1000);
     }
   }
-  onChange = (files, type, index) => {
-    console.log(files, type, index);
-    this.setState({
-      files,
-    });
-  }
+
   checkMobile(mobile) {
     if(!mobile) {
       Toast.info('请填写手机号码', 1);
@@ -95,9 +91,10 @@ class UserForm extends React.Component {
             <span className={styles.itemBorder} />
             <span className={styles.itemForm}>
               <input
-                defaultValue={this.state.phone}
+                defaultValue={this.props.phone}
                 onChange={(e) => {
-                  this.setState({phone: e.target.value})
+                  this.props.changeCell(e.target.value, 'phone');
+                  // this.setState({phone: e.target.value})
                 }}
               /></span>
           </div>
@@ -105,19 +102,20 @@ class UserForm extends React.Component {
             <span className={styles.item}>验证码</span>
             <span className={styles.itemBorder} />
             <span className={styles.code}><input
-              defaultValue={this.state.code}
+              defaultValue={this.props.code}
               onChange={(e) => {
-                this.setState({code: e.target.value})
+                this.props.changeCell(e.target.value, 'code');
               }}
             /></span>
             <span
               className={styles.sendCode}
               onClick={() => {
-                if(this.checkMobile(this.state.phone)) {
-                  dispatch(MineAction.getMbCode({ mobile: this.state.phone }));
+                if(this.checkMobile(this.props.phone)) {
+                  dispatch(MineAction.getMbCode({ mobile: this.props.phone }));
                   this.handleClick()
                 }
-              }}>{text}
+              }}
+            >{text}
             </span>
           </div>
           <div className={styles.inputDiv}>
@@ -135,9 +133,9 @@ class UserForm extends React.Component {
                     label: '女',
                     value: 2,
                   }]}
-                value={this.state.sex}
+                value={this.props.sex}
                 cols={1}
-                onChange={(e) => this.setState({ sex: e })}
+                onChange={(e) => this.props.changeCell(e, 'sex')}
               >
                 <List.Item
                   arrow="horizontal"
@@ -156,8 +154,8 @@ class UserForm extends React.Component {
                 extra="请选择"
                 minDate={minDate}
                 maxDate={maxDate}
-                value={this.state.birth}
-                onChange={(e) => this.setState({ birth: e })}
+                value={moment(this.props.birth)}
+                onChange={(e) => this.props.changeCell(e, 'birth')}
               >
 
                 <List.Item
@@ -169,16 +167,16 @@ class UserForm extends React.Component {
               </DatePicker>
             </span>
           </div>
-          {this.state.sex[0] === 1 ?
+          {this.props.sex[0] === 1 ?
             <div>
               <div className={styles.inputDiv}>
                 <span className={styles.item}>身&nbsp;&nbsp;&nbsp;高</span>
                 <span className={styles.itemBorder} />
                 <span className={styles.itemForm}>
                   <input
-                    defaultValue={this.state.height}
+                    defaultValue={this.props.height}
                     onChange={(e) => {
-                      this.setState({code: e.target.height})
+                      this.props.changeCell(e.target.value, 'height');
                     }}
                   />
                 </span>
@@ -188,9 +186,9 @@ class UserForm extends React.Component {
                 <span className={styles.itemBorder} />
                 <span className={styles.itemForm}>
                   <input
-                    defaultValue={this.state.profession}
+                    defaultValue={this.props.profession}
                     onChange={(e) => {
-                      this.setState({code: e.target.profession})
+                      this.props.changeCell(e.target.value, 'profession');
                     }}
                   />
                 </span>
@@ -200,9 +198,9 @@ class UserForm extends React.Component {
                 <span className={styles.itemBorder} />
                 <span className={styles.itemForm}>
                   <input
-                    defaultValue={this.state.position}
+                    defaultValue={this.props.position}
                     onChange={(e) => {
-                      this.setState({code: e.target.position})
+                      this.props.changeCell(e.target.value, 'position');
                     }}
                   />
                 </span>
@@ -238,9 +236,9 @@ class UserForm extends React.Component {
                         label: '80万以上',
                         value: 6,
                       }]}
-                    value={this.state.income}
+                    value={this.props.income}
                     cols={1}
-                    onChange={(e) => this.setState({ income: e})}
+                    onChange={(e) => this.props.changeCell(e, 'income')}
                   >
                     <List.Item
                       arrow="horizontal"
@@ -254,9 +252,9 @@ class UserForm extends React.Component {
                 <span className={styles.itemBorder} />
                 <span className={styles.itemForm}>
                   <input
-                    defaultValue={this.state.hometown}
+                    defaultValue={this.props.hometown}
                     onChange={(e) => {
-                      this.setState({code: e.target.hometown})
+                      this.props.changeCell(e.target.value, 'hometown')
                     }}
                   />
                 </span>
@@ -266,9 +264,9 @@ class UserForm extends React.Component {
                 <span className={styles.itemBorder} />
                 <span className={styles.itemForm}>
                   <input
-                    defaultValue={this.state.hometown}
+                    defaultValue={this.props.var4}
                     onChange={(e) => {
-                      this.setState({code: e.target.hometown})
+                      this.props.changeCell(e.target.value, 'var4')
                     }}
                   />
                 </span>

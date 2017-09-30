@@ -6,6 +6,9 @@ import { GET, POSTJSON } from '../core/WS/WSHandler';
 import AsyncFetchHandler from '../core/AsyncFetchHandler';
 import * as URL from '../core/WS/URL';
 import type { ThunkAction, Dispatch } from './types';
+import * as RoutingURL from './../core/RoutingURL/RoutingURL';
+import { push } from 'react-router-redux';
+import { Toast } from 'antd-mobile';
 
 /**
  * 获取用户信息
@@ -29,11 +32,15 @@ export const UPDATE_USER_INFO: string = 'UPDATE_USER_INFO';
 export const updateUserInfo: Dispatch =
 (params: {openid: ?string}): ThunkAction =>
 (dispatch: Dispatch): void => {
-  AsyncFetchHandler(
-    UPDATE_USER_INFO,
-    GET(URL.updateUserInfoPath: string, params: Object),
-    dispatch
-  );
+  const result: Promise<> = GET(URL.updateUserInfoPath: string, params: Object);
+  result.then(data => {
+    if (data.code === '001') {
+      dispatch(push(RoutingURL.UserInfo('')));
+    } else {
+      Toast.info(data.message);
+    }
+  });
+  AsyncFetchHandler(UPDATE_USER_INFO, result, dispatch);
 };
 /**
  * 获取我的活动信息

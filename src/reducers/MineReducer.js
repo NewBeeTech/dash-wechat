@@ -35,9 +35,10 @@ const defaultState: stateType = Immutable.Map({
       phone: '18617621252',
       photos: 'https://zos.alipayobjects.com/rmsportal/PZUUCKTRIHWiZSY.jpeg,https://img.shaka.hsohealth.com/activity/lipid_lowering/banner@3x.png', //用户上传的图片 多个用逗号隔开
       portrait: 'a.jpg', // 头像
-      profession: '天皇巨星',
-      province: '山西', // 省
-      sex: 0, // 0未知 1男 2女
+      profession: '明星',
+      position: '天皇巨星',
+      province: '山西', // 家乡
+      sex: 1, // 0未知 1男 2女
       status: 1, //用户状态 0冻结 1正常
       tags: '完美,专一,爱做家务,爱烧菜,拒绝黄赌毒',
       type: 2, // 用户类型 1普通用户 2vip
@@ -46,6 +47,9 @@ const defaultState: stateType = Immutable.Map({
       wxAccount: '', // 微信账号
       wxName: 'deerW', // 微信名称
       wxPortrait: '', // 微信头像
+      var2: '', // 身高
+      var3: '', // 家乡
+      var4: '', // 吸引异性的特质
     }),
     activityInfo: Immutable.Map({
       myDash: Immutable.List([
@@ -56,7 +60,7 @@ const defaultState: stateType = Immutable.Map({
           address: '望京',
           startTime: '2017.04.12 19:23:34',
           endTime: '2017.04.12 21:23:34',
-          status: 1, // -1报名失败 0未付款 1报名成功 2运营拒绝
+          status: 1, // -1报名失败 0未付款 1报名成功 2运营拒绝 3取消
           id: 1002,
           otherUserList: Immutable.fromJS([
             [1, "哈哈", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmTZ26a1g35R615Q8thAK968JNBrm1XgaU_Cek9hywcWg7Pk0l"],
@@ -71,7 +75,7 @@ const defaultState: stateType = Immutable.Map({
           address: '东直门',
           startTime: '2017.10.19 18:00:00',
           endTime: '2017.10.19 21:00:00',
-          status: 1, // 0取消 1正常
+          status: 2,
           userId: 1002,
         }),
         Immutable.Map({
@@ -81,7 +85,7 @@ const defaultState: stateType = Immutable.Map({
           address: '望京',
           startTime: '2017.10.12 19:23:34',
           endTime: '2017.10.12 21:23:34',
-          status: 1, // 0取消 1正常
+          status: 1,
           userId: 1002,
         }),
         Immutable.Map({
@@ -91,7 +95,7 @@ const defaultState: stateType = Immutable.Map({
           address: '望京',
           startTime: '2017.02.12 19:23:34',
           endTime: '2017.02.12 21:23:34',
-          status: 0, // 0取消 1正常
+          status: 3,
           userId: 1002,
         }),
       ]),
@@ -103,7 +107,7 @@ const defaultState: stateType = Immutable.Map({
           address: '望京',
           startTime: '2017.02.12 19:23:34',
           endTime: '2017.02.12 21:23:34',
-          status: null, // 0取消 1正常
+          status: 1, // 0取消 1正常
           user_id: 1002,
         }),
       ]),

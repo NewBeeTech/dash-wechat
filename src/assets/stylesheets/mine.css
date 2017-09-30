@@ -156,8 +156,8 @@
 .itemForm input {
   background-color: #F3F3F3;
   border: 1px solid #F3F3F3;
-  width: 50vw;
-  padding-right: 10px;
+  width: 47vw;
+  padding-right: 3vw;
   text-align: right;
   color: #888;
 }
@@ -165,14 +165,11 @@
 .code input {
   background-color: #F3F3F3;
   border: 1px solid #F3F3F3;
-  width: 25vw;
-  padding-left: 10px;
+  width: 22vw;
+  padding-left: 3vw;
   text-align: left;
   color: #888;
 }
-/*:global(.am-list-extra) {
-  width: 30vw!important;
-}*/
 
 .uploadPic {
   width: 100vw;

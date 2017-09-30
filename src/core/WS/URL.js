@@ -88,7 +88,7 @@ export const getWxAuth2Path: string = `${host}wx/outh2`;
  * 投票给异性
  * @type {string}
  */
-export const likeUPath: string = `${host}`;
+export const likeUPath: string = `${host}user/like`;
 
 export const getUserForDashDataPath: string = `${host}`;
 
