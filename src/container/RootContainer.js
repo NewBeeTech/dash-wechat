@@ -15,6 +15,7 @@ class RootContainer extends React.PureComponent {
     return (
       <div style={{ overflow: 'hidden', width: '100vw', height: '100vh' }}>
         {this.props.children}
+        {console.log(this.props.children)}
       </div>
     );
   }
