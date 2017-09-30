@@ -36,6 +36,7 @@ const UserInfo = (location, callback) => {
 
 const routes = (
   <Route path="/" component={RootContainer} >
+    {/* <Route path="/mine" component={RootContainer} /> */}
     <Route path={RoutingURL.ActivityDetails(':activityId', ':type')} getComponent={ActivityDetails} />
     <Route path={RoutingURL.DashList()} getComponent={DashList} />
     <Route path={RoutingURL.PayPage()} getComponent={PayPage} />

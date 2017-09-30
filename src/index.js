@@ -14,16 +14,14 @@ import amumu from 'amumu';
 const rootElement = document.getElementById('app');
 
 const createStoreWithMiddleware = applyMiddleware(
-  process.env.NODE_ENV === 'development' ? routerMiddleware(hashHistory)
-    : routerMiddleware(browserHistory),
+  routerMiddleware(hashHistory),
   thunkMiddleware
 )(createStore);
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducers, /* preloadedState, */ composeEnhancers(
   applyMiddleware(
-    process.env.NODE_ENV === 'development' ? routerMiddleware(hashHistory)
-      : routerMiddleware(browserHistory),
+    routerMiddleware(hashHistory),
     thunkMiddleware
   )
 ));
@@ -42,7 +40,7 @@ if (process.env.NODE_ENV !== 'development') {
 }
 
 const history = syncHistoryWithStore(
-  process.env.NODE_ENV === 'development' ? hashHistory : browserHistory, store
+  hashHistory, store
 );
 
 const handleSubscribe = () => {

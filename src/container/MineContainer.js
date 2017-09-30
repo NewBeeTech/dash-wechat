@@ -20,7 +20,7 @@ const propTypes = {
 
 class MineContainer extends React.Component {
   componentWillMount() {
-    // dispatch(MineAction.getUserInfo());
+    dispatch(MineAction.getUserInfo());
   }
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);

@@ -1,11 +1,12 @@
 /* @flow */
-let host = window.location.host;
-if (process.env.NODE_ENV === 'development') {
-  host = 'http://120.27.12.128:80/';
-}
-if (process.env.NODE_ENV === 'test') {
-  host = 'dev.shaco.hsohealth.com/shacoapi';
-}
+let host = 'http://localhost:8080/';
+// let host = window.location.host;
+// if (process.env.NODE_ENV === 'development') {
+//   host = 'http://120.27.12.128:80/';
+// }
+// if (process.env.NODE_ENV === 'test') {
+//   host = 'dev.shaco.hsohealth.com/shacoapi';
+// }
 /**
  * 获取活动列表接口
  * @type {string}
