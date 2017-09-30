@@ -60,7 +60,7 @@ const defaultState: stateType = Immutable.Map({
           address: '望京',
           startTime: '2017.04.12 19:23:34',
           endTime: '2017.04.12 21:23:34',
-          status: 1, // -1报名失败 0未付款 1报名成功 2运营拒绝
+          status: 1, // -1报名失败 0未付款 1报名成功 2运营拒绝 3取消
           id: 1002,
           otherUserList: Immutable.fromJS([
             [1, "哈哈", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmTZ26a1g35R615Q8thAK968JNBrm1XgaU_Cek9hywcWg7Pk0l"],
@@ -75,7 +75,7 @@ const defaultState: stateType = Immutable.Map({
           address: '东直门',
           startTime: '2017.10.19 18:00:00',
           endTime: '2017.10.19 21:00:00',
-          status: 1, // 0取消 1正常
+          status: 2,
           userId: 1002,
         }),
         Immutable.Map({
@@ -85,7 +85,7 @@ const defaultState: stateType = Immutable.Map({
           address: '望京',
           startTime: '2017.10.12 19:23:34',
           endTime: '2017.10.12 21:23:34',
-          status: 1, // 0取消 1正常
+          status: 1,
           userId: 1002,
         }),
         Immutable.Map({
@@ -95,7 +95,7 @@ const defaultState: stateType = Immutable.Map({
           address: '望京',
           startTime: '2017.02.12 19:23:34',
           endTime: '2017.02.12 21:23:34',
-          status: 0, // 0取消 1正常
+          status: 3,
           userId: 1002,
         }),
       ]),
