@@ -220,11 +220,16 @@ module.exports = {
 
   devServer: {
     proxy: { // proxy URLs to backend development server
-      '/': {
-                changeOrigin: true,
-                target:  'http://120.27.12.128:80',
-                secure: false
-            },
+      '/user/*': {
+        changeOrigin: true,
+        target:  'http://120.27.12.128:80',
+        secure: false
+      },
+      '/wx/*': {
+        changeOrigin: true,
+        target:  'http://120.27.12.128:80',
+        secure: false
+      },
     },
     host: 'localhost',
     port: '8080',
