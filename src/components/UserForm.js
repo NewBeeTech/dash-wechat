@@ -68,12 +68,7 @@ class UserForm extends React.Component {
       }.bind(this), 1000);
     }
   }
-  onChange = (files, type, index) => {
-    console.log(files, type, index);
-    this.setState({
-      files,
-    });
-  }
+
   checkMobile(mobile) {
     if(!mobile) {
       Toast.info('请填写手机号码', 1);
@@ -119,7 +114,8 @@ class UserForm extends React.Component {
                   dispatch(MineAction.getMbCode({ mobile: this.props.phone }));
                   this.handleClick()
                 }
-              }}>{text}
+              }}
+            >{text}
             </span>
           </div>
           <div className={styles.inputDiv}>
