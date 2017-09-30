@@ -41,8 +41,8 @@ class DashCard extends React.PureComponent {
       >
          {/* 活动表头 */}
          <div className={styles.dashHeader}>
-             <div className={styles.dashAddress} style={{ fontSize: `calc(12vw / (${address.length + 1}))`}}>
-             {address}</div>
+             {address ? <div className={styles.dashAddress} style={{ fontSize: `calc(12vw / (${address.length + 1}))`}}>
+             {address}</div> : <div />}
              <div>
                  <div className={styles.dashTimeOne}>
                      {time === 0 ? '' : (time > 0 ? `距离报名截止还有${time}h！` : `距离报名截止不足1h！`)}

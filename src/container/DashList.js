@@ -19,12 +19,17 @@ class DashList extends React.Component {
     openid: PropTypes.string,
     dashData: PropTypes.instanceOf(Immutable.Map).isRequired,
     isFetching: PropTypes.bool,
+    pageNum: PropTypes.number,
+    pageSize: PropTypes.number,
+    hasMore: PropTypes.bool,
   };
   componentWillMount() {
     // 获取轮播图片
     this.props.dispatch(DashListAction.getCarouselImgsData({ type: 1 }));
     // 获取活动列表
-    // this.props.dispatch(DashListAction.getDashListData());
+    this.props.dispatch(DashListAction.getDashListData(
+      { pageNum: this.props.pageNum, pageSize: this.props.pageSize }
+    ));
   }
   render() {
     return (
@@ -34,20 +39,23 @@ class DashList extends React.Component {
              <DashCarousel carousel={this.props.dashData.get('carouselImgs')}/>
           </div>
           <div>
-             <ListComponents
-                 dispatch={this.props.dispatch}
-                 dataSource={this.props.dashData.get('dashList')}
-                 compontent={[DashCard]}
-                 loadAction={() => {
-                   let pageNo = this.props.dashData.get('pageNo');
-                   const pageSize = this.props.dashData.get('pageSize');
-                   // 获取活动列表
-                  //  this.props.dispatch(DashListAction.getDashListData(
-                  //    {pageNo: ++pageNo, pageSize }
-                  //  ));
-                 }}
-                 hasMore={false}
-             />
+            {
+              this.props.dashData.get('dashList').toJS().length ? 
+              <ListComponents
+                  dispatch={this.props.dispatch}
+                  dataSource={this.props.dashData.get('dashList')}
+                  compontent={[DashCard]}
+                  loadAction={() => {
+                    let pageNum = this.props.pageNum;
+                    const pageSize = this.props.pageSize;
+                    // 获取活动列表
+                    this.props.dispatch(DashListAction.getDashListData(
+                      {pageNum: ++pageNum, pageSize }
+                    ));
+                  }}
+                  hasMore={this.props.hasMore}
+              /> : <div />
+            }
            </div>
         </div>
         <DashTabbar selected={1} />
@@ -59,10 +67,12 @@ class DashList extends React.Component {
 const mapStateToProps = (state) => {
   return {
     dispatch: state.dispatch,
-    openid: state.UserReducer.get('openid'),
     status: state.DashListReducer.get('status'),
     isFetching: state.DashListReducer.get('isFetching'),
     dashData: state.DashListReducer.get('dashData'),
+    pageNum: state.DashListReducer.get('pageNum'),
+    pageSize: state.DashListReducer.get('pageSize'),
+    hasMore: state.DashListReducer.get('hasMore'),
   };
 };
 

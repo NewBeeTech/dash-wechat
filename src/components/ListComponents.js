@@ -30,6 +30,15 @@ class ListComponents extends React.Component {
       isLoading: false,
     })
   }
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.dataSource !== this.props.dataSource && nextProps) {
+      this.setState({
+        dataSource: this.state.dataSource.cloneWithRows(JSON.parse(JSON.stringify(nextProps.dataSource))),
+        isLoading: false,
+      })
+    }
+  }
+  
   onEndReached = (event) => {
     //加载Action
     if (this.state.isLoading && !this.props.hasMore) {

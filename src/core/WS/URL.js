@@ -20,7 +20,7 @@ export const getCarouselImgsPath: string = `${host}banner/list`;
  * 获取活动详情接口
  * @type {string}
  */
-export const getDashInfoPath: string = `${host}activity/getById`;
+export const getDashInfoPath: string = `${host}activity/getInfoById`;
 /**
  * 活动收藏
  * @type {string}

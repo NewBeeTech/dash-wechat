@@ -17,51 +17,50 @@ const defaultState: stateType = Immutable.Map({
   errMsg: '',
   index: 0,
   pageSize: 5,
-  pageNo: 1,
+  pageNum: 1,
+  hasMore: true,
   dashData: Immutable.Map({
     dashList: Immutable.List([
-       Immutable.Map({
-           id: 1,
-           address: '望京南',
-           title: '大标题',
-           smallTitle: '小标题',
-           backgroundImg: '../assets/images/default-banner.jpg',
-           activityTime: '9/20 (周六) 16：00-19：00',
-           time: 4,
-           boyNum: 2,
-           girlNum: 0,
-           originatorName: 'XXXXX',
-           originatorImg: 'https://img.shaka.hsohealth.com/insurance/diet_banner_4_20170206.png',
-       }),
-       Immutable.Map({
-           id: 2,
-           address: '望京',
-           title: '大标题',
-           smallTitle: '小标题', // ?
-           backgroundImg: '../assets/images/default-banner.jpg',
-           activityTime: '9月20日 16：00-19：00',
-           time: -1,
-           boyNum: 0,
-           girlNum: 3,
-           originatorName: '',
-           originatorImg: '../assets/images/default-banner.jpg',
-       }),
+      //  Immutable.Map({
+      //      id: 1,
+      //      address: '望京南',
+      //      title: '大标题',
+      //      smallTitle: '小标题',
+      //      backgroundImg: '../assets/images/default-banner.jpg',
+      //      activityTime: '9/20 (周六) 16：00-19：00',
+      //      time: 4,
+      //      boyNum: 2,
+      //      girlNum: 0,
+      //      originatorName: 'XXXXX',
+      //      originatorImg: 'https://img.shaka.hsohealth.com/insurance/diet_banner_4_20170206.png',
+      //  }),
+      //  Immutable.Map({
+      //      id: 2,
+      //      address: '望京',
+      //      title: '大标题',
+      //      smallTitle: '小标题', // ?
+      //      backgroundImg: '../assets/images/default-banner.jpg',
+      //      activityTime: '9月20日 16：00-19：00',
+      //      time: -1,
+      //      boyNum: 0,
+      //      girlNum: 3,
+      //      originatorName: '',
+      //      originatorImg: '../assets/images/default-banner.jpg',
+      //  }),
     ]),
-    pageNo: 1,
-    pageSize: 5,
     carouselImgs: Immutable.List([
-      Immutable.Map({
-        img: '../assets/images/default-banner.jpg',
-        url: 'www.baodu.com',
-      }),
-      Immutable.Map({
-        img: '../assets/images/default-banner.jpg',
-        url: 'www.baodu.com',
-      }),
-      Immutable.Map({
-        img: '../assets/images/default-banner.jpg',
-        url: 'www.baodu.com',
-      })
+      // Immutable.Map({
+      //   img: '../assets/images/default-banner.jpg',
+      //   url: 'www.baodu.com',
+      // }),
+      // Immutable.Map({
+      //   img: '../assets/images/default-banner.jpg',
+      //   url: 'www.baodu.com',
+      // }),
+      // Immutable.Map({
+      //   img: '../assets/images/default-banner.jpg',
+      //   url: 'www.baodu.com',
+      // })
     ]),
   }),
 });
@@ -70,26 +69,27 @@ const getDashListHandler =
 new ActionHandler.handleAction(DashListAction.GET_DASHLIST)
   .success((state: stateType, action: Action) => {
     // 拼接数据
-    let dashList = defaultState.get('dashData').get('dashList');
-    if(action.data.length) {
-      action.data.dashList.map((item) => {
-        dashList.push(Immutable.Map({
+    let dashList = state.get('dashData').get('dashList').toJS();
+    if(action.data.list.length) {
+      action.data.list.map((item) => {
+        dashList.push({
           id: item.id,
           address: item.address,
           backgroundImg: item.photos,
           activityTime: getActivityTime(item.startTime, item.endTime),
           time: getHaveTime(item.signupStartTime, item.signupEndTime),
-          originatorName: item.originatorName,
+          originatorName: item.originUserName,
           originatorImg: item.originUserPortrait,
-          boyNum: getPeopleNum(item.sexRate.split(':')[0], item.mCount),
-          girlNum: getPeopleNum(item.sexRate.split(':')[1], item.wCount),
+          boyNum: item.sexRate ? getPeopleNum(item.sexRate.split(':')[0], item.mCount) : 0,
+          girlNum: item.sexRate ? getPeopleNum(item.sexRate.split(':')[1], item.wCount) : 0,
           title: item.name,
-        }));
+        });
       })
     }
-    
-    return state.setIn(['dashData', 'dashList'], dashList)
-                .setIn(['dashData', 'pageNo'], action.data.pageNo)
+    const hasMore = action.data.pageNumber * action.data.pageSize < action.data.totalRow;
+    return state.setIn(['dashData', 'dashList'], Immutable.fromJS(dashList))
+                .set('pageNum', action.data.pageNumber)
+                .set('hasMore', hasMore)
                 .set('isFetching', false);
   });
   

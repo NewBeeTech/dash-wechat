@@ -52,12 +52,12 @@ export const getDashInfoData: Dispatch = (params): ThunkAction =>
    * 取消报名
    * @type {String}
    */
-   export const CANCEL_SGINUP: string = 'CANCEL_SGINUP';
-   export const cancelSginUp: Dispatch = (params): ThunkAction =>
+   export const CANCEL_SIGNUP: string = 'CANCEL_SIGNUP';
+   export const cancelSignUp: Dispatch = (params): ThunkAction =>
    (dispatch: Dispatch): void => {
      AsyncFetchHandler(
-       CANCEL_SGINUP,
-       GET(URL.cancelSginUpPath: string, params: Object),
+       CANCEL_SIGNUP,
+       GET(URL.cancelSignUpPath: string, params: Object),
        dispatch
      );
    };
