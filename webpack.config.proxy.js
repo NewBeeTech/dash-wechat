@@ -230,6 +230,16 @@ module.exports = {
         target:  'http://120.27.12.128:80',
         secure: false
       },
+      '/activity/*': {
+        changeOrigin: true,
+        target:  'http://120.27.12.128:80',
+        secure: false
+      },
+      '/oss/*': {
+        changeOrigin: true,
+        target:  'http://120.27.12.128:80',
+        secure: false
+      },
     },
     host: 'localhost',
     port: '8080',

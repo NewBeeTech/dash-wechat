@@ -24,7 +24,7 @@ class UserPro extends React.Component {
   props: Props;
   renderAvator(avator) {
     return(
-      <div className={styles.avator} style={{ background: `url(${avator})`, backgroundSize: 'cover'}} />
+      <div className={styles.avator} style={{ backgroundSize: 'cover', backgroundImage: `url(${avator})` }} />
     )
   }
   render() {

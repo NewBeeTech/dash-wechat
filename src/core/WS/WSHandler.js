@@ -19,9 +19,13 @@ import { Toast } from 'antd-mobile';
 const _param = (params: {}): string => {
   return Object.keys(params).map((key) => {
     if(key) {
-      return `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`;
+      // 过滤null 和 undefined
+      if (params[key] !== null && params[key] !== undefined) {
+        return `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`;
+      }
+      return '';
     }
-  }).join('&');
+  }).filter(item => item !== '').join('&');
 };
 
 export const GET = async (path: string, params = {}) => {
@@ -70,7 +74,6 @@ export const POSTJSON = async (path: string, json = {}) => {
       Toast.info('我们正在修复中!', 1);
     }
     const result = await response.json();
-    console.log(response, result);
     // console.log('postjson webservice result: ', result);
     return result;
   } catch (err) {
