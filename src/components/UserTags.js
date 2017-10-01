@@ -65,7 +65,7 @@ class UserTags extends React.Component {
               this.props.tab === 'edit' ?
               <img
                 style={{ marginLeft: '2vw', width: '3.5vw' }}
-                src="./../assets/images/del.png"
+                src="http://dash.oss-cn-beijing.aliyuncs.com/fe/del.png"
                 onClick={() => this.props.deleteTag(index, item)}
               />
               : ''
@@ -108,7 +108,7 @@ class UserTags extends React.Component {
               className={styles.changeTags}
               onClick={() => dispatch(MineAction.getMoreTags({ count: 7 }))}
             >
-              换一批&nbsp;<img src="./../assets/images/reload.png" style={{ width: '3vw' }} />
+              换一批&nbsp;<img src="http://dash.oss-cn-beijing.aliyuncs.com/fe/reload.png" style={{ width: '3vw' }} />
             </div>
             <WhiteSpace size="md" />
           {this.renderAddTags(this.props.moreTags)}

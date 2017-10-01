@@ -41,28 +41,28 @@ class ActivityContent extends React.PureComponent {
           </div>
           <div className={styles.contentTwo}>
             <div className={styles.contentThreeTitle}>
-              <div className={styles.contentTwoImg}><img src={"../../assets/images/message.png"} width="100%" /></div>
+              <div className={styles.contentTwoImg}><img src={"http://dash.oss-cn-beijing.aliyuncs.com/fe/message.png"} width="100%" /></div>
               <div>联谊要素</div>
             </div>
             <div className={styles.contentTwoInfo}>
                 <div className={styles.contentTwoTitle}>
-                  <div className={styles.contentTwoImg1}><img src={"../../assets/images/calender.png"} width="100%" /></div>
+                  <div className={styles.contentTwoImg1}><img src={"http://dash.oss-cn-beijing.aliyuncs.com/fe/calender.png"} width="100%" /></div>
                   <div>09月16日 周六  14：00-16：00</div>
                 </div>
                 <div className={styles.contentTwoTitle}>
-                  <div className={styles.contentTwoImg1}><img src={"../../assets/images/map.png"} width="100%" /></div>
+                  <div className={styles.contentTwoImg1}><img src={"http://dash.oss-cn-beijing.aliyuncs.com/fe/map.png"} width="100%" /></div>
                   <div>望京附近</div>
                 </div>
                 <div className={styles.contentTwoTitle}>
-                  <div className={styles.contentTwoImg1}><img src={"../../assets/images/people.png"} width="100%" /></div>
+                  <div className={styles.contentTwoImg1}><img src={"http://dash.oss-cn-beijing.aliyuncs.com/fe/people.png"} width="100%" /></div>
                   <div>男生3人 vs  女生3人</div>
                 </div>
                 <div className={styles.contentTwoTitle}>
-                  <div className={styles.contentTwoImg1}><img src={"../../assets/images/fee.png"} width="100%" /></div>
+                  <div className={styles.contentTwoImg1}><img src={"http://dash.oss-cn-beijing.aliyuncs.com/fe/fee.png"} width="100%" /></div>
                   <div>100元/人</div>
                 </div>
                 <div className={styles.contentTwoTitle}>
-                  <div className={styles.contentTwoImg1}><img src={"../../assets/images/progress.png"} width="100%" /></div>
+                  <div className={styles.contentTwoImg1}><img src={"http://dash.oss-cn-beijing.aliyuncs.com/fe/progress.png"} width="100%" /></div>
                   <div>流程</div>
                 </div>
                 <div className={styles.messageList}>
@@ -70,7 +70,7 @@ class ActivityContent extends React.PureComponent {
                   <div>{showMessage()}</div>
                 </div>
                 <div className={styles.contentTwoTitle}>
-                  <div className={styles.contentTwoImg1}><img src={"../../assets/images/note.png"} width="100%" /></div>
+                  <div className={styles.contentTwoImg1}><img src={"http://dash.oss-cn-beijing.aliyuncs.com/fe/note.png"} width="100%" /></div>
                   <div>Tips</div>
                 </div>
                 <div className={styles.messageList}>

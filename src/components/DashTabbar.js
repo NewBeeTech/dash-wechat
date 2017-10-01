@@ -40,8 +40,8 @@ class DashTabbar extends React.Component {
             dispatch(push(RoutingURL.DashList()))
           }}
         >
-          {selected === 1 ? <img src="./../assets/images/dash_checked.png" /> :
-          <img src="./../assets/images/dash.png" />}&nbsp;
+          {selected === 1 ? <img src="http://dash.oss-cn-beijing.aliyuncs.com/fe/dash_checked.png" /> :
+          <img src="http://dash.oss-cn-beijing.aliyuncs.com/fe/dash.png" />}&nbsp;
           <span className={styles.tabText} style={ selected === 1 ? { color: '#333'} : {}}>活动</span>
         </div>
         <div className={styles.tabBarBorder} />
@@ -52,8 +52,8 @@ class DashTabbar extends React.Component {
             dispatch(push(RoutingURL.Mine()));
           }}
         >
-          {selected === 2 ? <img src="./../assets/images/mine_checked.png" /> :
-          <img src="./../assets/images/mine.png" />}&nbsp;
+          {selected === 2 ? <img src="http://dash.oss-cn-beijing.aliyuncs.com/fe/mine_checked.png" /> :
+          <img src="http://dash.oss-cn-beijing.aliyuncs.com/fe/mine.png" />}&nbsp;
           <span className={styles.tabText} style={ selected === 2 ? { color: '#333'} : {}}>我的</span>
         </div>
       </div>
