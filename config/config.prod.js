@@ -2,6 +2,7 @@
 module.exports = {
   host: '0.0.0.0',
   port: '3000',
+  publicPath: 'http://dash.oss-cn-beijing.aliyuncs.com/fe/',
   // proxyURL: APIURL,
   app: {
     // ENV: JSON.stringify('production'),
