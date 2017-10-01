@@ -1,5 +1,5 @@
 /* @flow */
-let host = 'http://localhost:8080/';
+let host = '/';
 // let host = window.location.host;
 // if (process.env.NODE_ENV === 'development') {
 //   host = 'http://120.27.12.128:80/';
