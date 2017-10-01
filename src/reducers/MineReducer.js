@@ -119,6 +119,9 @@ const getUserInfoHandler =
 new ActionHandler.handleAction(MineAction.GET_USER_INFO)
   .success((state: stateType, action: Action) => {
     return state.setIn(['userData', 'userInfo'], Immutable.fromJS(action.data))
+                .setIn(['userData', 'userInfo', 'photos'], Immutable.fromJS(action.data.photos) || '')
+                .setIn(['userData', 'userInfo', 'tags'], Immutable.fromJS(action.data.tags) || '')
+                .setIn(['userData', 'userInfo', 'birth'], Immutable.fromJS(action.data.birth) || '')
                 .set('isFetching', false);
   });
 const updateUserInfoHandler =

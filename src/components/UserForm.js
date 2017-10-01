@@ -36,36 +36,50 @@ const minDate = moment('1970-01-01 +0800', 'YYYY-MM-DD Z').utcOffset(8);
 
 class UserForm extends React.Component {
   state = {
-    wait: 60,
+    wait: 10,
     send: true,
   }
   componentWillMount() {
   }
   componentWillReceiveProps(nextProps) {
-    if(this.props.tab!== nextProps.tab) {
+    if(this.props.tab === 'edit' && nextProps.tab === '') {
       this.setState({
-        wait: 60,
+        wait: 10,
         send: true,
       });
     }
+    if(this.props.tab === '' && nextProps.tab === 'edit') {
+      this.setState({
+        wait: 10,
+        send: false,
+      });
+    }
+  }
+  componentWillUnmount() {
+    clearTimeout(this.timer);
   }
   props: Props;
   handleClick() {
-    if(this.state.send){
-      this.timer = setInterval(function () {
-        var wait = this.state.wait;
+    if(this.checkMobile(this.props.phone)){
+      if(this.state.send){
+        dispatch(MineAction.getMbCode({ mobile: this.props.phone }));
         this.state.send = false;
-        wait -= 1;
-        if (wait < 1) {
+        this.timer = setInterval(function () {
+          var wait = this.state.wait;
+          // this.state.send = false;
+          wait -= 1;
+          if (wait < 1) {
+            this.setState({
+              send: true
+            });
+            wait = 10;
+            clearTimeout(this.timer);
+          }
           this.setState({
-            send: true
+            wait,
           });
-          wait = 60;
-        }
-        this.setState({
-          wait,
-        });
-      }.bind(this), 1000);
+        }.bind(this), 1000);
+      }
     }
   }
 
@@ -108,13 +122,9 @@ class UserForm extends React.Component {
               }}
             /></span>
             <span
+              style={ this.state.send ? {} : { backgroundColor: '#e7e7e7'}}
               className={styles.sendCode}
-              onClick={() => {
-                if(this.checkMobile(this.props.phone)) {
-                  dispatch(MineAction.getMbCode({ mobile: this.props.phone }));
-                  this.handleClick()
-                }
-              }}
+              onClick={() => this.handleClick()}
             >{text}
             </span>
           </div>
@@ -154,10 +164,11 @@ class UserForm extends React.Component {
                 extra="请选择"
                 minDate={minDate}
                 maxDate={maxDate}
-                value={moment(this.props.birth)}
-                onChange={(e) => this.props.changeCell(e, 'birth')}
+                value={this.props.birth ? moment(this.props.birth) : ''}
+                onChange={(e) => {
+                  this.props.changeCell(e, 'birth')
+                }}
               >
-
                 <List.Item
                   arrow="horizontal"
                   style={{ background: 'none' }}

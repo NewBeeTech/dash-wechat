@@ -12,11 +12,12 @@ import UserForm from './../components/UserForm'
 import * as styles from './../assets/stylesheets/mine.css';
 import * as MineAction from './../actions/MineAction';
 import { dispatch } from './../index';
+import moment from 'moment';
 
 const propTypes = {
   children: PropTypes.node,
   dispatch: PropTypes.func,
-  userId: PropTypes.string,
+  userId: PropTypes.number,
 };
 type state = {
   photos: Array,
@@ -30,6 +31,8 @@ type state = {
   hometown: string,
   var4: string,
   code: string,
+  tags: Array,
+  moreTags: any,
 };
 class UserInfoContainer extends React.Component {
   componentWillMount() {
@@ -44,8 +47,22 @@ class UserInfoContainer extends React.Component {
       hometown: this.props.userInfo.get('var3'),
       income: [this.props.userInfo.get('income')],
       var4: this.props.userInfo.get('var4'),
+      tags: this.props.userInfo.get('tags').split(','),
+      moreTags: this.props.moreTags,
       code: '',
     });
+  }
+  componentWillReceiveProps(nextProps) {
+    if(this.props.tab !== nextProps.tab) {
+      this.setState({
+        tags: nextProps.userInfo.get('tags').split(','),
+      });
+    }
+    if(!this.props.moreTags.equals(nextProps.moreTags)) {
+      this.setState({
+        moreTags: nextProps.moreTags,
+      });
+    }
   }
   // shouldComponentUpdate(nextProps, nextState) {
   //   return shallowCompare(this, nextProps, nextState);
@@ -57,12 +74,31 @@ class UserInfoContainer extends React.Component {
       ...this.state,
     });
   }
+  deleteTag(index, item) {
+    const tags = this.state.tags;
+    const moreTags = this.state.moreTags;
+    const newMoreTags = moreTags.push(item);
+    tags.splice(index, 1);
+    this.setState({ tags, moreTags: newMoreTags });
+  }
+  addTag(index, item) {
+    const tags = this.state.tags;
+    const moreTags = this.state.moreTags;
+    tags.push(item);
+    const newMoreTags = moreTags.splice(index, 1);
+    this.setState({ tags, moreTags: newMoreTags });
+  }
   submitHandler() {
+    const tags = [];
+    this.state.tags.map((item, index) => {
+      if(item) tags.push(item);
+      return tags;
+    });
     const params = {
       photos: this.state.photos.join(','),
       phone: this.state.phone,
       sex: this.state.sex.length ? this.state.sex[0] : '',
-      birth: this.state.birth,
+      birth: moment(this.state.birth).format('YYYY-MM-DD'),
       photos: this.state.photos,
       var2: this.state.height,
       position: this.state.position,
@@ -71,7 +107,8 @@ class UserInfoContainer extends React.Component {
       income: this.state.income.length ? this.state.income[0] : '',
       var4: this.state.var4,
       code: this.state.code,
-      userId: this.props.userId,
+      id: this.props.userId,
+      tags: tags.join(','),
     };
     if(!params.photos) return Toast.info('请上传个人照片!', 1);
     if(!params.phone) {
@@ -89,7 +126,7 @@ class UserInfoContainer extends React.Component {
       if(!params.var3) return Toast.info('请填写家乡!', 1);
       if(params.income === '') return Toast.info('请选择收入!', 1);
     }
-    dispatch(MineAction.checkMbCode({ mbCode: params.code }));return;
+    // dispatch(MineAction.checkMbCode({ mbCode: params.code }));return;
     console.log(params);
     dispatch(MineAction.updateUserInfo(params));
   }
@@ -132,9 +169,11 @@ class UserInfoContainer extends React.Component {
             changeCell={(value, title) => this.changeCell(value, title)}
           /> : ''}
           <UserTags
-            moreTags={this.props.moreTags}
-            tags={this.props.userInfo.get('tags').split(',')}
+            moreTags={this.state.moreTags}
+            tags={this.state.tags}
             tab={this.props.params.tab}
+            deleteTag={(index, item) => this.deleteTag(index, item)}
+            addTag={(index, item) => this.addTag(index, item)}
           />
         </div>
         <EditBar
@@ -152,7 +191,7 @@ UserInfoContainer.propTypes = propTypes;
 const mapStateToProps = (state) => {
   return {
     dispatch: state.dispatch,
-    userId: state.MineReducer.get('userData').get('id'),
+    userId: state.MineReducer.get('userData').get('userInfo').get('id'),
     userInfo: state.MineReducer.get('userData').get('userInfo'),
     moreTags: state.MineReducer.get('tags'),
     activityInfo: state.MineReducer.get('userData').get('activityInfo'),

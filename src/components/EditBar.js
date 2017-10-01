@@ -5,7 +5,7 @@ import React, { PropTypes } from 'react';
 import * as Immutable from 'immutable';
 import * as MineAction from './../actions/MineAction';
 import type { Dispatch } from '../../actions/types';
-import { List, Icon } from 'antd-mobile';
+import { List } from 'antd-mobile';
 import * as styles from './../assets/stylesheets/mine.css'
 import { push } from 'react-router-redux';
 import * as RoutingURL from './../core/RoutingURL/RoutingURL';
@@ -27,7 +27,7 @@ class EditBar extends React.Component {
           className={styles.returnArrow}
           onClick={() => this.props.tab === 'edit' ? dispatch(push(RoutingURL.UserInfo(''))) : dispatch(push(RoutingURL.Mine()))}
         >
-          <Icon size="lg" type="left" color="#ffce3d" />
+          <img src="./../assets/images/left_arrow.png" />
         </div>
         <div className={styles.triangle} onClick={() => dispatch(goBack())} />
         <div
