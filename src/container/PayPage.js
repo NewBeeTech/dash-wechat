@@ -60,9 +60,9 @@ class PayPage extends React.PureComponent {
           {/*pay title*/}
          <div className={payStyle.payTitle}>
                <div className={payStyle.dashNum}>
-                  <img src={'../assets/images/mars.png'} className={styles.mars}/>
+                  <img src={'http://dash.oss-cn-beijing.aliyuncs.com/fe/mars.png'} className={styles.mars}/>
                   <div className={payStyle.dashBoy}>男士: {showNum(dashItem.boyNum)}</div>
-                  <img src={'../assets/images/venus.png'} className={styles.mars} />
+                  <img src={'http://dash.oss-cn-beijing.aliyuncs.com/fe/venus.png'} className={styles.mars} />
                   <div>女士: {showNum(dashItem.girlNum)}</div>
                </div>
                <div className={payStyle.payText}>支付剩余时间</div>
@@ -87,8 +87,8 @@ class PayPage extends React.PureComponent {
              this.setState({ checked: !checked });
            }}
          >
-            <div className={payStyle.wechatPay}><img src={'../assets/images/wechat_pay.png'} className={payStyle.wechatPayImg}/>微信支付</div>
-            <div><img src={this.state.checked ? '../assets/images/支付选中.png' : '../assets/images/支付未选.png'} style={{ width: '3vh' }}/></div>
+            <div className={payStyle.wechatPay}><img src={'http://dash.oss-cn-beijing.aliyuncs.com/fe/wechat_pay.png'} className={payStyle.wechatPayImg}/>微信支付</div>
+            <div><img src={this.state.checked ? 'http://dash.oss-cn-beijing.aliyuncs.com/fe/支付选中.png' : 'http://dash.oss-cn-beijing.aliyuncs.com/fe/支付未选.png'} style={{ width: '3vh' }}/></div>
          </div>
          {/*pay button*/}
          <div 

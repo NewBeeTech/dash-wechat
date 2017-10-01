@@ -22,9 +22,9 @@ class SignUpInfo extends React.PureComponent {
     return (
       <div className={infoStyles.originatorContent}>
          <div className={infoStyles.dashNum}>
-           <img src={'../assets/images/mars.png'} className={styles.mars}/>
+           <img src={'http://dash.oss-cn-beijing.aliyuncs.com/fe/mars.png'} className={styles.mars}/>
            <div className={styles.dashBoy}>男士: {showNum(this.props.boyNum)}</div>
-           <img src={'../assets/images/venus.png'} className={styles.mars} />
+           <img src={'http://dash.oss-cn-beijing.aliyuncs.com/fe/venus.png'} className={styles.mars} />
            <div>女士: {showNum(this.props.girlNum)}</div>
          </div>
          <div className={infoStyles.originatorInfo}>

@@ -19,7 +19,7 @@ class DashCard extends React.PureComponent {
       }
       return '满员'
     }
-    
+
     const isShowOriginator = (name, img) => {
       const views = [];
       if(name) {
@@ -61,9 +61,9 @@ class DashCard extends React.PureComponent {
          </div>
          {/* 活动人数 */}
          <div className={styles.dashNum}>
-            <img src={'../assets/images/mars.png'} className={styles.mars}/>
+            <img src={'http://dash.oss-cn-beijing.aliyuncs.com/fe/mars.png'} className={styles.mars}/>
             <div className={styles.dashBoy}>男士: {showNum(this.props.dashItem.get('boyNum'))}</div>
-            <img src={'../assets/images/venus.png'} className={styles.mars} />
+            <img src={'http://dash.oss-cn-beijing.aliyuncs.com/fe/venus.png'} className={styles.mars} />
             <div>女士: {showNum(this.props.dashItem.get('girlNum'))}</div>
          </div>
          {/* 活动发起人 */}

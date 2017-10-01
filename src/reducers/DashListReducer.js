@@ -26,7 +26,7 @@ const defaultState: stateType = Immutable.Map({
       //      address: '望京南',
       //      title: '大标题',
       //      smallTitle: '小标题',
-      //      backgroundImg: '../assets/images/default-banner.jpg',
+      //      backgroundImg: 'http://dash.oss-cn-beijing.aliyuncs.com/fe/default-banner.jpg',
       //      activityTime: '9/20 (周六) 16：00-19：00',
       //      time: 4,
       //      boyNum: 2,
@@ -39,26 +39,26 @@ const defaultState: stateType = Immutable.Map({
       //      address: '望京',
       //      title: '大标题',
       //      smallTitle: '小标题', // ?
-      //      backgroundImg: '../assets/images/default-banner.jpg',
+      //      backgroundImg: 'http://dash.oss-cn-beijing.aliyuncs.com/fe/default-banner.jpg',
       //      activityTime: '9月20日 16：00-19：00',
       //      time: -1,
       //      boyNum: 0,
       //      girlNum: 3,
       //      originatorName: '',
-      //      originatorImg: '../assets/images/default-banner.jpg',
+      //      originatorImg: 'http://dash.oss-cn-beijing.aliyuncs.com/fe/default-banner.jpg',
       //  }),
     ]),
     carouselImgs: Immutable.List([
       // Immutable.Map({
-      //   img: '../assets/images/default-banner.jpg',
+      //   img: 'http://dash.oss-cn-beijing.aliyuncs.com/fe/default-banner.jpg',
       //   url: 'www.baodu.com',
       // }),
       // Immutable.Map({
-      //   img: '../assets/images/default-banner.jpg',
+      //   img: 'http://dash.oss-cn-beijing.aliyuncs.com/fe/default-banner.jpg',
       //   url: 'www.baodu.com',
       // }),
       // Immutable.Map({
-      //   img: '../assets/images/default-banner.jpg',
+      //   img: 'http://dash.oss-cn-beijing.aliyuncs.com/fe/default-banner.jpg',
       //   url: 'www.baodu.com',
       // })
     ]),

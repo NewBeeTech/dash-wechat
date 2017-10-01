@@ -22,7 +22,7 @@ const defaultState: stateType = Immutable.Map({
     address: '望京',
     title: '大标题',
     smallTitle: '小标题',
-    backgroundImg: '../assets/images/default-banner.jpg',
+    backgroundImg: 'http://dash.oss-cn-beijing.aliyuncs.com/fe/default-banner.jpg',
     activityTime: '9月20日 16：00-19：00',
     endTime: '2017-10-01 00:00:00',
     girlNum: '0',
@@ -34,7 +34,7 @@ const defaultState: stateType = Immutable.Map({
     boyNum: 2,
     originatorInfo: Immutable.Map({
       originatorName: '王晓丹',
-      originatorImg: '../assets/images/default-banner.jpg',
+      originatorImg: 'http://dash.oss-cn-beijing.aliyuncs.com/fe/default-banner.jpg',
       originUserDesc: '报名人描述报名人描述报名人描述报名人描述报名人描述报名人描述报名人描述报名人描述报名人描述',
       originUserUd: 1,
     }),

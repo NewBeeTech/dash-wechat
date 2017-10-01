@@ -21,7 +21,7 @@ class Banner extends React.Component {
     return (
       <div
         style={{
-          background: `url(${this.props.imgUrl || '../../assets/images/default-banner.jpg'})`,
+          background: `url(${this.props.imgUrl || 'http://dash.oss-cn-beijing.aliyuncs.com/fe/default-banner.jpg'})`,
           backgroundSize: 'cover',
         }}
         className={styles.bashBanner}
@@ -33,7 +33,7 @@ class Banner extends React.Component {
           style={{ color: this.props.isWant ? '#ffce3d' : 'white' }}
           onClick={() => this.props.handlerWantAction()}
         >
-          <img src={this.props.isWant ? '../assets/images/want_checked.png' : '../assets/images/want.png'} width="60%"/><br/>
+          <img src={this.props.isWant ? 'http://dash.oss-cn-beijing.aliyuncs.com/fe/want_checked.png' : 'http://dash.oss-cn-beijing.aliyuncs.com/fe/want.png'} width="60%"/><br/>
           想去
         </div>
       </div>
