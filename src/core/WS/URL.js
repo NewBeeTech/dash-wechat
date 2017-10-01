@@ -21,7 +21,7 @@ export const getCarouselImgsPath: string = `${host}banner/list`;
  * 获取活动详情接口
  * @type {string}
  */
-export const getDashInfoPath: string = `${host}activity/getById`;
+export const getDashInfoPath: string = `${host}activity/getInfoById`;
 /**
  * 活动收藏
  * @type {string}
@@ -91,7 +91,7 @@ export const getWxAuth2Path: string = `${host}wx/outh2`;
  */
 export const likeUPath: string = `${host}user/like`;
 
-export const getUserForDashDataPath: string = `${host}`;
+export const getUserForDashDataPath: string = `${host}user/activityStatus`;
 
 // 取消报名
 export const cancelSignUpPath: string = `${host}`;
