@@ -110,10 +110,10 @@ export const CHECK_MB_CODE: string = 'CHECK_MB_CODE';
 export const checkMbCode: Dispatch =
 (params: {openid: ?string}): ThunkAction =>
 (dispatch: Dispatch): void => {
-  const result = POSTJSON(URL.checkMbCodePath: string, { mbCode: params.params.code } );
+  const result = POSTJSON(URL.checkMbCodePath: string, { mbCode: params.code } );
   result.then(data => {
     if(data.code === '001') {
-      dispatch(updateUserInfo(params.params));
+      dispatch(updateUserInfo(params));
     } else {
       Toast.info('验证码错误');
     }

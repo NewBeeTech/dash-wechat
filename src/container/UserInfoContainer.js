@@ -129,9 +129,9 @@ class UserInfoContainer extends React.Component {
       if(params.income === '') return Toast.info('请选择收入!', 1);
     }
     if(this.state.phone !== this.props.userInfo.get('phone')) {
-      dispatch(MineAction.checkMbCode({ params }));
+      dispatch(MineAction.checkMbCode(params));
     } else {
-      dispatch(MineAction.updateUserInfo({ params }));
+      dispatch(MineAction.updateUserInfo(params));
     }
   }
   render() {
