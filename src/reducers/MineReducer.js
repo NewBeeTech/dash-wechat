@@ -16,36 +16,36 @@ const defaultState: stateType = Immutable.Map({
   tags: Immutable.List([]),
   userData: Immutable.Map({
     userInfo:Immutable.Map({
-      id: 1,
-      activityCount: 1, // 参加活动次数哦
-      age: 24,
-      birth: '1991-03-30',
-      certNo: '370702199192938475', // 证件号
-      certType: '1', // 证件类型
-      city: '北京',
+      id: '',
+      activityCount: '', // 参加活动次数哦
+      age: '',
+      birth: '',
+      certNo: '', // 证件号
+      certType: '', // 证件类型
+      city: '',
       createTime: '', // ?
       creditCount: 100, // 信用分
-      desc: '高富帅', // 个人描述
+      desc: '', // 个人描述
       email: '',
-      income: 1, //收入 枚举
-      likeCount: 10, // 被赞次数
-      mark: 2, // mark值
-      nickName: '小可爱',
+      income: , //收入 枚举
+      likeCount: '', // 被赞次数
+      mark: '', // mark值
+      nickName: '',
       openId: '',
-      phone: '18617621252',
-      photos: 'https://zos.alipayobjects.com/rmsportal/PZUUCKTRIHWiZSY.jpeg,https://img.shaka.hsohealth.com/activity/lipid_lowering/banner@3x.png', //用户上传的图片 多个用逗号隔开
-      portrait: 'a.jpg', // 头像
-      profession: '明星',
-      position: '天皇巨星',
-      province: '山西', // 家乡
-      sex: 1, // 0未知 1男 2女
+      phone: '',
+      photos: '', //用户上传的图片 多个用逗号隔开
+      portrait: '', // 头像
+      profession: '',
+      position: '',
+      province: '', // 家乡
+      sex: 0, // 0未知 1男 2女
       status: 1, //用户状态 0冻结 1正常
-      tags: '完美,专一,爱做家务,爱烧菜,拒绝黄赌毒',
-      type: 2, // 用户类型 1普通用户 2vip
+      tags: '',
+      type: 1, // 用户类型 1普通用户 2vip
       updateTime: '',
       userName: '', // 用户名
       wxAccount: '', // 微信账号
-      wxName: 'deerW', // 微信名称
+      wxName: '', // 微信名称
       wxPortrait: '', // 微信头像
       var2: '', // 身高
       var3: '', // 家乡
@@ -53,63 +53,63 @@ const defaultState: stateType = Immutable.Map({
     }),
     activityInfo: Immutable.Map({
       myDash: Immutable.List([
-        Immutable.Map({
-          activityId: 1,
-          activityName: '此处是活动标题！',
-          photos: 'http://img02.tooopen.com/images/20160509/tooopen_sy_161967094653.jpg',
-          address: '望京',
-          startTime: '2017.04.12 19:23:34',
-          endTime: '2017.04.12 21:23:34',
-          status: 1, // -1报名失败 0未付款 1报名成功 2运营拒绝 3取消
-          id: 1002,
-          otherUserList: Immutable.fromJS([
-            [1, "哈哈", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmTZ26a1g35R615Q8thAK968JNBrm1XgaU_Cek9hywcWg7Pk0l"],
-            [2, "哈哈", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmTZ26a1g35R615Q8thAK968JNBrm1XgaU_Cek9hywcWg7Pk0l"],
-            [3, "哈哈", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmTZ26a1g35R615Q8thAK968JNBrm1XgaU_Cek9hywcWg7Pk0l"],
-          ])
-        }),
-        Immutable.Map({
-          activityId: 2,
-          activityName: '此处是活动标题！',
-          photos: 'http://img02.tooopen.com/images/20160509/tooopen_sy_161967094653.jpg',
-          address: '东直门',
-          startTime: '2017.10.19 18:00:00',
-          endTime: '2017.10.19 21:00:00',
-          status: 2,
-          userId: 1002,
-        }),
-        Immutable.Map({
-          activityId: 3,
-          activityName: '此处是活动标题！',
-          photos: 'http://img02.tooopen.com/images/20160509/tooopen_sy_161967094653.jpg',
-          address: '望京',
-          startTime: '2017.10.12 19:23:34',
-          endTime: '2017.10.12 21:23:34',
-          status: 1,
-          userId: 1002,
-        }),
-        Immutable.Map({
-          activityId: 4,
-          activityName: '此处是活动标题！',
-          photos: 'http://img02.tooopen.com/images/20160509/tooopen_sy_161967094653.jpg',
-          address: '望京',
-          startTime: '2017.02.12 19:23:34',
-          endTime: '2017.02.12 21:23:34',
-          status: 3,
-          userId: 1002,
-        }),
+        // Immutable.Map({
+        //   activityId: 1,
+        //   activityName: '此处是活动标题！',
+        //   photos: 'http://img02.tooopen.com/images/20160509/tooopen_sy_161967094653.jpg',
+        //   address: '望京',
+        //   startTime: '2017.04.12 19:23:34',
+        //   endTime: '2017.04.12 21:23:34',
+        //   status: 1, // -1报名失败 0未付款 1报名成功 2运营拒绝 3取消
+        //   id: 1002,
+        //   otherUserList: Immutable.fromJS([
+        //     [1, "哈哈", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmTZ26a1g35R615Q8thAK968JNBrm1XgaU_Cek9hywcWg7Pk0l"],
+        //     [2, "哈哈", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmTZ26a1g35R615Q8thAK968JNBrm1XgaU_Cek9hywcWg7Pk0l"],
+        //     [3, "哈哈", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmTZ26a1g35R615Q8thAK968JNBrm1XgaU_Cek9hywcWg7Pk0l"],
+        //   ])
+        // }),
+        // Immutable.Map({
+        //   activityId: 2,
+        //   activityName: '此处是活动标题！',
+        //   photos: 'http://img02.tooopen.com/images/20160509/tooopen_sy_161967094653.jpg',
+        //   address: '东直门',
+        //   startTime: '2017.10.19 18:00:00',
+        //   endTime: '2017.10.19 21:00:00',
+        //   status: 2,
+        //   userId: 1002,
+        // }),
+        // Immutable.Map({
+        //   activityId: 3,
+        //   activityName: '此处是活动标题！',
+        //   photos: 'http://img02.tooopen.com/images/20160509/tooopen_sy_161967094653.jpg',
+        //   address: '望京',
+        //   startTime: '2017.10.12 19:23:34',
+        //   endTime: '2017.10.12 21:23:34',
+        //   status: 1,
+        //   userId: 1002,
+        // }),
+        // Immutable.Map({
+        //   activityId: 4,
+        //   activityName: '此处是活动标题！',
+        //   photos: 'http://img02.tooopen.com/images/20160509/tooopen_sy_161967094653.jpg',
+        //   address: '望京',
+        //   startTime: '2017.02.12 19:23:34',
+        //   endTime: '2017.02.12 21:23:34',
+        //   status: 3,
+        //   userId: 1002,
+        // }),
       ]),
       wantToDash: Immutable.List([
-        Immutable.Map({
-          activityId: 1,
-          activityName: '此处是活动标题！',
-          photos: 'http://img02.tooopen.com/images/20160509/tooopen_sy_161967094653.jpg',
-          address: '望京',
-          startTime: '2017.02.12 19:23:34',
-          endTime: '2017.02.12 21:23:34',
-          status: 1, // 0取消 1正常
-          user_id: 1002,
-        }),
+        // Immutable.Map({
+        //   activityId: 1,
+        //   activityName: '此处是活动标题！',
+        //   photos: 'http://img02.tooopen.com/images/20160509/tooopen_sy_161967094653.jpg',
+        //   address: '望京',
+        //   startTime: '2017.02.12 19:23:34',
+        //   endTime: '2017.02.12 21:23:34',
+        //   status: 1, // 0取消 1正常
+        //   user_id: 1002,
+        // }),
       ]),
     }),
   }),
@@ -139,7 +139,7 @@ new ActionHandler.handleAction(MineAction.UPDATE_USER_INFO)
   const getLikeActivityInfoHandler =
   new ActionHandler.handleAction(MineAction.GET_LIKE_ACTIVITY_DATA)
     .success((state: stateType, action: Action) => {
-      return state.setIn(['userData', 'activityInfo', 'wantToDash'], Immutable.fromJS(action.data))
+      return state.setIn(['userData', 'activityInfo', 'wantToDash'], Immutable.fromJS(action.data.list))
                   .set('isFetching', false);
     });
   const getMoreTagsHandler =
