@@ -36,6 +36,7 @@ export const updateUserInfo: Dispatch =
   const result: Promise<> = GET(URL.updateUserInfoPath: string, params: Object);
   result.then(data => {
     if (data.code === '001') {
+      dispatch(getUserInfo());
       dispatch(push(RoutingURL.UserInfo('')));
     } else {
       Toast.info(data.message);
