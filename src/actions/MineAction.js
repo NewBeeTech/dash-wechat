@@ -20,7 +20,7 @@ export const getUserInfo: Dispatch =
 (dispatch: Dispatch): void => {
   AsyncFetchHandler(
     GET_USER_INFO,
-    GET(URL.getUserInfoPath: string, params: Object),
+    GET(URL.getUserInfoPath: string, params.params: Object),
     dispatch
   );
 };
@@ -32,6 +32,7 @@ export const UPDATE_USER_INFO: string = 'UPDATE_USER_INFO';
 export const updateUserInfo: Dispatch =
 (params: {openid: ?string}): ThunkAction =>
 (dispatch: Dispatch): void => {
+  console.log(params);
   const result: Promise<> = GET(URL.updateUserInfoPath: string, params: Object);
   result.then(data => {
     if (data.code === '001') {
@@ -109,10 +110,10 @@ export const CHECK_MB_CODE: string = 'CHECK_MB_CODE';
 export const checkMbCode: Dispatch =
 (params: {openid: ?string}): ThunkAction =>
 (dispatch: Dispatch): void => {
-  const result = POSTJSON(URL.checkMbCodePath: string, { mbCode: params.code });
-  reslut.then(data => {
-    if(date.code === '001') {
-      dispatch(updateUserInfo(params))
+  const result = POSTJSON(URL.checkMbCodePath: string, { mbCode: params.params.code } );
+  result.then(data => {
+    if(data.code === '001') {
+      dispatch(updateUserInfo(params.params))
     } else {
       Toast.info('验证码错误');
     }
