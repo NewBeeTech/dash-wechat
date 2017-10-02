@@ -28,16 +28,16 @@ const store = createStore(reducers, /* preloadedState, */ composeEnhancers(
 
 export const dispatch = store.dispatch;
 
-if (process.env.NODE_ENV !== 'development') {
-  if (QueryString().code) { // url 中有 code 参数，将用户信息存取session
-    store.dispatch(getWxAuth2({ code: QueryString().code }));
-  } else { // 微信中打开且不带code， 跳转到授权路径
-    // if (location.pathname === '/payment') {
-    //   location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${process.env.APPID}&redirect_uri=${encodeURIComponent(location.href)}&response_type=code&scope=snsapi_base&connect_redirect=1#wechat_redirect`;
-    // }
-   // TODO:  wrong path
-  }
-}
+// if (process.env.NODE_ENV !== 'development') {
+//   if (QueryString().code) { // url 中有 code 参数，将用户信息存取session
+//     store.dispatch(getWxAuth2({ code: QueryString().code }));
+//   } else { // 微信中打开且不带code， 跳转到授权路径
+//     // if (location.pathname === '/payment') {
+//     //   location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${process.env.APPID}&redirect_uri=${encodeURIComponent(location.href)}&response_type=code&scope=snsapi_base&connect_redirect=1#wechat_redirect`;
+//     // }
+//    // TODO:  wrong path
+//   }
+// }
 
 const history = syncHistoryWithStore(
   hashHistory, store

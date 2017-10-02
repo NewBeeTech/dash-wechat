@@ -114,8 +114,10 @@ class UserInfoContainer extends React.Component {
     if(!params.phone) {
       return Toast.info('请填写手机号码!', 1);
     } else {
-      if(!params.code) {
-        return Toast.info('请填写验证码!', 1);
+      if(params.phone !== this.props.userInfo.get('originPhone')) {
+        if(!params.code) {
+          return Toast.info('请填写验证码!', 1);
+        }
       }
     }
     if(params.sex === '') return Toast.info('请选择性别!', 1);
@@ -157,6 +159,7 @@ class UserInfoContainer extends React.Component {
           <UserForm
             tags={this.props.userInfo.get('tags')}
             phone={this.state.phone}
+            originPhone={this.props.userInfo.get('phone')}
             sex={this.state.sex}
             birth={this.state.birth}
             height={this.state.height}

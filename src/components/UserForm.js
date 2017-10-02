@@ -11,6 +11,7 @@ import * as MineAction from './../actions/MineAction';
 import { dispatch } from './../index';
 
 type Props = {
+  originPhone: string,
   phone: string,
   sex: Array,
   birth: string,
@@ -23,13 +24,6 @@ type Props = {
   var4: string,
   code: string,
 };
-const data = [{
-  url: 'https://zos.alipayobjects.com/rmsportal/PZUUCKTRIHWiZSY.jpeg',
-  id: '2121',
-}, {
-  url: 'https://zos.alipayobjects.com/rmsportal/hqQWgTXdrlmVVYi.jpeg',
-  id: '2122',
-}];
 
 const maxDate = moment('2001-01-01 +0800', 'YYYY-MM-DD Z').utcOffset(8);
 const minDate = moment('1970-01-01 +0800', 'YYYY-MM-DD Z').utcOffset(8);
@@ -112,22 +106,24 @@ class UserForm extends React.Component {
                 }}
               /></span>
           </div>
-          <div className={styles.inputDiv}>
-            <span className={styles.item}>验证码</span>
-            <span className={styles.itemBorder} />
-            <span className={styles.code}><input
-              defaultValue={this.props.code}
-              onChange={(e) => {
-                this.props.changeCell(e.target.value, 'code');
-              }}
-            /></span>
-            <span
-              style={ this.state.send ? {} : { backgroundColor: '#e7e7e7'}}
-              className={styles.sendCode}
-              onClick={() => this.handleClick()}
-            >{text}
-            </span>
-          </div>
+          {this.props.phone !== this.props.originPhone ?
+            <div className={styles.inputDiv}>
+              <span className={styles.item}>验证码</span>
+              <span className={styles.itemBorder} />
+              <span className={styles.code}><input
+                defaultValue={this.props.code}
+                onChange={(e) => {
+                  this.props.changeCell(e.target.value, 'code');
+                }}
+              /></span>
+              <span
+                style={ this.state.send ? {} : { backgroundColor: '#e7e7e7'}}
+                className={styles.sendCode}
+                onClick={() => this.handleClick()}
+              >{text}
+              </span>
+            </div> : <div />
+          }
           <div className={styles.inputDiv}>
             <span className={styles.item}>性&nbsp;&nbsp;&nbsp;别</span>
             <span className={styles.itemBorder} />
