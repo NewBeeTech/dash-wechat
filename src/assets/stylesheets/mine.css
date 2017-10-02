@@ -160,6 +160,11 @@
   padding-right: 3vw;
   text-align: right;
   color: #888;
+  font-size: 3.8vw;
+}
+
+.am-list-item .am-list-line .am-list-extra {
+  font-size: 3.8vw!important;
 }
 
 .code input {
