@@ -113,7 +113,7 @@ export const checkMbCode: Dispatch =
   const result = POSTJSON(URL.checkMbCodePath: string, { mbCode: params.params.code } );
   result.then(data => {
     if(data.code === '001') {
-      dispatch(updateUserInfo(params.params))
+      dispatch(updateUserInfo(params))
     } else {
       Toast.info('验证码错误');
     }
