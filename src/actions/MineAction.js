@@ -20,7 +20,7 @@ export const getUserInfo: Dispatch =
 (dispatch: Dispatch): void => {
   AsyncFetchHandler(
     GET_USER_INFO,
-    GET(URL.getUserInfoPath: string, params.params: Object),
+    GET(URL.getUserInfoPath: string, params: Object),
     dispatch
   );
 };
@@ -113,7 +113,7 @@ export const checkMbCode: Dispatch =
   const result = POSTJSON(URL.checkMbCodePath: string, { mbCode: params.params.code } );
   result.then(data => {
     if(data.code === '001') {
-      dispatch(updateUserInfo(params))
+      dispatch(updateUserInfo(params.params));
     } else {
       Toast.info('验证码错误');
     }
