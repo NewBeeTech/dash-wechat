@@ -114,7 +114,7 @@ class UserInfoContainer extends React.Component {
     if(!params.phone) {
       return Toast.info('请填写手机号码!', 1);
     } else {
-      if(params.phone !== this.props.userInfo.get('originPhone')) {
+      if(params.phone !== this.props.userInfo.get('phone')) {
         if(!params.code) {
           return Toast.info('请填写验证码!', 1);
         }
@@ -128,9 +128,11 @@ class UserInfoContainer extends React.Component {
       if(!params.var3) return Toast.info('请填写家乡!', 1);
       if(params.income === '') return Toast.info('请选择收入!', 1);
     }
-    // dispatch(MineAction.checkMbCode({ mbCode: params.code }));return;
-    console.log(params);
-    dispatch(MineAction.updateUserInfo(params));
+    if(this.state.phone !== this.props.userInfo.get('phone')) {
+      dispatch(MineAction.checkMbCode({ params }));
+    } else {
+      dispatch(MineAction.updateUserInfo({ params }));
+    }
   }
   render() {
     const avator = this.props.userInfo.get('photos').split(',')[0];

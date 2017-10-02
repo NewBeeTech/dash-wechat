@@ -163,10 +163,6 @@
   font-size: 3.8vw;
 }
 
-.am-list-item .am-list-line .am-list-extra {
-  font-size: 3.8vw!important;
-}
-
 .code input {
   background-color: #F3F3F3;
   border: 1px solid #F3F3F3;
@@ -275,6 +271,7 @@
 
 :global(.am-list-item .am-list-line .am-list-extra) {
   flex-basis: auto!important;
+  font-size: 3.8vw!important;
 }
 :global(.am-accordion .am-accordion-item .am-accordion-header) {
   height: 12vw!important;
