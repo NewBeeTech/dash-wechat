@@ -17,7 +17,8 @@ const defaultState: stateType = Immutable.Map({
   errMsg: '',
   index: 0,
   isWant: false, // 是否关注
-  isSignUp: true, // 报名状态
+  isSignUp: 1, // 报名状态 1失败 0未支付 1成功 2运营拒绝 3用户取消
+  signNum: 0, //同性报名人数
   dashInfo: Immutable.Map({
     address: '望京',
     title: '大标题',
@@ -129,7 +130,9 @@ const getUserForDashDataHandler =
 const cancelSignUpHandler =
     new ActionHandler.handleAction(ActivityAction.CANCEL_SIGNUP)
         .success((state: stateType, action: Action) => {
-          return state.set('isSignUp', action.data.isSignUp)
+          return state.set('isSignUp', action.data.signup)
+                      .set('isWant', Boolean(action.data.collect))
+                      .set('signNum', action.data.signNum)
                       .set('isFetching', false);
         });
 
