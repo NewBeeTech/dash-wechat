@@ -26,7 +26,7 @@ export const getDashInfoPath: string = `${host}activity/getInfoById`;
  * 活动收藏
  * @type {string}
  */
-export const chargeIsWantPath: string = `${host}/activity/collect`;
+export const chargeIsWantPath: string = `${host}activity/collect`;
 /**
  * 获取用户信息
  * @type {string}
