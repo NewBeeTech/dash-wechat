@@ -132,6 +132,10 @@ class UserForm extends React.Component {
                 extra="未知"
                 data={[
                   {
+                    label: '未知',
+                    value: 0,
+                  },
+                  {
                     label: '男',
                     value: 1,
                   },
@@ -219,6 +223,10 @@ class UserForm extends React.Component {
                   <Picker
                     extra="请选择"
                     data={[
+                      {
+                        label: '请选择',
+                        value: 0,
+                      },
                       {
                         label: '5万以下',
                         value: 1,

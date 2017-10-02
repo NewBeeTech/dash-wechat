@@ -136,6 +136,9 @@ class UserInfoContainer extends React.Component {
   }
   render() {
     const avator = this.props.userInfo.get('photos').split(',')[0];
+    const birth = this.props.userInfo.get('birth');
+    const now = new Date();
+    const age = birth ? now.getFullYear() - birth.slice(0, 4) + 1: '';
     return (
       <div>
         <div className={styles.bg} style={{ backgroundColor: '#fff' }}>
@@ -149,7 +152,7 @@ class UserInfoContainer extends React.Component {
             <UserInfoTitle
               wxName={this.props.userInfo.get('wxName')}
               sex={this.props.userInfo.get('sex')}
-              age={this.props.userInfo.get('age')}
+              age={this.props.userInfo.get('age') || age}
               phone={this.props.userInfo.get('phone')}
               wxPortrait={this.props.userInfo.get('wxPortrait')}
               avator={avator}

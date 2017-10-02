@@ -27,7 +27,7 @@ const defaultState: stateType = Immutable.Map({
       creditCount: 100, // 信用分
       desc: '', // 个人描述
       email: '',
-      income: 1, //收入 枚举
+      income: 0, //收入 枚举
       likeCount: '', // 被赞次数
       mark: '', // mark值
       nickName: '',
