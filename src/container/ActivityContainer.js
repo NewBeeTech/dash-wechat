@@ -47,6 +47,8 @@ class ActivityContainer extends React.PureComponent {
     this.props.dispatch(ActivityAction.getDashInfoData({activityId: this.props.params.activityId}));
     // 获取患者在该活动的状态
     this.props.dispatch(ActivityAction.getUserForDashData({activityId: this.props.params.activityId}));
+
+  this.setState({ sex: this.props.userData.get('userInfo').get('sex')})
   }
   componentWillReceiveProps(nextProps) {
     if(this.props.dashInfo != nextProps.dashInfo) {
@@ -86,10 +88,10 @@ class ActivityContainer extends React.PureComponent {
     ])
   }
   showActivity(dashInfo, sex) {
-    // if(!sex) {
-    //   this.props.dispatch(push(RoutingURL.Mine()));
-    //   return false;
-    // }
+    if(!sex) {
+      this.props.dispatch(push(RoutingURL.Mine()));
+      return false;
+    }
     const views = [];
     if(dashInfo.get('id')) {
       views.push(
@@ -141,10 +143,13 @@ class ActivityContainer extends React.PureComponent {
             }
             paymentAction = {() => {
               const type = this.props.params.type;
-              if(type == 'done') {
-                this.cancelAction();
-              }else {
-                this.props.dispatch(push(RoutingURL.PayPage()))
+              const status = this.state.status;
+              if(status) {
+                if(type == 'done' || buttonText === '取消报名') {
+                  this.cancelAction();
+                }else {
+                  this.props.dispatch(push(RoutingURL.PayPage()))
+                }
               }
             }}
          /> : <div />}
