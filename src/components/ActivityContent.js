@@ -14,19 +14,9 @@ class ActivityContent extends React.PureComponent {
   componentWillMount() {
   }
   render() {
-    const showMessage = () => {
-      const views = [];
-      for(let i=0; i<4; i++) {
-        views.push(
-          <div className={styles.messageRightDiv}>{i + 1}.此处是活动流程</div>
-        );
-      }
-      return views;
-    }
-
     const showTipsMessage = (tips) => {
       return (
-        <div style={{ height: '46vh', lineHeight: '4vh'}}>
+        <div>
           <div className={styles.messageRightDiv}>{tips}</div>
         </div>
       )

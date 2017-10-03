@@ -86,7 +86,6 @@ class ActivityContainer extends React.PureComponent {
                 activityId: this.props.params.activityId,
                 type: Number(!isWant),
              }));
-             this.props.changeAction('ActivityReducer/isWant', !isWant);
            }}
            isWant={this.props.isWant}
          />
