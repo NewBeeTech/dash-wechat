@@ -117,7 +117,8 @@ new ActionHandler.handleAction(ActivityAction.GET_DASHINFO)
 const getIsWantHandler =
 new ActionHandler.handleAction(ActivityAction.CHARGE_WANT)
     .success((state: stateType, action: Action) => {
-      return state.set('isWant', Immutable.fromJS(action.data))
+      const isWant = state.isWant;
+      return state.set('isWant', !isWant)
                   .set('isFetching', false);
     });
 
