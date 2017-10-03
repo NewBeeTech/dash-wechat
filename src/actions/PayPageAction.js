@@ -15,7 +15,8 @@ export const pay = (params: paymentParms): ThunkAction =>
   dispatch({ type: 'PAY_REQUEST' });
   const reponse = POSTJSON(URL.payPath, params);
   reponse.then(data => {
-    if (data.code !== 0) {
+      console.log('支付data:', data);
+    if (data.code != '001') {
       alert('支付失败');
       dispatch({ type: 'PAY_FAILURE' });
     } else {
@@ -28,10 +29,12 @@ export const pay = (params: paymentParms): ThunkAction =>
           dispatch({ type: 'PAY_SUCCESS' });
         } else if (result === 'fail') {
           // 支付失败
+          Toast('支付失败');
           POSTJSON(URL.paymentFeedbackPath, { err, type: 'fail' });
           dispatch({ type: 'PAY_FAILURE' });
         } else if (result === 'cancel') {
           // 支付取消
+          Toast('支付取消');
           POSTJSON(URL.paymentFeedbackPath, { err, type: 'cancel' });
           dispatch({ type: 'PAY_FAILURE' });
         }
@@ -50,10 +53,11 @@ export const getChargeData: Dispatch =
 (dispatch: Dispatch): void => {
   const result: Promise<Object> = GET(URL.getChargePath, params: Object);
   result.then((data) => {
-    if (data.code === 0) {
+    console.log('报名data:', data);
+    if (data.code == '001') {
       dispatch(pay({
-        amount:	params.amount,
-        channel: params.channel,
+        entityId:	params.activityId,
+        type: 1,
       }));
     } else {
       Toast.info(data.message);
