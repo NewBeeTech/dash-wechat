@@ -47,16 +47,16 @@ class ActivityContainer extends React.PureComponent {
     // 获取患者在该活动的状态
     this.props.dispatch(ActivityAction.getUserForDashData({activityId: this.props.params.activityId}));
   }
+  componentWillReceiveProps(nextProps) {
+    if(this.props.dashInfo != nextProps.props.dashInfo) {
+        this.setButton(this.props.params.type);
+    }
+  }
   setButton(type) {
     const isShow = moment().isBefore(this.props.dashInfo.get('endTime'));
     const isSignUp = this.props.isSignUp; // 1失败 0未支付 1成功 2运营拒绝 3用户取消
     const signNum = this.props.signNum;
-    console.warn(this.props.userData.get('userInfo').get('sex'));
     const sex = this.props.userData.get('userInfo').get('sex');
-    console.log('isShow', isShow);
-    console.log('isSignUp', isSignUp);
-    console.log('signNum',signNum);
-
     let buttonText = '报名';
     let status = true;
     if(isSignUp == 0 && ((sex == 1 && this.props.dashInfo.get('boyNum') == signNum) || (sex == 2 && this.props.dashInfo.get('grilNum') == signNum))) {
@@ -82,11 +82,10 @@ class ActivityContainer extends React.PureComponent {
     ])
   }
   showActivity(dashInfo, sex) {
-    console.warn(sex);
-    // if(!sex) {
-    //   this.props.dispatch(push(RoutingURL.Mine()));
-    //   return false;
-    // }
+    if(!sex) {
+      this.props.dispatch(push(RoutingURL.Mine()));
+      return false;
+    }
     const views = [];
     if(dashInfo.get('id')) {
       views.push(
