@@ -13,7 +13,7 @@ import { Toast } from 'antd-mobile';
 export const pay = (params: paymentParms): ThunkAction =>
 (dispatch: Dispatch): void => {
   dispatch({ type: 'PAY_REQUEST' });
-  const reponse = POSTJSON(URL.payPath, params);
+  const reponse = GET(URL.payPath, params);
   reponse.then(data => {
       console.log('支付data:', data);
     if (data.code != '001') {
