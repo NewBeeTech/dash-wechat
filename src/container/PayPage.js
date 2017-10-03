@@ -21,7 +21,7 @@ class PayPage extends React.PureComponent {
     };
   }
   componentWillMount() {
-    // this.setResidueTime();
+    this.setResidueTime();
   }
   setResidueTime(type) {
     const that = this;

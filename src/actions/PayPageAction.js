@@ -32,11 +32,13 @@ export const pay = (params: paymentParms): ThunkAction =>
           // 支付失败
             alert('失败');
           Toast.info('支付失败');
+          dispatch(push(RoutingURL.DashInfo(params.entityId, 'info')));
           dispatch({ type: 'PAY_FAILURE' });
         } else if (result === 'cancel') {
           // 支付取消
           alert('取消');
           Toast.info('支付取消');
+          dispatch(push(RoutingURL.DashInfo(params.entityId, 'info')));
           dispatch({ type: 'PAY_FAILURE' });
         }
       });

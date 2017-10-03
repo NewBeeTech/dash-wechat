@@ -23,7 +23,6 @@ class WechatImgList extends React.PureComponent {
       const views = [];
       if(imgList) {
         imgList.map((item, key) => {
-          console.log(JSON.stringify(item));
           views.push(
             <div key={key} className={styles.wechatImg}>
                 <div>
