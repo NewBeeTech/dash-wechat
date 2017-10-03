@@ -92,4 +92,4 @@ export const likeUPath: string = `${host}user/like`;
 export const getUserForDashDataPath: string = `${host}user/activityStatus`;
 
 // 取消报名
-export const cancelSignUpPath: string = `${host}`;
+export const cancelSignUpPath: string = `${host}activity/unsign`;
