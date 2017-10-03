@@ -129,12 +129,7 @@ class UserForm extends React.Component {
             <span className={styles.itemBorder} />
             <span className={styles.itemForm}>
               <Picker
-                extra="未知"
                 data={[
-                  {
-                    label: '未知',
-                    value: 0,
-                  },
                   {
                     label: '男',
                     value: 1,
