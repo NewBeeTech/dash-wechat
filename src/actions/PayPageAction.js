@@ -24,18 +24,18 @@ export const pay = (params: paymentParms): ThunkAction =>
         console.log('err:', err);
         if (result === 'success') {
           // 支付成功
-          alter('成功');
+          alert('成功');
           Toast.info('支付成功');
           dispatch(push(RoutingURL.DashInfo(params.entityId, 'info')));
           dispatch({ type: 'PAY_SUCCESS' });
         } else if (result === 'fail') {
           // 支付失败
-            alter('失败');
+            alert('失败');
           Toast.info('支付失败');
           dispatch({ type: 'PAY_FAILURE' });
         } else if (result === 'cancel') {
           // 支付取消
-          alter('取消');
+          alert('取消');
           Toast.info('支付取消');
           dispatch({ type: 'PAY_FAILURE' });
         }
