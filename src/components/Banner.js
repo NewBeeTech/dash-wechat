@@ -22,8 +22,9 @@ class Banner extends React.Component {
       <div
         className={styles.bashBanner}
         style={{
-          background: `url(${this.props.imgUrl || 'http://dash.oss-cn-beijing.aliyuncs.com/fe/default-banner.jpg'}) no-repeat`,
-          backgroundSize: 'cover',
+          backgroundImage: `url(${this.props.imgUrl || 'http://dash.oss-cn-beijing.aliyuncs.com/fe/default-banner.jpg'})`,
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: '100vw 53vw',
         }}
       >
         <WhiteSpace />

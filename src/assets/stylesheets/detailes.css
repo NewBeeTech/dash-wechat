@@ -53,7 +53,7 @@
   padding: 1vh 0 2vh;
 }
 .wechatImgText {
-  width: 20vw;
+  width: 25vw;
   text-align: center;
   margin: 2vh auto;
   background-color: var(--primaryColor);
@@ -90,6 +90,7 @@
 .wechatImgName {
   font-size: 3vw;
   color: #838383;
+  text-align: center;
 }
 
 .originatorDesc {
