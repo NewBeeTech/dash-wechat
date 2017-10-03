@@ -13,20 +13,23 @@ import ActivityContent from '../components/ActivityContent';
 import QrCode from '../components/QrCode';
 import SignUpButton from '../components/SignUpButton';
 import DashTabbar from '../components/DashTabbar';
-import { redux } from 'amumu';
+import { redux, decorators } from 'amumu';
 import moment from 'moment';
 import { Modal } from 'antd-mobile';
+import * as Immutable from 'immutable';
 
-const alert = Modal.alert; 
-
-const propTypes = {
-  children: PropTypes.node,
-  dispatch: PropTypes.func,
-  openid: PropTypes.string,
-};
+const alert = Modal.alert;
 
 @redux.ConnectStore
+@decorators.Loading(process.env.DEVICE)
+@decorators.PureComponent
 class ActivityContainer extends React.PureComponent {
+  static propTypes = {
+    isWant: PropTypes.bool,
+    dashInfo: PropTypes.instanceOf(Immutable.Map).isRequired,
+    isSignUp: PropTypes.number,
+    signNum: PropTypes.number,
+  };
   constructor(props: Object) {
     super(props);
     this.state = {
@@ -44,15 +47,19 @@ class ActivityContainer extends React.PureComponent {
     // 获取患者在该活动的状态
     this.props.dispatch(ActivityAction.getUserForDashData({id: this.props.params.activityId}));
   }
-
   setButton(type) {
     const isShow = moment().isBefore(this.props.dashInfo.get('endTime'));
+    const isSignUp = this.props.isSignUp; // 1失败 0未支付 1成功 2运营拒绝 3用户取消
+    const signNum = this.props.signNum;
     let buttonText = '报名';
     let status = true;
-    if(type === 'done') {
+    if(type === 'done' || isSignUp == 1) {
       buttonText = '取消报名';
-    }else if(type === 'cancel') {
+    }else if(type === 'cancel' || isSignUp == 3) {
       buttonText = '已取消报名';
+      status = false;
+    }else if(isSignUp == 2) {
+      buttonText = '运营拒绝';
       status = false;
     }
     this.setState({ buttonText, status, isShowButton: isShow });
@@ -64,82 +71,88 @@ class ActivityContainer extends React.PureComponent {
       { text: '确定', onPress: () => { this.props.dispatch(ActivityAction.cancelSginUp({ id: this.props.params.activityId })) } },
     ])
   }
+  showActivity(dashInfo) {
+    const views = [];
+    if(dashInfo.get('id')) {
+      views.push(
+        <div>
+         <div style={{ backgroundColor: '#EEEEEE', height: 'calc(100vh - 14vw)', overflow: 'scroll'}}>
+         <Banner
+           leftTopText={this.props.dashInfo.get('type')} // 活动类型 暂时隐藏
+           imgUrl={this.props.dashInfo.get('backgroundImg')}
+           handlerWantAction={() => {
+             const isWant = this.props.isWant;
+             this.props.dispatch(ActivityAction.chargeIsWant({
+                activityId: this.props.params.activityId,
+                type: Number(!isWant),
+             }));
+             this.props.changeAction('ActivityReducer/isWant', !isWant);
+           }}
+           isWant={this.props.isWant}
+         />
+         <div style={{ backgroundColor: '#fff', padding: '3vw'}}>
+           <ActivityTime
+             address={this.props.dashInfo.get('address')}
+             deadline={this.props.dashInfo.get('time')}
+             time={this.props.dashInfo.get('activityTime')}
+           />
+           <SignUpInfo
+              dashInfo={dashInfo}
+           />
+           <WechatImgList
+              wechatImgList={this.props.dashInfo.get('signupPeople')}
+              type={'报名'}
+              isShow={this.props.isSignUp == 1}
+           />
+         </div>
+         <ActivityContent
+             dashInfo={dashInfo}
+         />
+         <div style={{ backgroundColor: '#fff', padding: '1.5vh 0 2vh'}}>
+           <WechatImgList
+              wechatImgList={this.props.dashInfo.get('wantToPeople')}
+              type={'想去'}
+              isShow={true}
+           />
+         </div>
+         <QrCode />
+         {this.state.isShowButton ? <SignUpButton
+            buttonText={this.state.buttonText} // 按钮名称
+            status={this.state.status} // 是否点击
+            returnAction = {
+              () => { this.props.dispatch(goBack()) }
+            }
+            paymentAction = {() => {
+              const type = this.props.params.type;
+              if(type == 'done') {
+                this.cancelAction();
+              }else {
+                this.props.dispatch(push(RoutingURL.PayPage()))
+              }
+            }}
+         /> : <div />}
+       </div>
+       <DashTabbar />
+      </div>)
+    }
+    return views;
+  }
   render() {
     return (
       <div>
-        <div style={{ backgroundColor: '#EEEEEE', height: 'calc(100vh - 14vw)', overflow: 'scroll'}}>
-          <Banner
-            leftTopText={this.props.dashInfo.get('type')} // 活动类型 暂时隐藏
-            imgUrl={this.props.dashInfo.get('backgroundImg')}
-            handlerWantAction={() => {
-              const isWant = this.props.isWant;
-              this.props.dispatch(ActivityAction.chargeIsWant({
-                 activityId: this.props.params.activityId,
-                 type: Number(!isWant),
-              }));
-              
-              this.props.changeAction('ActivityReducer/isWant', !isWant);
-            }}
-            isWant={this.props.isWant}
-          />
-          <div style={{ backgroundColor: '#fff', padding: '3vw'}}>
-            <ActivityTime
-              address={this.props.dashInfo.get('address')}
-              deadline={this.props.dashInfo.get('time')}
-              time={this.props.dashInfo.get('activityTime')}
-            />
-            <SignUpInfo
-               originatorInfo={this.props.dashInfo.get('originatorInfo')}
-               boyNum={this.props.dashInfo.get('boyNum')}
-               girlNum={this.props.dashInfo.get('girlNum')}
-            />
-            <WechatImgList
-               wechatImgList={this.props.dashInfo.get('signupPeople')}
-               type={'报名'}
-               isShow={this.props.isSignUp}
-            />
-          </div>
-          <ActivityContent />
-          <div style={{ backgroundColor: '#fff', padding: '1.5vh 0 2vh'}}>
-            <WechatImgList
-               wechatImgList={this.props.dashInfo.get('wantToPeople')}
-               type={'想去'}
-               isShow={true}
-            />
-          </div>
-          <QrCode />
-          {this.state.isShowButton ? <SignUpButton
-             buttonText={this.state.buttonText} // 按钮名称
-             status={this.state.status} // 是否点击
-             returnAction = {
-               () => { this.props.dispatch(goBack()) }
-             }
-             paymentAction = {() => {
-               const type = this.props.params.type;
-               if(type == 'done') {
-                 this.cancelAction();
-               }else {
-                 this.props.dispatch(push(RoutingURL.PayPage()))
-               }
-             }}
-          /> : <div />}
-        </div>
-        <DashTabbar/>
+      {this.showActivity(this.props.dashInfo)}
       </div>
-    
     );
   }
 }
 
-ActivityContainer.propTypes = propTypes;
-
 const mapStateToProps = (state) => {
   return {
     dispatch: state.dispatch,
-    openid: state.UserReducer.get('openid'),
     isWant: state.ActivityReducer.get('isWant'),
     dashInfo: state.ActivityReducer.get('dashInfo'),
     isSignUp: state.ActivityReducer.get('isSignUp'),
+    signNum: state.ActivityReducer.get('signNum'),
   };
 };
 
