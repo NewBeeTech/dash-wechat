@@ -91,10 +91,10 @@ class ActivityContainer extends React.PureComponent {
   }
   showActivity(dashInfo, sex) {
     console.log('sex:', sex);
-    if(!sex) {
-      this.props.dispatch(push(RoutingURL.Mine()));
-      return false;
-    }
+    // if(!sex) {
+    //   this.props.dispatch(push(RoutingURL.Mine()));
+    //   return false;
+    // }
     const views = [];
     if(dashInfo.get('id')) {
       views.push(
@@ -121,22 +121,26 @@ class ActivityContainer extends React.PureComponent {
            <SignUpInfo
               dashInfo={dashInfo}
            />
-           <WechatImgList
-              wechatImgList={this.props.dashInfo.get('signupPeople')}
-              type={'报名'}
-              isShow={this.props.isSignUp == 1}
-           />
+           {this.props.dashInfo.get('signupPeople').toJS().length ?
+             <WechatImgList
+                wechatImgList={this.props.dashInfo.get('signupPeople')}
+                type={'报名'}
+                isShow={this.props.isSignUp == 1}
+             />
+           : <div />}
          </div>
          <ActivityContent
              dashInfo={dashInfo}
          />
-         <div style={{ backgroundColor: '#fff', padding: '1.5vh 0 2vh'}}>
-           <WechatImgList
-              wechatImgList={this.props.dashInfo.get('wantToPeople')}
-              type={'想去'}
-              isShow={true}
-           />
-         </div>
+         {this.props.dashInfo.get('wantToPeople').toJS().length ?
+           <div style={{ backgroundColor: '#fff', padding: '1.5vh 0 2vh'}}>
+             <WechatImgList
+                wechatImgList={this.props.dashInfo.get('wantToPeople')}
+                type={'想去'}
+                isShow={true}
+             />
+           </div>
+         : <div />}
          <QrCode />
          {this.state.isShowButton ? <SignUpButton
             buttonText={this.state.buttonText} // 按钮名称

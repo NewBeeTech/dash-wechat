@@ -102,7 +102,7 @@ new ActionHandler.handleAction(ActivityAction.GET_DASHINFO)
         originatorName: data.originUserName,
         originatorImg: data.originUserPortrait,
         originUserDesc: data.originUserDesc,
-        originUserUd: data.originUserUd,
+        originUserUd: data.originUserId,
       },
       introduce: data.desc,
       tips: data.var2, // 友情提示

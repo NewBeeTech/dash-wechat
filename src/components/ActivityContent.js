@@ -17,7 +17,7 @@ class ActivityContent extends React.PureComponent {
     const showTipsMessage = (tips) => {
       return (
         <div>
-          <div className={styles.messageRightDiv}>{tips}</div>
+          <pre style={{ lineHeight: '3vh' }}>{tips}</pre>
         </div>
       )
     }
@@ -55,7 +55,7 @@ class ActivityContent extends React.PureComponent {
                 </div>
                 <div className={styles.messageList}>
                   <div className={styles.messageLeftDiv} />
-                  <div className={styles.messageRightDiv}>{this.props.dashInfo.get('acvitivityFlow')}</div>
+                  <pre style={{ lineHeight: '3vh' }}>{this.props.dashInfo.get('acvitivityFlow')}</pre>
                 </div>
                 <div className={styles.contentTwoTitle}>
                   <div className={styles.contentTwoImg1}><img src={"http://dash.oss-cn-beijing.aliyuncs.com/fe/note.png"} width="100%" /></div>

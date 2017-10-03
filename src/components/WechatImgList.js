@@ -23,12 +23,13 @@ class WechatImgList extends React.PureComponent {
       const views = [];
       if(imgList) {
         imgList.map((item, key) => {
+          console.log(JSON.stringify(item));
           views.push(
             <div key={key} className={styles.wechatImg}>
                 <div>
-                    <img src={item.get('touxiang')} className={this.props.isShow ? styles.wechatImgItemShow : styles.wechatImgItem } />
+                    <img src={item.get('wxPortrait')} className={this.props.isShow ? styles.wechatImgItemShow : styles.wechatImgItem } />
                 </div>
-                <div className={styles.wechatImgName}>{item.get('name')}</div>
+                <div className={styles.wechatImgName}>{item.get('wxName')}</div>
             </div>
           );
         });
