@@ -80,9 +80,7 @@ class UserActivityList extends React.Component {
   renderCard(list) {
     const view = [];
     let info = '';
-    console.log('list', list.toJS());
     list.map((item, index) => {
-      console.log('item', item.toJS());
       if(item.get('status') === 1 ) info = 'done';
       if(item.get('status') === 0 ) info = 'primary';
       view.push(
