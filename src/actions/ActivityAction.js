@@ -5,6 +5,7 @@
 import { GET } from '../core/WS/WSHandler';
 import AsyncFetchHandler from '../core/AsyncFetchHandler';
 import * as URL from '../core/WS/URL';
+import { Toast } from 'antd-mobile';
 
 /**
  * 活动详情
