@@ -48,7 +48,7 @@ class ActivityContainer extends React.PureComponent {
     this.props.dispatch(ActivityAction.getUserForDashData({activityId: this.props.params.activityId}));
   }
   componentWillReceiveProps(nextProps) {
-    if(this.props.dashInfo != nextProps.props.dashInfo) {
+    if(this.props.dashInfo != nextProps.dashInfo) {
         this.setButton(this.props.params.type);
     }
   }
