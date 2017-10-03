@@ -31,7 +31,7 @@
    font-size: 4vw;
    color: #262626;
    margin-bottom: 1vw;
-} 
+}
 
 .dashTimeTwo {
    font-size: 3.5vw;
@@ -73,7 +73,7 @@
 
 .mars {
   width: 4vw;
-  margin-right: 2vw; 
+  margin-right: 2vw;
 }
 
 .dashBoy {
@@ -124,4 +124,9 @@
 
 :global(.am-list-body) {
   background-color: #F0F0F0 !important;
+}
+
+:global(.am-list-header) {
+  padding: 0 !important;
+  width: 100vw !important;
 }

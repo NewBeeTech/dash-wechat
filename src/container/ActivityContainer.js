@@ -132,7 +132,7 @@ class ActivityContainer extends React.PureComponent {
             }}
          /> : <div />}
        </div>
-       <DashTabbar />
+       <DashTabbar selected={1} />
       </div>)
     }
     return views;

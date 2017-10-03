@@ -4,10 +4,12 @@ import { connect } from 'react-redux';
 import * as Immutable from 'immutable';
 import { ListView } from 'antd-mobile';
 import * as styles from '../assets/stylesheets/dashList.css';
+import DashCarousel from '../components/DashCarousel';
 
 class ListComponents extends React.Component {
   static propTypes = {
     dataSource: PropTypes.instanceOf(Immutable.List).isRequired,
+    carouselImgs:  PropTypes.instanceOf(Immutable.List).isRequired,
     loadAction: PropTypes.func,
     dispatch: PropTypes.func,
     compontent: PropTypes.array,
@@ -38,14 +40,14 @@ class ListComponents extends React.Component {
       })
     }
   }
-  
+
   onEndReached = (event) => {
     //加载Action
-    if (this.state.isLoading && !this.props.hasMore) {
-      return;
+    if(this.props.hasMore) {
+      this.setState({isLoading: true });
+      this.props.loadAction();
     }
-    this.setState({isLoading: true });
-    this.props.loadAction();
+    return;
   }
   render() {
     const row = (dataRow) => {
@@ -56,17 +58,21 @@ class ListComponents extends React.Component {
         </div>
       )
     }
-
     return (
       <div style={{ width: '100%', backgroundColor: '#F0F0F0' }}>
       <ListView ref="lv"
+        renderHeader={() =>
+          <div className={styles.carousel} style={{ width: '100%' }}>
+             <DashCarousel carousel={this.props.carouselImgs}/>
+          </div>
+        }
         dataSource={this.state.dataSource}
         renderFooter={() => (<div style={{ padding: 30, textAlign: 'center' }}>
           {this.state.isLoading ? '加载更多...' : '到底了~'}
         </div>)}
         renderRow={row}
         style={{
-          height: '66vh',
+          height: '90vh',
           overflow: 'auto',
           marginBottom: '20vh',
         }}

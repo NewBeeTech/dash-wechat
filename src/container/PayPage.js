@@ -80,7 +80,7 @@ class PayPage extends React.PureComponent {
            </div>
          </div>
          {/*pay type*/}
-         <div 
+         <div
            className={payStyle.selectType}
            onClick={() => {
              const checked = this.state.checked;
@@ -91,7 +91,7 @@ class PayPage extends React.PureComponent {
             <div><img src={this.state.checked ? 'http://dash.oss-cn-beijing.aliyuncs.com/fe/支付选中.png' : 'http://dash.oss-cn-beijing.aliyuncs.com/fe/支付未选.png'} style={{ width: '3vh' }}/></div>
          </div>
          {/*pay button*/}
-         <div 
+         <div
            className={this.state.checked ? payStyle.payButton : payStyle.noPayButton}
            onClick={() => {
              if(this.state.checked) {
@@ -102,9 +102,9 @@ class PayPage extends React.PureComponent {
               确认支付  ￥{dashItem.cost}
          </div>
       </div>
-      <DashTabbar/>
+      <DashTabbar selected={1} />
       </div>
-      
+
     );
   }
 }
