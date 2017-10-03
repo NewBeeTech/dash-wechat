@@ -55,6 +55,7 @@ class PayPage extends React.PureComponent {
       return '满员'
     }
     const dashItem = JSON.parse(JSON.stringify(this.props.dashInfo));
+    const sex = this.props.userData.get('userInfo').get('sex');
     return (
       <div>
       <div style={{ backgroundColor: '#EEEEEE', height: 'calc(100vh - 14vw)'}} >
@@ -74,7 +75,7 @@ class PayPage extends React.PureComponent {
            <div className={payStyle.dashHeader}>
               <img src={'https://img.shaka.hsohealth.com/insurance/diet_banner_4_20170206.png'} className={payStyle.payImg} />
                <div>
-                   <div className={payStyle.money}>￥{dashItem.cost}</div>
+                   <div className={payStyle.money}>￥{sex == 1 ? dashItem.cost : dashItem.girlCost}</div>
                    <div className={payStyle.dashTitle}>{dashItem.title}</div>
                    <div className={payStyle.smallDashTitle}>{dashItem.address}({dashItem.activityTime})</div>
                </div>
@@ -100,7 +101,7 @@ class PayPage extends React.PureComponent {
              }
            }}
          >
-              确认支付  ￥{dashItem.cost}
+              确认支付  ￥{sex == 1 ? dashItem.cost : dashItem.girlCost}
          </div>
       </div>
       <DashTabbar selected={1} />
@@ -115,6 +116,7 @@ const mapStateToProps = (state) => {
     dispatch: state.dispatch,
     openid: state.UserReducer.get('openid'),
     dashInfo: state.ActivityReducer.get('dashInfo'),
+    userData: state.MineReducer.get('userData'),
   };
 };
 

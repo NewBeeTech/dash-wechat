@@ -18,7 +18,7 @@ import moment from 'moment';
 import { Modal } from 'antd-mobile';
 import * as Immutable from 'immutable';
 
-const alert = Modal.alert;
+const Alter = Modal.alert;
 
 @redux.ConnectStore
 @decorators.Loading(process.env.DEVICE)
@@ -51,13 +51,18 @@ class ActivityContainer extends React.PureComponent {
     const isShow = moment().isBefore(this.props.dashInfo.get('endTime'));
     const isSignUp = this.props.isSignUp; // 1失败 0未支付 1成功 2运营拒绝 3用户取消
     const signNum = this.props.signNum;
-    // const sex = this.props.sex;
+    console.warn(this.props.userData.get('userInfo').get('sex'));
+    const sex = this.props.userData.get('userInfo').get('sex');
     console.log('isShow', isShow);
     console.log('isSignUp', isSignUp);
     console.log('signNum',signNum);
-    // console.log('sex',sex);
+
     let buttonText = '报名';
     let status = true;
+    if(isSignUp == 0 && ((sex == 1 && this.props.dashInfo.get('boyNum') == signNum) || (sex == 2 && this.props.dashInfo.get('grilNum') == signNum))) {
+      buttonText = '同性报名人数已满';
+      status = false;
+    }
     if(type === 'done' || isSignUp == 1) {
       buttonText = '取消报名';
     }else if(type === 'cancel' || isSignUp == 3) {
@@ -67,20 +72,21 @@ class ActivityContainer extends React.PureComponent {
       buttonText = '运营拒绝';
       status = false;
     }
-    // if(sex == 1 && this.props.dashInfo.get('boyNum') == signNum || (sex == 2 && this.props.dashInfo.get('grilNum') == signNum)) {
-    //   buttonText = '同性报名人数已满';
-    //   status = false;
-    // }
-    this.setState({ buttonText, status, isShowButton: isShow });
+    this.setState({ buttonText, buttonText, status, isShowButton: isShow });
   }
   cancelAction() {
     // 取消报名
-    alert('取消报名', '确定取消报名么???', [
+    Alter('取消报名', '确定取消报名么???', [
       { text: '取消', onPress: () => console.log('cancel') },
       { text: '确定', onPress: () => { this.props.dispatch(ActivityAction.cancelSginUp({ id: this.props.params.activityId })) } },
     ])
   }
-  showActivity(dashInfo) {
+  showActivity(dashInfo, sex) {
+    console.warn(sex);
+    // if(!sex) {
+    //   this.props.dispatch(push(RoutingURL.Mine()));
+    //   return false;
+    // }
     const views = [];
     if(dashInfo.get('id')) {
       views.push(
@@ -148,8 +154,7 @@ class ActivityContainer extends React.PureComponent {
   render() {
     return (
       <div>
-      {console.log('sex:', this.props.sex)}
-      {this.showActivity(this.props.dashInfo)}
+      {this.showActivity(this.props.dashInfo, this.props.userData.get('userInfo').get('sex'))}
       </div>
     );
   }
@@ -162,7 +167,7 @@ const mapStateToProps = (state) => {
     dashInfo: state.ActivityReducer.get('dashInfo'),
     isSignUp: state.ActivityReducer.get('isSignUp'),
     signNum: state.ActivityReducer.get('signNum'),
-    sex: state.MineReducer.get('sex'),
+    userData: state.MineReducer.get('userData'),
   };
 };
 

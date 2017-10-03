@@ -30,12 +30,10 @@ export const pay = (params: paymentParms): ThunkAction =>
         } else if (result === 'fail') {
           // 支付失败
           Toast('支付失败');
-          POSTJSON(URL.paymentFeedbackPath, { err, type: 'fail' });
           dispatch({ type: 'PAY_FAILURE' });
         } else if (result === 'cancel') {
           // 支付取消
           Toast('支付取消');
-          POSTJSON(URL.paymentFeedbackPath, { err, type: 'cancel' });
           dispatch({ type: 'PAY_FAILURE' });
         }
       });
