@@ -63,8 +63,10 @@ export const getDashInfoData: Dispatch = (params): ThunkAction =>
      const result: Promise<> = GET(URL.cancelSignUpPath: string, params: Object);
      result.then(data => {
        if (data.code === '001') {
+         Toast.info('取消成功');
          dispatch(getUserForDashData({activityId: params.activityId}));
        } else {
+         Toast.info('取消失败');
          Toast.info(data.message);
        }
      });

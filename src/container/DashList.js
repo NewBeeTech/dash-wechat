@@ -27,8 +27,12 @@ class DashList extends React.Component {
     this.props.dispatch(DashListAction.getCarouselImgsData({ type: 1 }));
     // 获取活动列表
     this.props.dispatch(DashListAction.getDashListData(
-      { pageNum: this.props.pageNum, pageSize: this.props.pageSize }
+      { pageNum: this.props.pageNum, pageSize: this.props.pageSize, status: 1 }
     ));
+  }
+  componentWillUnmount() {
+    this.props.changeAction('DashListReducer/dashData/dashList',
+      Immutable.fromJS([]));
   }
   render() {
     return (

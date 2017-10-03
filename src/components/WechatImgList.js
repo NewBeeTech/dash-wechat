@@ -28,7 +28,6 @@ class WechatImgList extends React.PureComponent {
                 <div>
                     <img src={item.get('wxPortrait')} className={this.props.isShow ? styles.wechatImgItemShow : styles.wechatImgItem } />
                 </div>
-                <div className={styles.wechatImgName}>{item.get('wxName')}</div>
             </div>
           );
         });
