@@ -40,10 +40,7 @@ class PayPage extends React.PureComponent {
   }
   _submitApplicationAction() {
     const submitParams = {
-      entityId: this.props.dashInfo.get('id'),
-      type: 1,
-      amount:	createParams.amount,	// 支付金额
-      channel: 100,
+      activityId: this.props.dashInfo.get('id'),
     };
     this.props.dispatch(
       PayPageAction.getChargeData(submitParams)
