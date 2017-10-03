@@ -15,7 +15,6 @@ export const pay = (params: paymentParms): ThunkAction =>
   dispatch({ type: 'PAY_REQUEST' });
   const reponse = GET(URL.payPath, params);
   reponse.then(data => {
-      console.log('支付data:', data);
     if (data.code != '001') {
       alert('支付失败');
       dispatch({ type: 'PAY_FAILURE' });
@@ -50,7 +49,6 @@ export const getChargeData: Dispatch =
 (dispatch: Dispatch): void => {
   const result: Promise<Object> = GET(URL.getChargePath, params: Object);
   result.then((data) => {
-    console.log('报名data:', data);
     if (data.code == '001') {
       dispatch(pay({
         entityId:	params.activityId,
