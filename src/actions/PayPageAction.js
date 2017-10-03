@@ -22,16 +22,19 @@ export const pay = (params: paymentParms): ThunkAction =>
       pingpp.createPayment(data.data, (result, err) => {
         if (result === 'success') {
           // 支付成功
-          Toast('支付成功');
+          // Toast('支付成功');
+          alter('支付成功')
           dispatch(push(RoutingURL.DashInfo(params.entityId, 'info')));
           dispatch({ type: 'PAY_SUCCESS' });
         } else if (result === 'fail') {
           // 支付失败
-          Toast('支付失败');
+          // Toast('支付失败');
+            alter('支付失败')
           dispatch({ type: 'PAY_FAILURE' });
         } else if (result === 'cancel') {
           // 支付取消
-          Toast('支付取消');
+          // Toast('支付取消');
+            alter('支付取消')
           dispatch({ type: 'PAY_FAILURE' });
         }
       });

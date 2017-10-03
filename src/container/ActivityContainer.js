@@ -86,10 +86,10 @@ class ActivityContainer extends React.PureComponent {
     ])
   }
   showActivity(dashInfo, sex) {
-    if(!sex) {
-      this.props.dispatch(push(RoutingURL.Mine()));
-      return false;
-    }
+    // if(!sex) {
+    //   this.props.dispatch(push(RoutingURL.Mine()));
+    //   return false;
+    // }
     const views = [];
     if(dashInfo.get('id')) {
       views.push(
