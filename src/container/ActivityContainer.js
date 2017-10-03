@@ -37,6 +37,7 @@ class ActivityContainer extends React.PureComponent {
       buttonText: '',
       status: true,
       isShowButton: true,
+      sex: 0,
     };
   }
   componentWillMount() {
@@ -51,12 +52,15 @@ class ActivityContainer extends React.PureComponent {
     if(this.props.dashInfo != nextProps.dashInfo) {
         this.setButton(this.props.params.type);
     }
+    if(this.props.userData != nextProps.userData) {
+        this.setState({ sex: nextProps.userData.get('userInfo').get('sex')})
+    }
   }
   setButton(type) {
     const isShow = moment().isBefore(this.props.dashInfo.get('endTime'));
     const isSignUp = this.props.isSignUp; // 1失败 0未支付 1成功 2运营拒绝 3用户取消
     const signNum = this.props.signNum;
-    const sex = this.props.userData.get('userInfo').get('sex');
+    const sex = this.state.sex;
     let buttonText = '报名';
     let status = true;
     if(isSignUp == 0 && ((sex == 1 && this.props.dashInfo.get('boyNum') == signNum) || (sex == 2 && this.props.dashInfo.get('grilNum') == signNum))) {
@@ -153,7 +157,7 @@ class ActivityContainer extends React.PureComponent {
   render() {
     return (
       <div>
-      {this.showActivity(this.props.dashInfo, this.props.userData.get('userInfo').get('sex'))}
+      {this.showActivity(this.props.dashInfo, this.state.sex )}
       </div>
     );
   }
