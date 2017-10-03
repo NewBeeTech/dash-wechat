@@ -34,7 +34,7 @@ class ActivityContainer extends React.PureComponent {
     super(props);
     this.state = {
       weConfig: '',
-      buttonText: '',
+      buttonText: '报名',
       status: true,
       isShowButton: true,
       sex: 0,
@@ -42,7 +42,9 @@ class ActivityContainer extends React.PureComponent {
   }
   componentWillMount() {
     // 设置Button按钮
-    this.setButton(this.props.params.type);
+    if(this.props.dashInfo.get('id')) {
+      this.setButton(this.props.params.type, this.props.dashInfo);
+    }
     // 获取活动详情
     this.props.dispatch(ActivityAction.getDashInfoData({activityId: this.props.params.activityId}));
     // 获取患者在该活动的状态
@@ -51,21 +53,22 @@ class ActivityContainer extends React.PureComponent {
   this.setState({ sex: this.props.userData.get('userInfo').get('sex')})
   }
   componentWillReceiveProps(nextProps) {
-    if(this.props.dashInfo != nextProps.dashInfo) {
-        this.setButton(this.props.params.type);
+    if(this.props.dashInfo != nextProps.dashInfo && nextProps.dashInfo) {
+      console.log('1111');
+        this.setButton(this.props.params.type, nextProps.dashInfo);
     }
     if(this.props.userData != nextProps.userData) {
         this.setState({ sex: nextProps.userData.get('userInfo').get('sex')})
     }
   }
-  setButton(type) {
-    const isShow = moment().isBefore(this.props.dashInfo.get('endTime'));
+  setButton(type, dashInfo) {
+    const isShow = moment().isBefore(dashInfo.get('endTime'));
     const isSignUp = this.props.isSignUp; // 1失败 0未支付 1成功 2运营拒绝 3用户取消
     const signNum = this.props.signNum;
     const sex = this.state.sex;
     let buttonText = '报名';
     let status = true;
-    if(isSignUp == 0 && ((sex == 1 && this.props.dashInfo.get('boyNum') == signNum) || (sex == 2 && this.props.dashInfo.get('grilNum') == signNum))) {
+    if(isSignUp == 0 && ((sex == 1 && dashInfo.get('boyNum') == signNum) || (sex == 2 && dashInfo.get('grilNum') == signNum))) {
       buttonText = '同性报名人数已满';
       status = false;
     }
