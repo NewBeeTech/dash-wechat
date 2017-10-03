@@ -54,7 +54,6 @@ class ActivityContainer extends React.PureComponent {
   }
   componentWillReceiveProps(nextProps) {
     if(this.props.dashInfo != nextProps.dashInfo && nextProps.dashInfo) {
-      console.log('1111');
         this.setButton(this.props.params.type, nextProps.dashInfo);
     }
     if(this.props.userData != nextProps.userData) {
