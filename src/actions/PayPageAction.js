@@ -20,7 +20,7 @@ export const pay = (params: paymentParms): ThunkAction =>
       alert('支付失败');
       dispatch({ type: 'PAY_FAILURE' });
     } else {
-      pingpp.createPayment(data.data.charge, (result, err) => {
+      pingpp.createPayment(data.data, (result, err) => {
         if (result === 'success') {
           // 支付成功
           Toast('支付成功');
