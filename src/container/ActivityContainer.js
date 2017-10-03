@@ -91,6 +91,7 @@ class ActivityContainer extends React.PureComponent {
   }
   showActivity(dashInfo, sex) {
     console.log('sex:', sex);
+    alert(`姓别${sex}`);
     // if(!sex) {
     //   this.props.dispatch(push(RoutingURL.Mine()));
     //   return false;
