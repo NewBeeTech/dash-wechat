@@ -20,12 +20,11 @@ export const pay = (params: paymentParms): ThunkAction =>
       alert('支付失败');
       dispatch({ type: 'PAY_FAILURE' });
     } else {
-      pingpp.setAPURL('https://dev.shaco.hsohealth.com/alipay_in_weixin/index.html');
       pingpp.createPayment(data.data.charge, (result, err) => {
         if (result === 'success') {
           // 支付成功
           Toast('支付成功');
-          // dispatch(push(RoutingURL.DashInfo('info')));
+          dispatch(push(RoutingURL.DashInfo(params.entityId, 'info')));
           dispatch({ type: 'PAY_SUCCESS' });
         } else if (result === 'fail') {
           // 支付失败
