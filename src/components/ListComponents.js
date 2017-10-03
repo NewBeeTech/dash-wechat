@@ -63,12 +63,12 @@ class ListComponents extends React.Component {
       <ListView ref="lv"
         renderHeader={() =>
           <div className={styles.carousel} style={{ width: '100%' }}>
-             <DashCarousel carousel={this.props.carouselImgs}/>
+             <DashCarousel carousel={this.props.carouselImgs} />
           </div>
         }
         dataSource={this.state.dataSource}
         renderFooter={() => (<div style={{ padding: 30, textAlign: 'center' }}>
-          {this.state.isLoading ? '加载更多...' : '到底了~'}
+          {this.state.isLoading ? '加载更多...' : '暂无数据咯~'}
         </div>)}
         renderRow={row}
         style={{

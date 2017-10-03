@@ -35,26 +35,23 @@ class DashList extends React.Component {
       <div>
         <div style={{ backgroundColor: '#F0F0F0', height: 'calc(100vh - 14vw)', overflow: 'hidden' }} >
           <div>
-            {
-              this.props.dashData.get('dashList').toJS().length ?
-              <ListComponents
-                  dispatch={this.props.dispatch}
-                  dataSource={this.props.dashData.get('dashList')}
-                  carouselImgs={this.props.dashData.get('carouselImgs')}
-                  compontent={[DashCard]}
-                  loadAction={() => {
-                    if(this.props.hasMore) {
-                      let pageNum = this.props.pageNum;
-                      const pageSize = this.props.pageSize;
-                      // 获取活动列表
-                      this.props.dispatch(DashListAction.getDashListData(
-                        {pageNum: ++pageNum, pageSize }
-                      ));
-                    }
-                  }}
-                  hasMore={this.props.hasMore}
-              /> : <div />
-            }
+            <ListComponents
+                dispatch={this.props.dispatch}
+                dataSource={this.props.dashData.get('dashList')}
+                carouselImgs={this.props.dashData.get('carouselImgs')}
+                compontent={[DashCard]}
+                loadAction={() => {
+                  if(this.props.hasMore) {
+                    let pageNum = this.props.pageNum;
+                    const pageSize = this.props.pageSize;
+                    // 获取活动列表
+                    this.props.dispatch(DashListAction.getDashListData(
+                      {pageNum: ++pageNum, pageSize }
+                    ));
+                  }
+                }}
+                hasMore={this.props.hasMore}
+            />
            </div>
         </div>
         <DashTabbar selected={1} />
