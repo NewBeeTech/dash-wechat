@@ -53,10 +53,10 @@ export const getLikeActivityDataPath: string = `${host}activity/my/collect`;
  * 支付获取charge接口
  * @type {string}
  */
-export const getChargePath: string = `${host}`;
+export const getChargePath: string = `${host}order/create`;
 
 // 支付接口
-export const payPath: string = '';
+export const payPath: string = `${host}order/updateStatus`;
 
 // 支付回调接口
 export const paymentFeedbackPath: string = '';

@@ -51,6 +51,10 @@ class ActivityContainer extends React.PureComponent {
     const isShow = moment().isBefore(this.props.dashInfo.get('endTime'));
     const isSignUp = this.props.isSignUp; // 1失败 0未支付 1成功 2运营拒绝 3用户取消
     const signNum = this.props.signNum;
+    //
+    // console.log(isShow);
+    // console.log(isSignUp);
+    // console.log(signNum);
     let buttonText = '报名';
     let status = true;
     if(type === 'done' || isSignUp == 1) {

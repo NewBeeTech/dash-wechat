@@ -21,7 +21,7 @@ class PayPage extends React.PureComponent {
     };
   }
   componentWillMount() {
-    this.setResidueTime();
+    // this.setResidueTime();
   }
   setResidueTime(type) {
     const that = this;
@@ -40,6 +40,10 @@ class PayPage extends React.PureComponent {
   }
   _submitApplicationAction() {
     const submitParams = {
+      entityId: this.props.dashInfo.get('id'),
+      type: 1,
+      amount:	createParams.amount,	// 支付金额
+      channel: 100,
     };
     this.props.dispatch(
       PayPageAction.getChargeData(submitParams)

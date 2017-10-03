@@ -20,11 +20,11 @@ class Banner extends React.Component {
   render() {
     return (
       <div
+        className={styles.bashBanner}
         style={{
-          background: `url(${this.props.imgUrl || 'http://dash.oss-cn-beijing.aliyuncs.com/fe/default-banner.jpg'})`,
+          background: `url(${this.props.imgUrl || 'http://dash.oss-cn-beijing.aliyuncs.com/fe/default-banner.jpg'}) no-repeat`,
           backgroundSize: 'cover',
         }}
-        className={styles.bashBanner}
       >
         <WhiteSpace />
         <div className={styles.leftTopText}>{this.props.leftTopText}</div>
