@@ -27,13 +27,17 @@ export const getDashInfoData: Dispatch = (params): ThunkAction =>
  export const CHARGE_WANT: string = 'CHARGE_WANT';
  export const chargeIsWant: Dispatch = (params): ThunkAction =>
  (dispatch: Dispatch): void => {
-   AsyncFetchHandler(
-     CHARGE_WANT,
-     GET(URL.chargeIsWantPath: string, params: Object),
-     dispatch
-   );
+   const result: Promise<> = GET(URL.chargeIsWantPath: string, params: Object);
+   result.then(data => {
+     if (data.code === '001') {
+       dispatch(getUserForDashData());
+     } else {
+       Toast.info(data.message);
+     }
+   });
+   AsyncFetchHandler(CHARGE_WANT, result, dispatch);
  };
- 
+
  /**
   * 获取用户在该活动的信息
   * @type {String}
@@ -47,7 +51,7 @@ export const getDashInfoData: Dispatch = (params): ThunkAction =>
       dispatch
     );
   };
-  
+
   /**
    * 取消报名
    * @type {String}
@@ -55,9 +59,13 @@ export const getDashInfoData: Dispatch = (params): ThunkAction =>
    export const CANCEL_SIGNUP: string = 'CANCEL_SIGNUP';
    export const cancelSignUp: Dispatch = (params): ThunkAction =>
    (dispatch: Dispatch): void => {
-     AsyncFetchHandler(
-       CANCEL_SIGNUP,
-       GET(URL.cancelSignUpPath: string, params: Object),
-       dispatch
-     );
+     const result: Promise<> = GET(URL.cancelSignUpPath: string, params: Object);
+     result.then(data => {
+       if (data.code === '001') {
+         dispatch(getUserForDashData());
+       } else {
+         Toast.info(data.message);
+       }
+     });
+     AsyncFetchHandler(CANCEL_SIGNUP, result, dispatch);
    };

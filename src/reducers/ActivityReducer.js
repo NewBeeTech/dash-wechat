@@ -115,30 +115,20 @@ new ActionHandler.handleAction(ActivityAction.GET_DASHINFO)
   });
 
 const getIsWantHandler =
-new ActionHandler.handleAction(ActivityAction.CHARGE_WANT)
-    .success((state: stateType, action: Action) => {
-      const isWant = state.isWant;
-      return state.set('isWant', !isWant)
-                  .set('isFetching', false);
-    });
+new ActionHandler.handleAction(ActivityAction.CHARGE_WANT);
 
 const getUserForDashDataHandler =
     new ActionHandler.handleAction(ActivityAction.GET_USER_DASH_INFO)
-        .success((state: stateType, action: Action) => {
-          return state.set('isWant', action.data.isWant)
-                      .set('isSignUp', action.data.isSignUp)
-                      .set('isFetching', false);
-        });
-
-// 取消报名
-const cancelSignUpHandler =
-    new ActionHandler.handleAction(ActivityAction.CANCEL_SIGNUP)
         .success((state: stateType, action: Action) => {
           return state.set('isSignUp', action.data.signup)
                       .set('isWant', Boolean(action.data.collect))
                       .set('signNum', action.data.signNum)
                       .set('isFetching', false);
         });
+
+// 取消报名
+const cancelSignUpHandler =
+    new ActionHandler.handleAction(ActivityAction.CANCEL_SIGNUP);
 
 export default ActionHandler.handleActions(
   [ getActivityHandler, getIsWantHandler, getUserForDashDataHandler ],
