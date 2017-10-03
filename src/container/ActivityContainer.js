@@ -145,7 +145,7 @@ class ActivityContainer extends React.PureComponent {
               const type = this.props.params.type;
               const status = this.state.status;
               if(status) {
-                if(type == 'done' || buttonText === '取消报名') {
+                if(type == 'done' || this.state.buttonText === '取消报名') {
                   this.cancelAction();
                 }else {
                   this.props.dispatch(push(RoutingURL.PayPage()))
