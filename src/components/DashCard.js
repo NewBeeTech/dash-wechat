@@ -39,6 +39,7 @@ class DashCard extends React.PureComponent {
       }}
         key={this.props.dashItem.get('id')}
       >
+
          {/* 活动表头 */}
          <div className={styles.dashHeader}>
              {address ? <div className={styles.dashAddress} style={{ fontSize: `calc(12vw / (${address.length + 1}))`}}>

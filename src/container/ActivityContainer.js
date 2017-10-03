@@ -51,10 +51,11 @@ class ActivityContainer extends React.PureComponent {
     const isShow = moment().isBefore(this.props.dashInfo.get('endTime'));
     const isSignUp = this.props.isSignUp; // 1失败 0未支付 1成功 2运营拒绝 3用户取消
     const signNum = this.props.signNum;
-    //
-    // console.log(isShow);
-    // console.log(isSignUp);
-    // console.log(signNum);
+    const sex = this.props.sex;
+    console.log('isShow', isShow);
+    console.log('isSignUp', isSignUp);
+    console.log('signNum',signNum);
+    console.log('sex',sex);
     let buttonText = '报名';
     let status = true;
     if(type === 'done' || isSignUp == 1) {
@@ -64,6 +65,10 @@ class ActivityContainer extends React.PureComponent {
       status = false;
     }else if(isSignUp == 2) {
       buttonText = '运营拒绝';
+      status = false;
+    }
+    if(sex == 1 && this.props.dashInfo.get('boyNum') == signNum || (sex == 2 && this.props.dashInfo.get('grilNum') == signNum)) {
+      buttonText = '同性报名人数已满';
       status = false;
     }
     this.setState({ buttonText, status, isShowButton: isShow });
@@ -143,6 +148,7 @@ class ActivityContainer extends React.PureComponent {
   render() {
     return (
       <div>
+      {console.log('sex:', this.props.sex)}
       {this.showActivity(this.props.dashInfo)}
       </div>
     );
@@ -156,6 +162,7 @@ const mapStateToProps = (state) => {
     dashInfo: state.ActivityReducer.get('dashInfo'),
     isSignUp: state.ActivityReducer.get('isSignUp'),
     signNum: state.ActivityReducer.get('signNum'),
+    sex: state.MineReducer.get('sex'),
   };
 };
 

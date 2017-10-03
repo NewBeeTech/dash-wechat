@@ -30,7 +30,7 @@ export const getDashInfoData: Dispatch = (params): ThunkAction =>
    const result: Promise<> = GET(URL.chargeIsWantPath: string, params: Object);
    result.then(data => {
      if (data.code === '001') {
-       dispatch(getUserForDashData());
+       dispatch(getUserForDashData({activityId: params.activityId}));
      } else {
        Toast.info(data.message);
      }
@@ -62,7 +62,7 @@ export const getDashInfoData: Dispatch = (params): ThunkAction =>
      const result: Promise<> = GET(URL.cancelSignUpPath: string, params: Object);
      result.then(data => {
        if (data.code === '001') {
-         dispatch(getUserForDashData());
+         dispatch(getUserForDashData({activityId: params.activityId}));
        } else {
          Toast.info(data.message);
        }
