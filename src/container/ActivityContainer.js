@@ -34,7 +34,7 @@ class ActivityContainer extends React.PureComponent {
     super(props);
     this.state = {
       weConfig: '',
-      buttonText: '报名',
+      buttonText: '',
       status: true,
       isShowButton: true,
       sex: 0,
@@ -64,6 +64,8 @@ class ActivityContainer extends React.PureComponent {
         this.setButton(this.props.params.type, nextProps.dashInfo);
     }
     if(this.props.isSignUp != nextProps.isSignUp || this.props.signNum != nextProps.signNum) {
+      console.log('nextProps.isSignUp:', nextProps.isSignUp);
+      console.log('nextProps.signNum:', nextProps.signNum);
       this.setState({
         isSignUp: nextProps.isSignUp,
         signNum: nextProps.signNum,
