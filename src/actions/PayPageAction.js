@@ -34,7 +34,7 @@ export const pay = (params: paymentParms): ThunkAction =>
           dispatch({ type: 'PAY_FAILURE' });
           status = 3;
         }
-        dispatch(updatePayStatus({ status, pingxxId: data.data.id, entityId: params.entityId}));
+        dispatch(updatePayStatus({ status, pingxxId: data.data.id }));
       });
     }
   });
@@ -78,11 +78,10 @@ export const updatePayStatus: Dispatch =
   result.then((data) => {
     if (data.code == '001') {
       Toast.info('支付成功');
-      console.log('params.entityId:', params.entityId);
-      dispatch(push(RoutingURL.DashInfo(params.entityId, 'info')));
+      dispatch(push(RoutingURL.DashList()));
     } else {
       Toast.info(data.message);
-      dispatch(push(RoutingURL.DashInfo(params.entityId, 'info')));
+      dispatch(push(RoutingURL.DashList()));
     }
   });
   AsyncFetchHandler(

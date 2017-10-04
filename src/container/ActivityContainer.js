@@ -70,9 +70,7 @@ class ActivityContainer extends React.PureComponent {
           sex: nextProps.userData.get('userInfo').get('sex'),
          });
     }
-    if(this.props.dashInfo != nextProps.dashInfo && nextProps.dashInfo) {
-        this.setButton(this.props.params.type, nextProps.dashInfo);
-    }
+    this.setButton(this.props.params.type, nextProps.dashInfo);
   }
   setButton(type, dashInfo) {
     console.log('state:', this.state);
