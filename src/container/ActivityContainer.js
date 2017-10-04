@@ -59,13 +59,7 @@ class ActivityContainer extends React.PureComponent {
    });
   }
   componentWillReceiveProps(nextProps) {
-    if(this.props.dashInfo != nextProps.dashInfo && nextProps.dashInfo) {
-        console.log(' nextProps.dashInfo:',  nextProps.dashInfo);
-        this.setButton(this.props.params.type, nextProps.dashInfo);
-    }
     if(this.props.isSignUp != nextProps.isSignUp || this.props.signNum != nextProps.signNum) {
-      console.log('nextProps.isSignUp:', nextProps.isSignUp);
-      console.log('nextProps.signNum:', nextProps.signNum);
       this.setState({
         isSignUp: nextProps.isSignUp,
         signNum: nextProps.signNum,
@@ -76,13 +70,11 @@ class ActivityContainer extends React.PureComponent {
           sex: nextProps.userData.get('userInfo').get('sex'),
          });
     }
+    if(this.props.dashInfo != nextProps.dashInfo && nextProps.dashInfo) {
+        this.setButton(this.props.params.type, nextProps.dashInfo);
+    }
   }
-  // componentWillUnmount() {
-  //   this.props.changeAction('ActivityReducer/dashInfo',
-  //     Immutable.fromJS({}));
-  // }
   setButton(type, dashInfo) {
-    console.log('dashInfo:',JSON.stringify(dashInfo));
     console.log('state:', this.state);
     const signupStartTime = dashInfo.get('signupStartTime');
     const signupEndTime = dashInfo.get('signupEndTime');

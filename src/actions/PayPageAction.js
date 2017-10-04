@@ -78,9 +78,11 @@ export const updatePayStatus: Dispatch =
   result.then((data) => {
     if (data.code == '001') {
       Toast.info('支付成功');
+      console.log('params.entityId:', params.entityId);
       dispatch(push(RoutingURL.DashInfo(params.entityId, 'info')));
     } else {
       Toast.info(data.message);
+      dispatch(push(RoutingURL.DashInfo(params.entityId, 'info')));
     }
   });
   AsyncFetchHandler(
