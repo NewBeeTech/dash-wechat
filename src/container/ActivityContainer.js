@@ -75,10 +75,10 @@ class ActivityContainer extends React.PureComponent {
          });
     }
   }
-  componentWillUnmount() {
-    this.props.changeAction('ActivityReducer/dashInfo',
-      Immutable.fromJS({}));
-  }
+  // componentWillUnmount() {
+  //   this.props.changeAction('ActivityReducer/dashInfo',
+  //     Immutable.fromJS({}));
+  // }
   setButton(type, dashInfo) {
     console.log('dashInfo:',JSON.stringify(dashInfo));
     console.log('state:', this.state);
