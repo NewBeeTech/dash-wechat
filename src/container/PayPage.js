@@ -33,7 +33,7 @@ class PayPage extends React.PureComponent {
       }
       if(time <= 0) {
         clearInterval(interval);
-        that.props.dispatch(push(RoutingURL.ActivityDetails(1)));
+        that.props.dispatch(push(RoutingURL.ActivityDetails(this.props.dashInfo.get('id'), 'info')));
       }
       that.setState({ residueTime: --time });
     },1000);
