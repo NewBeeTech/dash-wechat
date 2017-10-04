@@ -6,6 +6,8 @@ import { GET } from '../core/WS/WSHandler';
 import AsyncFetchHandler from '../core/AsyncFetchHandler';
 import * as URL from '../core/WS/URL';
 import { Toast } from 'antd-mobile';
+import * as RoutingURL from '../core/RoutingURL/RoutingURL';
+import { push } from 'react-router-redux';
 
 /**
  * 活动详情
@@ -64,7 +66,7 @@ export const getDashInfoData: Dispatch = (params): ThunkAction =>
      result.then(data => {
        if (data.code === '001') {
          Toast.info('取消成功');
-         dispatch(getUserForDashData({activityId: params.activityId}));
+         dispatch(push(RoutingURL.DashList());
        } else {
          Toast.info('取消失败');
          Toast.info(data.message);
