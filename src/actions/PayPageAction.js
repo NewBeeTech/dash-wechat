@@ -23,10 +23,12 @@ export const pay = (params: paymentParms): ThunkAction =>
         let status = 2; //0失效1已支付2未支付3取消
         if (result === 'success') {
           // 支付成功
+          Toast.info('支付成功');
           dispatch({ type: 'PAY_SUCCESS' });
           status = 1;
         } else if (result === 'fail') {
           // 支付失败
+          Toast.info('支付失败');
           dispatch({ type: 'PAY_FAILURE' });
           status = 0;
         } else if (result === 'cancel') {
@@ -77,7 +79,6 @@ export const updatePayStatus: Dispatch =
   const result: Promise<Object> = GET(URL.updatePayStatusPath, params: Object);
   result.then((data) => {
     if (data.code == '001') {
-      Toast.info('支付成功');
       dispatch(push(RoutingURL.DashList()));
     } else {
       Toast.info(data.message);
