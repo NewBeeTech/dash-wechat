@@ -55,6 +55,8 @@ class PayPage extends React.PureComponent {
       return '满员'
     }
     const dashItem = JSON.parse(JSON.stringify(this.props.dashInfo));
+    console.log('payment:', dashItem);
+    console.log('payment:', dashItem.girlCost);
     const sex = this.props.userData.get('userInfo').get('sex');
     console.log('paypage sex:', sex);
     return (
