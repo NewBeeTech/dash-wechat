@@ -15,10 +15,10 @@ type stateType = Immutable.Map< 'isFetching' | 'errMsg' | any, any>;
 const defaultState: stateType = Immutable.Map({
   isFetching: false,
   errMsg: '',
-  index: 0,
-  isWant: false, // 是否关注
-  isSignUp: 0, // 报名状态 1失败 0未支付 1成功 2运营拒绝 3用户取消
-  signNum: 0, //同性报名人数
+  // index: 0,
+  // isWant: false, // 是否关注
+  // isSignUp: 0, // 报名状态 1失败 0未支付 1成功 2运营拒绝 3用户取消
+  // signNum: 0, //同性报名人数
   dashInfo: Immutable.Map({
     // address: '望京',
     // title: '大标题',

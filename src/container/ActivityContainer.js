@@ -38,6 +38,8 @@ class ActivityContainer extends React.PureComponent {
       status: true,
       isShowButton: true,
       sex: 0,
+      isSignUp: 0,
+      signNum: 0,
     };
   }
   componentWillMount() {
@@ -50,15 +52,27 @@ class ActivityContainer extends React.PureComponent {
     // 获取患者在该活动的状态
     this.props.dispatch(ActivityAction.getUserForDashData({activityId: this.props.params.activityId}));
 
-  this.setState({ sex: this.props.userData.get('userInfo').get('sex')})
+  this.setState({
+    sex: this.props.userData.get('userInfo').get('sex'),
+    isSignUp: this.props.isSignUp,
+    signNum: this.props.signNum,
+   });
   }
   componentWillReceiveProps(nextProps) {
     if(this.props.dashInfo != nextProps.dashInfo && nextProps.dashInfo) {
         console.log(' nextProps.dashInfo:',  nextProps.dashInfo);
         this.setButton(this.props.params.type, nextProps.dashInfo);
     }
+    if(this.props.isSignUp != nextProps.isSignUp || this.props.signNum != nextProps.signNum) {
+      this.setState({
+        isSignUp: nextProps.isSignUp,
+        signNum: nextProps.signNum,
+       });
+    }
     if(this.props.userData != nextProps.userData) {
-        this.setState({ sex: nextProps.userData.get('userInfo').get('sex')})
+        this.setState({
+          sex: nextProps.userData.get('userInfo').get('sex'),
+         });
     }
   }
   componentWillUnmount() {
@@ -66,12 +80,13 @@ class ActivityContainer extends React.PureComponent {
       Immutable.fromJS({}));
   }
   setButton(type, dashInfo) {
-    console.log('dashInfo:', dashInfo);
+    console.log('dashInfo:',JSON.stringify(dashInfo));
+    console.log('state:', this.state);
     const signupStartTime = dashInfo.get('signupStartTime');
     const signupEndTime = dashInfo.get('signupEndTime');
     const isShow = moment().isBefore(signupEndTime) && moment(signupStartTime).isBefore(moment());
-    const isSignUp = this.props.isSignUp; // 1失败 0未支付 1成功 2运营拒绝 3用户取消
-    const signNum = this.props.signNum;
+    const isSignUp = this.state.isSignUp; // 1失败 0未支付 1成功 2运营拒绝 3用户取消
+    const signNum = this.state.signNum;
     const sex = this.state.sex;
     let buttonText = '报名';
     let status = true;
