@@ -33,6 +33,7 @@ class DashList extends React.Component {
   componentWillUnmount() {
     this.props.changeAction('DashListReducer/dashData/dashList',
       Immutable.fromJS([]));
+    this.props.changeAction('DashListReducer/pageNum', 1);
   }
   render() {
     return (

@@ -54,14 +54,22 @@ class ActivityContainer extends React.PureComponent {
   }
   componentWillReceiveProps(nextProps) {
     if(this.props.dashInfo != nextProps.dashInfo && nextProps.dashInfo) {
+        console.log(' nextProps.dashInfo:',  nextProps.dashInfo);
         this.setButton(this.props.params.type, nextProps.dashInfo);
     }
     if(this.props.userData != nextProps.userData) {
         this.setState({ sex: nextProps.userData.get('userInfo').get('sex')})
     }
   }
+  componentWillUnmount() {
+    this.props.changeAction('ActivityReducer/dashInfo',
+      Immutable.fromJS({}));
+  }
   setButton(type, dashInfo) {
-    const isShow = moment().isBefore(dashInfo.get('endTime'));
+    console.log('dashInfo:', dashInfo);
+    const signupStartTime = dashInfo.get('signupStartTime');
+    const signupEndTime = dashInfo.get('signupEndTime');
+    const isShow = moment().isBefore(signupEndTime) && moment(signupStartTime).isBefore(moment());
     const isSignUp = this.props.isSignUp; // 1失败 0未支付 1成功 2运营拒绝 3用户取消
     const signNum = this.props.signNum;
     const sex = this.state.sex;
