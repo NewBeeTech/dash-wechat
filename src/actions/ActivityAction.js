@@ -66,7 +66,7 @@ export const getDashInfoData: Dispatch = (params): ThunkAction =>
      result.then(data => {
        if (data.code === '001') {
          Toast.info('取消成功');
-         dispatch(push(RoutingURL.DashList());
+         dispatch(push(RoutingURL.DashList()));
        } else {
          Toast.info('取消失败');
          Toast.info(data.message);
