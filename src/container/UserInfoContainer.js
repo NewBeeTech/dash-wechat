@@ -142,7 +142,7 @@ class UserInfoContainer extends React.Component {
             ]
         });
 
-        alert(`https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx186971588dd1f238&redirect_uri=http://dash.sameyou.cn/wx/outh/outh?page=${Base64.encode(`user-info/${this.props.userId}`)}&response_type=code&scope=snsapi_userinfo&state=STATE&connect_redirect=1#wechat_redirect`);
+        // alert(`https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx186971588dd1f238&redirect_uri=http://dash.sameyou.cn/wx/outh/outh?page=${Base64.encode(`user-info/${this.props.userId}`)}&response_type=code&scope=snsapi_userinfo&state=STATE&connect_redirect=1#wechat_redirect`);
         window.wx.onMenuShareTimeline({
           title: '我的个人信息',
           link: `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx186971588dd1f238&redirect_uri=http://dash.sameyou.cn/wx/outh/outh?page=${Base64.encode(`user-info/${this.props.userId}`)}&response_type=code&scope=snsapi_userinfo&state=STATE&connect_redirect=1#wechat_redirect`,
@@ -151,12 +151,12 @@ class UserInfoContainer extends React.Component {
         window.wx.onMenuShareAppMessage({
           title: '我的个人信息',
           desc: '',
-          link: `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx186971588dd1f238&redirect_uri=http://dash.sameyou.cn/wx/outh/outh?page=${Base64.encode(`user-info/${this.props.userId}`)}&response_type=code&scope=snsapi_userinfo&state=STATE&connect_redirect=1#wechat_redirect`,
+          link: `http://dash.sameyou.cn/wx/index.html#/user-info/${this.props.userId}?_k=qze0fo)`,
           imgUrl: `${this.props.userInfo.get('wxPortrait')}`,
           type: 'link',
           dataUrl: '',
           trigger: function (res) {
-              alert('用户点击分享到朋友圈',res);
+              alert('用户点击分享到朋友',res);
           },
           success: function (res) {
               alert('已分享',res);
