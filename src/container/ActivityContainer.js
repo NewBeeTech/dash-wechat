@@ -4,7 +4,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as ActivityAction from '../actions/ActivityAction';
 import * as RoutingURL from '../core/RoutingURL/RoutingURL';
-import { push, goBack } from 'react-router-redux';
+import { push } from 'react-router-redux';
 import Banner from '../components/Banner';
 import ActivityTime from '../components/ActivityTime';
 import SignUpInfo from '../components/SignUpInfo';

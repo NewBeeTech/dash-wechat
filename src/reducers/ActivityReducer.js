@@ -110,6 +110,7 @@ new ActionHandler.handleAction(ActivityAction.GET_DASHINFO)
       acvitivityFlow: data.var1, // 活动流程
       wantToPeople: data.collectUseList.slice(0, 4),
       signupPeople: data.signUseList.slice(0, 4),
+      sex: data.sex,
     };
     return state.set('dashInfo', Immutable.fromJS(dashInfo))
                 .set('isFetching', false);
