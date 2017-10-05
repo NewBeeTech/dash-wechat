@@ -253,6 +253,7 @@
   border: 1px solid #ffce3d;
   border-radius: 8px;
   position: relative;
+  max-width: 30%;
 }
 
 .wxPortrait {
