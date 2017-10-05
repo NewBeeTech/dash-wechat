@@ -46,9 +46,9 @@ class UserInfoContainer extends React.Component {
   }
   componentWillMount() {
     console.log(window.location.href.split('?')[1].split('/')[2]);
-    if(window.location.href.split('?')[1].split('/')[2] ) {
+    if(Number(window.location.href.split('?')[1].split('/')[2])) {
     // if(Number(this.props.params.tab)) {
-      dispatch(MineAction.getUserInfoById({ id: this.props.params.tab }));
+      dispatch(MineAction.getUserInfoById({ id: Number(window.location.href.split('?')[1].split('/')[2]) }));
     }
     this.setState({
       photos: this.props.userInfo.get('photos').split(','),
