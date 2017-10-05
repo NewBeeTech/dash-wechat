@@ -125,29 +125,29 @@ class UserActivityList extends React.Component {
   }
   render() {
     // 历史活动（活动时间已过 或者 已经取消的）
-    const historyDash = this.props.myDash.filter(item => {
-      const isDone = new Date(item.get('endTime')).getTime() < new Date().getTime();
-      if(isDone) {
-        return isDone;
-      } else {
-        return item.get('status' === 0);
-      }
-    });
-    // 正在进行的活动
-    const todoDash = this.props.myDash.filter(item => {
-      const isDone = new Date(item.get('endTime')).getTime() < new Date().getTime();
-      if(!isDone) {
-        return !isDone;
-      } else {
-        return item.get('status' === 1);
-      }
-    });
+    // const historyDash = this.props.myDash.filter(item => {
+    //   const isDone = new Date(item.get('endTime')).getTime() < new Date().getTime();
+    //   if(isDone) {
+    //     return isDone;
+    //   } else {
+    //     return item.get('status' === 0);
+    //   }
+    // });
+    // // 正在进行的活动
+    // const todoDash = this.props.myDash.filter(item => {
+    //   const isDone = new Date(item.get('endTime')).getTime() < new Date().getTime();
+    //   if(!isDone) {
+    //     return !isDone;
+    //   } else {
+    //     return item.get('status' === 1);
+    //   }
+    // });
     return (
       <div>
         <Accordion defaultActiveKey="0" className="my-accordion" style={{ marginBottom: '10vw'}}>
           <Accordion.Panel header="计划中的联谊">
             <List className="my-list">
-              {this.renderMyDash(todoDash, [1])}
+              {this.renderMyDash(this.props.myDash, [1])}
             </List>
           </Accordion.Panel>
           <Accordion.Panel header="想去的联谊" className="pad">
@@ -157,7 +157,7 @@ class UserActivityList extends React.Component {
           </Accordion.Panel>
           <Accordion.Panel header="联过的谊" className="pad">
             <List className="my-list">
-              {this.renderMyDash(historyDash, [2, 3, 4, 5])}
+              {this.renderMyDash(this.props.myDash, [2, 3, 4, 5])}
             </List>
           </Accordion.Panel>
         </Accordion>
