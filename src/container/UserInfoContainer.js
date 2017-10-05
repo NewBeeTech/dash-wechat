@@ -73,7 +73,7 @@ class UserInfoContainer extends React.Component {
       ...this.state,
     });
     this._getWeConfig(
-      location.href
+      location.href.split('?')[0]
       // location.origin + location.pathname + location.search
     );
     this._weChatShare();
