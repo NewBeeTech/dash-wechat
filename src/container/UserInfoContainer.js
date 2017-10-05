@@ -53,7 +53,7 @@ class UserInfoContainer extends React.Component {
     });
   }
   componentWillReceiveProps(nextProps) {
-    if(this.props.params.tab !== nextProps.params.tab) {
+    if(this.props.params.tab !== nextProps.params.tab || !this.props.userInfo.equals(nextProps.userInfo)) {
       this.setState({
         tags: nextProps.userInfo.get('tags').split(','),
         photos: nextProps.userInfo.get('photos').split(','),

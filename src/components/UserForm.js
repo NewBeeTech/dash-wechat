@@ -9,6 +9,7 @@ import * as styles from './../assets/stylesheets/mine.css'
 import moment from 'moment';
 import * as MineAction from './../actions/MineAction';
 import { dispatch } from './../index';
+import { createForm } from 'rc-form';
 
 type Props = {
   originPhone: string,
@@ -89,6 +90,7 @@ class UserForm extends React.Component {
     }
   }
   render() {
+    const { getFieldProps } = this.props.form;
     const { files } = this.state;
     const text = this.state.send ? '获取验证码' : this.state.wait + '秒后重发';
     return (
@@ -142,9 +144,13 @@ class UserForm extends React.Component {
                     label: '女',
                     value: 2,
                   }]}
-                value={this.props.sex}
+                {...getFieldProps('sex', {
+                   initialValue: this.props.sex,
+                   onChange: (e) => this.props.changeCell(e, 'sex'),
+                 })}
+                // defaultValue={this.props.sex}
                 cols={1}
-                onChange={(e) => this.props.changeCell(e, 'sex')}
+                // onChange={(e) => this.props.changeCell(e, 'sex')}
               >
                 <List.Item
                   arrow="horizontal"
@@ -163,10 +169,14 @@ class UserForm extends React.Component {
                 extra="请选择"
                 minDate={minDate}
                 maxDate={maxDate}
-                value={this.props.birth ? moment(this.props.birth) : ''}
-                onChange={(e) => {
-                  this.props.changeCell(e, 'birth')
-                }}
+                {...getFieldProps('birth', {
+                   initialValue: this.props.birth ? moment(this.props.birth) : '',
+                   onChange: (e) => this.props.changeCell(e, 'birth'),
+                 })}
+                // value={this.props.birth ? moment(this.props.birth) : ''}
+                // onChange={(e) => {
+                //   this.props.changeCell(e, 'birth')
+                // }}
               >
                 <List.Item
                   arrow="horizontal"
@@ -250,9 +260,13 @@ class UserForm extends React.Component {
                         label: '80万以上',
                         value: 6,
                       }]}
-                    value={this.props.income}
+                    {...getFieldProps('income', {
+                       initialValue: this.props.income,
+                       onChange: (e) => this.props.changeCell(e, 'income'),
+                     })}
+                    // value={this.props.income}
                     cols={1}
-                    onChange={(e) => this.props.changeCell(e, 'income')}
+                    // onChange={(e) => this.props.changeCell(e, 'income')}
                   >
                     <List.Item
                       arrow="horizontal"
@@ -294,4 +308,4 @@ class UserForm extends React.Component {
   }
 }
 
-export default UserForm;
+export default createForm()(UserForm);
