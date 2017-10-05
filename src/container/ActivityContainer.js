@@ -73,7 +73,6 @@ class ActivityContainer extends React.PureComponent {
     this.setButton(this.props.params.type, nextProps.dashInfo);
   }
   setButton(type, dashInfo) {
-    console.log('state:', this.state);
     const signupStartTime = dashInfo.get('signupStartTime');
     const signupEndTime = dashInfo.get('signupEndTime');
     const isShow = moment().isBefore(signupEndTime) && moment(signupStartTime).isBefore(moment());
