@@ -135,6 +135,13 @@ class UserInfoContainer extends React.Component {
         jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage'], // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
       });
       window.wx.ready(() => {
+        wx.checkJsApi({
+            jsApiList: [
+                'onMenuShareTimeline',
+                'onMenuShareAppMessage',
+            ]
+        });
+
         alert(`https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx186971588dd1f238&redirect_uri=http://dash.sameyou.cn/wx/outh/outh?page=${Base64.encode(`user-info/${this.props.userId}`)}&response_type=code&scope=snsapi_userinfo&state=STATE&connect_redirect=1#wechat_redirect`);
         window.wx.onMenuShareTimeline({
           title: '我的个人信息',
@@ -148,6 +155,18 @@ class UserInfoContainer extends React.Component {
           imgUrl: `${this.props.userInfo.get('wxPortrait')}`,
           type: 'link',
           dataUrl: '',
+          trigger: function (res) {
+              alert('用户点击分享到朋友圈',res);
+          },
+          success: function (res) {
+              alert('已分享',res);
+          },
+          cancel: function (res) {
+              alert('已取消',res);
+          },
+          fail: function (res) {
+              alert('wx.onMenuShareTimeline:fail: '+JSON.stringify(res));
+          }
         });
         window.wx.error((res) => {
           console.log('wx.error: ', JSON.stringify(res));
