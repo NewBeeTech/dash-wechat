@@ -58,6 +58,9 @@ export const getChargePath: string = `${host}activity/signup`;
 // 支付接口
 export const payPath: string = `${host}order/create`;
 
+// 支付回调
+export const updatePayStatusPath: string = `${host}order/updateStatus`;
+
 /**
  * 换一批标签
  * @type {string}

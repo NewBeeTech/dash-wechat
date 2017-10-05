@@ -27,34 +27,36 @@ class DashList extends React.Component {
     this.props.dispatch(DashListAction.getCarouselImgsData({ type: 1 }));
     // 获取活动列表
     this.props.dispatch(DashListAction.getDashListData(
-      { pageNum: this.props.pageNum, pageSize: this.props.pageSize }
+      { pageNum: this.props.pageNum, pageSize: this.props.pageSize, status: 1 }
     ));
+  }
+  componentWillUnmount() {
+    this.props.changeAction('DashListReducer/dashData/dashList',
+      Immutable.fromJS([]));
+    this.props.changeAction('DashListReducer/pageNum', 1);
   }
   render() {
     return (
       <div>
         <div style={{ backgroundColor: '#F0F0F0', height: 'calc(100vh - 14vw)', overflow: 'hidden' }} >
           <div>
-            {
-              this.props.dashData.get('dashList').toJS().length ?
-              <ListComponents
-                  dispatch={this.props.dispatch}
-                  dataSource={this.props.dashData.get('dashList')}
-                  carouselImgs={this.props.dashData.get('carouselImgs')}
-                  compontent={[DashCard]}
-                  loadAction={() => {
-                    if(this.props.hasMore) {
-                      let pageNum = this.props.pageNum;
-                      const pageSize = this.props.pageSize;
-                      // 获取活动列表
-                      this.props.dispatch(DashListAction.getDashListData(
-                        {pageNum: ++pageNum, pageSize }
-                      ));
-                    }
-                  }}
-                  hasMore={this.props.hasMore}
-              /> : <div />
-            }
+            <ListComponents
+                dispatch={this.props.dispatch}
+                dataSource={this.props.dashData.get('dashList')}
+                carouselImgs={this.props.dashData.get('carouselImgs')}
+                compontent={[DashCard]}
+                loadAction={() => {
+                  if(this.props.hasMore) {
+                    let pageNum = this.props.pageNum;
+                    const pageSize = this.props.pageSize;
+                    // 获取活动列表
+                    this.props.dispatch(DashListAction.getDashListData(
+                      {pageNum: ++pageNum, pageSize }
+                    ));
+                  }
+                }}
+                hasMore={this.props.hasMore}
+            />
            </div>
         </div>
         <DashTabbar selected={1} />

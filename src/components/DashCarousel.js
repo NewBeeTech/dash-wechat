@@ -20,28 +20,42 @@ class DashCarousel extends React.Component {
       if(data) {
         this.props.carousel.map((v, k) => (
           views.push(
-            <div className={styles.CarouselImg} key={k}
-               onClick={() => Window.open(v.get('url'))}
-            >
-              <img src={v.get('img')} width="100%" height="100%" />
+            <div key={k}>
+              <img src={v.get('img')} className={styles.CarouselImg} />
             </div>
           )
         ))
       }
       return views;
     }
+    const showImgs = (carousel) => {
+      const views = [];
+      if(carousel.toJS().length > 1) {
+        views.push(
+          <Carousel
+              className="my-carousel"
+              autoplay
+              infinite
+              selectedIndex={this.state.selectedIndex}
+              swipeSpeed={35}
+            >
+              {showImg(this.props.carousel)}
+            </Carousel>
+          );
+      }else if(carousel.toJS().length == 1) {
+          views.push(
+            <div>
+              <img src={carousel.toJS()[0].img} className={styles.CarouselImg} />
+            </div>
+          );
+      }
+      return views;
+    }
+
     return (
       <div className={styles.carousel}>
-        <Carousel
-            className="my-carousel"
-            autoplay
-            infinite
-            selectedIndex={this.state.selectedIndex}
-            swipeSpeed={35}
-          >
-            {showImg(this.props.carousel)}
-          </Carousel>
-        </div>
+        {showImgs(this.props.carousel)}
+      </div>
     );
   }
 }
