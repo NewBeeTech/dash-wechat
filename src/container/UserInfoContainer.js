@@ -45,7 +45,9 @@ class UserInfoContainer extends React.Component {
     this.state = {};
   }
   componentWillMount() {
-    if(Number(this.props.params.tab)) {
+    console.log(window.location.href.split('?')[1].split('/')[1]);
+    if(window.location.href.split('?')[1].split('/')[1] ) {
+    // if(Number(this.props.params.tab)) {
       dispatch(MineAction.getUserInfoById({ id: this.props.params.tab }));
     }
     this.setState({
