@@ -6,7 +6,7 @@ import * as Immutable from 'immutable';
 import type { Dispatch } from '../../actions/types';
 import { TabBar } from 'antd-mobile';
 import * as styles from './../assets/stylesheets/mine.css'
-import { push } from 'react-router-redux';
+import { push, replace } from 'react-router-redux';
 import * as RoutingURL from './../core/RoutingURL/RoutingURL';
 import { dispatch } from './../index';
 
@@ -37,7 +37,7 @@ class DashTabbar extends React.Component {
           className={styles.tab}
           onClick={() => {
             this.setState({ selected: 1 });
-            dispatch(push(RoutingURL.DashList()))
+            dispatch(replace(RoutingURL.DashList()))
           }}
         >
           {selected === 1 ? <img src="http://dash.oss-cn-beijing.aliyuncs.com/fe/dash_checked.png" /> :
@@ -49,7 +49,7 @@ class DashTabbar extends React.Component {
           className={styles.tab}
           onClick={() => {
             this.setState({ selected: 2 });
-            dispatch(push(RoutingURL.Mine()));
+            dispatch(replace(RoutingURL.Mine()));
           }}
         >
           {selected === 2 ? <img src="http://dash.oss-cn-beijing.aliyuncs.com/fe/mine_checked.png" /> :
