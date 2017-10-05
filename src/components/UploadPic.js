@@ -37,7 +37,7 @@ class UploadPic extends React.Component {
         <Upload beforeUpload={(file) => this.beforeUpload(file, 0)} ref="inner">
           <div
             className={styles.uploadButton}
-            style={this.props.photos[0] ? {background: `url(${this.props.photos[0]})`, backgroundSize: 'cover'} : {}}
+            style={this.props.photos[0] ? {backgroundSize: 'cover', backgroundRepeat: 'no-repeat',  backgroundImage: `url(${this.props.photos[0]})` } : {}}
           >
             {this.props.photos[0] ? '' : <img width="20%" src="http://dash.oss-cn-beijing.aliyuncs.com/fe/add_pic.png"/>}
           </div>
@@ -46,7 +46,7 @@ class UploadPic extends React.Component {
           <Upload beforeUpload={(file) => this.beforeUpload(file, 1)} ref="inner">
             <div
               className={styles.uploadButton2}
-              style={this.props.photos[1] ? {background: `url(${this.props.photos[1]})`, backgroundSize: 'cover'} : {}}
+              style={this.props.photos[1] ? {backgroundSize: 'cover', backgroundRepeat: 'no-repeat',  backgroundImage: `url(${this.props.photos[0]})`} : {}}
             >
               {this.props.photos[1] ? '' : <img width="20%" src="http://dash.oss-cn-beijing.aliyuncs.com/fe/add_pic.png"/>}
             </div>
@@ -54,7 +54,7 @@ class UploadPic extends React.Component {
           <Upload beforeUpload={(file) => this.beforeUpload(file, 2)} ref="inner">
             <div
               className={styles.uploadButton2}
-              style={this.props.photos[2] ? {background: `url(${this.props.photos[2]})`, backgroundSize: 'cover', marginTop: '1vw'} : {marginTop: '1vw'}}
+              style={this.props.photos[2] ? {backgroundSize: 'cover', backgroundRepeat: 'no-repeat',  backgroundImage: `url(${this.props.photos[0]})`, marginTop: '1vw'} : {marginTop: '1vw'}}
             >
               {this.props.photos[2] ? '' : <img width="20%" src="http://dash.oss-cn-beijing.aliyuncs.com/fe/add_pic.png"/>}
             </div>

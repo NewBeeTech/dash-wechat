@@ -125,7 +125,7 @@
   width: 30vw;
   text-align: center;
   color: #888;
-  font-size: 3.8vw;
+  font-size: 3.6vw;
 }
 
 .itemBorder {
@@ -155,29 +155,31 @@
 
 .itemForm input {
   background-color: #F3F3F3;
-  border: 1px solid #F3F3F3;
+  border: 0px solid #F3F3F3;
   width: 47vw;
   padding-right: 3vw;
   text-align: right;
   color: #888;
-  font-size: 3.8vw;
+  font-size: 3.6vw;
 }
 
 .code input {
   background-color: #F3F3F3;
-  border: 1px solid #F3F3F3;
+  border: 0px solid #F3F3F3;
   width: 22vw;
   padding-left: 3vw;
   text-align: left;
   color: #888;
-  font-size: 3.8vw;
+  font-size: 3.6vw;
 }
 
 .uploadPic {
   width: 100vw;
   margin: 0 auto;
   display: flex;
+  background-repeat: no-repeat;
 }
+
 .uploadButton {
   display: flex;
   align-items: center;

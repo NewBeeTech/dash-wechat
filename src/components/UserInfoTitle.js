@@ -25,7 +25,7 @@ class UserInfoTitle extends React.Component {
   props: Props;
   renderAvator(avator) {
     return(
-      <div className={styles.avator} style={{ background: `url(${avator})`, backgroundSize: 'cover'}} />
+      <div className={styles.avator} style={{ background: `url(${avator})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover'}} />
     )
   }
   render() {

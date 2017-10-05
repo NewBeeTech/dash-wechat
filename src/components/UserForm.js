@@ -131,6 +131,10 @@ class UserForm extends React.Component {
               <Picker
                 data={[
                   {
+                    label: '请选择',
+                    value: 0,
+                  },
+                  {
                     label: '男',
                     value: 1,
                   },

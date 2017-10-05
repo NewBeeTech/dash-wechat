@@ -113,7 +113,8 @@ class UserInfoContainer extends React.Component {
     if(!params.photos) return Toast.info('请上传个人照片!', 1);
     if(!params.phone) {
       return Toast.info('请填写手机号码!', 1);
-    } else {
+    } else if(!(/^1[3|4|5|7|8]\d{9}$/.test(params.phone))) {
+        return Toast.info('请填写正确的手机号码', 1);
       if(params.phone !== this.props.userInfo.get('phone')) {
         if(!params.code) {
           return Toast.info('请填写验证码!', 1);
@@ -128,6 +129,7 @@ class UserInfoContainer extends React.Component {
       if(!params.var3) return Toast.info('请填写家乡!', 1);
       if(params.income === '') return Toast.info('请选择收入!', 1);
     }
+    console.log(params);
     if(this.state.phone !== this.props.userInfo.get('phone')) {
       dispatch(MineAction.checkMbCode(params));
     } else {
