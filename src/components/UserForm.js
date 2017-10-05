@@ -30,7 +30,7 @@ const minDate = moment('1970-01-01 +0800', 'YYYY-MM-DD Z').utcOffset(8);
 
 class UserForm extends React.Component {
   state = {
-    wait: 10,
+    wait: 60,
     send: true,
   }
   componentWillMount() {
@@ -38,13 +38,13 @@ class UserForm extends React.Component {
   componentWillReceiveProps(nextProps) {
     if(this.props.tab === 'edit' && nextProps.tab === '') {
       this.setState({
-        wait: 10,
+        wait: 60,
         send: true,
       });
     }
     if(this.props.tab === '' && nextProps.tab === 'edit') {
       this.setState({
-        wait: 10,
+        wait: 60,
         send: false,
       });
     }
@@ -66,7 +66,7 @@ class UserForm extends React.Component {
             this.setState({
               send: true
             });
-            wait = 10;
+            wait = 60;
             clearTimeout(this.timer);
           }
           this.setState({
