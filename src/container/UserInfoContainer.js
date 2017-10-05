@@ -64,7 +64,7 @@ class UserInfoContainer extends React.Component {
         position: nextProps.userInfo.get('position'),
         profession: nextProps.userInfo.get('profession'),
         hometown: nextProps.userInfo.get('var3'),
-        income: nextProps.userInfo.get('income'),
+        income: [nextProps.userInfo.get('income')],
         var4: nextProps.userInfo.get('var4'),
         code: '',
       });
