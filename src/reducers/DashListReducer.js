@@ -83,6 +83,7 @@ new ActionHandler.handleAction(DashListAction.GET_DASHLIST)
           boyNum: item.sexRate ? getPeopleNum(item.sexRate.split(':')[0], item.mCount) : 0,
           girlNum: item.sexRate ? getPeopleNum(item.sexRate.split(':')[1], item.wCount) : 0,
           title: item.name,
+          smallTitle: item.var3,
         });
       })
     }
@@ -92,7 +93,7 @@ new ActionHandler.handleAction(DashListAction.GET_DASHLIST)
                 .set('hasMore', hasMore)
                 .set('isFetching', false);
   });
-  
+
   const getCarouselImgsHandler =
   new ActionHandler.handleAction(DashListAction.GET_CAROUSELIMGS)
     .success((state: stateType, action: Action) => {

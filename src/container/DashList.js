@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as Immutable from 'immutable';
 import * as DashListAction from '../actions/DashListAction';
+import * as MineAction from './../actions/MineAction';
 import DashCard from '../components/DashCard';
 import DashTabbar from '../components/DashTabbar';
 import type { Dispatch } from '../../actions/types';
@@ -29,6 +30,7 @@ class DashList extends React.Component {
     this.props.dispatch(DashListAction.getDashListData(
       { pageNum: this.props.pageNum, pageSize: this.props.pageSize, status: 1 }
     ));
+    this.props.dispatch(MineAction.getUserInfo());
   }
   componentWillUnmount() {
     this.props.changeAction('DashListReducer/dashData/dashList',

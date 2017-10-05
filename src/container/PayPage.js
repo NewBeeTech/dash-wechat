@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import * as Immutable from 'immutable';
 import * as styles from '../assets/stylesheets/dashList.css';
 import * as payStyle from '../assets/stylesheets/payPage.css';
-import { push } from 'react-router-redux';
+import { push, replace } from 'react-router-redux';
 import * as RoutingURL from '../core/RoutingURL/RoutingURL';
 import * as PayPageAction from '../actions/PayPageAction';
 import DashTabbar from '../components/DashTabbar';
@@ -33,7 +33,7 @@ class PayPage extends React.PureComponent {
       }
       if(time <= 0) {
         clearInterval(interval);
-        that.props.dispatch(push(RoutingURL.ActivityDetails(that.props.dashInfo.get('id'), 'info')));
+        that.props.dispatch(replace(RoutingURL.ActivityDetails(that.props.dashInfo.get('id'), 'info')));
       }
       that.setState({ residueTime: --time });
     },1000);

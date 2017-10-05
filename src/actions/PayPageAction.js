@@ -7,7 +7,7 @@ import AsyncFetchHandler from '../core/AsyncFetchHandler';
 import * as URL from '../core/WS/URL';
 import pingpp from 'pingpp-js';
 import * as RoutingURL from '../core/RoutingURL/RoutingURL';
-import { push } from 'react-router-redux';
+import { push, pop } from 'react-router-redux';
 import { Toast } from 'antd-mobile';
 
 export const pay = (params: paymentParms): ThunkAction =>
@@ -79,10 +79,9 @@ export const updatePayStatus: Dispatch =
   const result: Promise<Object> = GET(URL.updatePayStatusPath, params: Object);
   result.then((data) => {
     if (data.code == '001') {
-      dispatch(push(RoutingURL.DashList()));
+      dispatch(replace(RoutingURL.DashList()));
     } else {
       Toast.info(data.message);
-      dispatch(push(RoutingURL.DashList()));
     }
   });
   AsyncFetchHandler(

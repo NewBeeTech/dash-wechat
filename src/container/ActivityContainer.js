@@ -4,7 +4,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as ActivityAction from '../actions/ActivityAction';
 import * as RoutingURL from '../core/RoutingURL/RoutingURL';
-import { push, goBack } from 'react-router-redux';
+import { push } from 'react-router-redux';
 import Banner from '../components/Banner';
 import ActivityTime from '../components/ActivityTime';
 import SignUpInfo from '../components/SignUpInfo';
@@ -37,26 +37,24 @@ class ActivityContainer extends React.PureComponent {
       buttonText: '',
       status: true,
       isShowButton: true,
-      sex: 0,
       isSignUp: 0,
       signNum: 0,
     };
   }
   componentWillMount() {
-    // 设置Button按钮
-    if(this.props.dashInfo.get('id')) {
-      this.setButton(this.props.params.type, this.props.dashInfo);
-    }
     // 获取活动详情
     this.props.dispatch(ActivityAction.getDashInfoData({activityId: this.props.params.activityId}));
     // 获取患者在该活动的状态
     this.props.dispatch(ActivityAction.getUserForDashData({activityId: this.props.params.activityId}));
 
-  this.setState({
-    sex: this.props.userData.get('userInfo').get('sex'),
-    isSignUp: this.props.isSignUp,
-    signNum: this.props.signNum,
-   });
+    this.setState({
+      isSignUp: this.props.isSignUp,
+      signNum: this.props.signNum,
+     });
+     // 设置Button按钮
+     if(this.props.dashInfo.get('id')) {
+       this.setButton(this.props.params.type, this.props.dashInfo);
+     }
   }
   componentWillReceiveProps(nextProps) {
     if(this.props.isSignUp != nextProps.isSignUp || this.props.signNum != nextProps.signNum) {
@@ -64,11 +62,6 @@ class ActivityContainer extends React.PureComponent {
         isSignUp: nextProps.isSignUp,
         signNum: nextProps.signNum,
        });
-    }
-    if(this.props.userData != nextProps.userData) {
-        this.setState({
-          sex: nextProps.userData.get('userInfo').get('sex'),
-         });
     }
     this.setButton(this.props.params.type, nextProps.dashInfo);
   }
@@ -78,7 +71,7 @@ class ActivityContainer extends React.PureComponent {
     const isShow = moment().isBefore(signupEndTime) && moment(signupStartTime).isBefore(moment());
     const isSignUp = this.state.isSignUp; // 1失败 0未支付 1成功 2运营拒绝 3用户取消
     const signNum = this.state.signNum;
-    const sex = this.state.sex;
+    const sex = this.props.userData.get('userInfo').get('sex');
     let buttonText = '报名';
     let status = true;
     if(isSignUp == 0 && ((sex == 1 && dashInfo.get('boyNum') == signNum) || (sex == 2 && dashInfo.get('grilNum') == signNum))) {
