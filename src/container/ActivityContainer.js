@@ -72,7 +72,6 @@ class ActivityContainer extends React.PureComponent {
     const isSignUp = this.state.isSignUp; // 1失败 0未支付 1成功 2运营拒绝 3用户取消
     const signNum = this.state.signNum;
     const sex = this.props.userData.get('userInfo').get('sex');
-    alert(`性别${sex}`);
     let buttonText = '报名';
     let status = true;
     if(isSignUp == 0 && ((sex == 1 && dashInfo.get('boyNum') == signNum) || (sex == 2 && dashInfo.get('grilNum') == signNum))) {
