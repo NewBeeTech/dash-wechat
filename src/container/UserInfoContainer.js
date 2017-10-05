@@ -53,9 +53,20 @@ class UserInfoContainer extends React.Component {
     });
   }
   componentWillReceiveProps(nextProps) {
-    if(this.props.tab !== nextProps.tab) {
+    if(this.props.params.tab !== nextProps.params.tab) {
       this.setState({
         tags: nextProps.userInfo.get('tags').split(','),
+        photos: nextProps.userInfo.get('photos').split(','),
+        sex: [nextProps.userInfo.get('sex')],
+        birth: nextProps.userInfo.get('birth'),
+        phone: nextProps.userInfo.get('phone'),
+        height: nextProps.userInfo.get('var2'),
+        position: nextProps.userInfo.get('position'),
+        profession: nextProps.userInfo.get('profession'),
+        hometown: nextProps.userInfo.get('var3'),
+        income: nextProps.userInfo.get('income'),
+        var4: nextProps.userInfo.get('var4'),
+        code: '',
       });
     }
     if(!this.props.moreTags.equals(nextProps.moreTags)) {

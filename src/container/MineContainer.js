@@ -21,7 +21,8 @@ const propTypes = {
 class MineContainer extends React.Component {
   componentWillMount() {
     dispatch(MineAction.getUserInfo());
-    dispatch(MineAction.getUserActivityData());
+    dispatch(MineAction.getUserActivityData(1));
+    dispatch(MineAction.getUserActivityData(4));
     dispatch(MineAction.getLikeActivityData());
   }
   shouldComponentUpdate(nextProps, nextState) {

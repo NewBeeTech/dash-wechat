@@ -122,7 +122,7 @@
 }
 
 .item {
-  width: 30vw;
+  width: 35vw;
   text-align: center;
   color: #888;
   font-size: 3.6vw;
@@ -134,33 +134,34 @@
 }
 
 .itemForm {
-  width: 55vw;
+  width: 45vw;
 }
 
 .code {
-  width: 28vw;
+  width: 20vw;
 }
 
 .sendCode {
-  width: 22vw;
+  width: 20vw;
   height: 6vw;
   background: #ffce3d;
   text-align: center;
   color: #000;
   border-radius: 8px;
-  font-size: 3.5vw;
-  line-height: 6vw;
+  font-size: 3.2vw;
+  line-height: 6.4vw;
   margin-right: 5vw;
 }
 
 .itemForm input {
   background-color: #F3F3F3;
   border: 0px solid #F3F3F3;
-  width: 47vw;
+  width: 40vw;
   padding-right: 3vw;
   text-align: right;
   color: #888;
-  font-size: 3.6vw;
+  font-size: 3.8vw;
+  line-height: 3.8vw;
 }
 
 .code input {
@@ -170,7 +171,8 @@
   padding-left: 3vw;
   text-align: left;
   color: #888;
-  font-size: 3.6vw;
+  font-size: 3.8vw;
+  line-height: 3.8vw;
 }
 
 .uploadPic {
