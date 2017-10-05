@@ -135,6 +135,7 @@ class UserInfoContainer extends React.Component {
         jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage'], // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
       });
       window.wx.ready(() => {
+        alert(`https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx186971588dd1f238&redirect_uri=http://dash.sameyou.cn/wx/outh/outh?page=${Base64.encode(`user-info/${this.props.userId}`)}&response_type=code&scope=snsapi_userinfo&state=STATE&connect_redirect=1#wechat_redirect`);
         window.wx.onMenuShareTimeline({
           title: '我的个人信息',
           link: `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx186971588dd1f238&redirect_uri=http://dash.sameyou.cn/wx/outh/outh?page=${Base64.encode(`user-info/${this.props.userId}`)}&response_type=code&scope=snsapi_userinfo&state=STATE&connect_redirect=1#wechat_redirect`,
