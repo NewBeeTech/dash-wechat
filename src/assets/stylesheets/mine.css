@@ -272,6 +272,7 @@
 .wxName {
   font-size: 3.5vw;
   color: #000;
+  text-align: center;
 }
 
 :global(.am-list-item .am-list-line .am-list-extra) {
