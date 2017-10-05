@@ -40,7 +40,7 @@ class UserActivityList extends React.Component {
     const statusColor = { 1: '#ffce3d', 2: '#f40',  3: '#999', 4: '#ffce3d', 5: '#999' };
     const info = { 1: 'done', 2: 'primary',  3: 'cancel', 4: 'primary',  5: 'primary' };
     list.map((item, index) => {
-      if(item.get('status').indexOf(status) > -1) {
+      if(status.indexOf(item.get('status')) > -1) {
         view.push(
           <List.Item
             key={index}
