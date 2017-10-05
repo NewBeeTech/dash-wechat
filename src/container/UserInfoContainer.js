@@ -45,9 +45,7 @@ class UserInfoContainer extends React.Component {
     this.state = {};
   }
   componentWillMount() {
-    console.log(window.location.href.split('?')[1].split('/')[2]);
     if(Number(window.location.href.split('?')[1].split('/')[2])) {
-    // if(Number(this.props.params.tab)) {
       dispatch(MineAction.getUserInfoById({ id: Number(window.location.href.split('?')[1].split('/')[2]) }));
     }
     this.setState({
@@ -74,10 +72,7 @@ class UserInfoContainer extends React.Component {
     this.setState({
       ...this.state,
     });
-    this._getWeConfig(
-      location.href.split('#')[0]
-      // location.origin + location.pathname + location.search
-    );
+    this._getWeConfig(location.href.split('#')[0]);
     this._weChatShare();
   }
   componentWillReceiveProps(nextProps) {
@@ -102,7 +97,6 @@ class UserInfoContainer extends React.Component {
         moreTags: nextProps.moreTags,
       });
     }
-    console.log(nextProps);
     if (nextProps.timestamp && nextProps.nonceStr && nextProps.signature) {
       const timestamp = nextProps.timestamp;
       const nonceStr = nextProps.nonceStr;
@@ -113,7 +107,6 @@ class UserInfoContainer extends React.Component {
       this.setState({
         ...this.state,
       });
-      console.log(this.state);
       this._weChatShare();
     }
   }
@@ -121,7 +114,6 @@ class UserInfoContainer extends React.Component {
   //   return shallowCompare(this, nextProps, nextState);
   // }
   _getWeConfig(currentURL) {
-    alert(currentURL);
     this.props.dispatch(
       WechatAuthAction.getWeConfigDate({ url: currentURL })
     );
@@ -137,17 +129,9 @@ class UserInfoContainer extends React.Component {
         jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage'], // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
       });
       window.wx.ready(() => {
-        wx.checkJsApi({
-            jsApiList: [
-                'onMenuShareTimeline',
-                'onMenuShareAppMessage',
-            ]
-        });
-
-        // alert(`https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx186971588dd1f238&redirect_uri=http://dash.sameyou.cn/wx/outh/outh?page=${Base64.encode(`user-info/${this.props.userId}`)}&response_type=code&scope=snsapi_userinfo&state=STATE&connect_redirect=1#wechat_redirect`);
         window.wx.onMenuShareTimeline({
           title: '我的个人信息',
-          link: `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx186971588dd1f238&redirect_uri=http://dash.sameyou.cn/wx/outh/outh?page=${Base64.encode(`user-info/${this.props.userId}`)}&response_type=code&scope=snsapi_userinfo&state=STATE&connect_redirect=1#wechat_redirect`,
+          link: `http://dash.sameyou.cn/wx/index.html#/user-info/${this.props.userId}?_k=qze0fo)`,
           imgUrl: `${this.props.userInfo.get('wxPortrait')}`,
         });
         window.wx.onMenuShareAppMessage({
@@ -157,18 +141,6 @@ class UserInfoContainer extends React.Component {
           imgUrl: `${this.props.userInfo.get('wxPortrait')}`,
           type: 'link',
           dataUrl: '',
-          trigger: function (res) {
-              alert('用户点击分享到朋友',res);
-          },
-          success: function (res) {
-              alert('已分享',res);
-          },
-          cancel: function (res) {
-              alert('已取消',res);
-          },
-          fail: function (res) {
-              alert('wx.onMenuShareTimeline:fail: '+JSON.stringify(res));
-          }
         });
         window.wx.error((res) => {
           console.log('wx.error: ', JSON.stringify(res));
@@ -238,7 +210,6 @@ class UserInfoContainer extends React.Component {
       if(!params.var3) return Toast.info('请填写家乡!', 1);
       if(params.income === '') return Toast.info('请选择收入!', 1);
     }
-    console.log(params);
     if(this.state.phone !== this.props.userInfo.get('phone')) {
       dispatch(MineAction.checkMbCode(params));
     } else {
@@ -267,7 +238,7 @@ class UserInfoContainer extends React.Component {
               phone={this.props.userInfo.get('phone')}
               wxPortrait={this.props.userInfo.get('wxPortrait')}
               avator={avator}
-              tab={this.props.params.tab}
+              visible={window.location.href.split('?')[1].split('/')[2]}
             />
           }
           {this.props.params.tab === 'edit' ? '':
@@ -297,7 +268,7 @@ class UserInfoContainer extends React.Component {
           />
         </div>
         {
-          Number(this.props.params.id) ? '' :
+          Number(window.location.href.split('?')[1].split('/')[2]) ? '' :
           <EditBar
             text={this.props.params.tab === 'edit' ? '完成了' : '编辑'}
             tab={this.props.params.tab}

@@ -30,7 +30,7 @@ class UserInfoTitle extends React.Component {
     )
   }
   render() {
-    const gender = {0: '未知', 1: '男', 2: '女'};
+    const gender = {0: '', 1: '男', 2: '女'};
     return (
       <List className="my-list">
         <Item
@@ -42,7 +42,7 @@ class UserInfoTitle extends React.Component {
           <span style={{ fontSize: '4vw', color: '#999' }}>{gender[this.props.sex]}</span>&nbsp;&nbsp;
           <span style={{ fontSize: '4vw', color: '#999' }}>{this.props.age ? `${this.props.age}岁` : ''}</span>
           {
-            Number(this.props.tab) ? '' :
+            Number(this.props.visible) ? '' :
             <Brief style={{ fontSize: '4vw', color: '#999' }}>
               手机：{this.props.phone}
             </Brief>
