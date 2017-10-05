@@ -62,9 +62,6 @@ class UserInfoContainer extends React.Component {
       tags: this.props.userInfo.get('tags').split(','),
       moreTags: this.props.moreTags,
       code: '',
-      // timestamp: this.props.timestamp, // 必填，生成签名的时间戳
-      // nonceStr: this.props.nonceStr, // 必填，生成签名的随机串
-      // signature: this.props.signature,// 必填，签名，见附录1
     });
     const timestamp = this.props.timestamp;
     const nonceStr = this.props.nonceStr;
@@ -76,8 +73,8 @@ class UserInfoContainer extends React.Component {
       ...this.state,
     });
     this._getWeConfig(
-      location.href.split('#')[0],
-      // location.origin + location.pathname + location.search,
+      location.href
+      // location.origin + location.pathname + location.search
     );
     this._weChatShare();
   }
@@ -122,6 +119,7 @@ class UserInfoContainer extends React.Component {
   //   return shallowCompare(this, nextProps, nextState);
   // }
   _getWeConfig(currentURL) {
+    alert(currentURL);
     this.props.dispatch(
       WechatAuthAction.getWeConfigDate({ url: currentURL })
     );
