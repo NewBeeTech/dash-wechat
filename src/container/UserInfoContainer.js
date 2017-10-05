@@ -13,6 +13,8 @@ import * as styles from './../assets/stylesheets/mine.css';
 import * as MineAction from './../actions/MineAction';
 import { dispatch } from './../index';
 import moment from 'moment';
+import * as WechatAuthAction from './../actions/WechatAuthAction';
+var Base64 = require('js-base64').Base64;
 
 const propTypes = {
   children: PropTypes.node,
@@ -33,9 +35,19 @@ type state = {
   code: string,
   tags: Array,
   moreTags: any,
+  timestamp: string | number,
+  nonceStr: string,
+  signature: string,
 };
 class UserInfoContainer extends React.Component {
+  constructor(props: Object) {
+    super(props);
+    this.state = {};
+  }
   componentWillMount() {
+    if(Number(this.props.params.tab)) {
+      dispatch(MineAction.getUserInfoById({ id: this.props.params.tab }));
+    }
     this.setState({
       photos: this.props.userInfo.get('photos').split(','),
       phone: this.props.userInfo.get('phone'),
@@ -50,7 +62,24 @@ class UserInfoContainer extends React.Component {
       tags: this.props.userInfo.get('tags').split(','),
       moreTags: this.props.moreTags,
       code: '',
+      // timestamp: this.props.timestamp, // 必填，生成签名的时间戳
+      // nonceStr: this.props.nonceStr, // 必填，生成签名的随机串
+      // signature: this.props.signature,// 必填，签名，见附录1
     });
+    const timestamp = this.props.timestamp;
+    const nonceStr = this.props.nonceStr;
+    const signature = this.props.signature;
+    this.state.timestamp = timestamp;
+    this.state.nonceStr = nonceStr;
+    this.state.signature = signature;
+    this.setState({
+      ...this.state,
+    });
+    this._getWeConfig(
+      location.href.split('#')[0],
+      // location.origin + location.pathname + location.search,
+    );
+    this._weChatShare();
   }
   componentWillReceiveProps(nextProps) {
     if(this.props.params.tab !== nextProps.params.tab || !this.props.userInfo.equals(nextProps.userInfo)) {
@@ -74,10 +103,59 @@ class UserInfoContainer extends React.Component {
         moreTags: nextProps.moreTags,
       });
     }
+    console.log(nextProps);
+    if (nextProps.timestamp && nextProps.nonceStr && nextProps.signature) {
+      const timestamp = nextProps.timestamp;
+      const nonceStr = nextProps.nonceStr;
+      const signature = nextProps.signature;
+      this.state.timestamp = timestamp;
+      this.state.nonceStr = nonceStr;
+      this.state.signature = signature;
+      this.setState({
+        ...this.state,
+      });
+      console.log(this.state);
+      this._weChatShare();
+    }
   }
   // shouldComponentUpdate(nextProps, nextState) {
   //   return shallowCompare(this, nextProps, nextState);
   // }
+  _getWeConfig(currentURL) {
+    this.props.dispatch(
+      WechatAuthAction.getWeConfigDate({ url: currentURL })
+    );
+  }
+  _weChatShare() {
+    if(this.state.timestamp) {
+      window.wx.config({
+        debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+        appId: 'wx186971588dd1f238', // 必填，企业号的唯一标识，此处填写企业号corpid
+        timestamp: this.state.timestamp, // 必填，生成签名的时间戳
+        nonceStr: this.state.nonceStr, // 必填，生成签名的随机串
+        signature: this.state.signature,// 必填，签名，见附录1
+        jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage'], // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+      });
+      window.wx.ready(() => {
+        window.wx.onMenuShareTimeline({
+          title: '我的个人信息',
+          link: `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx186971588dd1f238&redirect_uri=http://dash.sameyou.cn/wx/outh/outh?page=${Base64.encode(`user-info/${this.props.userId}`)}&response_type=code&scope=snsapi_userinfo&state=STATE&connect_redirect=1#wechat_redirect`,
+          imgUrl: `${this.props.userInfo.get('wxPortrait')}`,
+        });
+        window.wx.onMenuShareAppMessage({
+          title: '我的个人信息',
+          desc: '',
+          link: `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx186971588dd1f238&redirect_uri=http://dash.sameyou.cn/wx/outh/outh?page=${Base64.encode(`user-info/${this.props.userId}`)}&response_type=code&scope=snsapi_userinfo&state=STATE&connect_redirect=1#wechat_redirect`,
+          imgUrl: `${this.props.userInfo.get('wxPortrait')}`,
+          type: 'link',
+          dataUrl: '',
+        });
+        window.wx.error((res) => {
+          console.log('wx.error: ', JSON.stringify(res));
+        });
+      });
+    }
+  }
   changeCell(value, title){
     const item = this.state[title];
     this.state[title] = value;
@@ -169,6 +247,7 @@ class UserInfoContainer extends React.Component {
               phone={this.props.userInfo.get('phone')}
               wxPortrait={this.props.userInfo.get('wxPortrait')}
               avator={avator}
+              tab={this.props.params.tab}
             />
           }
           {this.props.params.tab === 'edit' ? '':
@@ -197,11 +276,14 @@ class UserInfoContainer extends React.Component {
             addTag={(index, item) => this.addTag(index, item)}
           />
         </div>
-        <EditBar
-          text={this.props.params.tab === 'edit' ? '完成了' : '编辑'}
-          tab={this.props.params.tab}
-          submitHandler={() => this.submitHandler()}
-        />
+        {
+          Number(this.props.params.id) ? '' :
+          <EditBar
+            text={this.props.params.tab === 'edit' ? '完成了' : '编辑'}
+            tab={this.props.params.tab}
+            submitHandler={() => this.submitHandler()}
+          />
+        }
       </div>
     );
   }
@@ -216,6 +298,9 @@ const mapStateToProps = (state) => {
     userInfo: state.MineReducer.get('userData').get('userInfo'),
     moreTags: state.MineReducer.get('tags'),
     activityInfo: state.MineReducer.get('userData').get('activityInfo'),
+    timestamp: state.UserReducer.get('timestamp'),
+    nonceStr: state.UserReducer.get('nonceStr'),
+    signature: state.UserReducer.get('signature'),
   };
 };
 

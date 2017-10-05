@@ -25,6 +25,20 @@ export const getUserInfo: Dispatch =
   );
 };
 /**
+ * 获取用户信息by id
+ * @type {String}
+ */
+export const GET_USER_INFOBYID: string = 'GET_USER_INFOBYID';
+export const getUserInfoById: Dispatch =
+(params: {openid: ?string}): ThunkAction =>
+(dispatch: Dispatch): void => {
+  AsyncFetchHandler(
+    GET_USER_INFOBYID,
+    GET(URL.getUserInfoByIdPath: string, params: Object),
+    dispatch
+  );
+};
+/**
  * 更新用户信息
  * @type {String}
  */

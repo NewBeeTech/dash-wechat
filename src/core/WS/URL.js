@@ -96,3 +96,9 @@ export const getUserForDashDataPath: string = `${host}user/activityStatus`;
 
 // 取消报名
 export const cancelSignUpPath: string = `${host}activity/unsign`;
+
+// wx配置
+export const getWeConfigPath: string = `${host}wx/share/sign`;
+
+// getUserInfoByIdPath
+export const getUserInfoByIdPath: string = `${host}user/getById`;

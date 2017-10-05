@@ -116,7 +116,7 @@ class UserActivityList extends React.Component {
         >
           {this.state.like === item.get(0) ?
           <div className={styles.like}><img width="40px" src="http://dash.oss-cn-beijing.aliyuncs.com/fe/like.png" /></div> :''}
-          <div className={styles.wxPortrait}><img width="100%" src={item.get(2)} /></div>
+          <div className={styles.wxPortrait}><img width="100%" src={item.get(2).split(',')[0]} /></div>
           <div className={styles.wxName}>{item.get(1)}</div>
         </div>
       );

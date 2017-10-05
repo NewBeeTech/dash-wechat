@@ -8,25 +8,26 @@ const ActionHandler = redux.ActionHandler;
 
 type stateType = Immutable.Map< 'isFetching' | 'errMsg' | any | 'userInfo', any>;
 
-const defaultState = Immutable.Map({
+const defaultState: stateType = Immutable.Map({
   isFetching: false,
   errMsg: '',
-  openid: '',
+  timestamp: '',
+  nonceStr: '',
+  signature: '',
 });
 
-const getOpenIdHandler = new ActionHandler.handleAction(WechatAuthAction.GET_OPENID)
-  .success((state: stateType, action: Action) => {
-    // console.log('state', state.toJS());
-    // console.log('succcess', action);
-    // console.log('after sate', state.set('openid', action.data.openid).toJS());
-    return state.set('openid', action.data.openid);
-  }).failure((state: stateType, action) => {
-    console.log('failure', action);
-    return state.set('openid', '');
+const getWeConfigDateHandler = new ActionHandler.handleAction(WechatAuthAction.GET_WECONFIG)
+  .success((state: stateType, action) => {
+    return state
+    .set('timestamp', action.data.timestamp)
+    .set('nonceStr', action.data.nonceStr)
+    .set('signature', action.data.signature)
+    .set('isFetching', false);
   });
 
+
 export default ActionHandler.handleActions(
-  [getOpenIdHandler],
+  [getWeConfigDateHandler],
   defaultState,
   /^UserReducer\//,
 );

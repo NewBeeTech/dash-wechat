@@ -14,6 +14,7 @@ type Props = {
   phone: number,
   wxPortrait: string,
   avator: string,
+  tab: string,
 };
 
 const Item = List.Item;
@@ -40,9 +41,12 @@ class UserInfoTitle extends React.Component {
           <span style={{ fontSize: '6vw' }}>{this.props.wxName}</span>&nbsp;&nbsp;
           <span style={{ fontSize: '4vw', color: '#999' }}>{gender[this.props.sex]}</span>&nbsp;&nbsp;
           <span style={{ fontSize: '4vw', color: '#999' }}>{this.props.age ? `${this.props.age}岁` : ''}</span>
-          <Brief style={{ fontSize: '4vw', color: '#999' }}>
-            手机：{this.props.phone}
-          </Brief>
+          {
+            Number(this.props.tab) ? '' :
+            <Brief style={{ fontSize: '4vw', color: '#999' }}>
+              手机：{this.props.phone}
+            </Brief>
+          }
         </Item>
       </List>
     );

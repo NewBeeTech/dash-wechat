@@ -124,6 +124,15 @@ new ActionHandler.handleAction(MineAction.GET_USER_INFO)
                 .setIn(['userData', 'userInfo', 'birth'], Immutable.fromJS(action.data.birth) || '')
                 .set('isFetching', false);
   });
+const getUserInfoByIdHandler =
+new ActionHandler.handleAction(MineAction.GET_USER_INFOBYID)
+  .success((state: stateType, action: Action) => {
+    return state.setIn(['userData', 'userInfo'], Immutable.fromJS(action.data))
+                .setIn(['userData', 'userInfo', 'photos'], Immutable.fromJS(action.data.photos) || '')
+                .setIn(['userData', 'userInfo', 'tags'], Immutable.fromJS(action.data.tags) || '')
+                .setIn(['userData', 'userInfo', 'birth'], Immutable.fromJS(action.data.birth) || '')
+                .set('isFetching', false);
+  });
 const updateUserInfoHandler =
 new ActionHandler.handleAction(MineAction.UPDATE_USER_INFO)
   .success((state: stateType, action: Action) => {
@@ -164,6 +173,7 @@ new ActionHandler.handleAction(MineAction.UPDATE_USER_INFO)
 export default ActionHandler.handleActions(
   [
     getUserInfoHandler,
+    getUserInfoByIdHandler,
     updateUserInfoHandler,
     getUserActivityInfoHandler,
     getLikeActivityInfoHandler,

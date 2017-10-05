@@ -2,7 +2,7 @@
  * @flow
  */
 
-import { GET } from '../core/WS/WSHandler';
+import { GET, POSTJSON } from '../core/WS/WSHandler';
 import AsyncFetchHandler from '../core/AsyncFetchHandler';
 import * as URL from '../core/WS/URL';
 import type, { ThunkAction, Dispatch } from './types';
@@ -21,14 +21,25 @@ export const getWxAuth2 =
 (params: params): ThunkAction =>
 (dispatch: Dispatch): void => {
   const result: Promise<> = GET(URL.getWxAuth2Path: string, params);
-  // result.then(data => {
-  //   console.log(data);
-  //   if (data.code === '009' || data.code === '001' ) {
-  //     // dispatch(getUserInfo());
-  //   }
-  // });
   AsyncFetchHandler(
     GET_WX_AUTH2,
+    result,
+    dispatch
+  );
+};
+
+
+/**
+ * 获取we.config
+ * @type {String}
+ */
+export const GET_WECONFIG = 'GET_WECONFIG';
+export const getWeConfigDate =
+(params: Object): ThunkAction =>
+(dispatch: Dispatch): void => {
+  const result: Promise<Object> = POSTJSON(URL.getWeConfigPath, params);
+  AsyncFetchHandler(
+    GET_WECONFIG,
     result,
     dispatch
   );
