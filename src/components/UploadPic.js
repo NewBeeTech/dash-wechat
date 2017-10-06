@@ -16,11 +16,6 @@ type Props = {
 class UploadPic extends React.Component {
   props: Props;
   beforeUpload(file, index) {
-    for(i in file ){
-      alert(i);           //获得属性
-      alert(file[i]);  //获得属性值
-    }
-    console.log('beforeUpload', file, index);
     const result = UploadFileToOSS(file);
     result.then(fileInfo => {
       if (fileInfo.fileURL) {
