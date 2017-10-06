@@ -18,7 +18,7 @@ class ActivityContent extends React.PureComponent {
       <div>
           <div className={styles.contentOne}>
               <div className={styles.contentOneTitle1}>{this.props.dashInfo.get('title')}{this.props.dashInfo.get('smallTitle')}</div>
-              <pre className={styles.contentOneTitle2}>{this.props.dashInfo.get('introduce')}</pre>
+              <div><pre className={styles.contentOneTitle2}>{this.props.dashInfo.get('introduce')}</pre></div>
           </div>
           <div className={styles.contentTwo}>
             <div className={styles.contentThreeTitle}>

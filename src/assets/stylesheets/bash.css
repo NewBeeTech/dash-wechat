@@ -3,7 +3,7 @@
 .bashBanner {
   position: relative;
   width: 100vw;
-  height: 53vw;
+  height: 400px;
   margin: 0 auto;
 }
 
@@ -89,14 +89,14 @@
 
 .contentOneTitle1 {
   text-align: center;
-  font-size: 4vw;
+  font-size: 4.5vw;
   color:  #838383;
   padding: 0 0 2vh;
   border-bottom: 2px solid #ccc;
 }
 
 .contentOneTitle2 {
-  font-size: 2vw;
+  font-size: 3.5vw;
   color:  #838383;
   padding: 2vh 2vw 0;
   word-wrap: break-word;
