@@ -93,9 +93,14 @@ class UserInfoContainer extends React.Component {
       });
     }
     if(!this.props.moreTags.equals(nextProps.moreTags)) {
+      const moreTags = nextProps.moreTags;
+      this.state.moreTags = moreTags;
       this.setState({
-        moreTags: nextProps.moreTags,
+        ...this.state,
       });
+      // this.setState({
+      //   moreTags: nextProps.moreTags,
+      // });
     }
     if (nextProps.timestamp && nextProps.nonceStr && nextProps.signature) {
       const timestamp = nextProps.timestamp;
