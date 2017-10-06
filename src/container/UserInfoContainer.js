@@ -102,7 +102,7 @@ class UserInfoContainer extends React.Component {
       //   moreTags: nextProps.moreTags,
       // });
     }
-    if (nextProps.timestamp && nextProps.nonceStr && nextProps.signature) {
+    if (!this.props.signature && nextProps.timestamp && nextProps.nonceStr && nextProps.signature) {
       const timestamp = nextProps.timestamp;
       const nonceStr = nextProps.nonceStr;
       const signature = nextProps.signature;
@@ -222,6 +222,7 @@ class UserInfoContainer extends React.Component {
     }
   }
   render() {
+    console.log(this.state.moreTags.toJS());
     const avator = this.props.userInfo.get('photos').split(',')[0];
     const birth = this.props.userInfo.get('birth');
     const now = new Date();
