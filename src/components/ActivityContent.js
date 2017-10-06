@@ -14,18 +14,11 @@ class ActivityContent extends React.PureComponent {
   componentWillMount() {
   }
   render() {
-    const showTipsMessage = (tips) => {
-      return (
-        <div>
-          <pre style={{ lineHeight: '3vh' }}>{tips}</pre>
-        </div>
-      )
-    }
     return (
       <div>
           <div className={styles.contentOne}>
               <div className={styles.contentOneTitle1}>{this.props.dashInfo.get('title')}{this.props.dashInfo.get('smallTitle')}</div>
-              <div className={styles.contentOneTitle2}>{this.props.dashInfo.get('introduce')}</div>
+              <pre className={styles.contentOneTitle2}>{this.props.dashInfo.get('introduce')}</pre>
           </div>
           <div className={styles.contentTwo}>
             <div className={styles.contentThreeTitle}>
@@ -55,7 +48,7 @@ class ActivityContent extends React.PureComponent {
                 </div>
                 <div className={styles.messageList}>
                   <div className={styles.messageLeftDiv} />
-                  <pre style={{ lineHeight: '3vh' }}>{this.props.dashInfo.get('acvitivityFlow')}</pre>
+                  <pre style={{ lineHeight: '4vh', wordWrap: 'break-word', whiteSpace: 'pre-wrap' }}>{this.props.dashInfo.get('acvitivityFlow')}</pre>
                 </div>
                 <div className={styles.contentTwoTitle}>
                   <div className={styles.contentTwoImg1}><img src={"http://dash.oss-cn-beijing.aliyuncs.com/fe/note.png"} width="100%" /></div>
@@ -63,7 +56,7 @@ class ActivityContent extends React.PureComponent {
                 </div>
                 <div className={styles.messageList}>
                   <div className={styles.messageLeftDiv} />
-                  {showTipsMessage(this.props.dashInfo.get('tips'))}
+                  <pre style={{ lineHeight: '3vh', wordWrap: 'break-word', whiteSpace: 'pre-wrap' }}>{this.props.dashInfo.get('tips')}</pre>
                 </div>
             </div>
           </div>

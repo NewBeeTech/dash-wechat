@@ -14,12 +14,10 @@ export const getActivityTime = (startTime, endTime) => {
 export const getHaveTime = (startTime, endTime) => {
     let time = 0;
     if(startTime && endTime) {
-      console.log('startTime:', startTime);
-      console.log('endTime:', endTime);
       const data = moment().isBefore(startTime);
       if(!data) {
         var duration = moment.duration(moment(endTime).diff(moment()));
-        var hours = Math.floor(duration.asHours());
+        var hours = duration.asHours();
         if(hours <= 7 && hours >=1) {
            time = hours;
         } else if(hours < 1 && hours > 0) {
@@ -27,6 +25,5 @@ export const getHaveTime = (startTime, endTime) => {
         }
       }
     }
-    console.log('time:', time);
     return time;
 }

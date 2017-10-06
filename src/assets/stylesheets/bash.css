@@ -83,22 +83,24 @@
 }
 
 .contentOne {
+  width: 76vw;
   padding: 12vw;
 }
 
 .contentOneTitle1 {
   text-align: center;
-  font-size: 5vw;
+  font-size: 4vw;
   color:  #838383;
   padding: 0 0 2vh;
   border-bottom: 2px solid #ccc;
 }
 
 .contentOneTitle2 {
-  font-size: 3.5vw;
+  font-size: 2vw;
   color:  #838383;
-  padding: 4vh 4vw 0;
-  word-wrap:break-word; 
+  padding: 2vh 2vw 0;
+  word-wrap: break-word;
+  white-space: pre-wrap;
 }
 
 .contentThree {
@@ -151,7 +153,7 @@
 }
 
 .messageList {
-  width: 80vw;
+  /*width: 80vw;*/
   display: flex;
   margin: 2vh 0;
 }
@@ -201,4 +203,8 @@
 .returnButton {
   width: 30vw;
   margin: 0 auto;
+}
+
+:global(pre) {
+  margin: 0 !important;
 }
