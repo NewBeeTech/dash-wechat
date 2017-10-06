@@ -5,6 +5,7 @@
   height: calc(100vh - 14vw);
   width: 100vw;
   overflow: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
 .status {
