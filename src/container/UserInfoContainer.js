@@ -229,7 +229,7 @@ class UserInfoContainer extends React.Component {
     const age = birth ? now.getFullYear() - birth.slice(0, 4) + 1: '';
     return (
       <div>
-        <div className={styles.bg} style={{ backgroundColor: '#fff' }}>
+        <div className={styles.bg} style={ Number(window.location.href.split('?')[1].split('/')[2]) ? { backgroundColor: '#fff', height: '100vh' } : { backgroundColor: '#fff'}}>
           {this.props.params.tab === 'edit' ?
             <UploadPic
               photos={this.state.photos}
