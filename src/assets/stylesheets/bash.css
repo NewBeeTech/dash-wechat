@@ -98,6 +98,7 @@
   font-size: 3.5vw;
   color:  #838383;
   padding: 4vh 4vw 0;
+  word-wrap:break-word; 
 }
 
 .contentThree {
@@ -150,6 +151,7 @@
 }
 
 .messageList {
+  width: 80vw;
   display: flex;
   margin: 2vh 0;
 }

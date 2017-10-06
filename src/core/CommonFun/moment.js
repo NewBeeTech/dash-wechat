@@ -14,6 +14,8 @@ export const getActivityTime = (startTime, endTime) => {
 export const getHaveTime = (startTime, endTime) => {
     let time = 0;
     if(startTime && endTime) {
+      console.log('startTime:', startTime);
+      console.log('endTime:', endTime);
       const data = moment().isBefore(startTime);
       if(!data) {
         var duration = moment.duration(moment(endTime).diff(moment()));
@@ -25,5 +27,6 @@ export const getHaveTime = (startTime, endTime) => {
         }
       }
     }
+    console.log('time:', time);
     return time;
 }
