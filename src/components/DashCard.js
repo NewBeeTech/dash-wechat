@@ -57,15 +57,15 @@ class DashCard extends React.PureComponent {
                 <img src={this.props.dashItem.get('backgroundImg')} width="100%" height="100%" />
             </div>
              <div className={styles.dashBannerText}>
-                <span>{this.props.dashItem.get('title')}{this.props.dashItem.get('smallTitle')}</span>
+                {this.props.dashItem.get('title')}{this.props.dashItem.get('smallTitle')}
              </div>
          </div>
          {/* 活动人数 */}
          <div className={styles.dashNum}>
             <img src={'http://dash.oss-cn-beijing.aliyuncs.com/fe/mars.png'} className={styles.mars}/>
-            <div className={styles.dashBoy}>男士: {showNum(this.props.dashItem.get('boyNum'))}</div>
+            <div className={styles.dashBoy}>男士{showNum(this.props.dashItem.get('boyNum'))}</div>
             <img src={'http://dash.oss-cn-beijing.aliyuncs.com/fe/venus.png'} className={styles.mars} />
-            <div>女士: {showNum(this.props.dashItem.get('girlNum'))}</div>
+            <div>女士{showNum(this.props.dashItem.get('girlNum'))}</div>
          </div>
          {/* 活动发起人 */}
          {isShowOriginator(this.props.dashItem.get('originatorName'), this.props.dashItem.get('originatorImg'))}

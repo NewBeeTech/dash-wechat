@@ -34,13 +34,13 @@
 }
 
 .dashTimeTwo {
-   font-size: 3.5vw;
-   color: #CACACA;
+   font-size: 4vw;
+   color: #838383;
 }
 
 .dashBanner {
   position: relative;
-  height: 20vh;
+  height:310px;
 }
 
 .dashBannerImg {
@@ -56,7 +56,7 @@
   top: 0;
   text-align: center;
   padding-top: 9vh;
-  font-size: 4vw;
+  font-size:5vw;
   color: #fff;
 }
 

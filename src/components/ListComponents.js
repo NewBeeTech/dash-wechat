@@ -68,7 +68,7 @@ class ListComponents extends React.Component {
         }
         dataSource={this.state.dataSource}
         renderFooter={() => (<div style={{ padding: 30, textAlign: 'center' }}>
-          {this.state.isLoading ? '加载更多...' : '暂无数据咯~'}
+          {this.state.isLoading ? '加载更多...' : '下面没有咯~'}
         </div>)}
         renderRow={row}
         style={{

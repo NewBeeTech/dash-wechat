@@ -21,9 +21,9 @@ class SignUpInfo extends React.PureComponent {
       <div className={infoStyles.originatorContent}>
          <div className={infoStyles.dashNum}>
            <img src={'http://dash.oss-cn-beijing.aliyuncs.com/fe/mars.png'} className={styles.mars}/>
-           <div className={styles.dashBoy}>男士: {showNum(this.props.dashInfo.get('boyNum'))}</div>
+           <div className={styles.dashBoy}>男士{showNum(this.props.dashInfo.get('boyNum'))}</div>
            <img src={'http://dash.oss-cn-beijing.aliyuncs.com/fe/venus.png'} className={styles.mars} />
-           <div>女士: {showNum(this.props.dashInfo.get('girlNum'))}</div>
+           <div>女士{showNum(this.props.dashInfo.get('girlNum'))}</div>
          </div>
          {this.props.dashInfo.get('signUpInfo').get('originUserUd') ?
          <div className={infoStyles.originatorInfo}>

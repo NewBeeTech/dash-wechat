@@ -42,7 +42,7 @@ class DashTabbar extends React.Component {
         >
           {selected === 1 ? <img src="http://dash.oss-cn-beijing.aliyuncs.com/fe/dash_checked.png" /> :
           <img src="http://dash.oss-cn-beijing.aliyuncs.com/fe/dash.png" />}&nbsp;
-          <span className={styles.tabText} style={ selected === 1 ? { color: '#333'} : {}}>活动</span>
+          <span className={styles.tabText} style={ selected === 1 ? { color: '#333'} : {}}>联谊</span>
         </div>
         <div className={styles.tabBarBorder} />
         <div

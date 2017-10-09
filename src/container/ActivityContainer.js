@@ -45,7 +45,7 @@ class ActivityContainer extends React.PureComponent {
     // 获取活动详情
     this.props.dispatch(ActivityAction.getDashInfoData({activityId: this.props.params.activityId}));
     // 获取患者在该活动的状态
-    this.props.dispatch(ActivityAction.getUserForDashData({activityId: this.props.params.activityId}));
+    // this.props.dispatch(ActivityAction.getUserForDashData({activityId: this.props.params.activityId}));
 
     this.setState({
       isSignUp: this.props.isSignUp,
@@ -104,7 +104,7 @@ class ActivityContainer extends React.PureComponent {
         <div>
          <div style={{ backgroundColor: '#EEEEEE', height: 'calc(100vh - 14vw)', overflow: 'scroll'}}>
          <Banner
-           leftTopText={this.props.dashInfo.get('type')} // 活动类型 暂时隐藏
+           leftTopText={''} // 活动类型 暂时隐藏
            imgUrl={this.props.dashInfo.get('backgroundImg')}
            handlerWantAction={() => {
              const isWant = this.props.isWant;
