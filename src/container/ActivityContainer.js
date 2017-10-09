@@ -9,6 +9,7 @@ import Banner from '../components/Banner';
 import ActivityTime from '../components/ActivityTime';
 import SignUpInfo from '../components/SignUpInfo';
 import WechatImgList from '../components/WechatImgList';
+import Fellowship from '../components/Fellowship';
 import ActivityContent from '../components/ActivityContent';
 import QrCode from '../components/QrCode';
 import SignUpButton from '../components/SignUpButton';
@@ -73,7 +74,7 @@ class ActivityContainer extends React.PureComponent {
     const signNum = this.state.signNum;
     const sex = this.props.userData.get('userInfo').get('sex');
     const UserStatus = this.props.userData.get('userInfo').get('status');
-    let buttonText = '报名';
+    let buttonText = '报名联谊';
     let status = true;
     if(isSignUp == 0 && ((sex == 1 && dashInfo.get('boyNum') == signNum) || (sex == 2 && dashInfo.get('grilNum') == signNum))) {
       buttonText = '同性报名人数已满';
@@ -98,11 +99,12 @@ class ActivityContainer extends React.PureComponent {
     ])
   }
   showActivity(dashInfo, sex) {
+    const bodyHeight = this.state.isShowButton ? 'calc(100vh - 14vw - 8vh)' : 'calc(100vh - 14vw)';
     const views = [];
     if(dashInfo.get('id')) {
       views.push(
         <div>
-         <div style={{ backgroundColor: '#EEEEEE', height: 'calc(100vh - 14vw)', overflow: 'scroll'}}>
+         <div style={{ backgroundColor: '#EEEEEE', height: `${bodyHeight}`, overflow: 'scroll'}}>
          <Banner
            leftTopText={''} // 活动类型 暂时隐藏
            imgUrl={this.props.dashInfo.get('backgroundImg')}
@@ -124,6 +126,11 @@ class ActivityContainer extends React.PureComponent {
            <SignUpInfo
               dashInfo={dashInfo}
            />
+          </div>
+           <Fellowship 
+              dashInfo={dashInfo}
+           />
+          <div style={{ backgroundColor: '#fff', padding: '3vw'}}>
            {this.props.dashInfo.get('signupPeople').toJS().length ?
              <WechatImgList
                 wechatImgList={this.props.dashInfo.get('signupPeople')}
@@ -145,25 +152,25 @@ class ActivityContainer extends React.PureComponent {
            </div>
          : <div />}
          <QrCode />
-         {this.state.isShowButton ? <SignUpButton
-            buttonText={this.state.buttonText} // 按钮名称
-            status={this.state.status} // 是否点击
-            returnAction = {
-              () => { this.props.dispatch(goBack()) }
-            }
-            paymentAction = {() => {
-              const type = this.props.params.type;
-              const status = this.state.status;
-              if(status) {
-                if(type == 'done' || this.state.buttonText === '取消报名') {
-                  this.cancelAction();
-                }else {
-                  this.props.dispatch(push(RoutingURL.PayPage()))
-                }
-              }
-            }}
-         /> : <div />}
        </div>
+       {this.state.isShowButton ? <SignUpButton
+          buttonText={this.state.buttonText} // 按钮名称
+          status={this.state.status} // 是否点击
+          returnAction = {
+            () => { this.props.dispatch(goBack()) }
+          }
+          paymentAction = {() => {
+            const type = this.props.params.type;
+            const status = this.state.status;
+            if(status) {
+              if(type == 'done' || this.state.buttonText === '取消报名') {
+                this.cancelAction();
+              }else {
+                this.props.dispatch(push(RoutingURL.PayPage()))
+              }
+            }
+          }}
+       /> : <div />}
        <DashTabbar selected={1} />
       </div>)
     }

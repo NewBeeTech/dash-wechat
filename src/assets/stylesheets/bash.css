@@ -67,40 +67,69 @@
 
 {/* 二维码样式 */}
 .qrcodeContent {
-  padding: 6vh 0;
+  background-color: black;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 30vh;
 }
 
 .qrcodeText {
-  text-align: center;
-  margin-bottom: 5vh;
-  color: #5e636d;
-  font-size: 4vw;
+  padding: 2vh 3vh 2vh 4vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #fff;
+  width: 50%;
+  height: 18vh;
+}
+
+.qrcodeImgText {
+  width: 80%;
+  font-size: 25px;
+  line-height: 40px;
+}
+
+.qrcodeBorder {
+  border-bottom: 2px solid #fff;
+  width: 40vw;
+  margin: 2vh 0;
 }
 
 .qrcodeImg {
-  width: 35vw;
-  margin: 0 auto;
+  width: 50%;
 }
 
+/**************分割线******************/
 .contentOne {
-  width: 76vw;
-  padding: 12vw;
+  padding: 6vw;
 }
 
 .contentOneTitle1 {
   text-align: center;
-  font-size: 4.5vw;
-  color:  #838383;
+  font-size: 20px;
+  color: #585858;
   padding: 0 0 2vh;
   border-bottom: 2px solid #ccc;
+  font-weight:bold;
+}
+
+.contentOneTitle3 {
+  text-align: center;
+  font-size: 15px;
+  color: #585858;
+  padding: 2vh 0;
+  border-bottom: 2px solid #ccc;
+  font-weight:bold;
 }
 
 .contentOneTitle2 {
-  font-size: 3.5vw;
+  font-size: 15px;
   color:  #838383;
   padding: 2vh 2vw 0;
   word-wrap: break-word;
   white-space: pre-wrap;
+  line-height: 40px;
 }
 
 .contentThree {
@@ -179,7 +208,7 @@
 
 .buttonText {
   margin-top: 2.5vh;
-  font-size: 4vw;
+  font-size: 4.5vw;
 }
 
 .buttonIsOk {

@@ -20,7 +20,7 @@ class SignUpButton extends React.PureComponent {
                this.props.returnAction();
              }}
           >
-              <img src={'http://dash.oss-cn-beijing.aliyuncs.com/fe/return.png'} style={{ marginLeft: '15vw' }}/>
+              <img src={'http://dash.oss-cn-beijing.aliyuncs.com/fe/return.png'} style={{ marginLeft: '10vw' }} width="15%"/>
           </div>
           <div className={this.props.status ? styles.buttonIsOk : styles.buttonIsNo}
               onClick={() => {

@@ -17,7 +17,7 @@ class WechatImgList extends React.PureComponent {
     if(this.props.type == '报名') {
       content = '你将会遇见';
     } else if(this.props.type == '想去') {
-      content = '他们也想去';
+      content = '还有谁想去';
     }
     const showList = (imgList) => {
       const views = [];

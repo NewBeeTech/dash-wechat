@@ -10,8 +10,12 @@ class QrCode extends React.PureComponent {
   render() {
     return (
       <div className={styles.qrcodeContent}>
-        <div className={styles.qrcodeText}>请扫码关注Dash服务号<br/>及时接收报名进度通知</div>
-        <div  className={styles.qrcodeImg} ><img src={'http://dash.oss-cn-beijing.aliyuncs.com/fe/qrcode.png'} width="100%"/></div>
+        <div className={styles.qrcodeText}>
+            <div className={styles.qrcodeImg1}><img src={'../assets/images/支付选中.png'} /></div>
+            <div className={styles.qrcodeBorder}/>
+            <div className={styles.qrcodeImgText}>为了联谊同类<br/>我们造了一个世界<br/>扫码即进入</div>
+        </div>
+        <div  className={styles.qrcodeImg} ><img src={'http://dash.oss-cn-beijing.aliyuncs.com/fe/qrcode.png'} width="80%"/></div>
       </div>
     );
   }

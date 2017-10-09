@@ -16,10 +16,6 @@ class ActivityContent extends React.PureComponent {
   render() {
     return (
       <div>
-          <div className={styles.contentOne}>
-              <div className={styles.contentOneTitle1}>{this.props.dashInfo.get('title')}{this.props.dashInfo.get('smallTitle')}</div>
-              <div><pre className={styles.contentOneTitle2}>{this.props.dashInfo.get('introduce')}</pre></div>
-          </div>
           <div className={styles.contentTwo}>
             <div className={styles.contentThreeTitle}>
               <div className={styles.contentTwoImg}><img src={"http://dash.oss-cn-beijing.aliyuncs.com/fe/message.png"} width="100%" /></div>
@@ -36,11 +32,11 @@ class ActivityContent extends React.PureComponent {
                 </div>
                 <div className={styles.contentTwoTitle}>
                   <div className={styles.contentTwoImg1}><img src={"http://dash.oss-cn-beijing.aliyuncs.com/fe/people.png"} width="100%" /></div>
-                  <div>男生{this.props.dashInfo.get('boy')}人 vs  女生{this.props.dashInfo.get('girl')}人</div>
+                  <div>男生{this.props.dashInfo.get('boy')}位 vs  女生{this.props.dashInfo.get('girl')}位</div>
                 </div>
                 <div className={styles.contentTwoTitle}>
                   <div className={styles.contentTwoImg1}><img src={"http://dash.oss-cn-beijing.aliyuncs.com/fe/fee.png"} width="100%" /></div>
-                  <div>{this.props.dashInfo.get('cost')}元/人(男)   {this.props.dashInfo.get('girlCost')}元/人(女)</div>
+                  <div>男生{this.props.dashInfo.get('cost')}元/女生{this.props.dashInfo.get('girlCost')}元</div>
                 </div>
                 <div className={styles.contentTwoTitle}>
                   <div className={styles.contentTwoImg1}><img src={"http://dash.oss-cn-beijing.aliyuncs.com/fe/progress.png"} width="100%" /></div>
