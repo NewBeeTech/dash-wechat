@@ -71,7 +71,7 @@ class DashCard extends React.PureComponent {
          {isShowOriginator(this.props.dashItem.get('originatorName'), this.props.dashItem.get('originatorImg'))}
            {/* 活动提示 */}
          <div className={styles.dashFooter}>
-             <span>提示: 如遇报名人数已满, 可随时关注活动报名情况, 尤其在活动开始前的两天时间里或有人退出, 届时可伺机抢座!</span>
+             <span>提示: {this.props.dashItem.get('smallTitle')}</span>
          </div>
       </div>
     );

@@ -93,7 +93,7 @@ class ActivityContainer extends React.PureComponent {
   }
   cancelAction() {
     // 取消报名
-    Alter('取消报名', '确定取消报名么???', [
+    Alter('取消报名','', [
       { text: '取消', onPress: () => console.log('cancel') },
       { text: '确定', onPress: () => { this.props.dispatch(ActivityAction.cancelSignUp({ activityId: this.props.params.activityId })) } },
     ])
