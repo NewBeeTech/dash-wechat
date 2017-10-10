@@ -76,6 +76,18 @@ class ActivityContainer extends React.PureComponent {
        });
     }
     this.setButton(this.props.params.type, nextProps.dashInfo);
+    if (!this.props.signature && nextProps.timestamp && nextProps.nonceStr && nextProps.signature) {
+      const timestamp = nextProps.timestamp;
+      const nonceStr = nextProps.nonceStr;
+      const signature = nextProps.signature;
+      this.state.timestamp = timestamp;
+      this.state.nonceStr = nonceStr;
+      this.state.signature = signature;
+      this.setState({
+        ...this.state,
+      });
+      this._weChatShare();
+    }
   }
   _getWeConfig(currentURL) {
     this.props.dispatch(
