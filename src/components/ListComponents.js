@@ -5,6 +5,7 @@ import * as Immutable from 'immutable';
 import { ListView } from 'antd-mobile';
 import * as styles from '../assets/stylesheets/dashList.css';
 import DashCarousel from '../components/DashCarousel';
+const Cry = require('../assets/images/cry.jpg');
 
 class ListComponents extends React.Component {
   static propTypes = {
@@ -72,7 +73,7 @@ class ListComponents extends React.Component {
             '加载更多...' : 
              <div style={{ display: 'flex', alignItems: 'center',justifyContent: 'center' }}>
                <div>下面没有咯</div>
-               <img src={'../assets/images/cry.jpg'} style={{ width: '5vw', height: '5vw'}}/>
+               <img src={Cry} style={{ width: '5vw', height: '5vw'}}/>
              </div>
            }
         </div>)}

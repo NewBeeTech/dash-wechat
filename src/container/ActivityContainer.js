@@ -3,7 +3,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as ActivityAction from '../actions/ActivityAction';
-import * as WechatAuthAction from './../actions/WechatAuthAction';
+import * as WechatAuthAction from '../actions/WechatAuthAction';
 import * as RoutingURL from '../core/RoutingURL/RoutingURL';
 import { push } from 'react-router-redux';
 import Banner from '../components/Banner';
