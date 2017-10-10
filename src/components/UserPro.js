@@ -26,7 +26,7 @@ class UserPro extends React.Component {
     return(
       <div
           style={{ 
-            padding: '2vw',
+            padding: '1vw',
             borderRadius: '50%',
             backgroundColor: '#ffce3d',
            }}

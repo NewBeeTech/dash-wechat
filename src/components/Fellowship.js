@@ -13,11 +13,16 @@ class Fellowship extends React.PureComponent {
   };
   componentWillMount() {
   }
-  showIntroduce(introduce) {
+  showIntroduce(introduce){
+    console.log('introduce:', JSON.stringify(introduce));
     const views = [];
-    if(introduce) {
-      
-    }
+    // if(introduce) {
+    //   introduce.map((item) => {
+    //     views.push(
+    //       <div></div>
+    //     )
+    //   })
+    // }
     return views;
   }
   render() {
@@ -25,7 +30,7 @@ class Fellowship extends React.PureComponent {
       <div className={styles.contentOne}>
           <div className={styles.contentOneTitle1}>{this.props.dashInfo.get('title')}</div>
           <div className={styles.contentOneTitle3}>{this.props.dashInfo.get('smallTitle')}</div>
-          {this.showIntroduce(this.props.dashInfo.get('introduce'))}
+          <div>{this.showIntroduce(this.props.dashInfo.get('introduce'))}</div>
       </div>
     );
   }

@@ -3,6 +3,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as ActivityAction from '../actions/ActivityAction';
+import * as WechatAuthAction from './../actions/WechatAuthAction';
 import * as RoutingURL from '../core/RoutingURL/RoutingURL';
 import { push } from 'react-router-redux';
 import Banner from '../components/Banner';
@@ -47,15 +48,25 @@ class ActivityContainer extends React.PureComponent {
     this.props.dispatch(ActivityAction.getDashInfoData({activityId: this.props.params.activityId}));
     // 获取患者在该活动的状态
     this.props.dispatch(ActivityAction.getUserForDashData({activityId: this.props.params.activityId}));
-
-    this.setState({
-      isSignUp: this.props.isSignUp,
-      signNum: this.props.signNum,
-     });
+      const timestamp = this.props.timestamp;
+      const nonceStr = this.props.nonceStr;
+      const signature = this.props.signature;
+      const isSignUp =  this.props.isSignUp;
+      const signNum =  this.props.signNum;
+      this.state.timestamp = timestamp;
+      this.state.nonceStr = nonceStr;
+      this.state.signature = signature;
+      this.state.isSignUp = isSignUp;
+      this.state.signNum = signNum;
+      this.setState({ 
+        ...this.state,
+      });
      // 设置Button按钮
      if(this.props.dashInfo.get('id')) {
        this.setButton(this.props.params.type, this.props.dashInfo);
      }
+     this._getWeConfig(location.href.split('#')[0]);
+     this._weChatShare();
   }
   componentWillReceiveProps(nextProps) {
     if(this.props.isSignUp != nextProps.isSignUp || this.props.signNum != nextProps.signNum) {
@@ -66,14 +77,49 @@ class ActivityContainer extends React.PureComponent {
     }
     this.setButton(this.props.params.type, nextProps.dashInfo);
   }
+  _getWeConfig(currentURL) {
+    this.props.dispatch(
+      WechatAuthAction.getWeConfigDate({ url: currentURL })
+    );
+  }
+  _weChatShare() {
+    if(this.state.timestamp) {
+      window.wx.config({
+        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+        appId: 'wx186971588dd1f238', // 必填，企业号的唯一标识，此处填写企业号corpid
+        timestamp: this.state.timestamp, // 必填，生成签名的时间戳
+        nonceStr: this.state.nonceStr, // 必填，生成签名的随机串
+        signature: this.state.signature,// 必填，签名，见附录1
+        jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage'], // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+      });
+      window.wx.ready(() => {
+        window.wx.onMenuShareTimeline({
+          title: `${this.props.dashInfo.get('title')}`,
+          link: `http://dash.sameyou.cn/wx/index.html#/activity-details/${this.props.dashInfo.get('id')}/type/info?_k=qze0fo)`,
+          imgUrl: `${this.props.dashInfo.get('backgroundImg')}`,
+        });
+        window.wx.onMenuShareAppMessage({
+          title: `${this.props.dashInfo.get('title')}`,
+          desc: `${this.props.dashInfo.get('activityTime')}  ${this.props.dashInfo.get('address')}`,
+          link: `http://dash.sameyou.cn/wx/index.html#/activity-details/${this.props.dashInfo.get('id')}/type/info?_k=qze0fo)`,
+          imgUrl: `${this.props.userInfo.get('backgroundImg')}`,
+          type: 'link',
+          dataUrl: '',
+        });
+        window.wx.error((res) => {
+          console.log('wx.error: ', JSON.stringify(res));
+        });
+      });
+    }
+  }
   setButton(type, dashInfo) {
     const signupStartTime = dashInfo.get('signupStartTime');
     const signupEndTime = dashInfo.get('signupEndTime');
-    const isShow = moment().isBefore(signupEndTime) && moment(signupStartTime).isBefore(moment());
+    let isShow = moment().isBefore(signupEndTime) && moment(signupStartTime).isBefore(moment());
+    isShow = this.props.userData.get('userInfo').get('status') && isShow; // 如果冻结则不显示按钮
     const isSignUp = this.state.isSignUp; // 1失败 0未支付 1成功 2运营拒绝 3用户取消
     const signNum = this.state.signNum;
     const sex = this.props.userData.get('userInfo').get('sex');
-    const UserStatus = this.props.userData.get('userInfo').get('status');
     let buttonText = '报名联谊';
     let status = true;
     if(isSignUp == 0 && ((sex == 1 && dashInfo.get('boyNum') == signNum) || (sex == 2 && dashInfo.get('grilNum') == signNum))) {
@@ -93,7 +139,11 @@ class ActivityContainer extends React.PureComponent {
   }
   cancelAction() {
     // 取消报名
-    Alter('取消报名','', [
+    Alter('建议先细读退款规则', 
+      <div style={{ fontSize: '3.5vw' }}>
+        <div>客服会根据取消时间，在一个工作日后处理退款</div>
+        <div>你真的确定取消报名吗？</div>
+      </div>, [
       { text: '取消', onPress: () => console.log('cancel') },
       { text: '确定', onPress: () => { this.props.dispatch(ActivityAction.cancelSignUp({ activityId: this.props.params.activityId })) } },
     ])
@@ -193,6 +243,9 @@ const mapStateToProps = (state) => {
     isSignUp: state.ActivityReducer.get('isSignUp'),
     signNum: state.ActivityReducer.get('signNum'),
     userData: state.MineReducer.get('userData'),
+    timestamp: state.UserReducer.get('timestamp'),
+    nonceStr: state.UserReducer.get('nonceStr'),
+    signature: state.UserReducer.get('signature'),
   };
 };
 
