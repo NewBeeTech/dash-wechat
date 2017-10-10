@@ -1,5 +1,7 @@
 import React from 'react';
 import styles from '../assets/stylesheets/paySuccessPage.css';
+import { dispatch } from '../index';
+import { goBack } from 'react-router-redux';
 
 const paySuccessLogo = require('../assets/images/paySuccessLogo.png');
 const paySuccessQrcode = require('../assets/images/paySuccessQrcode.png');
@@ -18,7 +20,14 @@ class PaySuccessPage extends React.PureComponent {
           等待之后的安排
           <img className={styles.paySuccessDescQrcode} src={paySuccessQrcode} />
         </div>
-        <div className={styles.paySuccessReturnBtn}>返 回</div>
+        <div
+          className={styles.paySuccessReturnBtn}
+          onClick={() => {
+            dispatch(goBack());
+          }}
+        >
+          返 回
+        </div>
       </div>
     );
   }
