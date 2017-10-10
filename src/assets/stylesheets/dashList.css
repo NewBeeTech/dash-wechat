@@ -106,11 +106,11 @@
 
 {/*轮播图*/}
 .carousel {
-  height: 310px;
+  height: 100%;
 }
 
 .CarouselImg {
-  height: 310px;
+  height: 100%;
   width: 100%;
 }
 
