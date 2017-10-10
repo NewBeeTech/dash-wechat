@@ -20,9 +20,9 @@ const propTypes = {
 
 class MineContainer extends React.Component {
   componentWillMount() {
-    dispatch(MineAction.getUserInfo());
-    dispatch(MineAction.getUserActivityData());
-    dispatch(MineAction.getLikeActivityData());
+    // dispatch(MineAction.getUserInfo());
+    // dispatch(MineAction.getUserActivityData());
+    // dispatch(MineAction.getLikeActivityData());
   }
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);
@@ -45,6 +45,10 @@ class MineContainer extends React.Component {
               wantToDash={this.props.activityInfo.get('wantToDash')}
               routeToActivity={(id, info) => dispatch(push(RoutingURL.ActivityDetails(id, info)))}
             />
+          </div>
+          <div className={styles.creditCount}>
+              <div>信用记录</div>
+              <div>{this.props.userInfo.get('creditCount')}</div>
           </div>
         </div>
         <DashTabbar selected={2} />

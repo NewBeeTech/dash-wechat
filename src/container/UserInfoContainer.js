@@ -135,12 +135,12 @@ class UserInfoContainer extends React.Component {
       });
       window.wx.ready(() => {
         window.wx.onMenuShareTimeline({
-          title: '我的个人信息',
+          title: 'Dash联谊中的我',
           link: `http://dash.sameyou.cn/wx/index.html#/user-info/${this.props.userId}?_k=qze0fo)`,
           imgUrl: `${this.props.userInfo.get('wxPortrait')}`,
         });
         window.wx.onMenuShareAppMessage({
-          title: '我的个人信息',
+          title: 'Dash联谊中的我',
           desc: '',
           link: `http://dash.sameyou.cn/wx/index.html#/user-info/${this.props.userId}?_k=qze0fo)`,
           imgUrl: `${this.props.userInfo.get('wxPortrait')}`,
@@ -245,6 +245,7 @@ class UserInfoContainer extends React.Component {
               wxPortrait={this.props.userInfo.get('wxPortrait')}
               avator={avator}
               visible={window.location.href.split('?')[1].split('/')[2]}
+              var4={this.props.userInfo.get('var4')}
             />
           }
           {this.props.params.tab === 'edit' ? '':
@@ -276,7 +277,7 @@ class UserInfoContainer extends React.Component {
         {
           Number(window.location.href.split('?')[1].split('/')[2]) ? '' :
           <EditBar
-            text={this.props.params.tab === 'edit' ? '完成了' : '编辑'}
+            text={this.props.params.tab === 'edit' ? '填好了' : '编辑'}
             tab={this.props.params.tab}
             submitHandler={() => this.submitHandler()}
           />

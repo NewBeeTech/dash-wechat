@@ -287,20 +287,20 @@ class UserForm extends React.Component {
                   />
                 </span>
               </div>
-              <div className={styles.inputDiv}>
-                <span className={styles.item}>吸引异性的特质</span>
-                <span className={styles.itemBorder} />
-                <span className={styles.itemForm}>
-                  <input
-                    defaultValue={this.props.var4}
-                    onChange={(e) => {
-                      this.props.changeCell(e.target.value, 'var4')
-                    }}
-                  />
-                </span>
-              </div>
             </div>
           : ''}
+          <div className={styles.inputDiv}>
+            <span className={styles.item}>吸引异性的特质</span>
+            <span className={styles.itemBorder} />
+            <span className={styles.itemForm}>
+              <input
+                defaultValue={this.props.var4}
+                onChange={(e) => {
+                  this.props.changeCell(e.target.value, 'var4')
+                }}
+              />
+            </span>
+          </div>
           <div style={{ width: '84vw', border: '2px solid #f3f3f3', margin: '5vw auto' }} />
         </form>
       </div>

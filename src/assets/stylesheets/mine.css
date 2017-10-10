@@ -108,6 +108,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 4.5vw;
+  font-weight: bold;
 }
 
 .inputDiv {
@@ -125,7 +127,6 @@
 .item {
   width: 35vw;
   text-align: center;
-  color: #888;
   font-size: 3.6vw;
 }
 
@@ -289,8 +290,30 @@
   top: 4.5vw!important;
 }
 
+:global(.am-list-item .am-list-line .am-list-arrow) {
+  width: 50px!important;
+  height: 50px!important;
+}
+
+:global(.am-accordion .am-accordion-item .am-accordion-header i) {
+  width: 35px!important;
+  height: 35px!important;
+}
+  
 .avator {
   width: 20vw;
   height: 20vw;
   border-radius: 50%;
+}
+
+.creditCount {
+  background-color: #fff;
+  height: 12vw;
+  margin-top: 2vw;
+  padding-left: 30px;
+  padding-right: 60px;
+  font-size: 3.7vw;
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
 }

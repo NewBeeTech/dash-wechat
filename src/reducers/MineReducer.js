@@ -46,10 +46,10 @@ const defaultState: stateType = Immutable.Map({
       userName: '', // 用户名
       wxAccount: '', // 微信账号
       wxName: '', // 微信名称
-      wxPortrait: '', // 微信头像
+      wxPortrait: 'http://img02.tooopen.com/images/20160509/tooopen_sy_161967094653.jpg', // 微信头像
       var2: '', // 身高
       var3: '', // 家乡
-      var4: '', // 吸引异性的特质
+      var4: 'lalala', // 吸引异性的特质
     }),
     activityInfo: Immutable.Map({
       myDash: Immutable.List([

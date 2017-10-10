@@ -15,6 +15,7 @@ type Props = {
   wxPortrait: string,
   avator: string,
   tab: string,
+  var4: string,
 };
 
 const Item = List.Item;
@@ -26,7 +27,21 @@ class UserInfoTitle extends React.Component {
   props: Props;
   renderAvator(avator) {
     return(
-      <div className={styles.avator} style={{ backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundImage: `url(${avator})`}} />
+      <div
+          style={{ 
+            padding: '2vw',
+            borderRadius: '50%',
+            backgroundColor: '#ffce3d',
+           }}
+      >
+        <div className={styles.avator} 
+           style={{ 
+             backgroundSize: 'cover', 
+             backgroundRepeat: 'no-repeat', 
+             backgroundImage: `url(${avator})`,
+            }}
+        />
+      </div>
     )
   }
   render() {
@@ -44,7 +59,7 @@ class UserInfoTitle extends React.Component {
           {
             Number(this.props.visible) ? '' :
             <Brief style={{ fontSize: '4vw', color: '#999' }}>
-              手机：{this.props.phone}
+              吸引异性的特质：{this.props.var4}
             </Brief>
           }
         </Item>

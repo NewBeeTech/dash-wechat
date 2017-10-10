@@ -209,6 +209,7 @@
 .buttonText {
   margin-top: 2.5vh;
   font-size: 4.5vw;
+  font-weight: bold;
 }
 
 .buttonIsOk {

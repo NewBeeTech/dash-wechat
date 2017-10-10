@@ -27,7 +27,7 @@ class EditBar extends React.Component {
           className={styles.returnArrow}
           onClick={() => this.props.tab === 'edit' ? dispatch(replace(RoutingURL.UserInfo(''))) : dispatch(replace(RoutingURL.Mine()))}
         >
-          <img src="http://dash.oss-cn-beijing.aliyuncs.com/fe/left_arrow.png" />
+          <img src="http://dash.oss-cn-beijing.aliyuncs.com/fe/return.png" width="17%"/>
         </div>
         <div className={styles.triangle} onClick={() => dispatch(goBack())} />
         <div
