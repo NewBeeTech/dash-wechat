@@ -102,7 +102,7 @@ class ActivityContainer extends React.PureComponent {
           title: `${this.props.dashInfo.get('title')}`,
           desc: `${this.props.dashInfo.get('activityTime')}  ${this.props.dashInfo.get('address')}`,
           link: `http://dash.sameyou.cn/wx/index.html#/activity-details/${this.props.dashInfo.get('id')}/type/info?_k=qze0fo)`,
-          imgUrl: `${this.props.userInfo.get('backgroundImg')}`,
+          imgUrl: `${this.props.dashInfo.get('backgroundImg')}`,
           type: 'link',
           dataUrl: '',
         });

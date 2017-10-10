@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from '../assets/stylesheets/paySuccessPage.css';
 import { dispatch } from '../index';
-import { goBack } from 'react-router-redux';
+import { goBack, go } from 'react-router-redux';
 
 const paySuccessLogo = require('../assets/images/paySuccessLogo.png');
 const paySuccessQrcode = require('../assets/images/paySuccessQrcode.png');
@@ -23,7 +23,7 @@ class PaySuccessPage extends React.PureComponent {
         <div
           className={styles.paySuccessReturnBtn}
           onClick={() => {
-            dispatch(goBack());
+            dispatch(go(-2));
           }}
         >
           返 回
