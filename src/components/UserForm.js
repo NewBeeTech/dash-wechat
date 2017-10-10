@@ -24,6 +24,7 @@ type Props = {
   hometown: string,
   var4: string,
   code: string,
+  wxAccount: string,
 };
 
 const maxDate = moment('2001-01-01 +0800', 'YYYY-MM-DD Z').utcOffset(8);
@@ -126,6 +127,18 @@ class UserForm extends React.Component {
               </span>
             </div> : <div />
           }
+          <div className={styles.inputDiv}>
+            <span className={styles.item}>微信号</span>
+            <span className={styles.itemBorder} />
+            <span className={styles.itemForm}>
+              <input
+                defaultValue={this.props.wxAccount}
+                onChange={(e) => {
+                  this.props.changeCell(e.target.value, 'wxAccount');
+                  // this.setState({phone: e.target.value})
+                }}
+              /></span>
+          </div>
           <div className={styles.inputDiv}>
             <span className={styles.item}>性&nbsp;&nbsp;&nbsp;别</span>
             <span className={styles.itemBorder} />

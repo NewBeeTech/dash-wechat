@@ -181,6 +181,7 @@ class UserInfoContainer extends React.Component {
       return tags;
     });
     const params = {
+      wxAccount: this.state.wxAccount,
       photos: this.state.photos.join(','),
       phone: this.state.phone,
       sex: String(this.state.sex) ? this.state.sex[0] : '',
@@ -207,6 +208,7 @@ class UserInfoContainer extends React.Component {
         }
       }
     }
+    if(params.wxAccount === '') return Toast.info('请填写微信号!', 1);
     if(params.sex === '') return Toast.info('请选择性别!', 1);
     if(params.sex === 1) {
       if(!params.var2) return Toast.info('请填写身高!', 1);
@@ -263,6 +265,7 @@ class UserInfoContainer extends React.Component {
             hometown={this.state.hometown}
             income={this.state.income}
             var4={this.state.var4}
+            wxAccount={this.props.userInfo.get('wxAccount')}
             code={this.state.code}
             changeCell={(value, title) => this.changeCell(value, title)}
           /> : ''}
