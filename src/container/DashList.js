@@ -30,7 +30,7 @@ class DashList extends React.Component {
     this.props.dispatch(DashListAction.getDashListData(
       { pageNum: this.props.pageNum, pageSize: this.props.pageSize, status: 1 }
     ));
-    // this.props.dispatch(MineAction.getUserInfo());
+    this.props.dispatch(MineAction.getUserInfo());
   }
   componentWillUnmount() {
     this.props.changeAction('DashListReducer/dashData/dashList',
