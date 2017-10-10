@@ -78,7 +78,6 @@ export const updatePayStatus: Dispatch =
   const result: Promise<Object> = GET(URL.updatePayStatusPath, params: Object);
   result.then((data) => {
     if (data.code == '001') {
-      Toast.info('支付成功');
       dispatch(replace('/paySuccess'))
     } else {
       Toast.info(data.message);

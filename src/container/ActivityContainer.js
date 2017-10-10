@@ -47,7 +47,7 @@ class ActivityContainer extends React.PureComponent {
     // 获取活动详情
     this.props.dispatch(ActivityAction.getDashInfoData({activityId: this.props.params.activityId}));
     // 获取患者在该活动的状态
-    // this.props.dispatch(ActivityAction.getUserForDashData({activityId: this.props.params.activityId}));
+    this.props.dispatch(ActivityAction.getUserForDashData({activityId: this.props.params.activityId}));
       const timestamp = this.props.timestamp;
       const nonceStr = this.props.nonceStr;
       const signature = this.props.signature;
