@@ -143,7 +143,7 @@ class UserActivityList extends React.Component {
     // });
     return (
       <div>
-        <Accordion defaultActiveKey="0" className="my-accordion" style={{ marginBottom: '10vw'}}>
+        <Accordion defaultActiveKey="0" className="my-accordion">
           <Accordion.Panel header={<div>计划中的联谊</div>}>
             <List className="my-list">
               {this.renderMyDash(this.props.myDash, [1])}
