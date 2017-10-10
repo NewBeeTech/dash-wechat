@@ -14,7 +14,6 @@ class Fellowship extends React.PureComponent {
   componentWillMount() {
   }
   showIntroduce(introduce){
-    console.log('introduce:', JSON.stringify(introduce));
     const views = [];
     // if(introduce) {
     //   introduce.map((item) => {
