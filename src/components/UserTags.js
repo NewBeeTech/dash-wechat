@@ -29,7 +29,7 @@ class UserTags extends React.Component {
     //     moreTags: nextProps.moreTags,
     //   });
     // }
-    if(this.props.tab === undefined &&  nextProps.tab === 'edit') {
+    if(this.props.tab !== 'edit' &&  nextProps.tab === 'edit') {
       dispatch(MineAction.getMoreTags({ count: 7 }));
     }
   }

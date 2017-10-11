@@ -161,7 +161,7 @@ class ActivityContainer extends React.PureComponent {
     ])
   }
   showActivity(dashInfo, sex) {
-    const bodyHeight = this.state.isShowButton ? 'calc(100vh - 8vh)' : 'calc(100vh - 14vw)';
+    const bodyHeight = this.state.isShowButton ? 'calc(100vh - 8vh)' : '100vh';
     const views = [];
     if(dashInfo.get('id')) {
       views.push(
