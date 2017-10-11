@@ -86,7 +86,7 @@ class UploadPic extends React.Component {
         <Upload { ...uploadProps } ref="inner">
           <div
             className={styles.uploadButton}
-            style={this.props.photos[0] ? {backgroundSize: 'cover', backgroundRepeat: 'no-repeat',  backgroundImage: `url(${this.props.photos[0]})` } : {}}
+            style={this.props.photos[0] ? {backgroundSize: 'contain', backgroundRepeat: 'no-repeat',  backgroundImage: `url(${this.props.photos[0]})`, backgroundPosition: 'center center' } : {}}
           >
             {this.props.photos[0] ? '' : <img width="20%" src="http://dash.oss-cn-beijing.aliyuncs.com/fe/add_pic.png"/>}
           </div>
@@ -95,7 +95,7 @@ class UploadPic extends React.Component {
           <Upload beforeUpload={(file) => this.beforeUploadSecond(file)} ref="inner">
             <div
               className={styles.uploadButton2}
-              style={this.props.photos[1] ? {backgroundSize: 'cover', backgroundRepeat: 'no-repeat',  backgroundImage: `url(${this.props.photos[1]})`} : {}}
+              style={this.props.photos[1] ? {backgroundSize: 'contain', backgroundRepeat: 'no-repeat',  backgroundImage: `url(${this.props.photos[1]})`, backgroundPosition: 'center center'} : {}}
             >
               {this.props.photos[1] ? '' : <img width="20%" src="http://dash.oss-cn-beijing.aliyuncs.com/fe/add_pic.png"/>}
             </div>
@@ -103,7 +103,7 @@ class UploadPic extends React.Component {
           <Upload beforeUpload={(file) => this.beforeUploadThird(file)} ref="inner">
             <div
               className={styles.uploadButton2}
-              style={this.props.photos[2] ? {backgroundSize: 'cover', backgroundRepeat: 'no-repeat',  backgroundImage: `url(${this.props.photos[2]})`, marginTop: '1vw'} : {marginTop: '1vw'}}
+              style={this.props.photos[2] ? {backgroundSize: 'contain', backgroundRepeat: 'no-repeat',  backgroundImage: `url(${this.props.photos[2]})`, backgroundPosition: 'center center'} : {marginTop: '1vw'}}
             >
               {this.props.photos[2] ? '' : <img width="20%" src="http://dash.oss-cn-beijing.aliyuncs.com/fe/add_pic.png"/>}
             </div>

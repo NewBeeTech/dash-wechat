@@ -46,9 +46,9 @@ export const GET = async (path: string, params = {}) => {
       Toast.info('我们正在修复中!', 1);
     }
     const result = await response.json();
-    if (String(result.code) === '004') {
-      window.location.replace('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx186971588dd1f238&redirect_uri=http://dash.sameyou.cn/wx/outh/outh?page=ZGFzaC1saXN0&response_type=code&scope=snsapi_userinfo&state=STATE&connect_redirect=1#wechat_redirect');
-    }
+    // if (String(result.code) === '004') {
+    //   window.location.replace('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx186971588dd1f238&redirect_uri=http://dash.sameyou.cn/wx/outh/outh?page=ZGFzaC1saXN0&response_type=code&scope=snsapi_userinfo&state=STATE&connect_redirect=1#wechat_redirect');
+    // }
     return result;
   } catch (err) {
     return {
@@ -77,9 +77,9 @@ export const POSTJSON = async (path: string, json = {}) => {
       Toast.info('我们正在修复中!', 1);
     }
     const result = await response.json();
-    if (String(result.code) === '004') {
-      window.location.replace('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx186971588dd1f238&redirect_uri=http://dash.sameyou.cn/wx/outh/outh?page=ZGFzaC1saXN0&response_type=code&scope=snsapi_userinfo&state=STATE&connect_redirect=1#wechat_redirect');
-    }
+    // if (String(result.code) === '004') {
+    //   window.location.replace('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx186971588dd1f238&redirect_uri=http://dash.sameyou.cn/wx/outh/outh?page=ZGFzaC1saXN0&response_type=code&scope=snsapi_userinfo&state=STATE&connect_redirect=1#wechat_redirect');
+    // }
     // console.log('postjson webservice result: ', result);
     return result;
   } catch (err) {
