@@ -17,7 +17,7 @@ import SignUpButton from '../components/SignUpButton';
 import DashTabbar from '../components/DashTabbar';
 import { redux, decorators } from 'amumu';
 import moment from 'moment';
-import { Modal } from 'antd-mobile';
+import { Modal, Button } from 'antd-mobile';
 import * as Immutable from 'immutable';
 
 const Alter = Modal.alert;
@@ -160,6 +160,13 @@ class ActivityContainer extends React.PureComponent {
       { text: '确定', onPress: () => { this.props.dispatch(ActivityAction.cancelSignUp({ activityId: this.props.params.activityId })) } },
     ])
   }
+  checkUserInfo() {
+    const sex = this.props.userData.get('userInfo').get('sex');
+    const phone = this.props.userData.get('userInfo').get('phone');
+    const birth = this.props.userData.get('userInfo').get('birth');
+    return (!sex || !phone || !birth);
+
+  }
   showActivity(dashInfo, sex) {
     const bodyHeight = this.state.isShowButton ? 'calc(100vh - 8vh)' : '100vh';
     const views = [];
@@ -222,6 +229,16 @@ class ActivityContainer extends React.PureComponent {
             () => { this.props.dispatch(goBack()) }
           }
           paymentAction = {() => {
+            if(this.checkUserInfo()) {
+              Alter('完善信息',
+                <div style={{ fontSize: '3.5vw' }}>
+                  <div>请完善个人信息</div>
+                </div>, [
+                { text: '取消', onPress: () => console.log('cancel') },
+                { text: '前往', onPress: () => { this.props.dispatch(push(RoutingURL.UserInfo('edit', ''))) } },
+              ]);
+              return false;
+            }
             const type = this.props.params.type;
             const status = this.state.status;
             if(status) {
@@ -238,6 +255,7 @@ class ActivityContainer extends React.PureComponent {
     }
     return views;
   }
+
   render() {
     return (
       <div>
