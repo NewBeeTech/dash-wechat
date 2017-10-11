@@ -47,7 +47,7 @@ class MineContainer extends React.Component {
             />
           </div>
           <div className={styles.creditCount}>
-              <div className={styles.panelHeader}><img src="./../assets/images/xinyong.png" />&nbsp;&nbsp;信用记录</div>
+              <div className={styles.panelHeader}><img src="http://dash.oss-cn-beijing.aliyuncs.com/fe/xinyong.png" />&nbsp;&nbsp;信用记录</div>
               {/* <div>信用记录</div> */}
               <div>{this.props.userInfo.get('creditCount')}</div>
           </div>
