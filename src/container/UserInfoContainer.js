@@ -277,6 +277,8 @@ class UserInfoContainer extends React.Component {
             addTag={(index, item) => this.addTag(index, item)}
           />
         </div>
+        {console.log(window.location.href.split('?')[1].split('/')[4])}
+        {console.log(this.props.params.id)}
         {
           window.location.href.split('?')[1].split('/')[4] !== undefined || this.props.params.id ? '' :
           <EditBar
