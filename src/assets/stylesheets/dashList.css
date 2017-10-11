@@ -40,7 +40,8 @@
 
 .dashBanner {
   /*position: relative;*/
-  height:310px;
+  height: 47.8vw;
+  width: 85vw;
 }
 
 .dashBannerImg {

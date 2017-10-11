@@ -24,7 +24,7 @@ class Banner extends React.Component {
         style={{
           backgroundImage: `url(${this.props.imgUrl || 'http://dash.oss-cn-beijing.aliyuncs.com/fe/default-banner.jpg'})`,
           backgroundRepeat: 'no-repeat',
-          backgroundSize: '100vw 400px',
+          backgroundSize: '100vw 56.25vw',
         }}
       >
         <WhiteSpace />
