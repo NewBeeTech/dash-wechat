@@ -29,10 +29,10 @@ class WechatImgList extends React.PureComponent {
           views.push(
             <div key={key} className={styles.wechatImg}
             onClick={() => {
-              // if(this.props.type == '报名' && this.props.isShow) {
+              if(this.props.type == '报名' && this.props.isShow) {
                 // 跳转到用户信息页面
                 dispatch(push(RoutingURL.UserInfo('show', item.get('id'))));
-              // }
+              }
             }}>
                 <div>
                     <img src={item.get('wxPortrait')} className={this.props.isShow ? styles.wechatImgItemShow : styles.wechatImgItem } />

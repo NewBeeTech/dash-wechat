@@ -28,16 +28,16 @@ class UserInfoTitle extends React.Component {
   renderAvator(avator) {
     return(
       <div
-          style={{ 
+          style={{
             padding: '1vw',
             borderRadius: '50%',
             backgroundColor: '#ffce3d',
            }}
       >
-        <div className={styles.avator} 
-           style={{ 
-             backgroundSize: 'cover', 
-             backgroundRepeat: 'no-repeat', 
+        <div className={styles.avator}
+           style={{
+             backgroundSize: 'cover',
+             backgroundRepeat: 'no-repeat',
              backgroundImage: `url(${avator})`,
             }}
         />
@@ -57,7 +57,7 @@ class UserInfoTitle extends React.Component {
           <span style={{ fontSize: '4vw', color: '#999' }}>{gender[this.props.sex]}</span>&nbsp;&nbsp;
           <span style={{ fontSize: '4vw', color: '#999' }}>{this.props.age ? `${this.props.age}岁` : ''}</span>
           {
-            Number(this.props.visible) ? '' :
+            this.props.tab === 'share' ? '' :
             <Brief style={{ fontSize: '4vw', color: '#999' }}>
               吸引异性的特质：{this.props.var4}
             </Brief>

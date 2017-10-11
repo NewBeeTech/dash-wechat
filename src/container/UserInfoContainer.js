@@ -231,7 +231,7 @@ class UserInfoContainer extends React.Component {
     const age = birth ? now.getFullYear() - birth.slice(0, 4) + 1: '';
     return (
       <div>
-        <div className={styles.bg} style={ window.location.href.split('?')[1].split('/')[2] === 'share' ? { backgroundColor: '#fff', height: '100vh' } : { backgroundColor: '#fff'}}>
+        <div className={styles.bg} style={ window.location.href.split('?')[1].split('/')[4] !== undefined ? { backgroundColor: '#fff', height: '100vh' } : { backgroundColor: '#fff'}}>
           {this.props.params.tab === 'edit' ?
             <UploadPic
               photos={this.state.photos}
@@ -246,7 +246,7 @@ class UserInfoContainer extends React.Component {
               phone={this.props.userInfo.get('phone')}
               wxPortrait={this.props.userInfo.get('wxPortrait')}
               avator={avator}
-              visible={window.location.href.split('?')[1].split('/')[2]}
+              tab={window.location.href.split('?')[1].split('/')[2]}
               var4={this.props.userInfo.get('var4')}
             />
           }
@@ -278,7 +278,7 @@ class UserInfoContainer extends React.Component {
           />
         </div>
         {
-          window.location.href.split('?')[1].split('/')[2] === 'share' ? '' :
+          window.location.href.split('?')[1].split('/')[4] !== 'undefined' ? '' :
           <EditBar
             text={this.props.params.tab === 'edit' ? '填好了' : '编辑'}
             tab={this.props.params.tab}
