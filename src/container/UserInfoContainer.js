@@ -45,8 +45,8 @@ class UserInfoContainer extends React.Component {
     this.state = {};
   }
   componentWillMount() {
-    if(Number(window.location.href.split('?')[1].split('/')[2])) {
-      dispatch(MineAction.getUserInfoById({ id: Number(window.location.href.split('?')[1].split('/')[2]) }));
+    if(window.location.href.split('?')[1].split('/')[4] !== undefined) {
+      dispatch(MineAction.getUserInfoById({ id: Number(window.location.href.split('?')[1].split('/')[4]) }));
     }
     this.setState({
       photos: this.props.userInfo.get('photos').split(','),
@@ -136,13 +136,13 @@ class UserInfoContainer extends React.Component {
       window.wx.ready(() => {
         window.wx.onMenuShareTimeline({
           title: 'Dash联谊中的我',
-          link: `http://dash.sameyou.cn/wx/index.html#/user-info/${this.props.userId}?_k=qze0fo)`,
+          link: `http://dash.sameyou.cn/wx/index.html#/user-info/share/id/${this.props.userId}?_k=qze0fo)`,
           imgUrl: `${this.props.userInfo.get('wxPortrait')}`,
         });
         window.wx.onMenuShareAppMessage({
           title: 'Dash联谊中的我',
           desc: '',
-          link: `http://dash.sameyou.cn/wx/index.html#/user-info/${this.props.userId}?_k=qze0fo)`,
+          link: `http://dash.sameyou.cn/wx/index.html#/user-info/share/id/${this.props.userId}?_k=qze0fo)`,
           imgUrl: `${this.props.userInfo.get('wxPortrait')}`,
           type: 'link',
           dataUrl: '',
@@ -231,7 +231,7 @@ class UserInfoContainer extends React.Component {
     const age = birth ? now.getFullYear() - birth.slice(0, 4) + 1: '';
     return (
       <div>
-        <div className={styles.bg} style={ Number(window.location.href.split('?')[1].split('/')[2]) ? { backgroundColor: '#fff', height: '100vh' } : { backgroundColor: '#fff'}}>
+        <div className={styles.bg} style={ window.location.href.split('?')[1].split('/')[2] === 'share' ? { backgroundColor: '#fff', height: '100vh' } : { backgroundColor: '#fff'}}>
           {this.props.params.tab === 'edit' ?
             <UploadPic
               photos={this.state.photos}
@@ -278,7 +278,7 @@ class UserInfoContainer extends React.Component {
           />
         </div>
         {
-          Number(window.location.href.split('?')[1].split('/')[2]) ? '' :
+          window.location.href.split('?')[1].split('/')[2] === 'share' ? '' :
           <EditBar
             text={this.props.params.tab === 'edit' ? '填好了' : '编辑'}
             tab={this.props.params.tab}

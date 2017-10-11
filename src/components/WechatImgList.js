@@ -5,6 +5,9 @@ import React, { PropTypes } from 'react';
 import * as Immutable from 'immutable';
 import type { Dispatch } from '../../actions/types';
 import * as styles from '../assets/stylesheets/detailes.css';
+import { push } from 'react-router-redux';
+import * as RoutingURL from './../core/RoutingURL/RoutingURL';
+import { dispatch } from './../index';
 
 class WechatImgList extends React.PureComponent {
   static propTypes = {
@@ -26,10 +29,10 @@ class WechatImgList extends React.PureComponent {
           views.push(
             <div key={key} className={styles.wechatImg}
             onClick={() => {
-              if(this.props.type == '报名' && this.props.isShow) {
+              // if(this.props.type == '报名' && this.props.isShow) {
                 // 跳转到用户信息页面
-                console.log('1111');
-              }
+                dispatch(push(RoutingURL.UserInfo('show', item.get('id'))));
+              // }
             }}>
                 <div>
                     <img src={item.get('wxPortrait')} className={this.props.isShow ? styles.wechatImgItemShow : styles.wechatImgItem } />

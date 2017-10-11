@@ -37,7 +37,7 @@ class MineContainer extends React.Component {
             avator={avator}
             wxPortrait={this.props.userInfo.get('wxPortrait')}
             likeCount={this.props.userInfo.get('likeCount')}
-            onclikHandler={() => dispatch(push(RoutingURL.UserInfo('')))}
+            onclikHandler={() => dispatch(push(RoutingURL.UserInfo('show', '')))}
           />
           <div style={{ marginTop: '2vw' }}>
             <UserActivityList

@@ -25,7 +25,7 @@ class EditBar extends React.Component {
       <div className={styles.editBar}>
         <div
           className={styles.returnArrow}
-          onClick={() => this.props.tab === 'edit' ? dispatch(replace(RoutingURL.UserInfo(''))) : dispatch(replace(RoutingURL.Mine()))}
+          onClick={() => this.props.tab === 'edit' ? dispatch(replace(RoutingURL.UserInfo('show', ''))) : dispatch(replace(RoutingURL.Mine()))}
         >
           <img src="http://dash.oss-cn-beijing.aliyuncs.com/fe/return.png" width="17%"/>
         </div>
@@ -35,7 +35,7 @@ class EditBar extends React.Component {
           onClick={() => {
             this.props.tab === 'edit' ?
             this.props.submitHandler() :
-            dispatch(replace(RoutingURL.UserInfo('/edit')));
+            dispatch(replace(RoutingURL.UserInfo('edit', '')));
           }}
         >
           {this.props.text}

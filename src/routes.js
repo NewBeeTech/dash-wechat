@@ -46,7 +46,7 @@ const routes = (
     <Route path={RoutingURL.DashList()} getComponent={DashList} />
     <Route path={RoutingURL.PayPage()} getComponent={PayPage} />
     <Route path={RoutingURL.Mine()} getComponent={Mine} />
-    <Route path={RoutingURL.UserInfo('(/:tab)')} getComponent={UserInfo} />
+    <Route path={RoutingURL.UserInfo('(:tab)', '(:id)')} getComponent={UserInfo} />
     <Route path='/paySuccess' getComponent={PaySuccessPage} />
   </Route>
 );

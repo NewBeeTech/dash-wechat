@@ -58,7 +58,7 @@ class ActivityContainer extends React.PureComponent {
       this.state.signature = signature;
       this.state.isSignUp = isSignUp;
       this.state.signNum = signNum;
-      this.setState({ 
+      this.setState({
         ...this.state,
       });
      // 设置Button按钮
@@ -151,7 +151,7 @@ class ActivityContainer extends React.PureComponent {
   }
   cancelAction() {
     // 取消报名
-    Alter('建议先细读退款规则', 
+    Alter('建议先细读退款规则',
       <div style={{ fontSize: '3.5vw' }}>
         <div>客服会根据取消时间，在一个工作日后处理退款</div>
         <div>你真的确定取消报名吗？</div>
@@ -161,7 +161,7 @@ class ActivityContainer extends React.PureComponent {
     ])
   }
   showActivity(dashInfo, sex) {
-    const bodyHeight = this.state.isShowButton ? 'calc(100vh - 14vw - 8vh)' : 'calc(100vh - 14vw)';
+    const bodyHeight = this.state.isShowButton ? 'calc(100vh - 8vh)' : 'calc(100vh - 14vw)';
     const views = [];
     if(dashInfo.get('id')) {
       views.push(
@@ -189,7 +189,7 @@ class ActivityContainer extends React.PureComponent {
               dashInfo={dashInfo}
            />
           </div>
-           <Fellowship 
+           <Fellowship
               dashInfo={dashInfo}
            />
           <div style={{ backgroundColor: '#fff', padding: '3vw'}}>
@@ -233,7 +233,7 @@ class ActivityContainer extends React.PureComponent {
             }
           }}
        /> : <div />}
-       <DashTabbar selected={1} />
+       {/* <DashTabbar selected={1} /> */}
       </div>)
     }
     return views;

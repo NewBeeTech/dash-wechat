@@ -51,7 +51,7 @@ export const updateUserInfo: Dispatch =
   result.then(data => {
     if (data.code === '001') {
       dispatch(getUserInfo());
-      dispatch(push(RoutingURL.UserInfo('')));
+      dispatch(push(RoutingURL.UserInfo('show', '')));
     } else {
       Toast.info(data.message);
     }
