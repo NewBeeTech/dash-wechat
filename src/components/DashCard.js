@@ -53,12 +53,15 @@ class DashCard extends React.PureComponent {
          </div>
          {/* 活动banner */}
          <div className={styles.dashBanner}>
-             <div className={styles.dashBannerImg}>
-                <img src={this.props.dashItem.get('backgroundImg')} width="100%" height="100%" />
+             <div className={styles.dashBannerImg} style={{ background: `url(${this.props.dashItem.get('backgroundImg')})`, backgroundSize: '100% 100%', backgroundRepeat: 'no-repeat'  }}>
+                {/* <img src={this.props.dashItem.get('backgroundImg')} width="100%" height="100%" /> */}
+                <div className={styles.dashBannerText}>
+                   {this.props.dashItem.get('title')}{this.props.dashItem.get('smallTitle')}
+                </div>
+                <div className={styles.dashBannerText2}>
+                   {this.props.dashItem.get('title')}{this.props.dashItem.get('smallTitle')}
+                </div>
             </div>
-             <div className={styles.dashBannerText}>
-                {this.props.dashItem.get('title')}{this.props.dashItem.get('smallTitle')}
-             </div>
          </div>
          {/* 活动人数 */}
          <div className={styles.dashNum}>
