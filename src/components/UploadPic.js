@@ -8,6 +8,7 @@ import { Toast } from 'antd-mobile';
 import Upload from 'rc-upload';
 import * as styles from './../assets/stylesheets/mine.css'
 import { UploadFileToOSS } from './../core/WS/WSHandler';
+const FileInput = require('react-file-input');
 
 type Props = {
   photos: Array,
@@ -62,52 +63,81 @@ class UploadPic extends React.Component {
     });
   }
   render() {
-    const uploadProps = {
-      beforeUpload: (file) => {
-        const result = UploadFileToOSS(file);
-        alert(file.name);
-        result.then(fileInfo => {
-          if (fileInfo.fileURL) {
-            alert(this);
-            const photos = this.props.photos;
-            photos[0] = fileInfo.fileURL;
-            alert(fileInfo.fileURL);
-            // 上传成功的图片显示
-            this.props.setStatePhotos(photos);
-          } else {
-            // 上传失败的图片显示
-            Toast.info('上传失败，请稍后再试');
-          }
-        });
-      }
-    }
+    // const uploadProps = {
+    //   beforeUpload: (file) => {
+    //     const result = UploadFileToOSS(file);
+    //     alert(file.name);
+    //     result.then(fileInfo => {
+    //       if (fileInfo.fileURL) {
+    //         alert(this);
+    //         const photos = this.props.photos;
+    //         photos[0] = fileInfo.fileURL;
+    //         alert(fileInfo.fileURL);
+    //         // 上传成功的图片显示
+    //         this.props.setStatePhotos(photos);
+    //       } else {
+    //         // 上传失败的图片显示
+    //         Toast.info('上传失败，请稍后再试');
+    //       }
+    //     });
+    //   }
+    // }
+    const handleChange = (event, index) => {
+      console.log(index);
+      const file =  event.target.files[0];
+      console.log('Selected file:', event.target.files[0]);
+      const result = UploadFileToOSS(file);
+      alert(file.name);
+      result.then(fileInfo => {
+        if (fileInfo.fileURL) {
+          alert(this);
+          const photos = this.props.photos;
+          photos[index] = fileInfo.fileURL;
+          alert(fileInfo.fileURL);
+          // 上传成功的图片显示
+          this.props.setStatePhotos(photos);
+        } else {
+          // 上传失败的图片显示
+          Toast.info('上传失败，请稍后再试');
+        }
+      });
+    };
     return (
       <div className={styles.uploadPic}>
-        <Upload { ...uploadProps } ref="inner">
+        <div
+          className={styles.uploadButton}
+          style={this.props.photos[0] ? {backgroundSize: 'contain', backgroundRepeat: 'no-repeat',  backgroundImage: `url(${this.props.photos[0]})`, backgroundPosition: 'center center' } : {}}
+        >
+          {this.props.photos[0] ? '' : <img width="20%" src="http://dash.oss-cn-beijing.aliyuncs.com/fe/add_pic.png"/>}
+          <input type="file" accept=".png,.gif,.jpg" onChange={(e) => handleChange(e, 0)} />
+        </div>
+        {/* <Upload { ...uploadProps } ref="inner">
           <div
             className={styles.uploadButton}
             style={this.props.photos[0] ? {backgroundSize: 'contain', backgroundRepeat: 'no-repeat',  backgroundImage: `url(${this.props.photos[0]})`, backgroundPosition: 'center center' } : {}}
           >
             {this.props.photos[0] ? '' : <img width="20%" src="http://dash.oss-cn-beijing.aliyuncs.com/fe/add_pic.png"/>}
           </div>
-        </Upload>
+        </Upload> */}
         <div>
-          <Upload beforeUpload={(file) => this.beforeUploadSecond(file)} ref="inner">
+          {/* <Upload beforeUpload={(file) => this.beforeUploadSecond(file)} ref="inner"> */}
             <div
               className={styles.uploadButton2}
               style={this.props.photos[1] ? {backgroundSize: 'contain', backgroundRepeat: 'no-repeat',  backgroundImage: `url(${this.props.photos[1]})`, backgroundPosition: 'center center'} : {}}
             >
               {this.props.photos[1] ? '' : <img width="20%" src="http://dash.oss-cn-beijing.aliyuncs.com/fe/add_pic.png"/>}
+              <input type="file" accept=".png,.gif,.jpg" onChange={(e) => handleChange(e, 1)} />
             </div>
-          </Upload>
-          <Upload beforeUpload={(file) => this.beforeUploadThird(file)} ref="inner">
+          {/* </Upload> */}
+          {/* <Upload beforeUpload={(file) => this.beforeUploadThird(file)} ref="inner"> */}
             <div
               className={styles.uploadButton2}
-              style={this.props.photos[2] ? {backgroundSize: 'contain', backgroundRepeat: 'no-repeat',  backgroundImage: `url(${this.props.photos[2]})`, backgroundPosition: 'center center'} : {marginTop: '1vw'}}
+              style={this.props.photos[2] ? {backgroundSize: 'contain', backgroundRepeat: 'no-repeat',  backgroundImage: `url(${this.props.photos[2]})`, backgroundPosition: 'center center', top: '1vw'} : {top: '1vw'}}
             >
               {this.props.photos[2] ? '' : <img width="20%" src="http://dash.oss-cn-beijing.aliyuncs.com/fe/add_pic.png"/>}
+              <input type="file" accept=".png,.gif,.jpg" onChange={(e) => handleChange(e, 2)} />
             </div>
-          </Upload>
+          {/* </Upload> */}
         </div>
       </div>
     );
