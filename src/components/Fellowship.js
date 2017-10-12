@@ -15,13 +15,24 @@ class Fellowship extends React.PureComponent {
   }
   showIntroduce(introduce){
     const views = [];
-    // if(introduce) {
-    //   introduce.map((item) => {
-    //     views.push(
-    //       <div></div>
-    //     )
-    //   })
-    // }
+    if(introduce !== undefined) {
+      const list = JSON.parse(introduce);
+      list.map((item, index) => {
+        console.log(item);
+        if(item.type === 1) {
+          views.push(
+            <div key={index} className={styles.introduceContent}>{item.content }<br /><br /></div>
+          )
+        }
+        if(item.type === 2) {
+          views.push(
+            <div key={index}>
+              <img src={item.content} width="100%" /><br /><br />
+            </div>
+          )
+        }
+      });
+    }
     return views;
   }
   render() {
@@ -29,7 +40,7 @@ class Fellowship extends React.PureComponent {
       <div className={styles.contentOne}>
           <div className={styles.contentOneTitle1}>{this.props.dashInfo.get('title')}</div>
           <div className={styles.contentOneTitle3}>{this.props.dashInfo.get('smallTitle')}</div>
-          <div>{this.showIntroduce(this.props.dashInfo.get('introduce'))}</div>
+        <div style={{marginTop: '10vw'}}>{this.showIntroduce(this.props.dashInfo.get('introduce'))}</div>
       </div>
     );
   }
