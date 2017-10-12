@@ -18,7 +18,6 @@ class Fellowship extends React.PureComponent {
     if(introduce !== undefined) {
       const list = JSON.parse(introduce);
       list.map((item, index) => {
-        console.log(item);
         if(item.type === 1) {
           views.push(
             <div key={index} className={styles.introduceContent}>{item.content }<br /><br /></div>
@@ -40,7 +39,7 @@ class Fellowship extends React.PureComponent {
       <div className={styles.contentOne}>
           <div className={styles.contentOneTitle1}>{this.props.dashInfo.get('title')}</div>
           <div className={styles.contentOneTitle3}>{this.props.dashInfo.get('smallTitle')}</div>
-        <div style={{marginTop: '10vw'}}>{this.showIntroduce(this.props.dashInfo.get('introduce'))}</div>
+          <div className={styles.introduce}>{this.showIntroduce(this.props.dashInfo.get('introduce'))}</div>
       </div>
     );
   }

@@ -248,8 +248,16 @@
   margin: 0 !important;
 }
 
+.introduce {
+  margin: 0 auto;
+  margin-top: 10vw;
+  width: 80vw;
+}
+
 .introduceContent {
   width: 100%;
   color: #585858;
-  font-size: 3.3vw;
+  font-size: 3.5vw;
+  line-height: 1.2;
+  text-align: justify;
 }
