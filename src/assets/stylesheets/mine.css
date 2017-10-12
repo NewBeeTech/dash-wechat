@@ -193,6 +193,8 @@
   background: #f3f3f3;
   overflow: hidden;
   position: relative;
+  top: 0;
+  right: 0;
 }
 
 .uploadButton img {
@@ -208,6 +210,7 @@
   top: 0;
   left: 0;
   z-index: 2;
+  opacity: 0;
   color: rgba(255, 255, 255, 0);
 }
 
@@ -220,6 +223,8 @@
   background: #f3f3f3;
   overflow: hidden;
   position: relative;
+  top: 0;
+  right: 0;
 }
 
 .uploadButton2 img {
@@ -235,6 +240,7 @@
   top: 0;
   left: 0;
   z-index: 2;
+  opacity: 0;
   color: rgba(255, 255, 255, 0);
 }
 
