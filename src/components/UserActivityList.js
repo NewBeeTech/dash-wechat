@@ -31,7 +31,7 @@ class UserActivityList extends React.Component {
   props: Props;
   renderImg(avator) {
     return(
-      <img src={avator} style={{ width: '20vw', height: '20vw', borderRadius: '10%' }} />
+      <img src={avator} style={{ width: '20vw', height: '11.25vw', borderRadius: '10%' }} />
     )
   }
   renderMyDash(list, status) {

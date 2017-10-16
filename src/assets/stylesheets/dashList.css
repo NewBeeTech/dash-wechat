@@ -58,7 +58,7 @@
 }
 
 .dashBannerText {
-  position: absolute;
+  /*position: absolute;*/
   z-index: 990;
   font-size:4.5vw;
   color: #fff;
@@ -70,10 +70,31 @@
   text-align: center;
   max-width: 80%;
   line-height: 1.5;
-  top: 40%;
+  /*top: 40%;*/
 }
-.dashBannerText2 {
+.dashBannerTextDiv {
+  height: 47.8vw;
+  width: 85vw;
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+}
+
+.dashBannerTextDiv2 {
+  height: 47.8vw;
+  width: 85vw;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+}
+
+.dashBannerText2 {
   z-index: 999;
   font-size:4.5vw;
   color: #fff;
@@ -83,7 +104,6 @@
   align-items: center;
   text-align: center;
   line-height: 1.5;
-  top: 40%;
 }
 
 .dashNum {

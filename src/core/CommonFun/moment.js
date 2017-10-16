@@ -18,7 +18,6 @@ export const getHaveTime = (startTime, endTime) => {
       if(!data) {
         var duration = moment.duration(moment(endTime).diff(moment()));
         var hours = parseInt(duration.asHours());
-        console.log(hours);
         if(hours <= 7 && hours >=0) {
            time = hours;
         }
