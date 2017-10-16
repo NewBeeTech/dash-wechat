@@ -8,6 +8,7 @@ import * as styles from '../assets/stylesheets/detailes.css';
 import { push } from 'react-router-redux';
 import * as RoutingURL from './../core/RoutingURL/RoutingURL';
 import { dispatch } from './../index';
+import * as MineAction from './../actions/MineAction';
 
 class WechatImgList extends React.PureComponent {
   static propTypes = {
@@ -32,6 +33,7 @@ class WechatImgList extends React.PureComponent {
               if(this.props.type == '报名' && this.props.isShow) {
                 // 跳转到用户信息页面
                 dispatch(push(RoutingURL.UserInfo('show', item.get('id'))));
+                dispatch(MineAction.getUserInfoById({ id: item.get('id') }));
               }
             }}>
                 <div>
