@@ -20,7 +20,7 @@ class ActivityTime extends React.PureComponent {
           {this.props.address}</div> : <div />}
           <div>
               <div className={styles.dashTimeOne}>
-                  {this.props.deadline === 0 ? '' : (this.props.deadline > 0 ? `距离报名截止还有${this.props.deadline}h！` : `距离报名截止不足1h！`)}
+                  {this.props.deadline === -1 ? '' : `距离报名截止还有${this.props.deadline + 1}h！`}
               </div>
               <div className={styles.dashTimeTwo}>{this.props.time}</div>
           </div>

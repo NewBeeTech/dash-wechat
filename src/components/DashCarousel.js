@@ -18,13 +18,13 @@ class DashCarousel extends React.Component {
     const showImg = (data) => {
       const views = [];
       if(data) {
-        this.props.carousel.map((v, k) => (
+        this.props.carousel.map((v, k) => {
           views.push(
-            <div key={k}>
+            <a href={v.get('url') || "javascript:void(0)"} key={k}>
               <img src={v.get('img')} className={styles.CarouselImg} />
-            </div>
-          )
-        ))
+            </a>
+          );
+        });
       }
       return views;
     }

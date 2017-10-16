@@ -45,10 +45,10 @@ class DashCard extends React.PureComponent {
              {address ? <div className={styles.dashAddress} style={{ fontSize: `calc(12vw / (${address.length + 1}))`}}>
              {address}</div> : <div />}
              <div>
-                 <div className={styles.dashTimeOne}>
-                     {time === 0 ? '' : (time > 0 ? `距离报名截止还有${time}h！` : `距离报名截止不足1h！`)}
-                 </div>
-                 <div className={styles.dashTimeTwo}>{this.props.dashItem.get('activityTime')}</div>
+               <div className={styles.dashTimeOne}>
+                 {time === -1 ? '' : `距离报名截止不足${Number(time) + 1}h！`}
+               </div>
+               <div className={styles.dashTimeTwo}>{this.props.dashItem.get('activityTime')}</div>
              </div>
          </div>
          {/* 活动banner */}
@@ -56,10 +56,10 @@ class DashCard extends React.PureComponent {
              <div className={styles.dashBannerImg} style={{ background: `url(${this.props.dashItem.get('backgroundImg')})`, backgroundSize: '100% 100%', backgroundRepeat: 'no-repeat'  }}>
                 {/* <img src={this.props.dashItem.get('backgroundImg')} width="100%" height="100%" /> */}
                 <div className={styles.dashBannerText}>
-                   {this.props.dashItem.get('title')}{this.props.dashItem.get('smallTitle')}
+                   {this.props.dashItem.get('title')}
                 </div>
                 <div className={styles.dashBannerText2}>
-                   {this.props.dashItem.get('title')}{this.props.dashItem.get('smallTitle')}
+                   {this.props.dashItem.get('title')}
                 </div>
             </div>
          </div>
@@ -74,7 +74,7 @@ class DashCard extends React.PureComponent {
          {isShowOriginator(this.props.dashItem.get('originatorName'), this.props.dashItem.get('originatorImg'))}
            {/* 活动提示 */}
          <div className={styles.dashFooter}>
-             <span>提示: {this.props.dashItem.get('smallTitle')}</span>
+             <span>{this.props.dashItem.get('smallTitle')}</span>
          </div>
       </div>
     );

@@ -64,11 +64,13 @@
   color: #fff;
   background: #000;
   filter: blur(15px);
-  /*display: flex;*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   max-width: 80%;
   line-height: 1.5;
-  top: 30%;
+  top: 40%;
 }
 .dashBannerText2 {
   position: absolute;
@@ -76,10 +78,12 @@
   font-size:4.5vw;
   color: #fff;
   max-width: 80%;
-  /*display: flex;*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   line-height: 1.5;
-  top: 30%;
+  top: 40%;
 }
 
 .dashNum {

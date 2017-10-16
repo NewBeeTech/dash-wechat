@@ -12,16 +12,15 @@ export const getActivityTime = (startTime, endTime) => {
 }
 
 export const getHaveTime = (startTime, endTime) => {
-    let time = 0;
+    let time = -1;
     if(startTime && endTime) {
       const data = moment().isBefore(startTime);
       if(!data) {
         var duration = moment.duration(moment(endTime).diff(moment()));
-        var hours = duration.asHours();
-        if(hours <= 7 && hours >=1) {
+        var hours = parseInt(duration.asHours());
+        console.log(hours);
+        if(hours <= 7 && hours >=0) {
            time = hours;
-        } else if(hours < 1 && hours > 0) {
-           time = -1;
         }
       }
     }

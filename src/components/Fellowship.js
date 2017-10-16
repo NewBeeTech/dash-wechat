@@ -38,6 +38,7 @@ class Fellowship extends React.PureComponent {
     return (
       <div className={styles.contentOne}>
           <div className={styles.contentOneTitle1}>{this.props.dashInfo.get('title')}</div>
+          <div className={styles.contentOneTitle1Line} />
           <div className={styles.contentOneTitle3}>{this.props.dashInfo.get('smallTitle')}</div>
           <div className={styles.introduce}>{this.showIntroduce(this.props.dashInfo.get('introduce'))}</div>
       </div>
