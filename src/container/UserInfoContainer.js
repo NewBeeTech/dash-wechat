@@ -201,11 +201,15 @@ class UserInfoContainer extends React.Component {
     if(!params.photos) return Toast.info('请上传个人照片!', 1);
     if(!params.phone) {
       return Toast.info('请填写手机号码!', 1);
-    } else if(!(/^1[3|4|5|7|8]\d{9}$/.test(params.phone))) {
-        return Toast.info('请填写正确的手机号码', 1);
-      if(params.phone !== this.props.userInfo.get('phone')) {
-        if(!params.code) {
-          return Toast.info('请填写验证码!', 1);
+    } else {
+      if(!(/^1[3|4|5|7|8]\d{9}$/.test(params.phone))) {
+          return Toast.info('请填写正确的手机号码', 1);
+      } else {
+        if(params.phone !== this.props.userInfo.get('phone')) {
+          console.log(params.code);
+          if(!params.code) {
+            return Toast.info('请填写验证码!', 1);
+          }
         }
       }
     }
