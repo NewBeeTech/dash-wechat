@@ -17,6 +17,9 @@ type Props = {
 
 class UserTags extends React.Component {
   componentWillMount() {
+    if(this.props.tab === 'edit') {
+      dispatch(MineAction.getMoreTags({ count: 10 }));
+    }
     // this.state = {
     //   tags: this.props.tags,
     //   moreTags: this.props.moreTags,
@@ -30,7 +33,7 @@ class UserTags extends React.Component {
     //   });
     // }
     if(this.props.tab !== 'edit' &&  nextProps.tab === 'edit') {
-      dispatch(MineAction.getMoreTags({ count: 7 }));
+      dispatch(MineAction.getMoreTags({ count: 10 }));
     }
   }
   props: Props;
@@ -77,8 +80,12 @@ class UserTags extends React.Component {
     return view;
   }
   renderAddTags(moreTags) {
+    const tags = this.props.tags;
+    const newMore = moreTags.filter(item => {
+      return tags.indexOf(item) === -1;
+    });
     const view = [];
-    moreTags.map((item, index) => {
+    newMore.map((item, index) => {
       view.push(
         <span
           key={index}
@@ -106,7 +113,7 @@ class UserTags extends React.Component {
             <WhiteSpace size="lg" />
             <div
               className={styles.changeTags}
-              onClick={() => dispatch(MineAction.getMoreTags({ count: 7 }))}
+              onClick={() => dispatch(MineAction.getMoreTags({ count: 10 }))}
             >
               换一批&nbsp;<img src="http://dash.oss-cn-beijing.aliyuncs.com/fe/reload.png" style={{ width: '3vw' }} />
             </div>
