@@ -185,7 +185,7 @@ class UserInfoContainer extends React.Component {
       photos: this.state.photos.join(','),
       phone: this.state.phone,
       sex: String(this.state.sex) ? this.state.sex[0] : '',
-      birth: moment(this.state.birth).format('YYYY-MM-DD'),
+      birth: this.state.birth ? moment(this.state.birth).format('YYYY-MM-DD') : '',
       photos: this.state.photos,
       var2: this.state.height,
       position: this.state.position,
@@ -197,6 +197,7 @@ class UserInfoContainer extends React.Component {
       id: this.props.userId,
       tags: tags.join(','),
     };
+    console.log(params);
     if(!params.photos) return Toast.info('请上传个人照片!', 1);
     if(!params.phone) {
       return Toast.info('请填写手机号码!', 1);

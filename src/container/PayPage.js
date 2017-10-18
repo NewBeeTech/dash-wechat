@@ -73,11 +73,11 @@ class PayPage extends React.PureComponent {
          {/*pay content*/}
          <div className={payStyle.payContent}>
            <div className={payStyle.dashHeader}>
-              <img src={'https://img.shaka.hsohealth.com/insurance/diet_banner_4_20170206.png'} className={payStyle.payImg} />
+             <img src={dashItem.backgroundImg} className={payStyle.payImg} />
                <div>
-                   <div className={payStyle.money}>￥{sex == 1 ? dashItem.cost : dashItem.girlCost}</div>
-                   <div className={payStyle.dashTitle}>{dashItem.title}</div>
-                   <div className={payStyle.smallDashTitle}>{dashItem.address}({dashItem.activityTime})</div>
+                 <div className={payStyle.money}>￥{sex == 1 ? dashItem.cost : dashItem.girlCost}</div>
+                 <div className={payStyle.dashTitle}>{dashItem.title}</div>
+                 <div className={payStyle.smallDashTitle}>{dashItem.address} {dashItem.activityTime}</div>
                </div>
            </div>
          </div>

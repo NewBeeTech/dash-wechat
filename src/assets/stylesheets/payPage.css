@@ -54,8 +54,8 @@
 }
 
 .payImg {
-  width: 20vw;
-  height: 20vw;
+  width: calc(256vw/9);
+  height: 16vw;
   border-radius: 0.1rem;
   margin-right: 3vw;
 }
@@ -100,7 +100,7 @@
 }
 
 .payButton:active
-{ 
+{
    background-color: #ffda68;
 }
 .wechatPay {

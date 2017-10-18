@@ -154,7 +154,7 @@ class UserActivityList extends React.Component {
               {this.renderCard(this.props.wantToDash)}
             </List>
           </Accordion.Panel>
-          <Accordion.Panel header={<div className={styles.panelHeader}><img src="http://dash.oss-cn-beijing.aliyuncs.com/fe/history.png" />&nbsp;&nbsp;联过的谊</div>} className="pad">
+          <Accordion.Panel header={<div className={styles.panelHeader}><img src="http://dash.oss-cn-beijing.aliyuncs.com/fe/history.png" />&nbsp;&nbsp;流局</div>} className="pad">
             <List className="my-list">
               {this.renderMyDash(this.props.myDash, [2, 3, 4, 5])}
             </List>
