@@ -48,25 +48,26 @@ class ActivityContainer extends React.PureComponent {
     this.props.dispatch(ActivityAction.getDashInfoData({activityId: this.props.params.activityId}));
     // 获取患者在该活动的状态
     this.props.dispatch(ActivityAction.getUserForDashData({activityId: this.props.params.activityId}));
-      const timestamp = this.props.timestamp;
-      const nonceStr = this.props.nonceStr;
-      const signature = this.props.signature;
-      const isSignUp =  this.props.isSignUp;
-      const signNum =  this.props.signNum;
-      this.state.timestamp = timestamp;
-      this.state.nonceStr = nonceStr;
-      this.state.signature = signature;
-      this.state.isSignUp = isSignUp;
-      this.state.signNum = signNum;
-      this.setState({
-        ...this.state,
-      });
+    const timestamp = this.props.timestamp;
+    const nonceStr = this.props.nonceStr;
+    const signature = this.props.signature;
+    const isSignUp =  this.props.isSignUp;
+    const signNum =  this.props.signNum;
+    this.state.timestamp = timestamp;
+    this.state.nonceStr = nonceStr;
+    this.state.signature = signature;
+    this.state.isSignUp = isSignUp;
+    this.state.signNum = signNum;
+    this.setState({
+      ...this.state,
+    });
+    console.log(this.state);
      // 设置Button按钮
-     if(this.props.dashInfo.get('id')) {
-       this.setButton(this.props.params.type, this.props.dashInfo);
-     }
-     this._getWeConfig(location.href.split('#')[0]);
-     this._weChatShare();
+   if(this.props.dashInfo.get('id')) {
+     this.setButton(this.props.params.type, this.props.dashInfo);
+   }
+   this._getWeConfig(location.href.split('#')[0]);
+   this._weChatShare();
   }
   componentWillReceiveProps(nextProps) {
     if(this.props.isSignUp != nextProps.isSignUp || this.props.signNum != nextProps.signNum) {
@@ -129,8 +130,8 @@ class ActivityContainer extends React.PureComponent {
     const signupEndTime = dashInfo.get('signupEndTime');
     let isDeadline = moment().isBefore(signupEndTime) && moment(signupStartTime).isBefore(moment());
     let isShow = this.props.userData.get('userInfo').get('status'); // 如果冻结则不显示按钮
-    const isSignUp = this.state.isSignUp; // 1失败 0未支付 1成功 2运营拒绝 3用户取消
-    const signNum = this.state.signNum;
+    const isSignUp = this.props.isSignUp; // 1失败 0未支付 1成功 2运营拒绝 3用户取消
+    const signNum = this.props.signNum;
     console.log('signNum', signNum);
     const sex = this.props.userData.get('userInfo').get('sex');
     let buttonText = '报名联谊';
@@ -147,7 +148,7 @@ class ActivityContainer extends React.PureComponent {
     }
     if(type === 'done' || isSignUp == 1) {
       buttonText = '取消报名';
-    }else if(type === 'cancel' || isSignUp == 3) {
+    }else if(type === 'cancel' || isSignUp == 3 || isSignUp == 3) {
       buttonText = '已取消报名';
       status = false;
     }else if(isSignUp == 2) {
