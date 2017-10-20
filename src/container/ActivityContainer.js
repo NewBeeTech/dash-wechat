@@ -61,7 +61,7 @@ class ActivityContainer extends React.PureComponent {
     this.setState({
       ...this.state,
     });
-    console.log(this.state);
+    // console.log(this.state);
      // 设置Button按钮
    if(this.props.dashInfo.get('id')) {
      this.setButton(this.props.params.type, this.props.dashInfo);
@@ -141,8 +141,8 @@ class ActivityContainer extends React.PureComponent {
       status = false;
     }
     console.log('isSignUp', isSignUp);
-    console.log(dashInfo.get('boyNum'), dashInfo.get('grilNum'));
-    if(isSignUp == 0 && ((sex == 1 && dashInfo.get('boyNum') == signNum) || (sex == 2 && dashInfo.get('grilNum') == signNum))) {
+    // console.log(dashInfo.get('boyNum'), dashInfo.get('girlNum'));
+    if(isSignUp == 0 && ((sex == 1 && dashInfo.get('boyNum') == signNum) || (sex == 2 && dashInfo.get('girlNum') == signNum))) {
       buttonText = '同性报名人数已满';
       status = false;
     }
