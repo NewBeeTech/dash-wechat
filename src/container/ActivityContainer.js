@@ -137,10 +137,10 @@ class ActivityContainer extends React.PureComponent {
     let noStart = moment().isBefore(moment(startTime));
     let noSignUpStart = moment().isBefore(moment(signupStartTime));
     let isOver = moment(endTime).isBefore(moment());
-    console.log('报名', noSignUpStart);
-    console.log('已经截止', !isDeadline);
+    console.log('报名没开始', noSignUpStart);
+    console.log('报名已经截止', !isDeadline);
     console.log('活动没开始', noStart);
-    console.log('完了', isOver);
+    console.log('活动已结束', isOver);
     let isShow = this.props.userData.get('userInfo').get('status'); // 如果冻结则不显示按钮
     const isSignUp = this.props.isSignUp; // 1失败 0未支付 1成功 2运营拒绝 3用户取消
     const signNum = this.props.signNum;

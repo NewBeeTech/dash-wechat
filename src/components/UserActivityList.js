@@ -60,7 +60,7 @@ class UserActivityList extends React.Component {
               className={styles.status}
               style={{ color: statusColor[item.get('status')] }}
             >
-              {item.get('status') === 4 || (item.get('status') === 1 && new Date(item.get('startTime')).getTime() < new Date().getTime()) ?
+              {item.get('status') === 4 || (item.get('status') === 1 && new Date(item.get('startTime')).getTime() > new Date().getTime()) ?
               <span
                 className={styles.vote}
                 onClick={(e) => {
