@@ -91,6 +91,8 @@ new ActionHandler.handleAction(ActivityAction.GET_DASHINFO)
       originatorImg: data.originUserPortrait,
       boyNum: getPeopleNum(data.sexRate.split(':')[0], data.mCount),
       girlNum: getPeopleNum(data.sexRate.split(':')[1], data.wCount),
+      mCount: data.mCount,
+      wCount: data.wCount,
       boy: data.sexRate.split(':')[0],
       girl: data.sexRate.split(':')[1],
       title: data.name,
