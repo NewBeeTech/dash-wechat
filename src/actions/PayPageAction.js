@@ -25,6 +25,7 @@ export const pay = (params: paymentParms): ThunkAction =>
           // 支付成功
           dispatch({ type: 'PAY_SUCCESS' });
           status = 1;
+          // dispatch(replace('/paySuccess'));
         } else if (result === 'fail') {
           // 支付失败
           Toast.info('支付失败', 2);
@@ -80,7 +81,9 @@ export const updatePayStatus: Dispatch =
     alert(data.code);
     console.log(data);
     if (data.code == '001') {
-      dispatch(replace('/paySuccess'))
+      if(params.status === 1) {
+        dispatch(replace('/paySuccess'));
+      }
     } else {
       Toast.info(data.message, 2);
     }

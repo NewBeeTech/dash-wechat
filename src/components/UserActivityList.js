@@ -38,7 +38,7 @@ class UserActivityList extends React.Component {
     const view = [];
     const statusText = { 1: '报名成功', 2: '流局', 3: '退款确认中', 4: '活动成功', 5: '活动失败', 6: '已结款'};
     const statusColor = { 1: '#ffce3d', 2: '#f40',  3: '#999', 4: '#ffce3d', 5: '#999', 6: '#999' };
-    const info = { 1: 'done', 2: 'primary',  3: 'cancel', 4: 'primary',  5: 'primary' };
+    const info = { 1: 'done', 2: 'primary',  3: 'cancel', 4: 'primary',  5: 'primary', 3: 'cancel' };
     list.map((item, index) => {
       if(status.indexOf(item.get('status')) > -1) {
         view.push(
@@ -146,7 +146,7 @@ class UserActivityList extends React.Component {
         <Accordion defaultActiveKey="0" className="my-accordion">
           <Accordion.Panel header={<div className={styles.panelHeader}><img src="http://dash.oss-cn-beijing.aliyuncs.com/fe/todo.png" />&nbsp;&nbsp;计划中的联谊</div>}>
             <List className="my-list">
-              {this.renderMyDash(this.props.myDash, [1])}
+              {this.renderMyDash(this.props.myDash, [1, 3])}
             </List>
           </Accordion.Panel>
           <Accordion.Panel header={<div className={styles.panelHeader}><img src="http://dash.oss-cn-beijing.aliyuncs.com/fe/wantto.png" />&nbsp;&nbsp;想去的联谊</div>} className="pad">
@@ -156,7 +156,7 @@ class UserActivityList extends React.Component {
           </Accordion.Panel>
           <Accordion.Panel header={<div className={styles.panelHeader}><img src="http://dash.oss-cn-beijing.aliyuncs.com/fe/history.png" />&nbsp;&nbsp;联过的谊</div>} className="pad">
             <List className="my-list">
-              {this.renderMyDash(this.props.myDash, [2, 3, 4, 5])}
+              {this.renderMyDash(this.props.myDash, [2, 4, 5, 6])}
             </List>
           </Accordion.Panel>
         </Accordion>

@@ -5,7 +5,7 @@ import * as Immutable from 'immutable';
 import { ListView } from 'antd-mobile';
 import * as styles from '../assets/stylesheets/dashList.css';
 import DashCarousel from '../components/DashCarousel';
-const Cry = require('../assets/images/cry.jpg');
+const Cry = require('../assets/images/cry2.png');
 
 class ListComponents extends React.Component {
   static propTypes = {

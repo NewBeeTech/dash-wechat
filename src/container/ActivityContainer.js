@@ -144,12 +144,12 @@ class ActivityContainer extends React.PureComponent {
     console.log(dashInfo.get('boyNum'), dashInfo.get('girlNum'));
     // console.log(isSignUp == 0, sex == 2, dashInfo.get('girlNum') == signNum);
     if(isSignUp == 0 && ((sex == 1 && !dashInfo.get('boyNum')) || (sex == 2 && !dashInfo.get('girlNum')))) {
-      buttonText = '同性报名人数已满';
+      buttonText = '报名已满';
       status = false;
     }
     if(type === 'done' || isSignUp == 1) {
       buttonText = '取消报名';
-    }else if(type === 'cancel' || isSignUp == 3 || isSignUp == 3) {
+    }else if(type === 'cancel' || isSignUp == 3 || isSignUp == 6) {
       buttonText = '已取消报名';
       status = false;
     }else if(isSignUp == 2) {
