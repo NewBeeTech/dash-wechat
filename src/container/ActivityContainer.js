@@ -131,6 +131,7 @@ class ActivityContainer extends React.PureComponent {
     let isShow = this.props.userData.get('userInfo').get('status'); // 如果冻结则不显示按钮
     const isSignUp = this.state.isSignUp; // 1失败 0未支付 1成功 2运营拒绝 3用户取消
     const signNum = this.state.signNum;
+    console.log('signNum', signNum);
     const sex = this.props.userData.get('userInfo').get('sex');
     let buttonText = '报名联谊';
     let status = true;
@@ -139,6 +140,7 @@ class ActivityContainer extends React.PureComponent {
       status = false;
     }
     console.log('isSignUp', isSignUp);
+    console.log(dashInfo.get('boyNum'), dashInfo.get('grilNum'));
     if(isSignUp == 0 && ((sex == 1 && dashInfo.get('boyNum') == signNum) || (sex == 2 && dashInfo.get('grilNum') == signNum))) {
       buttonText = '同性报名人数已满';
       status = false;
