@@ -12,7 +12,7 @@ class PaySuccessPage extends React.PureComponent {
       <div className={styles.paySuccess}>
         <div className={styles.paySuccessLogoArea}>
           <img className={styles.paySuccessLogo} src={paySuccessLogo} />
-          <div className={styles.paySuccessTitle}>预订成功！</div>
+          <div className={styles.paySuccessTitle}>&nbsp;&nbsp;&nbsp;预订成功！</div>
         </div>
         <div className={styles.paySuccessDescArea}>
           请扫码联系客服

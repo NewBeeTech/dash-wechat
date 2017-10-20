@@ -17,7 +17,7 @@ import SignUpButton from '../components/SignUpButton';
 import DashTabbar from '../components/DashTabbar';
 import { redux, decorators } from 'amumu';
 import moment from 'moment';
-import { Modal, Button } from 'antd-mobile';
+import { Modal, Button, Toast } from 'antd-mobile';
 import * as Immutable from 'immutable';
 
 const Alter = Modal.alert;
@@ -127,13 +127,18 @@ class ActivityContainer extends React.PureComponent {
   setButton(type, dashInfo) {
     const signupStartTime = dashInfo.get('signupStartTime');
     const signupEndTime = dashInfo.get('signupEndTime');
-    let isShow = moment().isBefore(signupEndTime) && moment(signupStartTime).isBefore(moment());
-    isShow = this.props.userData.get('userInfo').get('status') && isShow; // 如果冻结则不显示按钮
+    let isDeadline = moment().isBefore(signupEndTime) && moment(signupStartTime).isBefore(moment());
+    let isShow = this.props.userData.get('userInfo').get('status'); // 如果冻结则不显示按钮
     const isSignUp = this.state.isSignUp; // 1失败 0未支付 1成功 2运营拒绝 3用户取消
     const signNum = this.state.signNum;
     const sex = this.props.userData.get('userInfo').get('sex');
     let buttonText = '报名联谊';
     let status = true;
+    if(!isDeadline) {
+      buttonText = '报名已截止';
+      status = false;
+    }
+    console.log('isSignUp', isSignUp);
     if(isSignUp == 0 && ((sex == 1 && dashInfo.get('boyNum') == signNum) || (sex == 2 && dashInfo.get('grilNum') == signNum))) {
       buttonText = '同性报名人数已满';
       status = false;
@@ -168,7 +173,8 @@ class ActivityContainer extends React.PureComponent {
 
   }
   showActivity(dashInfo, sex) {
-    const bodyHeight = this.state.isShowButton ? 'calc(100vh - 8vh)' : '100vh';
+    // const bodyHeight = this.state.isShowButton ? 'calc(100vh - 8vh)' : '100vh';
+    const bodyHeight = 'calc(100vh - 8vh)';
     const views = [];
     if(dashInfo.get('id')) {
       views.push(
@@ -222,13 +228,16 @@ class ActivityContainer extends React.PureComponent {
          : <div />}
          <QrCode />
        </div>
-       {this.state.isShowButton ? <SignUpButton
+       <SignUpButton
           buttonText={this.state.buttonText} // 按钮名称
           status={this.state.status} // 是否点击
           returnAction = {
             () => { this.props.dispatch(goBack()) }
           }
           paymentAction = {() => {
+            if(this.state.isShowButton) {
+              return Toast.info('该用户被屏蔽，文案待定', 3);
+            }
             if(this.checkUserInfo()) {
               Alter('完善信息',
                 <div style={{ fontSize: '3.5vw' }}>
@@ -249,7 +258,7 @@ class ActivityContainer extends React.PureComponent {
               }
             }
           }}
-       /> : <div />}
+       />
        {/* <DashTabbar selected={1} /> */}
       </div>)
     }

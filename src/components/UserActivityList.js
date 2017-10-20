@@ -36,7 +36,7 @@ class UserActivityList extends React.Component {
   }
   renderMyDash(list, status) {
     const view = [];
-    const statusText = { 1: '报名成功', 2: '运营拒绝', 3: '报名已取消', 4: '活动成功', 5: '活动失败'};
+    const statusText = { 1: '报名成功', 2: '流局', 3: '已取消报名', 4: '活动成功', 5: '活动失败'};
     const statusColor = { 1: '#ffce3d', 2: '#f40',  3: '#999', 4: '#ffce3d', 5: '#999' };
     const info = { 1: 'done', 2: 'primary',  3: 'cancel', 4: 'primary',  5: 'primary' };
     list.map((item, index) => {
@@ -154,7 +154,7 @@ class UserActivityList extends React.Component {
               {this.renderCard(this.props.wantToDash)}
             </List>
           </Accordion.Panel>
-          <Accordion.Panel header={<div className={styles.panelHeader}><img src="http://dash.oss-cn-beijing.aliyuncs.com/fe/history.png" />&nbsp;&nbsp;流局</div>} className="pad">
+          <Accordion.Panel header={<div className={styles.panelHeader}><img src="http://dash.oss-cn-beijing.aliyuncs.com/fe/history.png" />&nbsp;&nbsp;联过的谊</div>} className="pad">
             <List className="my-list">
               {this.renderMyDash(this.props.myDash, [2, 3, 4, 5])}
             </List>

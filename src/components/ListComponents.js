@@ -62,17 +62,18 @@ class ListComponents extends React.Component {
     return (
       <div style={{ width: '100%', backgroundColor: '#F0F0F0' }}>
       <ListView ref="lv"
+        className={styles.myList}
         renderHeader={() =>
-          <div className={styles.carousel} style={{ width: '100%' }}>
+          <div className={styles.carousel} style={{ width: '100vw' }}>
              <DashCarousel carousel={this.props.carouselImgs} />
           </div>
         }
         dataSource={this.state.dataSource}
         renderFooter={() => (<div style={{ padding: 30, textAlign: 'center' }}>
-          {this.state.isLoading ? 
-            '加载更多...' : 
+          {this.state.isLoading ?
+            '加载更多...' :
              <div style={{ display: 'flex', alignItems: 'center',justifyContent: 'center' }}>
-               <div>下面没有咯</div>
+               <div>没有更多联谊咯</div>
                <img src={Cry} style={{ width: '5vw', height: '5vw'}}/>
              </div>
            }

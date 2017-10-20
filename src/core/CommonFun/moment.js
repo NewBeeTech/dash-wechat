@@ -21,6 +21,9 @@ export const getHaveTime = (startTime, endTime) => {
         if(hours <= 7 && hours >=0) {
            time = hours;
         }
+        if( hours === -0) {
+          time = -1;
+        }
       }
     }
     return time;
