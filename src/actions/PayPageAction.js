@@ -79,7 +79,6 @@ export const updatePayStatus: Dispatch =
   const result: Promise<Object> = GET(URL.updatePayStatusPath, params: Object);
   result.then((data) => {
     alert(data.code);
-    console.log(data);
     if (data.code == '001') {
       if(params.status === 1) {
         dispatch(replace('/paySuccess'));
