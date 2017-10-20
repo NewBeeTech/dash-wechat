@@ -129,6 +129,7 @@ const getUserForDashDataHandler =
           return state.set('isSignUp', action.data.signup)
                       .set('isWant', Boolean(action.data.collect))
                       .set('signNum', action.data.signNum)
+                      .set('count', action.data.count)
                       .set('isFetching', false);
         });
 

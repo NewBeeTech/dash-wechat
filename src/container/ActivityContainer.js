@@ -53,11 +53,13 @@ class ActivityContainer extends React.PureComponent {
     const signature = this.props.signature;
     const isSignUp =  this.props.isSignUp;
     const signNum =  this.props.signNum;
+    const count =  this.props.count;
     this.state.timestamp = timestamp;
     this.state.nonceStr = nonceStr;
     this.state.signature = signature;
     this.state.isSignUp = isSignUp;
     this.state.signNum = signNum;
+    this.state.count = count;
     this.setState({
       ...this.state,
     });
@@ -70,10 +72,11 @@ class ActivityContainer extends React.PureComponent {
    this._weChatShare();
   }
   componentWillReceiveProps(nextProps) {
-    if(this.props.isSignUp != nextProps.isSignUp || this.props.signNum != nextProps.signNum) {
+    if(this.props.isSignUp != nextProps.isSignUp || this.props.signNum != nextProps.signNum || this.props.count !== nextProps.count) {
       this.setState({
         isSignUp: nextProps.isSignUp,
         signNum: nextProps.signNum,
+        count: nextProps.count,
        });
     }
     this.setButton(this.props.params.type, nextProps.dashInfo);
@@ -142,8 +145,8 @@ class ActivityContainer extends React.PureComponent {
     console.log('活动没开始', noStart);
     console.log('活动已结束', isOver);
     let isShow = this.props.userData.get('userInfo').get('status'); // 如果冻结则不显示按钮
-    const isSignUp = this.props.isSignUp; // 1失败 0未支付 1成功 2运营拒绝 3用户取消
-    const signNum = this.props.signNum;
+    const isSignUp = this.state.isSignUp; // 1失败 0未支付 1成功 2运营拒绝 3用户取消
+    const signNum = this.state.signNum;
     const sex = this.props.userData.get('userInfo').get('sex');
     let buttonText = '报名联谊';
     let status = true;
@@ -168,10 +171,10 @@ class ActivityContainer extends React.PureComponent {
       buttonText = '运营拒绝';
       status = false;
     }
-    if(noStart && isSignUp == 1 ) {
-      buttonText = '活动未开始';
-      status = false;
-    }
+    // if(noStart && isSignUp == 1 ) {
+    //   buttonText = '活动未开始';
+    //   status = false;
+    // }
     if(isOver) {
       buttonText = '活动已经结束';
       status = false;
@@ -259,7 +262,7 @@ class ActivityContainer extends React.PureComponent {
             () => { this.props.dispatch(goBack()) }
           }
           paymentAction = {() => {
-            if(this.props.userData.get('userInfo').get('count') === 1) {
+            if(this.state.count == 1) {
               return Toast.info('您不能报名同一天的两局，会分身乏术', 3);
             }
             if(this.props.userData.get('userInfo').get('status') === 0) {
@@ -308,6 +311,7 @@ const mapStateToProps = (state) => {
     dashInfo: state.ActivityReducer.get('dashInfo'),
     isSignUp: state.ActivityReducer.get('isSignUp'),
     signNum: state.ActivityReducer.get('signNum'),
+    count: state.ActivityReducer.get('count'),
     userData: state.MineReducer.get('userData'),
     timestamp: state.UserReducer.get('timestamp'),
     nonceStr: state.UserReducer.get('nonceStr'),
