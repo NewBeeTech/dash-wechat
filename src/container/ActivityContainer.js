@@ -132,11 +132,15 @@ class ActivityContainer extends React.PureComponent {
     const signupStartTime = dashInfo.get('signupStartTime');
     const signupEndTime = dashInfo.get('signupEndTime');
     const startTime = dashInfo.get('startTime');
-    // const endTime = dashInfo.get('endTime');
+    const endTime = dashInfo.get('endTime');
     let isDeadline = moment().isBefore(signupEndTime) && moment(signupStartTime).isBefore(moment());
-    let noStart = moment(startTime).isBefore(moment());
-    let noSignUpStart = moment(signupStartTime).isBefore(moment());
-    console.log('noStart', noStart);
+    let noStart = moment().isBefore(moment(startTime));
+    let noSignUpStart = moment().isBefore(moment(signupStartTime));
+    let isOver = moment(endTime).isBefore(moment());
+    console.log('报名', noSignUpStart);
+    console.log('已经截止', !isDeadline);
+    console.log('活动没开始', noStart);
+    console.log('完了', isOver);
     let isShow = this.props.userData.get('userInfo').get('status'); // 如果冻结则不显示按钮
     const isSignUp = this.props.isSignUp; // 1失败 0未支付 1成功 2运营拒绝 3用户取消
     const signNum = this.props.signNum;
@@ -166,6 +170,10 @@ class ActivityContainer extends React.PureComponent {
     }
     if(noStart && isSignUp == 1 ) {
       buttonText = '活动未开始';
+      status = false;
+    }
+    if(isOver) {
+      buttonText = '活动已经结束';
       status = false;
     }
     this.setState({ buttonText, buttonText, status, isShowButton: isShow });
