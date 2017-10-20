@@ -134,19 +134,21 @@ class ActivityContainer extends React.PureComponent {
     const startTime = dashInfo.get('startTime');
     // const endTime = dashInfo.get('endTime');
     let isDeadline = moment().isBefore(signupEndTime) && moment(signupStartTime).isBefore(moment());
-    let noStart = moment(signupEndTime).isBefore(moment());
+    let noStart = moment(startTime).isBefore(moment());
+    let noSignUpStart = moment(signupStartTime).isBefore(moment());
+    console.log('noStart', noStart);
     let isShow = this.props.userData.get('userInfo').get('status'); // 如果冻结则不显示按钮
     const isSignUp = this.props.isSignUp; // 1失败 0未支付 1成功 2运营拒绝 3用户取消
     const signNum = this.props.signNum;
     const sex = this.props.userData.get('userInfo').get('sex');
     let buttonText = '报名联谊';
     let status = true;
-    if(!isDeadline) {
+    if(!isDeadline && isSignUp == 0) {
       buttonText = '报名已截止';
       status = false;
     }
-    if(!isDeadline && isSignUp == 1 ) {
-      buttonText = '活动未开始';
+    if(noSignUpStart && isSignUp == 0 ) {
+      buttonText = '报名未开始';
       status = false;
     }
     if(isSignUp == 0 && ((sex == 1 && !dashInfo.get('boyNum')) || (sex == 2 && !dashInfo.get('girlNum')))) {
@@ -162,8 +164,8 @@ class ActivityContainer extends React.PureComponent {
       buttonText = '运营拒绝';
       status = false;
     }
-    if(noStart) {
-      buttonText = '报名未开始';
+    if(noStart && isSignUp == 1 ) {
+      buttonText = '活动未开始';
       status = false;
     }
     this.setState({ buttonText, buttonText, status, isShowButton: isShow });
