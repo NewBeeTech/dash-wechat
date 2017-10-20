@@ -28,7 +28,7 @@ class UploadPic extends React.Component {
         this.props.setStatePhotos(photos);
       } else {
         // 上传失败的图片显示
-        Toast.info('上传失败，请稍后再试');
+        Toast.info('上传失败，请稍后再试', 3);
       }
     });
   }
@@ -42,7 +42,7 @@ class UploadPic extends React.Component {
         this.props.setStatePhotos(photos);
       } else {
         // 上传失败的图片显示
-        Toast.info('上传失败，请稍后再试');
+        Toast.info('上传失败，请稍后再试', 3);
       }
     });
   }
@@ -58,7 +58,7 @@ class UploadPic extends React.Component {
         this.props.setStatePhotos(photos);
       } else {
         // 上传失败的图片显示
-        Toast.info('上传失败，请稍后再试');
+        Toast.info('上传失败，请稍后再试', 3);
       }
     });
   }
@@ -103,7 +103,7 @@ class UploadPic extends React.Component {
           this.props.setStatePhotos(photos);
         } else {
           // 上传失败的图片显示
-          Toast.info('上传失败，请稍后再试');
+          Toast.info('上传失败，请稍后再试', 3);
         }
       });
     };

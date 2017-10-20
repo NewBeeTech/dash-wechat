@@ -53,7 +53,7 @@ export const updateUserInfo: Dispatch =
       dispatch(getUserInfo());
       dispatch(push(RoutingURL.UserInfo('show', '')));
     } else {
-      Toast.info(data.message);
+      Toast.info(data.message, 2);
     }
   });
   AsyncFetchHandler(UPDATE_USER_INFO, result, dispatch);
@@ -130,7 +130,7 @@ export const checkMbCode: Dispatch =
     if(data.code === '001') {
       dispatch(updateUserInfo(params));
     } else {
-      Toast.info('验证码错误');
+      Toast.info('验证码错误', 2);
     }
   })
   AsyncFetchHandler(CHECK_MB_CODE, result, dispatch);

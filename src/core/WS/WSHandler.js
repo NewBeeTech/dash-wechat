@@ -43,7 +43,7 @@ export const GET = async (path: string, params = {}) => {
       credentials: 'include',
     });
     if (response.status >= 500 && response.status < 600) {
-      Toast.info('我们正在修复中!', 1);
+      Toast.info('我们正在修复中!', 3);
     }
     const result = await response.json();
     if (String(result.code) === '004') {
@@ -74,7 +74,7 @@ export const POSTJSON = async (path: string, json = {}) => {
       body,
     });
     if (response.status >= 500 && response.status < 600) {
-      Toast.info('我们正在修复中!', 1);
+      Toast.info('我们正在修复中!', 3);
     }
     const result = await response.json();
     if (String(result.code) === '004') {

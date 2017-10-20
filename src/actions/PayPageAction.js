@@ -16,7 +16,7 @@ export const pay = (params: paymentParms): ThunkAction =>
   const reponse = GET(URL.payPath, params);
   reponse.then(data => {
     if (data.code != '001') {
-      Toast.info('支付失败');
+      Toast.info('支付失败', 2);
       dispatch({ type: 'PAY_FAILURE' });
     } else {
       pingpp.createPayment(data.data, (result, err) => {
@@ -27,7 +27,7 @@ export const pay = (params: paymentParms): ThunkAction =>
           status = 1;
         } else if (result === 'fail') {
           // 支付失败
-          Toast.info('支付失败');
+          Toast.info('支付失败', 2);
           dispatch({ type: 'PAY_FAILURE' });
           status = 0;
         } else if (result === 'cancel') {
@@ -57,7 +57,7 @@ export const getChargeData: Dispatch =
         type: 1,
       }));
     } else {
-      Toast.info(data.message);
+      Toast.info(data.message, 2);
     }
   });
   AsyncFetchHandler(
@@ -77,10 +77,12 @@ export const updatePayStatus: Dispatch =
 (dispatch: Dispatch): void => {
   const result: Promise<Object> = GET(URL.updatePayStatusPath, params: Object);
   result.then((data) => {
+    alert(data.code);
+    console.log(data);
     if (data.code == '001') {
       dispatch(replace('/paySuccess'))
     } else {
-      Toast.info(data.message);
+      Toast.info(data.message, 2);
     }
   });
   AsyncFetchHandler(

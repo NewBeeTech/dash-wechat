@@ -179,7 +179,7 @@ class ActivityContainer extends React.PureComponent {
     if(dashInfo.get('id')) {
       views.push(
         <div>
-         <div style={{ backgroundColor: '#EEEEEE', height: `${bodyHeight}`, overflow: 'scroll'}}>
+         <div style={{ backgroundColor: '#EEEEEE', height: `${bodyHeight}`, overflow: 'scroll', WebkitOverflowScrolling: 'touch' }}>
          <Banner
            leftTopText={''} // 活动类型 暂时隐藏
            imgUrl={this.props.dashInfo.get('backgroundImg')}
@@ -235,7 +235,7 @@ class ActivityContainer extends React.PureComponent {
             () => { this.props.dispatch(goBack()) }
           }
           paymentAction = {() => {
-            if(this.state.isShowButton) {
+            if(this.props.userData.get('userInfo').get('status') === 0) {
               return Toast.info('该用户被屏蔽，文案待定', 3);
             }
             if(this.checkUserInfo()) {

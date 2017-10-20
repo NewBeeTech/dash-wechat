@@ -81,10 +81,10 @@ class UserForm extends React.Component {
 
   checkMobile(mobile) {
     if(!mobile) {
-      Toast.info('请填写手机号码', 1);
+      Toast.info('请填写手机号码', 2);
       return false;
     } else if(!(/^1[3|4|5|7|8]\d{9}$/.test(mobile))) {
-      Toast.info('请填写正确的手机号码', 1);
+      Toast.info('请填写正确的手机号码', 2);
       return false;
     } else {
       return true;

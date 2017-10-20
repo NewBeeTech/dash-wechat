@@ -198,29 +198,29 @@ class UserInfoContainer extends React.Component {
       tags: tags.join(','),
     };
     console.log(params);
-    if(!params.photos) return Toast.info('请上传个人照片!', 1);
+    if(!params.photos) return Toast.info('请上传个人照片!', 2);
     if(!params.phone) {
-      return Toast.info('请填写手机号码!', 1);
+      return Toast.info('请填写手机号码!', 2);
     } else {
       if(!(/^1[3|4|5|7|8]\d{9}$/.test(params.phone))) {
-          return Toast.info('请填写正确的手机号码', 1);
+          return Toast.info('请填写正确的手机号码', 2);
       } else {
         if(params.phone !== this.props.userInfo.get('phone')) {
           console.log(params.code);
           if(!params.code) {
-            return Toast.info('请填写验证码!', 1);
+            return Toast.info('请填写验证码!', 2);
           }
         }
       }
     }
-    if(params.wxAccount === '') return Toast.info('请填写微信号!', 1);
-    if(params.sex === '') return Toast.info('请选择性别!', 1);
+    if(params.wxAccount === '') return Toast.info('请填写微信号!', 2);
+    if(params.sex === '') return Toast.info('请选择性别!', 2);
     if(params.sex === 1) {
-      if(!params.var2) return Toast.info('请填写身高!', 1);
-      if(!params.position) return Toast.info('请填写职位!', 1);
-      if(!params.profession) return Toast.info('请填写行业!', 1);
-      if(!params.var3) return Toast.info('请填写家乡!', 1);
-      if(params.income === '') return Toast.info('请选择收入!', 1);
+      if(!params.var2) return Toast.info('请填写身高!', 2);
+      if(!params.position) return Toast.info('请填写职位!', 2);
+      if(!params.profession) return Toast.info('请填写行业!', 2);
+      if(!params.var3) return Toast.info('请填写家乡!', 2);
+      if(params.income === '') return Toast.info('请选择收入!', 2);
     }
     if(this.state.phone !== this.props.userInfo.get('phone')) {
       dispatch(MineAction.checkMbCode(params));
