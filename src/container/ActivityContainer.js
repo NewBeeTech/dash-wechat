@@ -89,6 +89,9 @@ class ActivityContainer extends React.PureComponent {
       });
       this._weChatShare();
     }
+    if(this.props.params.activityId !== nextProps.params.activityId) {
+      this.props.dispatch(ActivityAction.getUserForDashData({activityId: nextProps.params.activityId}));
+    }
   }
   _getWeConfig(currentURL) {
     this.props.dispatch(
@@ -128,11 +131,13 @@ class ActivityContainer extends React.PureComponent {
   setButton(type, dashInfo) {
     const signupStartTime = dashInfo.get('signupStartTime');
     const signupEndTime = dashInfo.get('signupEndTime');
+    const startTime = dashInfo.get('startTime');
+    // const endTime = dashInfo.get('endTime');
     let isDeadline = moment().isBefore(signupEndTime) && moment(signupStartTime).isBefore(moment());
+    let noStart = moment(signupEndTime).isBefore(moment());
     let isShow = this.props.userData.get('userInfo').get('status'); // 如果冻结则不显示按钮
     const isSignUp = this.props.isSignUp; // 1失败 0未支付 1成功 2运营拒绝 3用户取消
     const signNum = this.props.signNum;
-    console.log('signNum', signNum);
     const sex = this.props.userData.get('userInfo').get('sex');
     let buttonText = '报名联谊';
     let status = true;
@@ -140,20 +145,25 @@ class ActivityContainer extends React.PureComponent {
       buttonText = '报名已截止';
       status = false;
     }
-    console.log('isSignUp', isSignUp);
-    console.log(dashInfo.get('boyNum'), dashInfo.get('girlNum'));
-    // console.log(isSignUp == 0, sex == 2, dashInfo.get('girlNum') == signNum);
+    if(!isDeadline && isSignUp == 1 ) {
+      buttonText = '活动未开始';
+      status = false;
+    }
     if(isSignUp == 0 && ((sex == 1 && !dashInfo.get('boyNum')) || (sex == 2 && !dashInfo.get('girlNum')))) {
       buttonText = '报名已满';
       status = false;
     }
     if(type === 'done' || isSignUp == 1) {
       buttonText = '取消报名';
-    }else if(type === 'cancel' || isSignUp == 3 || isSignUp == 6) {
+    }else if(type === 'cancel' || isSignUp == 3) {
       buttonText = '已取消报名';
       status = false;
     }else if(isSignUp == 2) {
       buttonText = '运营拒绝';
+      status = false;
+    }
+    if(noStart) {
+      buttonText = '报名未开始';
       status = false;
     }
     this.setState({ buttonText, buttonText, status, isShowButton: isShow });
@@ -239,6 +249,9 @@ class ActivityContainer extends React.PureComponent {
             () => { this.props.dispatch(goBack()) }
           }
           paymentAction = {() => {
+            if(this.props.userData.get('userInfo').get('count') === 1) {
+              return Toast.info('您不能报名同一天的两局，会分身乏术', 3);
+            }
             if(this.props.userData.get('userInfo').get('status') === 0) {
               return Toast.info('该用户被屏蔽，文案待定', 3);
             }

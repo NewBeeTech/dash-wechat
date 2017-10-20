@@ -84,6 +84,8 @@ new ActionHandler.handleAction(ActivityAction.GET_DASHINFO)
       address: data.address,
       backgroundImg: data.photos,
       activityTime: getActivityTime(data.startTime, data.endTime),
+      startTime: data.startTime,
+      endTime: data.endTime,
       signupStartTime: data.signupStartTime,
       signupEndTime: data.signupEndTime,
       time: getHaveTime(data.signupStartTime, data.signupEndTime),
@@ -110,8 +112,8 @@ new ActionHandler.handleAction(ActivityAction.GET_DASHINFO)
       introduce: data.desc,
       tips: data.var2, // 友情提示
       acvitivityFlow: data.var1, // 活动流程
-      wantToPeople: data.collectUseList.slice(0, 4),
-      signupPeople: data.signUseList.slice(0, 4),
+      wantToPeople: data.collectUseList,
+      signupPeople: data.signUseList,
       sex: data.sex,
     };
     return state.set('dashInfo', Immutable.fromJS(dashInfo))

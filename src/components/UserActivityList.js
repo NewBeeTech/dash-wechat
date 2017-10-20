@@ -38,7 +38,7 @@ class UserActivityList extends React.Component {
     const view = [];
     const statusText = { 1: '报名成功', 2: '流局', 3: '退款确认中', 4: '活动成功', 5: '活动失败', 6: '已结款'};
     const statusColor = { 1: '#ffce3d', 2: '#f40',  3: '#999', 4: '#ffce3d', 5: '#999', 6: '#999' };
-    const info = { 1: 'done', 2: 'primary',  3: 'cancel', 4: 'primary',  5: 'primary', 3: 'cancel' };
+    const info = { 1: 'done', 2: 'primary',  3: 'cancel', 4: 'primary',  5: 'primary', 6: 'primary' };
     list.map((item, index) => {
       if(status.indexOf(item.get('status')) > -1) {
         view.push(
