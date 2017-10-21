@@ -249,7 +249,7 @@ class ActivityContainer extends React.PureComponent {
              dashInfo={dashInfo}
          />
          {this.props.dashInfo.get('wantToPeople').toJS().length ?
-           <div style={{ backgroundColor: '#fff', padding: '1.5vh 0 2vh'}}>
+           <div style={{ backgroundColor: '#fff'}}>
              <WechatImgList
                 wechatImgList={this.props.dashInfo.get('wantToPeople')}
                 type={'想去'}
