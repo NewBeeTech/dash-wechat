@@ -20,6 +20,10 @@
 :global(.am-list-body) {
   margin-top: 0 !important;
 }
+:global(.am-activity-indicator-spinner-lg) {
+  width: 120px !important;
+  height: 120px !important;
+}
 
 .modulesTitle {
   width: 90vw;
