@@ -50,7 +50,6 @@
 
 {/* 报名人数样式 */}
 .wechatImgContent {
-  padding: 1vh 0 2vh;
 }
 .wechatImgText {
   width: 25vw;
@@ -66,7 +65,7 @@
   width: 90vw;
   margin: 0 auto;
   display: flex;
-  justify-content: center;
+  /*justify-content: center;*/
   flex-wrap: wrap;
   align-items: center;
 }
