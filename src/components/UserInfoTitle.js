@@ -45,7 +45,27 @@ class UserInfoTitle extends React.Component {
     )
   }
   render() {
-    const gender = {0: '', 1: '男', 2: '女'};
+    const gender = {0: '', 1: 'http://dash.oss-cn-beijing.aliyuncs.com/fe/mars.png', 2: 'http://dash.oss-cn-beijing.aliyuncs.com/fe/venus.png'};
+    function renderImg(gender) {
+      console.warn(this.props.sex);
+      console.log(gender);
+      if (gender == 0) {
+        return <div />;
+      } else if (gender == 1) {
+        return (
+          <img style={{ width: '4vw' }} src='http://dash.oss-cn-beijing.aliyuncs.com/fe/mars.png' />
+        );
+      } else if (gender == 2) {
+        return (
+          <img style={{ width: '4vw' }} src='http://dash.oss-cn-beijing.aliyuncs.com/fe/venus.png' />
+        );
+      }
+    };
+    // const genderImg = {
+    //   0: <div />,
+    //   1: <img style={{ width: '4vw' }} src='http://dash.oss-cn-beijing.aliyuncs.com/fe/mars.png />,
+    //   2: <img style={{ width: '4vw' }} src='http://dash.oss-cn-beijing.aliyuncs.com/fe/venus.png' />,
+    // };
     return (
       <List className="my-list">
         <Item
@@ -53,13 +73,15 @@ class UserInfoTitle extends React.Component {
           thumb={this.renderAvator(this.props.avator || this.props.wxPortrait)}
           multipleLine
         >
-          <span style={{ fontSize: '6vw' }}>{this.props.wxName}</span>&nbsp;&nbsp;
-          <span style={{ fontSize: '4vw', color: '#999' }}>{gender[this.props.sex]}</span>&nbsp;&nbsp;
+          <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+            <span style={{ fontSize: '6vw' }}>{this.props.wxName}</span>&nbsp;&nbsp;
+            {gender[this.props.sex] && <img style={{ height: '4vw', width: '4vw', color: '#999' }} src={gender[this.props.sex]}></img>}&nbsp;&nbsp;
+          </div>
           <span style={{ fontSize: '4vw', color: '#999' }}>{this.props.age ? `${this.props.age}岁` : ''}</span>
           {
             this.props.tab === 'share' ? '' :
             <Brief style={{ fontSize: '4vw', color: '#999' }}>
-              吸引异性的特质：{this.props.var4}
+              {this.props.var4}
             </Brief>
           }
         </Item>

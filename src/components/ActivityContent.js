@@ -36,7 +36,7 @@ class ActivityContent extends React.PureComponent {
                 </div>
                 <div className={styles.contentTwoTitle}>
                   <div className={styles.contentTwoImg1}><img src={"http://dash.oss-cn-beijing.aliyuncs.com/fe/fee.png"} width="100%" /></div>
-                  <div>男生{this.props.dashInfo.get('cost')}元&nbsp;|&nbsp;女生{this.props.dashInfo.get('girlCost')}元</div>
+                  <div>男生{this.props.dashInfo.get('cost')}元&nbsp;/&nbsp;女生{this.props.dashInfo.get('girlCost')}元</div>
                 </div>
                 <div className={styles.contentTwoTitle}>
                   <div className={styles.contentTwoImg1}><img src={"http://dash.oss-cn-beijing.aliyuncs.com/fe/progress.png"} width="100%" /></div>

@@ -195,7 +195,7 @@ class UserInfoContainer extends React.Component {
       var4: this.state.var4,
       code: this.state.code,
       id: this.props.userId,
-      tags: tags.join(','),
+      tags: tags.join(',') || ' ',
     };
     console.log(params);
     if(!params.photos) return Toast.info('请上传个人照片!', 2);
