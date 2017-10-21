@@ -48,7 +48,7 @@ class ActivityContainer extends React.PureComponent {
     this.props.dispatch(ActivityAction.getDashInfoData({activityId: this.props.params.activityId}));
     // 获取患者在该活动的状态
     this.props.dispatch(ActivityAction.getUserForDashData({activityId: this.props.params.activityId}));
-    console.log(this.props.isSignUp, this.props.isSignUp);
+    // console.log(this.props.isSignUp, this.props.isSignUp);
     const timestamp = this.props.timestamp;
     const nonceStr = this.props.nonceStr;
     const signature = this.props.signature;
@@ -64,6 +64,7 @@ class ActivityContainer extends React.PureComponent {
     this.setState({
       ...this.state,
     });
+    // console.log(this.state);
      // 设置Button按钮
    if(this.props.dashInfo.get('id')) {
      this.setButton(this.props.params.type, this.props.dashInfo);
@@ -72,9 +73,9 @@ class ActivityContainer extends React.PureComponent {
    this._weChatShare();
   }
   componentWillReceiveProps(nextProps) {
-    if(this.props.isSignUp === undefined && this.props.isSignUp != nextProps.isSignUp ||
-      this.props.signNum === undefined && this.props.signNum != nextProps.signNum ||
-      this.props.count === undefined && this.props.count !== nextProps.count) {
+    if(this.props.isSignUp != nextProps.isSignUp ||
+      this.props.signNum != nextProps.signNum ||
+      this.props.count !== nextProps.count) {
       const isSignUp =  nextProps.isSignUp;
       const signNum =  nextProps.signNum;
       const count =  nextProps.count;
@@ -84,6 +85,7 @@ class ActivityContainer extends React.PureComponent {
       this.setState({
         ...this.state,
       });
+      // console.log(this.state);
     }
     this.setButton(this.props.params.type, nextProps.dashInfo);
     if (!this.props.signature && nextProps.timestamp && nextProps.nonceStr && nextProps.signature) {
