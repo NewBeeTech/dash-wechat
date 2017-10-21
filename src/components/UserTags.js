@@ -53,6 +53,24 @@ class UserTags extends React.Component {
   //   this.setState({ tags, moreTags: newMoreTags });
   // }
   renderTags(tags) {
+    if(this.props.tab !== 'edit') {
+      if (!tags[0] && tags.length === 1) {
+        return (
+          <div style={{
+            height: '60vh',
+            width: '100vw',
+            textAlign: 'center',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            fontSize: '4vw',
+            lineHeight: '6vw',
+          }}>
+            你太神秘了，何不打俩标签<br/>让我们认识认识？
+          </div>
+        );
+      }
+    }
     if(!tags[0] && tags.length === 1) return;
     const view = [];
     tags.map((item, index) => {

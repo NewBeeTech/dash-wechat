@@ -266,7 +266,7 @@ class ActivityContainer extends React.PureComponent {
               return Toast.info('您不能报名同一天的两局，会分身乏术', 3);
             }
             if(this.props.userData.get('userInfo').get('status') === 0) {
-              return Toast.info('该用户被屏蔽，文案待定', 3);
+              return Toast.info('您的账号已经被关闭，请联系客服。', 3);
             }
             if(this.checkUserInfo()) {
               Alter('完善信息',
