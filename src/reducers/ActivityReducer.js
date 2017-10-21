@@ -112,8 +112,8 @@ new ActionHandler.handleAction(ActivityAction.GET_DASHINFO)
       introduce: data.desc,
       tips: data.var2, // 友情提示
       acvitivityFlow: data.var1, // 活动流程
-      wantToPeople: data.collectUseList,
-      signupPeople: data.signUseList,
+      wantToPeople: data.collectUseList.slice(0, 20),
+      signupPeople: data.signUseList.slice(0, 20),
       sex: data.sex,
     };
     return state.set('dashInfo', Immutable.fromJS(dashInfo))

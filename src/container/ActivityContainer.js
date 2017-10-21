@@ -48,6 +48,7 @@ class ActivityContainer extends React.PureComponent {
     this.props.dispatch(ActivityAction.getDashInfoData({activityId: this.props.params.activityId}));
     // 获取患者在该活动的状态
     this.props.dispatch(ActivityAction.getUserForDashData({activityId: this.props.params.activityId}));
+    console.log(this.props.isSignUp, this.props.isSignUp);
     const timestamp = this.props.timestamp;
     const nonceStr = this.props.nonceStr;
     const signature = this.props.signature;
@@ -63,7 +64,6 @@ class ActivityContainer extends React.PureComponent {
     this.setState({
       ...this.state,
     });
-    // console.log(this.state);
      // 设置Button按钮
    if(this.props.dashInfo.get('id')) {
      this.setButton(this.props.params.type, this.props.dashInfo);
@@ -72,12 +72,18 @@ class ActivityContainer extends React.PureComponent {
    this._weChatShare();
   }
   componentWillReceiveProps(nextProps) {
-    if(this.props.isSignUp != nextProps.isSignUp || this.props.signNum != nextProps.signNum || this.props.count !== nextProps.count) {
+    if(this.props.isSignUp === undefined && this.props.isSignUp != nextProps.isSignUp ||
+      this.props.signNum === undefined && this.props.signNum != nextProps.signNum ||
+      this.props.count === undefined && this.props.count !== nextProps.count) {
+      const isSignUp =  nextProps.isSignUp;
+      const signNum =  nextProps.signNum;
+      const count =  nextProps.count;
+      this.state.isSignUp = isSignUp;
+      this.state.signNum = signNum;
+      this.state.count = count;
       this.setState({
-        isSignUp: nextProps.isSignUp,
-        signNum: nextProps.signNum,
-        count: nextProps.count,
-       });
+        ...this.state,
+      });
     }
     this.setButton(this.props.params.type, nextProps.dashInfo);
     if (!this.props.signature && nextProps.timestamp && nextProps.nonceStr && nextProps.signature) {
@@ -140,10 +146,10 @@ class ActivityContainer extends React.PureComponent {
     let noStart = moment().isBefore(moment(startTime));
     let noSignUpStart = moment().isBefore(moment(signupStartTime));
     let isOver = moment(endTime).isBefore(moment());
-    console.log('报名没开始', noSignUpStart);
-    console.log('报名已经截止', !isDeadline);
-    console.log('活动没开始', noStart);
-    console.log('活动已结束', isOver);
+    // console.log('报名没开始', noSignUpStart);
+    // console.log('报名已经截止', !isDeadline);
+    // console.log('活动没开始', noStart);
+    // console.log('活动已结束', isOver);
     let isShow = this.props.userData.get('userInfo').get('status'); // 如果冻结则不显示按钮
     const isSignUp = this.state.isSignUp; // 1失败 0未支付 1成功 2运营拒绝 3用户取消
     const signNum = this.state.signNum;
@@ -171,10 +177,6 @@ class ActivityContainer extends React.PureComponent {
       buttonText = '运营拒绝';
       status = false;
     }
-    // if(noStart && isSignUp == 1 ) {
-    //   buttonText = '活动未开始';
-    //   status = false;
-    // }
     if(isOver) {
       buttonText = '活动已经结束';
       status = false;
@@ -262,7 +264,7 @@ class ActivityContainer extends React.PureComponent {
             () => { this.props.dispatch(goBack()) }
           }
           paymentAction = {() => {
-            if(this.state.count == 1) {
+            if(this.state.signup == 0 && this.state.count == 1) {
               return Toast.info('您不能报名同一天的两局，会分身乏术', 3);
             }
             if(this.props.userData.get('userInfo').get('status') === 0) {

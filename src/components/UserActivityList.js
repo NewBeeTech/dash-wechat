@@ -34,13 +34,25 @@ class UserActivityList extends React.Component {
       <img src={avator} style={{ width: '20vw', height: '11.25vw', borderRadius: '10%' }} />
     )
   }
-  renderMyDash(list, status) {
+  renderMyDash(list, status, type) {
+    // let newList;
+    // 计划中的联谊
+    // if(type === 1) {
+    //   newList = list.filter(item => {
+    //     console.log(item.toJS());
+    //     console.log(new Date(item.get('startTime')).getTime(), new Date().getTime());
+    //     return new Date(item.get('startTime')).getTime() > new Date().getTime();
+    //   });
+    // }
+    // console.log(newList);
     const view = [];
     const statusText = { 1: '报名成功', 2: '流局', 3: '退款确认中', 4: '活动成功', 5: '活动失败', 6: '已结款'};
     const statusColor = { 1: '#ffce3d', 2: '#f40',  3: '#999', 4: '#ffce3d', 5: '#999', 6: '#999' };
     const info = { 1: 'done', 2: 'primary',  3: 'cancel', 4: 'primary',  5: 'primary', 6: 'primary' };
     list.map((item, index) => {
-      if(status.indexOf(item.get('status')) > -1) {
+      if(status.indexOf(item.get('status')) > -1 &&
+      ((type === 1 && (new Date(item.get('startTime')).getTime() > new Date().getTime() || item.get('status') == 3)) ||
+      (type === 2 && new Date(item.get('startTime')).getTime() < new Date().getTime()))) {
         view.push(
           <List.Item
             key={index}
@@ -60,7 +72,7 @@ class UserActivityList extends React.Component {
               className={styles.status}
               style={{ color: statusColor[item.get('status')] }}
             >
-              {item.get('status') === 4 || (item.get('status') === 1 && new Date(item.get('startTime')).getTime() > new Date().getTime()) ?
+              {item.get('status') === 4 || (item.get('status') === 1 && new Date(item.get('startTime')).getTime() < new Date().getTime()) ?
               <span
                 className={styles.vote}
                 onClick={(e) => {
@@ -146,7 +158,7 @@ class UserActivityList extends React.Component {
         <Accordion defaultActiveKey="0" className="my-accordion">
           <Accordion.Panel header={<div className={styles.panelHeader}><img src="http://dash.oss-cn-beijing.aliyuncs.com/fe/todo.png" />&nbsp;&nbsp;计划中的联谊</div>}>
             <List className="my-list">
-              {this.renderMyDash(this.props.myDash, [1, 3])}
+              {this.renderMyDash(this.props.myDash, [1, 3], 1)}
             </List>
           </Accordion.Panel>
           <Accordion.Panel header={<div className={styles.panelHeader}><img src="http://dash.oss-cn-beijing.aliyuncs.com/fe/wantto.png" />&nbsp;&nbsp;想去的联谊</div>} className="pad">
@@ -156,7 +168,7 @@ class UserActivityList extends React.Component {
           </Accordion.Panel>
           <Accordion.Panel header={<div className={styles.panelHeader}><img src="http://dash.oss-cn-beijing.aliyuncs.com/fe/history.png" />&nbsp;&nbsp;联过的谊</div>} className="pad">
             <List className="my-list">
-              {this.renderMyDash(this.props.myDash, [2, 4, 5, 6])}
+              {this.renderMyDash(this.props.myDash, [1, 2, 4, 5, 6], 2)}
             </List>
           </Accordion.Panel>
         </Accordion>
