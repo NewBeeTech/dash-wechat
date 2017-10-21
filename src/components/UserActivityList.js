@@ -60,7 +60,7 @@ class UserActivityList extends React.Component {
             style={{ height: '34vw', position: 'relative' }}
             thumb={this.renderImg(item.get('photos'))}
             multipleLine
-            onClick={() => {this.props.routeToActivity(item.get('activityId'), info[item.get('status')])}}
+            onClick={() => {this.props.routeToActivity(item.get('activityId'))}}
           >
             <span style={{ fontSize: '4vw' }}>{item.get('activityName')}</span>
             <List.Item.Brief style={{ fontSize: '3.5vw', color: '#999' }}>

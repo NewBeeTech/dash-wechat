@@ -172,7 +172,7 @@ class ActivityContainer extends React.PureComponent {
     }
     if(type === 'done' || isSignUp == 1) {
       buttonText = '取消报名';
-    }else if(type === 'cancel' || isSignUp == 3) {
+    }else if(type === 'cancel' || isSignUp == 3 || isSignUp == 6) {
       buttonText = '已取消报名';
       status = false;
     }else if(isSignUp == 2) {
