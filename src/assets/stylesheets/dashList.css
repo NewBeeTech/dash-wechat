@@ -106,7 +106,9 @@
   line-height: 1.5;
   /*background-color: rgba(10,10,10,0.3);*/
   /*background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(255,255,255,0));*/
-  background: radial-gradient(ellipse farthest-corner, rgba(0,0,0,0.6), rgba(255,255,255,0));
+  /*background: radial-gradient(ellipse farthest-corner, rgba(0,0,0,0.6), rgba(255,255,255,0));*/
+  text-shadow: 0vw 1vw 1vw rgba(0, 0, 0, 0.8);
+  letter-spacing: 0.5vw;
 }
 
 .dashNum {

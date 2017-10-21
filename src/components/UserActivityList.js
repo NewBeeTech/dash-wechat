@@ -51,7 +51,6 @@ class UserActivityList extends React.Component {
     const statusColor = { 1: '#ffce3d', 2: '#f40',  3: '#999', 4: '#ffce3d', 5: '#999', 6: '#999' };
     const info = { 1: 'done', 2: 'primary',  3: 'cancel', 4: 'primary',  5: 'primary', 6: 'primary' };
     list.map((item, index) => {
-      // console.log(index, moment().format('X'), moment(item.get('startTime')).format('X'));
       if(status.indexOf(item.get('status')) > -1 &&
       ((type === 1 && (moment(item.get('startTime')).format('X') > moment().format('X') || item.get('status') == 3)) ||
       (type === 2 && moment(item.get('startTime')).format('X') < moment().format('X')))) {

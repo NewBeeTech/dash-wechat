@@ -251,7 +251,7 @@ module.exports = {
         secure: false
       },
     },
-    host: 'localhost',
+    host: '0.0.0.0',
     port: '8080',
     contentBase: path.join(__dirname), // boolean | string | array, static file location
     compress: true, // enable gzip compression
