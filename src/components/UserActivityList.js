@@ -53,7 +53,7 @@ class UserActivityList extends React.Component {
     list.map((item, index) => {
       if(status.indexOf(item.get('status')) > -1 &&
       ((type === 1 && (moment(item.get('startTime')).format('X') > moment().format('X') || item.get('status') == 3)) ||
-      (type === 2 && moment(item.get('startTime')).format('X') < moment().format('X')))) {
+      (type === 2 && moment(item.get('startTime')).format('X') < moment().format('X') || item.get('status') === 6 || item.get('status') === 5 || item.get('status') === 4 || item.get('status') === 2))) {
         view.push(
           <List.Item
             key={index}

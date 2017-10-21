@@ -213,7 +213,7 @@ class UserInfoContainer extends React.Component {
         }
       }
     }
-    if(params.wxAccount === '') return Toast.info('请填写微信号!', 2);
+    if(params.wxAccount === '' || params.wxAccount === undefined) return Toast.info('请填写微信号!', 2);
     if(params.sex === '') return Toast.info('请选择性别!', 2);
     if(params.sex === 1) {
       if(!params.var2) return Toast.info('请填写身高!', 2);
