@@ -50,6 +50,7 @@
 
 {/* 报名人数样式 */}
 .wechatImgContent {
+  padding: 2vw 0;
 }
 .wechatImgText {
   width: 25vw;
