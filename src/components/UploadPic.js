@@ -22,7 +22,7 @@ class UploadPic extends React.Component {
       if (fileInfo.fileURL) {
         const photos = this.props.photos;
         photos[0] = fileInfo.fileURL;
-        alert(fileInfo.fileURL);
+        // alert(fileInfo.fileURL);
         // 上传成功的图片显示
         this.props.setStatePhotos(photos);
       } else {
