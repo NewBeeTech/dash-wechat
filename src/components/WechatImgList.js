@@ -50,7 +50,9 @@ class WechatImgList extends React.PureComponent {
           <div className={styles.wechatImgText}>
           {content}
           </div>
-          <div className={styles.wechatImgList}>{showList(this.props.wechatImgList)}</div>
+          <div className={styles.wechatImgList}>
+            {showList(this.props.wechatImgList)}
+          </div>
       </div>
     );
   }

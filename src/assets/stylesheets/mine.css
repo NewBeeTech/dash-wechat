@@ -9,9 +9,11 @@
 }
 
 .status {
-  position: absolute;
-  bottom: 3vw;
-  right: 5vw;
+  text-align: right;
+  margin-right: 3vw;
+  /*position: absolute;
+  bottom: 1vw;
+  right: 5vw;*/
   font-size: 3.5vw;
 }
 
@@ -273,14 +275,16 @@
 }
 
 .vote {
-  width: 12vw;
+  width: 16vw;
   display: inline-block;
-  height: 5vw;
+  height: 7vw;
   border-radius: 8px;
   border: 1px solid #ffce3d;
   color: #ffce3d;
   text-align: center;
   cursor: pointer;
+  line-height: 7vw;
+  font-size: 4vw;
 }
 
 .members {
