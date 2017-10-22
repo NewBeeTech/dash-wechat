@@ -7,7 +7,7 @@ import AsyncFetchHandler from '../core/AsyncFetchHandler';
 import * as URL from '../core/WS/URL';
 import type { ThunkAction, Dispatch } from './types';
 import * as RoutingURL from './../core/RoutingURL/RoutingURL';
-import { push } from 'react-router-redux';
+import { push, replace } from 'react-router-redux';
 import { Toast } from 'antd-mobile';
 
 /**
@@ -51,7 +51,7 @@ export const updateUserInfo: Dispatch =
   result.then(data => {
     if (data.code === '001') {
       dispatch(getUserInfo());
-      dispatch(push(RoutingURL.UserInfo('show', '')));
+      dispatch(replace(RoutingURL.UserInfo('show', '')));
     } else {
       Toast.info(data.message, 2);
     }
