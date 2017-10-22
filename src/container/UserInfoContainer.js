@@ -24,6 +24,7 @@ const propTypes = {
 type state = {
   photos: Array,
   phone: string,
+  wxAccount: string,
   sex: Array,
   birth: string,
   height: string,
@@ -57,6 +58,7 @@ class UserInfoContainer extends React.Component {
       position: this.props.userInfo.get('position'),
       profession: this.props.userInfo.get('profession'),
       hometown: this.props.userInfo.get('var3'),
+      wxAccount: this.props.userInfo.get('wxAccount'),
       income: [this.props.userInfo.get('income')],
       var4: this.props.userInfo.get('var4'),
       tags: this.props.userInfo.get('tags').split(','),
@@ -89,6 +91,7 @@ class UserInfoContainer extends React.Component {
         hometown: nextProps.userInfo.get('var3'),
         income: [nextProps.userInfo.get('income')],
         var4: nextProps.userInfo.get('var4'),
+        wxAccount: nextProps.userInfo.get('wxAccount'),
         code: '',
       });
     }
@@ -271,7 +274,7 @@ class UserInfoContainer extends React.Component {
             hometown={this.state.hometown}
             income={this.state.income}
             var4={this.state.var4}
-            wxAccount={this.props.userInfo.get('wxAccount')}
+            wxAccount={this.state.wxAccount}
             code={this.state.code}
             changeCell={(value, title) => this.changeCell(value, title)}
           /> : ''}
