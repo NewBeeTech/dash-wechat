@@ -154,6 +154,7 @@ class UserInfoContainer extends React.Component {
     }
   }
   changeCell(value, title){
+    console.warn(value, title);
     const item = this.state[title];
     this.state[title] = value;
     this.setState({

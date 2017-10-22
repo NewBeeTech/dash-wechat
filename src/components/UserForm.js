@@ -10,6 +10,8 @@ import moment from 'moment';
 import * as MineAction from './../actions/MineAction';
 import { dispatch } from './../index';
 import { createForm } from 'rc-form';
+import AgePicker from './AgePicker';
+import SexPicker from './SexPicker';
 
 type Props = {
   originPhone: string,
@@ -143,61 +145,23 @@ class UserForm extends React.Component {
             <span className={styles.item}>性&nbsp;&nbsp;&nbsp;别</span>
             <span className={styles.itemBorder} />
             <span className={styles.itemForm}>
-              <Picker
-                data={[
-                  {
-                    label: '请选择',
-                    value: 0,
-                  },
-                  {
-                    label: '男',
-                    value: 1,
-                  },
-                  {
-                    label: '女',
-                    value: 2,
-                  }]}
-                {...getFieldProps('sex', {
-                   initialValue: this.props.sex,
-                   onChange: (e) => this.props.changeCell(e, 'sex'),
-                 })}
-                // defaultValue={this.props.sex}
-                cols={1}
-                // onChange={(e) => this.props.changeCell(e, 'sex')}
-              >
-                <List.Item
-                  arrow="horizontal"
-                  style={{ background: 'none' }}
-                >&nbsp;</List.Item>
-              </Picker>
+              <SexPicker
+                getFieldProps={getFieldProps}
+                sex={this.props.sex}
+                changeCell={this.props.changeCell}
+              />
             </span>
           </div>
           <div className={styles.inputDiv}>
             <span className={styles.item}>生&nbsp;&nbsp;&nbsp;日</span>
             <span className={styles.itemBorder} />
             <span className={styles.itemForm}>
-              <DatePicker
-                format={val => val.format('YYYY.MM.DD')}
-                mode="date"
-                extra="请选择"
-                minDate={minDate}
-                maxDate={maxDate}
-                {...getFieldProps('birth', {
-                   initialValue: this.props.birth ? moment(this.props.birth) : '',
-                   onChange: (e) => this.props.changeCell(e, 'birth'),
-                 })}
-                // value={this.props.birth ? moment(this.props.birth) : ''}
-                // onChange={(e) => {
-                //   this.props.changeCell(e, 'birth')
-                // }}
-              >
-                <List.Item
-                  arrow="horizontal"
-                  style={{ background: 'none' }}
-                >
-                  &nbsp;
-                </List.Item>
-              </DatePicker>
+              <AgePicker
+                getFieldProps={getFieldProps}
+                birth={this.props.birth}
+                changeCell={this.props.changeCell}
+              />
+
             </span>
           </div>
           {this.props.sex[0] === 1 ?
