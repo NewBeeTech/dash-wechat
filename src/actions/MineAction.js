@@ -111,9 +111,15 @@ export const GET_MB_CODE: string = 'GET_MB_CODE';
 export const getMbCode: Dispatch =
 (params: {openid: ?string}): ThunkAction =>
 (dispatch: Dispatch): void => {
+  const result = POSTJSON(URL.getMbCodePath: string, params: Object);
+  result.then((data) => {
+    if(data.data === '000') {
+      Toast.info('发送验证码太频繁，请稍后再试', 3);
+    }
+  });
   AsyncFetchHandler(
     GET_MB_CODE,
-    POSTJSON(URL.getMbCodePath: string, params: Object),
+    result,
     dispatch
   );
 };
