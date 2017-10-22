@@ -129,6 +129,8 @@
   margin-top: 20px;
   /*border-bottom: 2px solid #ccc;*/
   font-weight:bold;
+  word-wrap: break-word;
+  word-break: normal;
 }
 
 .contentOneTitle1Line {
@@ -138,6 +140,8 @@
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
   border-top: 20px solid #000;
+  word-wrap: break-word;
+  word-break: normal;
 }
 
 .contentOneTitle3 {
@@ -149,6 +153,8 @@
   border-bottom: 2px solid #ccc;
   font-weight:bold;
   line-height: 1.5em;
+  word-wrap: break-word;
+  word-break: normal;
 }
 
 .contentOneTitle2 {
@@ -158,6 +164,8 @@
   word-wrap: break-word;
   white-space: pre-wrap;
   line-height: 40px;
+  word-wrap: break-word;
+  word-break: normal;
 }
 
 .contentThree {
@@ -271,6 +279,8 @@
   margin: 0 auto;
   margin-top: 10vw;
   width: 80vw;
+  word-wrap: break-word;
+  word-break: normal;
 }
 
 .introduceContent {
@@ -279,4 +289,6 @@
   font-size: 3.5vw;
   line-height: 1.2;
   text-align: justify;
+  word-wrap: break-word;
+  word-break: normal;
 }
