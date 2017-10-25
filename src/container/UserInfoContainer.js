@@ -122,6 +122,7 @@ class UserInfoContainer extends React.Component {
   //   return shallowCompare(this, nextProps, nextState);
   // }
   _getWeConfig(currentURL) {
+    console.log(currentURL);
     this.props.dispatch(
       WechatAuthAction.getWeConfigDate({ url: currentURL })
     );
@@ -129,7 +130,7 @@ class UserInfoContainer extends React.Component {
   _weChatShare() {
     if(this.state.timestamp) {
       window.wx.config({
-        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+        debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
         appId: 'wx186971588dd1f238', // 必填，企业号的唯一标识，此处填写企业号corpid
         timestamp: this.state.timestamp, // 必填，生成签名的时间戳
         nonceStr: this.state.nonceStr, // 必填，生成签名的随机串
@@ -139,13 +140,13 @@ class UserInfoContainer extends React.Component {
       window.wx.ready(() => {
         window.wx.onMenuShareTimeline({
           title: 'Dash联谊中的我',
-          link: `http://dash.sameyou.cn/wx/index.html#/user-info/share/id/${this.props.userId}?_k=qze0fo)`,
+          link: `http://dashooo.com/wx/index.html#/user-info/share/id/${this.props.userId}?_k=qze0fo)`,
           imgUrl: `${this.props.userInfo.get('wxPortrait')}`,
         });
         window.wx.onMenuShareAppMessage({
           title: 'Dash联谊中的我',
           desc: '',
-          link: `http://dash.sameyou.cn/wx/index.html#/user-info/share/id/${this.props.userId}?_k=qze0fo)`,
+          link: `http://dashooo.com/wx/index.html#/user-info/share/id/${this.props.userId}?_k=qze0fo)`,
           imgUrl: `${this.props.userInfo.get('wxPortrait')}`,
           type: 'link',
           dataUrl: '',

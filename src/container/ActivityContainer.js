@@ -19,6 +19,7 @@ import { redux, decorators } from 'amumu';
 import moment from 'moment';
 import { Modal, Button, Toast } from 'antd-mobile';
 import * as Immutable from 'immutable';
+var logo = require('./../assets/images/logo.png');
 
 const Alter = Modal.alert;
 
@@ -112,7 +113,7 @@ class ActivityContainer extends React.PureComponent {
   _weChatShare() {
     if(this.state.timestamp) {
       window.wx.config({
-        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+        debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
         appId: 'wx186971588dd1f238', // 必填，企业号的唯一标识，此处填写企业号corpid
         timestamp: this.state.timestamp, // 必填，生成签名的时间戳
         nonceStr: this.state.nonceStr, // 必填，生成签名的随机串
@@ -122,14 +123,14 @@ class ActivityContainer extends React.PureComponent {
       window.wx.ready(() => {
         window.wx.onMenuShareTimeline({
           title: `${this.props.dashInfo.get('title')}`,
-          link: `http://dash.sameyou.cn/wx/index.html#/activity-details/${this.props.dashInfo.get('id')}/type/info?_k=qze0fo)`,
-          imgUrl: `${this.props.dashInfo.get('backgroundImg')}`,
+          link: `http://dashooo.com/wx/index.html#/activity-details/${this.props.dashInfo.get('id')}/type/info?_k=qze0fo)`,
+          imgUrl: `${logo}`,
         });
         window.wx.onMenuShareAppMessage({
           title: `${this.props.dashInfo.get('title')}`,
           desc: `${this.props.dashInfo.get('activityTime')}  ${this.props.dashInfo.get('address')}`,
-          link: `http://dash.sameyou.cn/wx/index.html#/activity-details/${this.props.dashInfo.get('id')}/type/info?_k=qze0fo)`,
-          imgUrl: `${this.props.dashInfo.get('backgroundImg')}`,
+          link: `http://dashooo.com/wx/index.html#/activity-details/${this.props.dashInfo.get('id')}/type/info?_k=qze0fo)`,
+          imgUrl: `${logo}`,
           type: 'link',
           dataUrl: '',
         });
