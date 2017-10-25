@@ -45,7 +45,9 @@ class DashCarousel extends React.Component {
       }else if(carousel.toJS().length == 1) {
           views.push(
             <div>
-              <img src={carousel.toJS()[0].img} className={styles.CarouselImg} />
+              <a href={carousel.toJS()[0].url || "javascript:void(0)"}>
+                <img src={carousel.toJS()[0].img} className={styles.CarouselImg} />
+              </a>
             </div>
           );
       }
