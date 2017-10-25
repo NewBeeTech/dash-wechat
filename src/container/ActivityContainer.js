@@ -124,13 +124,13 @@ class ActivityContainer extends React.PureComponent {
         window.wx.onMenuShareTimeline({
           title: `${this.props.dashInfo.get('title')}`,
           link: `http://dashooo.com/wx/index.html#/activity-details/${this.props.dashInfo.get('id')}/type/info?_k=qze0fo)`,
-          imgUrl: `${logo}`,
+          imgUrl: "http://dash.oss-cn-beijing.aliyuncs.com/fe/logo.png",
         });
         window.wx.onMenuShareAppMessage({
           title: `${this.props.dashInfo.get('title')}`,
           desc: `${this.props.dashInfo.get('activityTime')}  ${this.props.dashInfo.get('address')}`,
           link: `http://dashooo.com/wx/index.html#/activity-details/${this.props.dashInfo.get('id')}/type/info?_k=qze0fo)`,
-          imgUrl: `${logo}`,
+          imgUrl: "http://dash.oss-cn-beijing.aliyuncs.com/fe/logo.png",
           type: 'link',
           dataUrl: '',
         });
