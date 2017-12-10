@@ -20,7 +20,7 @@ class Fellowship extends React.PureComponent {
       list.map((item, index) => {
         if(item.type === 1) {
           views.push(
-            <div key={index} className={styles.introduceContent}>{item.content }<br /><br /></div>
+            <div key={index} className={styles.introduceContent}><pre>{item.content }<br /><br /></pre></div>
           )
         }
         if(item.type === 2) {

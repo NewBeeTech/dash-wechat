@@ -293,3 +293,9 @@
   word-wrap: break-word;
   word-break: normal;
 }
+
+.introduceContent pre {
+  width: 100%;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
