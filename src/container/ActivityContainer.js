@@ -42,6 +42,9 @@ class ActivityContainer extends React.PureComponent {
       isShowButton: true,
       isSignUp: 0,
       signNum: 0,
+      title: '',
+      activityTime: '',
+      address: '',
     };
   }
   componentWillMount() {
@@ -56,12 +59,18 @@ class ActivityContainer extends React.PureComponent {
     const isSignUp =  this.props.isSignUp;
     const signNum =  this.props.signNum;
     const count =  this.props.count;
+    const title =  this.props.dashInfo.get('title');
+    const activityTime =  this.props.dashInfo.get('activityTime');
+    const address =  this.props.dashInfo.get('address');
     this.state.timestamp = timestamp;
     this.state.nonceStr = nonceStr;
     this.state.signature = signature;
     this.state.isSignUp = isSignUp;
     this.state.signNum = signNum;
+    this.state.title = title;
+    this.state.activityTime = activityTime;
     this.state.count = count;
+    this.state.address = address;
     this.setState({
       ...this.state,
     });
@@ -72,6 +81,7 @@ class ActivityContainer extends React.PureComponent {
    }
    this._getWeConfig(location.href.split('#')[0]);
    this._weChatShare();
+
   }
   componentWillReceiveProps(nextProps) {
     if(this.props.isSignUp != nextProps.isSignUp ||
@@ -104,6 +114,17 @@ class ActivityContainer extends React.PureComponent {
     if(this.props.params.activityId !== nextProps.params.activityId) {
       this.props.dispatch(ActivityAction.getUserForDashData({activityId: nextProps.params.activityId}));
     }
+    if(this.props.dashInfo.get('title') !== nextProps.dashInfo.get('title')) {
+      const title = nextProps.dashInfo.get('title');
+      const activityTime = nextProps.dashInfo.get('activityTime');
+      const address = nextProps.dashInfo.get('address');
+      this.state.title = title;
+      this.state.activityTime = activityTime;
+      this.state.address = address;
+      this.setState({
+        ...this.state,
+      });
+    }
   }
   _getWeConfig(currentURL) {
     this.props.dispatch(
@@ -111,6 +132,7 @@ class ActivityContainer extends React.PureComponent {
     );
   }
   _weChatShare() {
+    console.log(this.state.title);
     if(this.state.timestamp) {
       window.wx.config({
         debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
@@ -122,14 +144,14 @@ class ActivityContainer extends React.PureComponent {
       });
       window.wx.ready(() => {
         window.wx.onMenuShareTimeline({
-          title: `${this.props.dashInfo.get('title')}`,
-          link: `http://dashooo.com/wx/index.html#/activity-details/${this.props.dashInfo.get('id')}/type/info?_k=qze0fo)`,
+          title: `${this.state.title}`,
+          link: `http://dashooo.com/wx/index.html#/activity-details/${this.props.params.activityId}/type/info?_k=qze0fo)`,
           imgUrl: "http://dash.oss-cn-beijing.aliyuncs.com/fe/logo02.png",
         });
         window.wx.onMenuShareAppMessage({
-          title: `${this.props.dashInfo.get('title')}`,
-          desc: `${this.props.dashInfo.get('activityTime')}  ${this.props.dashInfo.get('address')}`,
-          link: `http://dashooo.com/wx/index.html#/activity-details/${this.props.dashInfo.get('id')}/type/info?_k=qze0fo)`,
+          title: `${this.state.title}`,
+          desc: `${this.state.activityTime}  ${this.state.address}`,
+          link: `http://dashooo.com/wx/index.html#/activity-details/${this.props.params.activityId}/type/info?_k=qze0fo)`,
           imgUrl: "http://dash.oss-cn-beijing.aliyuncs.com/fe/logo02.png",
           type: 'link',
           dataUrl: '',
