@@ -96,6 +96,7 @@ class ActivityContainer extends React.PureComponent {
         ...this.state,
       });
       console.log(this.state.title);
+      this._weChatShare();
     }
     if(this.props.isSignUp != nextProps.isSignUp ||
       this.props.signNum != nextProps.signNum ||
