@@ -84,6 +84,19 @@ class ActivityContainer extends React.PureComponent {
 
   }
   componentWillReceiveProps(nextProps) {
+    console.log(this.props.dashInfo.get('title'), nextProps.dashInfo.get('title'));
+    if(this.props.dashInfo.get('title') !== nextProps.dashInfo.get('title')) {
+      const title = nextProps.dashInfo.get('title');
+      const activityTime = nextProps.dashInfo.get('activityTime');
+      const address = nextProps.dashInfo.get('address');
+      this.state.title = title;
+      this.state.activityTime = activityTime;
+      this.state.address = address;
+      this.setState({
+        ...this.state,
+      });
+      console.log(this.state.title);
+    }
     if(this.props.isSignUp != nextProps.isSignUp ||
       this.props.signNum != nextProps.signNum ||
       this.props.count !== nextProps.count) {
@@ -113,17 +126,6 @@ class ActivityContainer extends React.PureComponent {
     }
     if(this.props.params.activityId !== nextProps.params.activityId) {
       this.props.dispatch(ActivityAction.getUserForDashData({activityId: nextProps.params.activityId}));
-    }
-    if(this.props.dashInfo.get('title') !== nextProps.dashInfo.get('title')) {
-      const title = nextProps.dashInfo.get('title');
-      const activityTime = nextProps.dashInfo.get('activityTime');
-      const address = nextProps.dashInfo.get('address');
-      this.state.title = title;
-      this.state.activityTime = activityTime;
-      this.state.address = address;
-      this.setState({
-        ...this.state,
-      });
     }
   }
   _getWeConfig(currentURL) {
